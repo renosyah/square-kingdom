@@ -1,0 +1,341 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/ui/fonts/montserrat_eb_32.tres" type="DynamicFont" id=1]
+[ext_resource path="res://menu/lobby-menu/ui/ui.gd" type="Script" id=2]
+[ext_resource path="res://assets/ui/icon/back.png" type="Texture" id=3]
+[ext_resource path="res://assets/ui/fonts/montserrat_eb_48.tres" type="DynamicFont" id=4]
+[ext_resource path="res://addons/LANServerBroadcast/server_advertiser/ServerAdvertiser.gd" type="Script" id=6]
+[ext_resource path="res://assets/sound/background.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/ui/fonts/montserrat_eb_16.tres" type="DynamicFont" id=8]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("label2:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ "Loading..." ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "loading"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("label2:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ "Loading", "Loading.", "Loading..", "Loading...", "Loading..." ]
+}
+
+[node name="ui" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bg" type="ColorRect" parent="CanvasLayer/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.784314 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer2"]
+margin_right = 600.0
+margin_bottom = 100.0
+
+[node name="back" type="Button" parent="CanvasLayer/Control/VBoxContainer2/HBoxContainer"]
+margin_right = 100.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+custom_fonts/font = ExtResource( 1 )
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="TextureRect" parent="CanvasLayer/Control/VBoxContainer2/HBoxContainer/back"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -40.0
+margin_top = -40.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 80, 80 )
+texture = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer2/HBoxContainer"]
+margin_left = 104.0
+margin_right = 496.0
+margin_bottom = 100.0
+size_flags_horizontal = 3
+size_flags_vertical = 5
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_as_outline = 3
+custom_fonts/font = ExtResource( 4 )
+text = "Lobby"
+align = 1
+valign = 1
+
+[node name="margin" type="MarginContainer" parent="CanvasLayer/Control/VBoxContainer2/HBoxContainer"]
+margin_left = 500.0
+margin_right = 600.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control/VBoxContainer2"]
+margin_top = 104.0
+margin_right = 600.0
+margin_bottom = 694.0
+size_flags_vertical = 3
+scroll_horizontal_enabled = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/VBoxContainer2/ScrollContainer"]
+margin_right = 600.0
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/VBoxContainer2"]
+margin_top = 698.0
+margin_right = 600.0
+margin_bottom = 1024.0
+rect_min_size = Vector2( 0, 326 )
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer2/VBoxContainer"]
+margin_right = 600.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 0, 80 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_as_outline = 2
+custom_fonts/font = ExtResource( 8 )
+text = "Choose Your Team"
+align = 1
+valign = 1
+
+[node name="choose_side" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer2/VBoxContainer"]
+margin_top = 84.0
+margin_right = 600.0
+margin_bottom = 164.0
+mouse_filter = 2
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer4" type="MarginContainer" parent="CanvasLayer/Control/VBoxContainer2/VBoxContainer/choose_side"]
+margin_right = 15.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 15, 0 )
+
+[node name="join_team_1" type="Button" parent="CanvasLayer/Control/VBoxContainer2/VBoxContainer/choose_side"]
+margin_left = 19.0
+margin_right = 273.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 200, 80 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/Control/VBoxContainer2/VBoxContainer/choose_side/join_team_1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="CanvasLayer/Control/VBoxContainer2/VBoxContainer/choose_side/join_team_1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_as_outline = 3
+custom_fonts/font = ExtResource( 1 )
+text = "Team 1"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/VBoxContainer2/VBoxContainer/choose_side"]
+margin_left = 277.0
+margin_right = 322.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 45, 0 )
+
+[node name="join_team_2" type="Button" parent="CanvasLayer/Control/VBoxContainer2/VBoxContainer/choose_side"]
+margin_left = 326.0
+margin_right = 581.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 200, 80 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control/VBoxContainer2/VBoxContainer/choose_side/join_team_2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer2/VBoxContainer/choose_side/join_team_2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_as_outline = 3
+custom_fonts/font = ExtResource( 1 )
+text = "Team 2"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer3" type="MarginContainer" parent="CanvasLayer/Control/VBoxContainer2/VBoxContainer/choose_side"]
+margin_left = 585.0
+margin_right = 600.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 15, 0 )
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/VBoxContainer2/VBoxContainer"]
+margin_top = 168.0
+margin_right = 600.0
+margin_bottom = 193.0
+rect_min_size = Vector2( 0, 25 )
+
+[node name="battle" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer2/VBoxContainer"]
+margin_top = 197.0
+margin_right = 600.0
+margin_bottom = 297.0
+mouse_filter = 2
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Control/VBoxContainer2/VBoxContainer/battle"]
+margin_right = 15.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 15, 0 )
+
+[node name="battle" type="Button" parent="CanvasLayer/Control/VBoxContainer2/VBoxContainer/battle"]
+margin_left = 19.0
+margin_right = 581.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 200, 100 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+text = "Battle"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/VBoxContainer2/VBoxContainer/battle"]
+margin_left = 585.0
+margin_right = 600.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 15, 0 )
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Control/VBoxContainer2/VBoxContainer"]
+margin_top = 301.0
+margin_right = 600.0
+margin_bottom = 326.0
+rect_min_size = Vector2( 0, 25 )
+
+[node name="loading" type="ColorRect" parent="CanvasLayer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label2" type="Label" parent="CanvasLayer/loading"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/line_spacing = 2
+custom_constants/shadow_as_outline = 2
+custom_fonts/font = ExtResource( 1 )
+text = "Loading..."
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/loading"]
+autoplay = "loading"
+anims/RESET = SubResource( 1 )
+anims/loading = SubResource( 2 )
+
+[node name="server_advertise" type="Node" parent="."]
+script = ExtResource( 6 )
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+volume_db = -15.0
+autoplay = true
+
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer2/HBoxContainer/back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer2/VBoxContainer/choose_side/join_team_1" to="." method="_on_join_team_1_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer2/VBoxContainer/choose_side/join_team_2" to="." method="_on_join_team_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer2/VBoxContainer/battle/battle" to="." method="_on_battle_pressed"]

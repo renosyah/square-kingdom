@@ -1,0 +1,99 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/ui/bar-3d/hp_bar_3d.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/ui/message-3d/message_3d.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/flag/flag.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scene/buildings/castle/castle.gd" type="Script" id=4]
+[ext_resource path="res://scene/buildings/tower/pilars.png" type="Texture" id=5]
+[ext_resource path="res://scene/buildings/tower/tower.png" type="Texture" id=6]
+[ext_resource path="res://scene/buildings/tower/floor.png" type="Texture" id=7]
+[ext_resource path="res://scene/buildings/tower/roof.png" type="Texture" id=10]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 1.83237, 0.84971, 1.62462 )
+
+[node name="tower" type="StaticBody"]
+script = ExtResource( 4 )
+
+[node name="pivot" type="Spatial" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 1.0726, 0 )
+
+[node name="tower_1" type="Sprite3D" parent="pivot"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.271888, 0.483249, -0.00784492 )
+alpha_cut = 2
+texture = ExtResource( 6 )
+
+[node name="tower_2" type="Sprite3D" parent="pivot"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.302196, 0.483249, -0.00784492 )
+alpha_cut = 2
+texture = ExtResource( 6 )
+
+[node name="tower_3" type="Sprite3D" parent="pivot"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0187773, 0.483249, 0.292994 )
+alpha_cut = 2
+texture = ExtResource( 6 )
+
+[node name="tower_4" type="Sprite3D" parent="pivot"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0187773, 0.483249, -0.299697 )
+alpha_cut = 2
+texture = ExtResource( 6 )
+
+[node name="pilar_2" type="Sprite3D" parent="pivot"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24469, 0.184066, 0.285246 )
+alpha_cut = 2
+texture = ExtResource( 5 )
+
+[node name="pilar_3" type="Sprite3D" parent="pivot"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.206993, 0.184066, 0.270263 )
+alpha_cut = 2
+texture = ExtResource( 5 )
+
+[node name="pilar_4" type="Sprite3D" parent="pivot"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.206993, 0.184066, -0.271043 )
+alpha_cut = 2
+texture = ExtResource( 5 )
+
+[node name="pilar_5" type="Sprite3D" parent="pivot"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.233784, 0.184066, -0.271043 )
+alpha_cut = 2
+texture = ExtResource( 5 )
+
+[node name="floor" type="Sprite3D" parent="pivot"]
+transform = Transform( 0.936435, 0, 0, 0, -4.02315e-08, -0.999483, 0, 0.920389, -4.36888e-08, 0.0187773, 0.388808, -0.00348476 )
+alpha_cut = 2
+texture = ExtResource( 7 )
+
+[node name="roof" type="Sprite3D" parent="pivot"]
+transform = Transform( 0.936435, 0, 0, 0, -4.02315e-08, -0.999483, 0, 0.920389, -4.36888e-08, 0.0187773, 0.683177, 0.0133343 )
+alpha_cut = 2
+texture = ExtResource( 10 )
+
+[node name="flag" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.80176, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0344505, 0.944574, 0.00295162 )
+shape = SubResource( 1 )
+disabled = true
+
+[node name="hpBar" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.43345, -2 )
+
+[node name="message_3d" parent="." instance=ExtResource( 2 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
+
+[node name="coin_gain_timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="capture_reset_timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="idle_timmer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="timeout" from="coin_gain_timer" to="." method="_on_coin_gain_timer_timeout"]
+[connection signal="timeout" from="capture_reset_timer" to="." method="_on_capture_reset_timer_timeout"]
+[connection signal="timeout" from="idle_timmer" to="." method="_on_idle_timmer_timeout"]

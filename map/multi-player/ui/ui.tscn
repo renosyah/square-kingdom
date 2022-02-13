@@ -1,0 +1,370 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://assets/ui/fonts/montserrat_eb_48.tres" type="DynamicFont" id=1]
+[ext_resource path="res://map/multi-player/ui/ui.gd" type="Script" id=2]
+[ext_resource path="res://assets/ui/icon/menu.png" type="Texture" id=3]
+[ext_resource path="res://assets/ui/icon/menu_press.png" type="Texture" id=4]
+[ext_resource path="res://assets/ui/fonts/montserrat_eb_32.tres" type="DynamicFont" id=5]
+[ext_resource path="res://assets/ui/icon/close.png" type="Texture" id=6]
+[ext_resource path="res://assets/ui/icon/gold.png" type="Texture" id=7]
+[ext_resource path="res://assets/ui/img/border_no_transparent.png" type="Texture" id=8]
+[ext_resource path="res://assets/ui/list-deck/list_deck.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/ui/icon/recruit.png" type="Texture" id=10]
+[ext_resource path="res://assets/sound/background.wav" type="AudioStream" id=11]
+
+[node name="ui" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer3" type="VBoxContainer" parent="CanvasLayer/Control"]
+margin_right = 170.0
+margin_bottom = 195.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/HBoxContainer3"]
+margin_right = 170.0
+margin_bottom = 80.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="TextureRect" parent="CanvasLayer/Control/HBoxContainer3/HBoxContainer"]
+margin_right = 80.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 80, 80 )
+texture = ExtResource( 7 )
+expand = true
+
+[node name="label" type="Label" parent="CanvasLayer/Control/HBoxContainer3/HBoxContainer"]
+margin_left = 84.0
+margin_top = 20.0
+margin_right = 150.0
+margin_bottom = 60.0
+custom_colors/font_color = Color( 1, 0.776471, 0.364706, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/line_spacing = 2
+custom_constants/shadow_as_outline = 2
+custom_fonts/font = ExtResource( 5 )
+text = "100 "
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Control/HBoxContainer3"]
+margin_top = 84.0
+margin_right = 170.0
+margin_bottom = 164.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="TextureRect" parent="CanvasLayer/Control/HBoxContainer3/HBoxContainer2"]
+margin_right = 80.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 80, 80 )
+texture = ExtResource( 10 )
+expand = true
+
+[node name="label" type="Label" parent="CanvasLayer/Control/HBoxContainer3/HBoxContainer2"]
+margin_left = 84.0
+margin_top = 20.0
+margin_right = 154.0
+margin_bottom = 60.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/line_spacing = 2
+custom_constants/shadow_as_outline = 2
+custom_fonts/font = ExtResource( 5 )
+text = "0/10"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -130.0
+margin_bottom = 114.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="menu_btn" type="TextureButton" parent="CanvasLayer/Control/CenterContainer"]
+margin_left = 15.0
+margin_top = 7.0
+margin_right = 115.0
+margin_bottom = 107.0
+rect_min_size = Vector2( 80, 80 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+
+[node name="hurt_effect" type="NinePatchRect" parent="CanvasLayer/Control"]
+modulate = Color( 0.827451, 0.0980392, 0.0980392, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 8 )
+region_rect = Rect2( -14.1632, -10.0305, 510.48, 356.69 )
+patch_margin_left = 34
+patch_margin_top = 28
+patch_margin_right = 31
+patch_margin_bottom = 28
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Control"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -282.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Control/HBoxContainer2"]
+margin_right = 271.0
+margin_bottom = 282.0
+rect_min_size = Vector2( 35, 0 )
+mouse_filter = 2
+size_flags_horizontal = 3
+
+[node name="deck_list" parent="CanvasLayer/Control/HBoxContainer2" instance=ExtResource( 9 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 275.0
+margin_right = 325.0
+margin_bottom = 282.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/HBoxContainer2"]
+margin_left = 329.0
+margin_right = 600.0
+margin_bottom = 282.0
+rect_min_size = Vector2( 35, 0 )
+mouse_filter = 2
+size_flags_horizontal = 3
+
+[node name="info" type="Label" parent="CanvasLayer/Control"]
+anchor_right = 1.0
+margin_bottom = 468.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/line_spacing = 2
+custom_constants/shadow_as_outline = 2
+custom_fonts/font = ExtResource( 5 )
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="loading" type="ColorRect" parent="CanvasLayer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.117647 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label2" type="Label" parent="CanvasLayer/loading"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/line_spacing = 2
+custom_constants/shadow_as_outline = 2
+custom_fonts/font = ExtResource( 5 )
+text = "Ready in 5..."
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="game_over" type="ColorRect" parent="CanvasLayer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.117647 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/game_over"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -158.5
+margin_bottom = 158.5
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label2" type="Label" parent="CanvasLayer/game_over/VBoxContainer"]
+margin_right = 600.0
+margin_bottom = 60.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/line_spacing = 2
+custom_constants/shadow_as_outline = 2
+custom_fonts/font = ExtResource( 1 )
+text = "Game Over"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label3" type="Label" parent="CanvasLayer/game_over/VBoxContainer"]
+margin_top = 64.0
+margin_right = 600.0
+margin_bottom = 104.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/line_spacing = 2
+custom_constants/shadow_as_outline = 2
+custom_fonts/font = ExtResource( 5 )
+text = "Team ... win"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/game_over/VBoxContainer"]
+margin_top = 108.0
+margin_right = 600.0
+margin_bottom = 233.0
+rect_min_size = Vector2( 0, 125 )
+
+[node name="exit_game" type="Button" parent="CanvasLayer/game_over/VBoxContainer"]
+margin_left = 175.0
+margin_top = 237.0
+margin_right = 425.0
+margin_bottom = 327.0
+rect_min_size = Vector2( 250, 90 )
+size_flags_horizontal = 4
+custom_fonts/font = ExtResource( 5 )
+text = "Main Menu"
+
+[node name="menu" type="ColorRect" parent="CanvasLayer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.807843 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer2" type="CenterContainer" parent="CanvasLayer/menu"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -130.0
+margin_bottom = 114.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="close_menu" type="TextureButton" parent="CanvasLayer/menu/CenterContainer2"]
+margin_left = 25.0
+margin_top = 17.0
+margin_right = 105.0
+margin_bottom = 97.0
+rect_min_size = Vector2( 80, 80 )
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 3 )
+expand = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/menu"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -158.5
+margin_bottom = 158.5
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label2" type="Label" parent="CanvasLayer/menu/VBoxContainer"]
+margin_right = 600.0
+margin_bottom = 60.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/line_spacing = 2
+custom_constants/shadow_as_outline = 2
+custom_fonts/font = ExtResource( 1 )
+text = "Menu"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label3" type="Label" parent="CanvasLayer/menu/VBoxContainer"]
+margin_top = 64.0
+margin_right = 600.0
+margin_bottom = 104.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/line_spacing = 2
+custom_constants/shadow_as_outline = 2
+custom_fonts/font = ExtResource( 5 )
+text = "Want to exit?"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/menu/VBoxContainer"]
+margin_top = 108.0
+margin_right = 600.0
+margin_bottom = 233.0
+rect_min_size = Vector2( 0, 125 )
+
+[node name="force_exit" type="Button" parent="CanvasLayer/menu/VBoxContainer"]
+margin_left = 175.0
+margin_top = 237.0
+margin_right = 425.0
+margin_bottom = 327.0
+rect_min_size = Vector2( 250, 90 )
+size_flags_horizontal = 4
+custom_fonts/font = ExtResource( 5 )
+text = "Main Menu"
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+volume_db = -15.0
+autoplay = true
+
+[connection signal="pressed" from="CanvasLayer/Control/CenterContainer/menu_btn" to="." method="_on_menu_btn_pressed"]
+[connection signal="on_item_press" from="CanvasLayer/Control/HBoxContainer2/deck_list" to="." method="_on_deck_list_on_item_press"]
+[connection signal="pressed" from="CanvasLayer/game_over/VBoxContainer/exit_game" to="." method="_on_exit_game_pressed"]
+[connection signal="pressed" from="CanvasLayer/menu/CenterContainer2/close_menu" to="." method="_on_close_menu_pressed"]
+[connection signal="pressed" from="CanvasLayer/menu/VBoxContainer/force_exit" to="." method="_on_force_exit_pressed"]

@@ -1,0 +1,286 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://assets/ui/fonts/montserrat_eb_48.tres" type="DynamicFont" id=1]
+[ext_resource path="res://menu/main-menu/ui/ui.gd" type="Script" id=2]
+[ext_resource path="res://assets/ui/fonts/montserrat_eb_86.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/ui/img/cloud_1.png" type="Texture" id=4]
+[ext_resource path="res://assets/ui/img/cloud_3.png" type="Texture" id=5]
+[ext_resource path="res://assets/ui/img/cloud_2.png" type="Texture" id=6]
+[ext_resource path="res://assets/ui/icon/setting.png" type="Texture" id=7]
+[ext_resource path="res://assets/ui/server-browser/server_browser.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/ui/fonts/montserrat_eb_32.tres" type="DynamicFont" id=9]
+[ext_resource path="res://assets/sound/background.wav" type="AudioStream" id=10]
+[ext_resource path="res://assets/ui/simple_dialog_message/exception_message.tscn" type="PackedScene" id=11]
+[ext_resource path="res://assets/ui/fonts/montserrat_eb_16.tres" type="DynamicFont" id=12]
+
+[node name="ui" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="cloud_1" type="TextureRect" parent="CanvasLayer/Control"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -267.0
+margin_top = -85.0
+margin_right = 218.0
+margin_bottom = 165.0
+texture = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="cloud_2" type="TextureRect" parent="CanvasLayer/Control"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -141.0
+margin_top = -2.0
+margin_right = 344.0
+margin_bottom = 248.0
+texture = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="cloud_3" type="TextureRect" parent="CanvasLayer/Control"]
+margin_left = -299.0
+margin_top = -61.0
+margin_right = 186.0
+margin_bottom = 189.0
+texture = ExtResource( 6 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="cloud_4" type="TextureRect" parent="CanvasLayer/Control"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = -273.0
+margin_top = -234.0
+margin_right = 212.0
+margin_bottom = 16.0
+rect_scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="cloud_5" type="TextureRect" parent="CanvasLayer/Control"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -70.9999
+margin_top = -264.0
+margin_right = 414.0
+margin_bottom = -14.0
+rect_scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="cloud_6" type="TextureRect" parent="CanvasLayer/Control"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -549.0
+margin_top = -91.0
+margin_right = -64.0
+margin_bottom = 159.0
+texture = ExtResource( 6 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="cloud_7" type="TextureRect" parent="CanvasLayer/Control"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 100.0
+margin_top = -86.0
+margin_right = 585.0
+margin_bottom = 164.0
+texture = ExtResource( 6 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -213.0
+margin_right = 214.0
+margin_bottom = 390.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_as_outline = 3
+custom_fonts/font = ExtResource( 3 )
+text = "Square 
+Kingdom"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="CanvasLayer/Control"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -96.0
+margin_top = 120.0
+margin_right = 331.0
+margin_bottom = 510.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_as_outline = 3
+custom_fonts/font = ExtResource( 12 )
+text = "By Renosyah"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="CanvasLayer/Control"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -507.0
+margin_bottom = -11.0
+rect_min_size = Vector2( 0, 300 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -202.0
+margin_top = -119.0
+margin_right = 202.0
+margin_bottom = 119.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="play" type="Button" parent="CanvasLayer/Control/Control/VBoxContainer"]
+margin_right = 404.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 0, 100 )
+custom_fonts/font = ExtResource( 1 )
+text = "Play"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/Control/VBoxContainer"]
+margin_top = 104.0
+margin_right = 404.0
+margin_bottom = 134.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/Control/VBoxContainer"]
+margin_top = 138.0
+margin_right = 404.0
+margin_bottom = 238.0
+
+[node name="host" type="Button" parent="CanvasLayer/Control/Control/VBoxContainer/HBoxContainer"]
+margin_right = 183.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 0, 100 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 9 )
+text = "Host"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Control/Control/VBoxContainer/HBoxContainer"]
+margin_left = 187.0
+margin_right = 217.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 30, 0 )
+
+[node name="join" type="Button" parent="CanvasLayer/Control/Control/VBoxContainer/HBoxContainer"]
+margin_left = 221.0
+margin_right = 404.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 0, 100 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 9 )
+text = "Join"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer2" type="CenterContainer" parent="CanvasLayer/Control"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -130.0
+margin_bottom = 114.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="setting" type="Button" parent="CanvasLayer/Control/CenterContainer2"]
+margin_left = 25.0
+margin_top = 17.0
+margin_right = 105.0
+margin_bottom = 97.0
+rect_min_size = Vector2( 80, 80 )
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control/CenterContainer2/setting"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.278431, 0.278431, 0.278431, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/CenterContainer2/setting"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 7 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="server_browser" parent="CanvasLayer" instance=ExtResource( 8 )]
+visible = false
+
+[node name="exception_message" parent="CanvasLayer" instance=ExtResource( 11 )]
+visible = false
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+volume_db = -15.0
+autoplay = true
+
+[connection signal="pressed" from="CanvasLayer/Control/Control/VBoxContainer/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Control/VBoxContainer/HBoxContainer/host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Control/VBoxContainer/HBoxContainer/join" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/CenterContainer2/setting" to="." method="_on_setting_pressed"]
+[connection signal="close" from="CanvasLayer/server_browser" to="." method="_on_server_browser_close"]
+[connection signal="on_join" from="CanvasLayer/server_browser" to="." method="_on_server_browser_on_join"]

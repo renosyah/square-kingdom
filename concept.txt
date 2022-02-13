@@ -1,0 +1,18 @@
+# gameplay
+1. each team got a castle and give 10 coin each second (passive income)
+2. randomly farm spawn
+3. spawned unit go capture farm (randomly) (for active income)
+4. spawned unit go kill other spawned unit (randomly) (rock-paper-scissors)
+5. certain farm is control, unit can attack other team castle
+6. other team castle down, team win
+
+# need fix
+1. unit classes (check) 
+2. unit uniform (check)
+3. unit spawner
+4. full gameplay
+
+classes :
+melee sword : (Militia = 40, Swordman = 60, Foot Soldier = 80)
+melee spear : (Spearman = 45, Guard = 75, Pikeman = 90)
+range : (Archer = 35, Bowman = 55, Crossbowman = 65)
