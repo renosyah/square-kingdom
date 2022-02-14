@@ -116,9 +116,10 @@ _global_script_class_icons={
 
 [application]
 
-config/name="square-kingdom"
+config/name="Square Kingdom"
+config/description="Square kingdom is a simple idle mobile game"
 run/main_scene="res://menu/main-menu/main_menu.tscn"
-config/icon="res://icon.png"
+config/icon="res://icn.png"
 config/quit_on_go_back=false
 
 [autoload]
