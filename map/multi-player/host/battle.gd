@@ -53,6 +53,8 @@ func generate_spawn():
 			
 	_spawn_buildings($castle_holder.get_path(), $farm_holder.get_path())
 	
+	Global.rpc("on_host_game_session_ready", game_data)
+	
 ################################################################
 # camera
 func _on_castle_spawn(_team, _translation):
@@ -63,14 +65,6 @@ func _on_castle_spawn(_team, _translation):
 	
 ################################################################
 # grpc server func
-remote func _request_building_data(from_id : int):
-	._request_building_data(from_id)
-	
-	if not get_tree().is_network_server():
-		return
-		
-	rpc_id(from_id,"_receive_building_data", game_data)
-	
 remotesync func _game_info(_flag : int, _data : Dictionary):
 	if _data.has("message"):
 		_ui.display_loading(_flag == GAME_LOADING, _data.message)
@@ -119,26 +113,11 @@ func _on_capture_progress(_building, _capture_by, _cp_damage, _cp, _max_cp):
 	
 func on_building_captured(_building,_last_owner_team,_capture_by):
 	.on_building_captured(_building,_last_owner_team,_capture_by)
-	var building = _building.building_name
-	var message = ""
-	var team = Global.player_data.team
-	
-	# owner and by who
-	if _capture_by == team and _last_owner_team == "":
-		message = building + " Seized!"
-		
-	if _capture_by == team and _last_owner_team != "":
-		message = building + " is Captured!"
-		
-	if _capture_by != team and _last_owner_team == team:
-		message = "We have lost a " + building + "!"
-		
+	var message = _building_captured_message(_building.building_name,Global.player_data.team,_capture_by,_last_owner_team)
 	if message == "":
 		return
-		
+
 	_ui.display_info(message)
-	
-	
 	
 func _on_ui_on_deploy_card(unit):
 	_deploy_card(unit)
@@ -146,6 +125,13 @@ func _on_ui_on_deploy_card(unit):
 	
 func _unit_spawned():
 	._unit_spawned()
+	check_deck()
+	
+func _on_unit_dead(_unit):
+	._on_unit_dead(_unit)
+	check_deck()
+	
+func check_deck():
 	var team = Global.player_data.team
 	var coin = game_data[team].coin
 	var pop = _number_of_unit_spawn($unit_holder,team)

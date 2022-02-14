@@ -64,17 +64,6 @@ func disconnect_from_server():
 	rpc("_disconnect_from_server")
 	
 ################################################################
-# client request buildings
-remote func _request_building_data(
-	from_id : int
-):
-	pass
-	
-remote func _receive_building_data(
-	_data : Dictionary
-):
-	pass
-################################################################
 func _draw_card(quantity : int, team : String) -> Array:
 	var cards = []
 	for i in quantity:
@@ -323,6 +312,17 @@ func _number_of_unit_spawn(holder, team) -> int:
 			
 	return unit_count
 
+func _building_captured_message(_building_name, _team,_capture_by, _last_owner_team) -> String:
+	if _capture_by == _team and _last_owner_team == "":
+		return _building_name + " Seized!"
+		
+	if _capture_by == _team and _last_owner_team != "":
+		return _building_name + " is Captured!"
+		
+	if _capture_by != _team and _last_owner_team == _team:
+		return "We have lost a " + _building_name + "!"
+		
+	return ""
 
 
 

@@ -102,15 +102,25 @@ static func generate_game_data(max_farm : int = 10, max_tower : int = 4) -> Dict
 			data.buildings.append(castle)
 			
 	for i in max_farm:
-		data.buildings.append(Buildings.BUILDINGS[1].duplicate())
+		var farm = Buildings.BUILDINGS[1].duplicate()
+		farm.amount = round(rand_range(2,10))
+		farm.coin_produce_cooldown = rand_range(10,15)
+		data.buildings.append(farm)
 		
 	for i in max_tower:
+		var tower = Buildings.BUILDINGS[1].duplicate()
+		tower.attack_damage = rand_range(2,8)
 		data.buildings.append(Buildings.BUILDINGS[2].duplicate())
 		
 	return data
 	
 ################################################################
 # multiplayer connection and data
+signal on_host_game_session_ready(_mp_game_data)
+
+remotesync func on_host_game_session_ready(_mp_game_data : Dictionary):
+	emit_signal("on_host_game_session_ready", _mp_game_data)
+
 const MODE_HOST = 0
 const MODE_JOIN = 1
 var mode = MODE_HOST
@@ -128,4 +138,7 @@ var client = {
 
 var mp_game_data = {}
 var mp_exception_message = ""
+
+
+
 ################################################################

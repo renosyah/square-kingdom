@@ -73,13 +73,24 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer2"]
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control/VBoxContainer2"]
 margin_right = 600.0
-margin_bottom = 100.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 0, 120 )
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="back" type="Button" parent="CanvasLayer/Control/VBoxContainer2/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer2/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 593.0
+margin_bottom = 113.0
+
+[node name="back" type="Button" parent="CanvasLayer/Control/VBoxContainer2/PanelContainer/HBoxContainer"]
 margin_right = 100.0
-margin_bottom = 100.0
+margin_bottom = 106.0
 rect_min_size = Vector2( 100, 100 )
 custom_fonts/font = ExtResource( 1 )
 flat = true
@@ -87,7 +98,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect2" type="TextureRect" parent="CanvasLayer/Control/VBoxContainer2/HBoxContainer/back"]
+[node name="ColorRect2" type="TextureRect" parent="CanvasLayer/Control/VBoxContainer2/PanelContainer/HBoxContainer/back"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -103,28 +114,31 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer2/HBoxContainer"]
+[node name="margin" type="CenterContainer" parent="CanvasLayer/Control/VBoxContainer2/PanelContainer/HBoxContainer"]
 margin_left = 104.0
-margin_right = 496.0
-margin_bottom = 100.0
+margin_right = 482.0
+margin_bottom = 106.0
 size_flags_horizontal = 3
-size_flags_vertical = 5
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_as_outline = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer2/PanelContainer/HBoxContainer/margin"]
+margin_left = 110.0
+margin_top = 23.0
+margin_right = 267.0
+margin_bottom = 83.0
+size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 4 )
 text = "Lobby"
 align = 1
 valign = 1
 
-[node name="margin" type="MarginContainer" parent="CanvasLayer/Control/VBoxContainer2/HBoxContainer"]
-margin_left = 500.0
-margin_right = 600.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 100, 100 )
+[node name="margin2" type="MarginContainer" parent="CanvasLayer/Control/VBoxContainer2/PanelContainer/HBoxContainer"]
+margin_left = 486.0
+margin_right = 586.0
+margin_bottom = 106.0
+rect_min_size = Vector2( 100, 0 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control/VBoxContainer2"]
-margin_top = 104.0
+margin_top = 124.0
 margin_right = 600.0
 margin_bottom = 694.0
 size_flags_vertical = 3
@@ -335,7 +349,7 @@ stream = ExtResource( 7 )
 volume_db = -15.0
 autoplay = true
 
-[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer2/HBoxContainer/back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer2/PanelContainer/HBoxContainer/back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer2/VBoxContainer/choose_side/join_team_1" to="." method="_on_join_team_1_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer2/VBoxContainer/choose_side/join_team_2" to="." method="_on_join_team_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer2/VBoxContainer/battle/battle" to="." method="_on_battle_pressed"]

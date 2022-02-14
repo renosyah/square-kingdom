@@ -6,7 +6,7 @@ the game top down paper style art 3D for mobile and pc with multiplayer LAN made
 
 ## Feature
 - Simple click/tap to watch
-- Coop with bot up to 4 player
+- Coop or PvP with coop bot and player up to 4 player
 - 1v1 team with player joining either team
 
 

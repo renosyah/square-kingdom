@@ -19,11 +19,13 @@ onready var _capture_reset_timer = $capture_reset_timer
 onready var _cp_bar = $hpBar
 
 var amount = 10
+var coin_produce_cooldown = 10
 
 ############################################################
 # multiplayer func
 remotesync func _display_message(_msg):
 	_message.set_message(_msg)
+	_message.set_color(Color(1, 0.776471, 0.364706))
 	_message.visible = true
 	_tween.interpolate_property(_message, "translation:y", 8 , 14, 2.5, Tween.TRANS_SINE, Tween.EASE_IN)
 	_tween.interpolate_property(_message, "modulate:a", 1 , 0, 2.3, Tween.TRANS_SINE, Tween.EASE_IN)
@@ -78,9 +80,11 @@ func set_data(_data):
 	attack_cool_down = _data.attack_cool_down
 	range_attack = _data.range_attack
 	amount = _data.amount
+	coin_produce_cooldown = _data.coin_produce_cooldown
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	._ready()
 	_flag.set_flag_color(color)
 	_cp_bar.show_label(false)
 	_cp_bar.set_hp_bar_color(color)
@@ -89,9 +93,10 @@ func _ready():
 
 	if not .is_master():
 		return
-		
-	_timer.wait_time = 5.0
-	_timer.start()
+	
+	if amount != 0:
+		_timer.wait_time = coin_produce_cooldown
+		_timer.start()
 	
 	_capture_reset_timer.wait_time = 5
 	_capture_reset_timer.start()

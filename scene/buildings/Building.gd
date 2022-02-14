@@ -66,6 +66,8 @@ func set_data(_data):
 	color = _data.color
 	last_owner_team = team
 	
+func _ready():
+	set_process(is_master())
 
 func capture(_cp_damage : float, _capture_by: Dictionary):
 	if not is_master():

@@ -110,6 +110,7 @@ func set_data(_data):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_process(is_master())
+	
 	if not is_master():
 		return
 		

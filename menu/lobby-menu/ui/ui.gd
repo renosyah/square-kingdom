@@ -67,13 +67,6 @@ remotesync func _kick_player(data : Dictionary):
 		
 	fill_player_slot()
 	
-	
-remotesync func _battle():
-	if Global.mode == Global.MODE_HOST:
-		get_tree().change_scene("res://map/multi-player/host/battle.tscn")
-	else:
-		get_tree().change_scene("res://map/multi-player/client/battle.tscn")
-		
 remote func _request_team_colors_data(from_id : int):
 	if not get_tree().is_network_server():
 		return
@@ -156,6 +149,7 @@ func _server_player_connected(_player_network_unique_id : int, _player : Diction
 func _init_join():
 	_battle_layout.visible = false
 	
+	Global.connect("on_host_game_session_ready", self, "_on_host_game_session_ready")
 	Network.connect("server_disconnected", self , "_server_disconnected")
 	Network.connect("client_player_connected", self , "_client_player_connected")
 	
@@ -166,6 +160,10 @@ func _init_join():
 func _client_player_connected(_player_network_unique_id : int, player : Dictionary):
 	Global.client.network_unique_id = _player_network_unique_id
 	rpc_id(Network.PLAYER_HOST_ID, "_request_team_colors_data", _player_network_unique_id)
+	
+func _on_host_game_session_ready(_mp_game_data : Dictionary):
+	Global.mp_game_data = _mp_game_data
+	get_tree().change_scene("res://map/multi-player/client/battle.tscn")
 	
 func _server_disconnected():
 	Global.mp_exception_message = "Unexpected exit by Server!"
@@ -257,7 +255,7 @@ func _on_battle_pressed():
 	for i in Global.TEAMS:
 		Global.mp_game_data[i].enable_ai = (total_player_sides[i] == 0)
 		
-	rpc("_battle")
+	get_tree().change_scene("res://map/multi-player/host/battle.tscn")
 	
 func _on_back_pressed():
 	Network.disconnect_from_server()

@@ -183,7 +183,7 @@ __meta__ = {
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0.117647 )
+color = Color( 0, 0, 0, 0.745098 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -195,7 +195,7 @@ custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/line_spacing = 2
 custom_constants/shadow_as_outline = 2
-custom_fonts/font = ExtResource( 5 )
+custom_fonts/font = ExtResource( 1 )
 text = "Ready in 5..."
 align = 1
 valign = 1
