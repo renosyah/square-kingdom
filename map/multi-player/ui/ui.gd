@@ -17,6 +17,8 @@ onready var _loading_message = $CanvasLayer/loading/label2
 onready var _game_over = $CanvasLayer/game_over
 onready var _game_over_condition = $CanvasLayer/game_over/VBoxContainer/label2
 onready var _game_over_message = $CanvasLayer/game_over/VBoxContainer/label3
+onready var _game_over_rematch_btn = $CanvasLayer/game_over/VBoxContainer/HBoxContainer/re_match
+onready var _game_over_rematch_tip = $CanvasLayer/game_over/VBoxContainer/label4
 
 onready var _menu = $CanvasLayer/menu
 
@@ -58,11 +60,13 @@ func display_loading(show : bool, message : String):
 	_loading.visible = show
 	_loading_message.text = message
 	
-func display_game_over(condition, message : String):
+func display_game_over(show_rematch : bool , condition, message : String):
+	_game_over_rematch_btn.visible = show_rematch
 	_control_ui.visible = false
 	_game_over.visible = true
 	_game_over_condition.text = condition
 	_game_over_message.text = message
+	_game_over_rematch_tip.text = "You can rematch or leave" if get_tree().is_network_server() else "You can wait for rematch or leave"
 	
 func display_hurt(_team : String):
 	if _team == Global.player_data.team:
@@ -78,9 +82,17 @@ func _on_exit_game_pressed():
 		
 	get_tree().change_scene("res://menu/main-menu/main_menu.tscn")
 
+func _on_re_match_pressed():
+	if not get_tree().is_network_server():
+		return
+		
+	get_tree().change_scene("res://map/multi-player/host/battle.tscn")
+	
 func _on_force_exit_pressed():
 	Network.disconnect_from_server()
 	get_tree().change_scene("res://menu/main-menu/main_menu.tscn")
+
+
 
 
 

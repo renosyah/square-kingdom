@@ -12,6 +12,7 @@ func _ready():
 # init client player
 func _init_client():
 	.init_connection_watcher()
+	_set_on_restart_match()
 	game_data = Global.mp_game_data
 	_spawn_buildings($castle_holder.get_path(), $farm_holder.get_path())
 	
@@ -43,7 +44,7 @@ remotesync func _game_info(_flag : int, _data : Dictionary):
 		var is_win = winner_team == Global.player_data.team
 		var condition = "Victory!" if is_win else "Defeat!"
 		var message = "Our team win!" if is_win else "Our team lose!"
-		_ui.display_game_over(condition, message)
+		_ui.display_game_over(false, condition, message)
 		clear_entity()
 	
 func clear_entity():
@@ -51,7 +52,6 @@ func clear_entity():
 		i.queue_free()
 		
 	$terrain.visible = false
-	Network.disconnect_from_server()
 	
 ################################################################
 # update from ui and call update to ui
@@ -107,7 +107,14 @@ func check_deck():
 	_ui.display_population(team, pop, MAX_UNIT_SPAWN)
 	_ui.display_clickable_deck(pop, MAX_UNIT_SPAWN, coin)
 	
-
+################################################################
+# if host player want to rematch
+func _set_on_restart_match():
+	Global.connect("on_host_game_session_ready", self, "_on_host_game_session_ready")
+	
+func _on_host_game_session_ready(_mp_game_data : Dictionary):
+	Global.mp_game_data = _mp_game_data
+	get_tree().change_scene("res://map/multi-player/client/battle.tscn")
 
 
 

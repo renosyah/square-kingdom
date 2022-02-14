@@ -30,7 +30,7 @@ func generate_spawn():
 		Global.TEAM_1 : pos_1[randi() % pos_1.size()].translation,
 		Global.TEAM_2 : pos_2[randi() % pos_2.size()].translation
 	}
-	game_data = Global.mp_game_data
+	game_data = Global.mp_game_data.duplicate()
 	
 	var pos = $terrain.translations.duplicate()
 	
@@ -83,7 +83,7 @@ remotesync func _game_info(_flag : int, _data : Dictionary):
 		var is_win = winner_team == Global.player_data.team
 		var condition = "Victory!" if is_win else "Defeat!"
 		var message = "Our team win!" if is_win else "Our team lose!"
-		_ui.display_game_over(condition, message)
+		_ui.display_game_over(true, condition, message)
 		clear_entity()
 	
 func clear_entity():

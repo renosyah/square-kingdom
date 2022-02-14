@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/ui/fonts/montserrat_eb_48.tres" type="DynamicFont" id=1]
 [ext_resource path="res://map/multi-player/ui/ui.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://assets/ui/list-deck/list_deck.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/ui/icon/recruit.png" type="Texture" id=10]
 [ext_resource path="res://assets/sound/background.wav" type="AudioStream" id=11]
+[ext_resource path="res://assets/ui/fonts/montserrat_eb_16.tres" type="DynamicFont" id=12]
 
 [node name="ui" type="Control"]
 anchor_right = 1.0
@@ -204,7 +205,6 @@ __meta__ = {
 }
 
 [node name="game_over" type="ColorRect" parent="CanvasLayer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.117647 )
@@ -254,21 +254,67 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/game_over/VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/game_over/VBoxContainer"]
 margin_top = 108.0
 margin_right = 600.0
-margin_bottom = 233.0
+margin_bottom = 133.0
+rect_min_size = Vector2( 0, 25 )
+
+[node name="label4" type="Label" parent="CanvasLayer/game_over/VBoxContainer"]
+margin_left = 120.0
+margin_top = 137.0
+margin_right = 480.0
+margin_bottom = 195.0
+rect_min_size = Vector2( 360, 0 )
+size_flags_horizontal = 4
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/line_spacing = 2
+custom_constants/shadow_as_outline = 2
+custom_fonts/font = ExtResource( 12 )
+text = "You can wait for rematch or leave"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/game_over/VBoxContainer"]
+margin_top = 199.0
+margin_right = 600.0
+margin_bottom = 324.0
 rect_min_size = Vector2( 0, 125 )
 
-[node name="exit_game" type="Button" parent="CanvasLayer/game_over/VBoxContainer"]
-margin_left = 175.0
-margin_top = 237.0
-margin_right = 425.0
-margin_bottom = 327.0
-rect_min_size = Vector2( 250, 90 )
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/game_over/VBoxContainer"]
+margin_top = 328.0
+margin_right = 600.0
+margin_bottom = 418.0
+alignment = 1
+
+[node name="re_match" type="Button" parent="CanvasLayer/game_over/VBoxContainer/HBoxContainer"]
+margin_left = 83.0
+margin_right = 266.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 150, 90 )
 size_flags_horizontal = 4
 custom_fonts/font = ExtResource( 5 )
-text = "Main Menu"
+text = " Rematch "
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/game_over/VBoxContainer/HBoxContainer"]
+margin_left = 270.0
+margin_right = 295.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 25, 0 )
+
+[node name="exit_game" type="Button" parent="CanvasLayer/game_over/VBoxContainer/HBoxContainer"]
+margin_left = 299.0
+margin_right = 517.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 150, 90 )
+size_flags_horizontal = 4
+custom_fonts/font = ExtResource( 5 )
+text = " Main Menu "
 
 [node name="menu" type="ColorRect" parent="CanvasLayer"]
 visible = false
@@ -365,6 +411,7 @@ autoplay = true
 
 [connection signal="pressed" from="CanvasLayer/Control/CenterContainer/menu_btn" to="." method="_on_menu_btn_pressed"]
 [connection signal="on_item_press" from="CanvasLayer/Control/HBoxContainer2/deck_list" to="." method="_on_deck_list_on_item_press"]
-[connection signal="pressed" from="CanvasLayer/game_over/VBoxContainer/exit_game" to="." method="_on_exit_game_pressed"]
+[connection signal="pressed" from="CanvasLayer/game_over/VBoxContainer/HBoxContainer/re_match" to="." method="_on_re_match_pressed"]
+[connection signal="pressed" from="CanvasLayer/game_over/VBoxContainer/HBoxContainer/exit_game" to="." method="_on_exit_game_pressed"]
 [connection signal="pressed" from="CanvasLayer/menu/CenterContainer2/close_menu" to="." method="_on_close_menu_pressed"]
 [connection signal="pressed" from="CanvasLayer/menu/VBoxContainer/force_exit" to="." method="_on_force_exit_pressed"]
