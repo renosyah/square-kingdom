@@ -1,15 +1,19 @@
 extends Node
 
-const PERSISTEN_SAVE = false
+const PERSISTEN_SAVE = true
 
 const TEAM_1 = "TEAM_1"
 const TEAM_2 = "TEAM_2"
 const TEAMS = [TEAM_1, TEAM_2]
 
+const EASY_AI = "EASY"
+const MEDIUM_AI = "MEDIUM"
+const HARD_AI = "HARD"
+
 const AI_LEVEL = {
-	"EASY" : {timeout = 15, deploy_chance = 0.2},
-	"MEDIUM" : {timeout = 10, deploy_chance = 0.3},
-	"HARD" : {timeout = 8, deploy_chance = 0.4}
+	 EASY_AI : {name = EASY_AI, timeout = 15, deploy_chance = 0.2},
+	 MEDIUM_AI : {name = MEDIUM_AI, timeout = 10, deploy_chance = 0.3},
+	 HARD_AI : {name = HARD_AI ,timeout = 8, deploy_chance = 0.4}
 }
 
 func _ready():
@@ -68,7 +72,7 @@ static func generate_game_data(max_farm : int = 10, max_tower : int = 4) -> Dict
 	var data = {
 		TEAM_1 : {
 			team_name = "",
-			enable_ai = false,
+			enable_ai = true,
 			color = Color.blue,
 			coin = 100,
 			units = [],
@@ -80,10 +84,7 @@ static func generate_game_data(max_farm : int = 10, max_tower : int = 4) -> Dict
 			coin = 100,
 			units = [],
 		},
-		ai_level = {
-			timeout = 15,
-			deploy_chance = 0.2
-		},
+		ai_level = AI_LEVEL[EASY_AI],
 		buildings = []
 	}
 	

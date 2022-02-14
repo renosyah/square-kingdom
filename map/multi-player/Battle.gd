@@ -307,6 +307,9 @@ func _number_of_farm_owned(team) -> int:
 func _number_of_unit_spawn(holder, team) -> int:
 	var unit_count = 0
 	for i in holder.get_children():
+		if not is_instance_valid(i):
+			continue
+			
 		if i.team == team:
 			unit_count += 1
 			

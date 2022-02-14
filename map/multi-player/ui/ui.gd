@@ -77,9 +77,7 @@ func _on_deck_list_on_item_press(data):
 	emit_signal("on_deploy_card", data)
 	
 func _on_exit_game_pressed():
-	if get_tree().is_network_server():
-		Network.disconnect_from_server()
-		
+	Network.disconnect_from_server()
 	get_tree().change_scene("res://menu/main-menu/main_menu.tscn")
 
 func _on_re_match_pressed():

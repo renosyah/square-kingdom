@@ -14,25 +14,24 @@ func _ready():
 	get_tree().set_auto_accept_quit(true)
 
 func _on_play_pressed():
-	Global.player_data.team = Global.TEAM_1
-	Global.player_data.color = Color.blue
-	
-	Global.server.ip = '127.0.0.1'
-	Global.server.port = 31400
-	Global.server.max_player = 4
-	
-	Global.mp_game_data = Global.player_game_data
-	
 	Network.connect("server_player_connected", self ,"_server_player_connected")
 	var err = Network.create_server(Global.server.max_player, Global.server.port , {})
 	if err != OK:
 		return
 		
 func _server_player_connected(_player_network_unique_id : int, _player : Dictionary):
+	Global.mp_game_data = Global.player_game_data.duplicate()
+	
+	for i in Global.TEAMS:
+		Global.mp_game_data[i].enable_ai = true
+		
+	Global.player_data.team = Global.TEAM_1
+	Global.player_data.color = Global.player_game_data[Global.TEAM_1].color
+	
 	get_tree().change_scene("res://map/multi-player/host/battle.tscn")
 	
 func _on_setting_pressed():
-	pass # Replace with function body.
+	get_tree().change_scene("res://menu/setting-menu/setting_menu.tscn")
 	
 func _on_host_pressed():
 	Global.mode = Global.MODE_HOST

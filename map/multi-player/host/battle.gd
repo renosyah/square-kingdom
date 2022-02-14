@@ -30,7 +30,7 @@ func generate_spawn():
 		Global.TEAM_1 : pos_1[randi() % pos_1.size()].translation,
 		Global.TEAM_2 : pos_2[randi() % pos_2.size()].translation
 	}
-	game_data = Global.mp_game_data.duplicate()
+	game_data = Global.mp_game_data
 	
 	var pos = $terrain.translations.duplicate()
 	
@@ -135,8 +135,8 @@ func check_deck():
 	var team = Global.player_data.team
 	var coin = game_data[team].coin
 	var pop = _number_of_unit_spawn($unit_holder,team)
-	_ui.display_population(team, pop, MAX_UNIT_SPAWN)
 	_ui.display_clickable_deck(pop, MAX_UNIT_SPAWN, coin)
+	_ui.display_population(team, pop, MAX_UNIT_SPAWN)
 	
 ################################################################
 # bot timer

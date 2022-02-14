@@ -104,8 +104,8 @@ func check_deck():
 	var team = Global.player_data.team
 	var coin = game_data[team].coin
 	var pop = _number_of_unit_spawn($unit_holder,team)
-	_ui.display_population(team, pop, MAX_UNIT_SPAWN)
 	_ui.display_clickable_deck(pop, MAX_UNIT_SPAWN, coin)
+	_ui.display_population(team, pop, MAX_UNIT_SPAWN)
 	
 ################################################################
 # if host player want to rematch
