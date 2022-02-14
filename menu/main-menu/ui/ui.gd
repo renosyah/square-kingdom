@@ -20,7 +20,7 @@ func _on_play_pressed():
 		return
 		
 func _server_player_connected(_player_network_unique_id : int, _player : Dictionary):
-	Global.mp_game_data = Global.player_game_data.duplicate()
+	Global.mp_game_data = Global.player_game_data.duplicate(true)
 	
 	Global.mp_game_data[Global.TEAM_1].enable_ai = false
 	Global.mp_game_data[Global.TEAM_2].enable_ai = true

@@ -51,6 +51,7 @@ remotesync func _finish_recaptured():
 	._finish_recaptured()
 	_flag.set_flag_color(color)
 	_cp_bar.set_hp_bar_color(color)
+	_cp_bar.update_bar(cp, max_cp)
 	_cp_bar.modulate.a = 1
 	_tween.interpolate_property(_cp_bar, "modulate:a", 1 , 0, 2.0, Tween.TRANS_SINE, Tween.EASE_IN)
 	_tween.start()
@@ -71,6 +72,7 @@ remotesync func _finish_captured():
 	._finish_captured()
 	_flag.set_flag_color(color)
 	_cp_bar.set_hp_bar_color(color)
+	_cp_bar.update_bar(cp, max_cp)
 	_cp_bar.modulate.a = 1
 	_tween.interpolate_property(_cp_bar, "modulate:a", 1 , 0, 2.0, Tween.TRANS_SINE, Tween.EASE_IN)
 	_tween.start()
