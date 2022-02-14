@@ -97,11 +97,14 @@ margin_top = 124.0
 margin_right = 600.0
 margin_bottom = 1024.0
 size_flags_vertical = 3
+scroll_horizontal_enabled = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ItemList" type="GridContainer" parent="VBoxContainer/ScrollContainer"]
+margin_right = 600.0
+size_flags_horizontal = 3
 columns = 3
 
 [connection signal="pressed" from="VBoxContainer/PanelContainer/HBoxContainer/back" to="." method="_on_back_pressed"]

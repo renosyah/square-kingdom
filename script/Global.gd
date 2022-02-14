@@ -45,6 +45,7 @@ func apply_players_unit_team():
 	for i in player_data.units:
 		i.team = player_data.team
 		i.color = player_data.color
+		i.is_draw = false
 	
 func save_player_data():
 	if PERSISTEN_SAVE:

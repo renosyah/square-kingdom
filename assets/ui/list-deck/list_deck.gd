@@ -25,6 +25,9 @@ func clear_list():
 		
 func update_list(_datas : Array):
 	for i in _datas:
+		if i.empty():
+			continue
+			
 		var item = preload("res://assets/ui/list-deck/item/item.tscn").instance()
 		item.connect("pressed", self, "_pressed")
 		item.connect("gone", self, "_item_gone")
