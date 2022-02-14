@@ -4,12 +4,12 @@ onready var _hp_bar = $hpBar
 onready var _pivot = $pivot
 onready var _tween = $Tween
 onready var _tween_dead = $Tween_dead
-onready var _ram_weapon = $pivot/ram
-onready var _bodies = [$pivot/roof_1, $pivot/roof_2]
 onready var _wheels = [$pivot/wheel_1, $pivot/wheel_2, $pivot/wheel_3, $pivot/wheel_4]
 onready var _audio = $AudioStreamPlayer3D
 
-onready var turn_speed = speed
+onready var turn_speed = speed * 2
+
+var _ram_weapon
 
 ############################################################
 # multiplayer func
@@ -92,16 +92,18 @@ func set_data(_data):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	._ready()
-	for i in _bodies:
-		i.modulate = color
-		
 	_hp_bar.show_label(false)
 	_hp_bar.set_hp_bar_color(color)
 	_hp_bar.update_bar(hp,max_hp)
 	_hp_bar.modulate.a = 0.0
 	
 	set_process(true)
+	init_siege()
 	
+func init_siege():
+	_ram_weapon =  $pivot/ram
+	$pivot/flag.set_flag_color(color)
+		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	# we override this shit!
@@ -135,6 +137,7 @@ func _process(delta):
 			velocity = Vector3(direction.x, 0.0 , direction.z) * speed
 			
 		elif distance_to_target <= range_attack and _cooldown_timmer.is_stopped():
+			_check_is_walking(false)
 			perform_attack()
 			_cooldown_timmer.start()
 		
