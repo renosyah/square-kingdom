@@ -229,6 +229,7 @@ func _on_join_team_1_pressed():
 		
 	Global.player_data.color = team_colors[Global.TEAM_1]
 	Global.player_data.team = Global.TEAM_1
+	Global.apply_players_unit_team()
 	
 	set_player_ready()
 	
@@ -238,6 +239,7 @@ func _on_join_team_2_pressed():
 		
 	Global.player_data.color = team_colors[Global.TEAM_2]
 	Global.player_data.team = Global.TEAM_2
+	Global.apply_players_unit_team()
 	
 	set_player_ready()
 	

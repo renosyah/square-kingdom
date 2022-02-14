@@ -70,7 +70,7 @@ remotesync func _game_info(_flag : int, _data : Dictionary):
 		_ui.display_loading(_flag == GAME_LOADING, _data.message)
 	
 	if _flag == GAME_START:
-		_ui.add_to_deck(_draw_card(MAX_DRAW_CARD, Global.player_data.team))
+		_ui.add_to_deck(._player_draw_card(Global.player_data.units, MAX_DRAW_CARD))
 		
 	elif _flag == GAME_INFO:
 		pass
@@ -120,8 +120,9 @@ func on_building_captured(_building,_last_owner_team,_capture_by):
 	_ui.display_info(message)
 	
 func _on_ui_on_deploy_card(unit):
-	_deploy_card(unit)
-	_ui.add_to_deck(_draw_card(1, unit.team))
+	._deploy_card(unit)
+	._player_deploy_card(unit, Global.player_data.units)
+	_ui.add_to_deck(._player_draw_card(Global.player_data.units, 1))
 	
 func _unit_spawned():
 	._unit_spawned()
@@ -147,16 +148,19 @@ func _on_bot_timer_timeout():
 		if not game_data[team].enable_ai:
 			continue
 			
+		if randf() < game_data.ai_level.deploy_chance:
+			continue
+			
 		var pop = _number_of_unit_spawn($unit_holder, team)
 		if pop >= MAX_UNIT_SPAWN:
 			continue
 			
-		var cards = _draw_card(3, team)
-		var unit = cards[randi() % cards.size()]
+		var cards = ._ai_draw_card(MAX_DRAW_CARD)
 		
-		if randf() < game_data.ai_level.deploy_chance:
-			continue
-			
+		var unit = cards[randi() % cards.size()]
+		unit.team = team
+		unit.color = game_data[team].color
+		
 #		if game_data[team].coin - unit.cost < 0:
 #			continue
 #		game_data[team].coin -= unit.cost

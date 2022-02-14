@@ -116,7 +116,7 @@ func _ready():
 		
 	if not _network_timmer:
 		_network_timmer = Timer.new()
-		_network_timmer.wait_time = 0.2
+		_network_timmer.wait_time = 0.4
 		_network_timmer.connect("timeout", self , "_network_timmer_timeout")
 		_network_timmer.autostart = true
 		add_child(_network_timmer)

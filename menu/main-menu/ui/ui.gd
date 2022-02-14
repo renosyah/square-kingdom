@@ -22,11 +22,12 @@ func _on_play_pressed():
 func _server_player_connected(_player_network_unique_id : int, _player : Dictionary):
 	Global.mp_game_data = Global.player_game_data.duplicate()
 	
-	for i in Global.TEAMS:
-		Global.mp_game_data[i].enable_ai = true
+	Global.mp_game_data[Global.TEAM_1].enable_ai = false
+	Global.mp_game_data[Global.TEAM_2].enable_ai = true
 		
 	Global.player_data.team = Global.TEAM_1
-	Global.player_data.color = Global.player_game_data[Global.TEAM_1].color
+	Global.player_data.color = Global.mp_game_data[Global.TEAM_1].color
+	Global.apply_players_unit_team()
 	
 	get_tree().change_scene("res://map/multi-player/host/battle.tscn")
 	

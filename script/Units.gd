@@ -31,6 +31,7 @@ const UNITS = [
 		team = "",
 		color = Color.white,
 		translation = Vector3.ZERO,
+		is_draw = false,
 	},
 	{
 		id = "u-2",
@@ -55,6 +56,7 @@ const UNITS = [
 		team = "",
 		color = Color.white,
 		translation = Vector3.ZERO,
+		is_draw = false,
 	},
 	{
 		id = "u-3",
@@ -79,6 +81,7 @@ const UNITS = [
 		team = "",
 		color = Color.white,
 		translation = Vector3.ZERO,
+		is_draw = false,
 	},
 	{
 		id = "u-3",
@@ -103,6 +106,7 @@ const UNITS = [
 		team = "",
 		color = Color.white,
 		translation = Vector3.ZERO,
+		is_draw = false,
 	},
 	{
 		id = "u-4",
@@ -127,6 +131,7 @@ const UNITS = [
 		team = "",
 		color = Color.white,
 		translation = Vector3.ZERO,
+		is_draw = false,
 	},
 	{
 		id = "u-5",
@@ -152,6 +157,7 @@ const UNITS = [
 		team = "",
 		color = Color.white,
 		translation = Vector3.ZERO,
+		is_draw = false,
 	},
 	{
 		id = "u-6",
@@ -177,6 +183,7 @@ const UNITS = [
 		team = "",
 		color = Color.white,
 		translation = Vector3.ZERO,
+		is_draw = false,
 	},
 	{
 		id = "u-7",
@@ -202,5 +209,6 @@ const UNITS = [
 		team = "",
 		color = Color.white,
 		translation = Vector3.ZERO,
+		is_draw = false,
 	},
 ]

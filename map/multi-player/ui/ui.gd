@@ -66,7 +66,7 @@ func display_game_over(show_rematch : bool , condition, message : String):
 	_game_over.visible = true
 	_game_over_condition.text = condition
 	_game_over_message.text = message
-	_game_over_rematch_tip.text = "You can rematch or leave" if get_tree().is_network_server() else "You can wait for rematch or leave"
+	_game_over_rematch_tip.text = "Wanna play again?" if get_tree().is_network_server() else "You can wait to play again or leave"
 	
 func display_hurt(_team : String):
 	if _team == Global.player_data.team:

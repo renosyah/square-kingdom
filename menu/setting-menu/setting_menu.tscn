@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/ui/fonts/montserrat_eb_32.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/ui/fonts/montserrat_eb_48.tres" type="DynamicFont" id=2]
 [ext_resource path="res://assets/ui/icon/back.png" type="Texture" id=3]
 [ext_resource path="res://menu/setting-menu/setting_menu.gd" type="Script" id=4]
 [ext_resource path="res://assets/ui/icon/save.png" type="Texture" id=5]
-[ext_resource path="res://assets/ui/icon/dice.png" type="Texture" id=6]
+[ext_resource path="res://assets/ui/input-color/input_color.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/ui/icon/pick_color.png" type="Texture" id=7]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -225,8 +226,8 @@ rect_min_size = Vector2( 100, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-texture = ExtResource( 6 )
-expand = true
+texture = ExtResource( 7 )
+stretch_mode = 4
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -280,8 +281,8 @@ rect_min_size = Vector2( 100, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-texture = ExtResource( 6 )
-expand = true
+texture = ExtResource( 7 )
+stretch_mode = 4
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -366,6 +367,9 @@ margin_left = 590.0
 margin_right = 600.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 10, 0 )
+
+[node name="input_color" parent="CanvasLayer/Control" instance=ExtResource( 6 )]
+visible = false
 
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer2/PanelContainer/HBoxContainer/back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer2/ScrollContainer/VBoxContainer/player_name_setting/save_name" to="." method="_on_save_name_pressed"]

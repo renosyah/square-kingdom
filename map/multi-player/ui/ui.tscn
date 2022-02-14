@@ -272,7 +272,7 @@ custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/line_spacing = 2
 custom_constants/shadow_as_outline = 2
 custom_fonts/font = ExtResource( 12 )
-text = "You can wait for rematch or leave"
+text = "You can wait to play again or leave"
 align = 1
 valign = 1
 autowrap = true
@@ -293,23 +293,23 @@ margin_bottom = 418.0
 alignment = 1
 
 [node name="re_match" type="Button" parent="CanvasLayer/game_over/VBoxContainer/HBoxContainer"]
-margin_left = 83.0
-margin_right = 266.0
+margin_left = 68.0
+margin_right = 281.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 150, 90 )
 size_flags_horizontal = 4
 custom_fonts/font = ExtResource( 5 )
-text = " Rematch "
+text = " Play Again "
 
 [node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/game_over/VBoxContainer/HBoxContainer"]
-margin_left = 270.0
-margin_right = 295.0
+margin_left = 285.0
+margin_right = 310.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 25, 0 )
 
 [node name="exit_game" type="Button" parent="CanvasLayer/game_over/VBoxContainer/HBoxContainer"]
-margin_left = 299.0
-margin_right = 517.0
+margin_left = 314.0
+margin_right = 532.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 150, 90 )
 size_flags_horizontal = 4

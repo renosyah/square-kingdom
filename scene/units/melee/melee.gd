@@ -19,7 +19,7 @@ func _set_puppet_translation(_val :Vector3):
 		translation = _puppet_translation
 		return
 		
-	_tween.interpolate_property(self,"translation", translation, _puppet_translation, 0.3)
+	_tween.interpolate_property(self,"translation", translation, _puppet_translation, 0.5)
 	_tween.start()
 	
 	
@@ -78,6 +78,7 @@ remotesync func _dead():
 ############################################################
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	._ready()
 	for i in _bodies:
 		i.modulate = color
 		

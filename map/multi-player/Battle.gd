@@ -1,6 +1,7 @@
 extends Node
 class_name BattleMP
 
+const MIN_FARM_AQUIRE = 2
 const MAX_DRAW_CARD = 3
 const MAX_UNIT_SPAWN = 10
 
@@ -64,10 +65,39 @@ func disconnect_from_server():
 	rpc("_disconnect_from_server")
 	
 ################################################################
-func _draw_card(quantity : int, team : String) -> Array:
+func _player_draw_card(_cards : Array, quantity : int) -> Array:
+	var cards = []
+		
+	if _cards.empty():
+		return []
+		
+	for i in quantity:
+		cards.append(_draw_a_card(_cards))
+	
+	return cards
+	
+func _draw_a_card(_cards) -> Dictionary:
+	_cards.shuffle()
+	for unit in _cards:
+		if unit.is_draw:
+			continue
+			
+		unit.is_draw = true
+		return unit.duplicate()
+		
+	return {}
+		
+func _player_deploy_card(_unit : Dictionary, _cards : Array):
+		for i in _cards:
+			if i.id == _unit.id:
+				i.is_draw = false
+				break
+	
+	
+func _ai_draw_card(quantity : int) -> Array:
 	var cards = []
 	for i in quantity:
-		var unit = game_data[team].units[randi() % game_data[team].units.size()]
+		var unit = game_data.ai_units[randi() % game_data.ai_units.size()]
 		cards.append(unit.duplicate())
 		
 	return cards
@@ -271,8 +301,8 @@ func _assign_building_target(_building):
 func _assign_unit_target(_unit):
 	var farm_owned = _number_of_farm_owned(_unit.team)
 	var targets = farms.duplicate()
-	
-	if farm_owned >= int((farms.size() / 2)):
+
+	if farm_owned >= MIN_FARM_AQUIRE:
 		targets += units.duplicate()
 		
 	if farm_owned == farms.size():

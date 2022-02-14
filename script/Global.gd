@@ -25,12 +25,26 @@ func _ready():
 var player_data = {}
 
 func new_player_data() -> Dictionary:
-	return {
+	var _data = {
 		id = "PLAYER-" + GDUUID.v4(),
 		name = OS.get_name(),
 		color = Color.blue,
-		team = TEAM_1
+		team = TEAM_1,
+		units = []
 	}
+	
+	for i in Units.UNITS:
+		var unit = i.duplicate()
+		unit.team = TEAM_1
+		unit.color = Color.blue
+		_data.units.append(unit)
+		
+	return _data
+
+func apply_players_unit_team():
+	for i in player_data.units:
+		i.team = player_data.team
+		i.color = player_data.color
 	
 func save_player_data():
 	if PERSISTEN_SAVE:
@@ -75,27 +89,27 @@ static func generate_game_data(max_farm : int = 10, max_tower : int = 4) -> Dict
 			enable_ai = true,
 			color = Color.blue,
 			coin = 100,
-			units = [],
 		},
 		TEAM_2 : {
 			team_name = "",
 			enable_ai = true,
 			color = Color.red,
 			coin = 100,
-			units = [],
 		},
+		ai_units = [],
 		ai_level = AI_LEVEL[EASY_AI],
 		buildings = []
 	}
 	
 	for i in TEAMS:
+		for u in Units.UNITS:
+			var unit = u.duplicate()
+			unit.team = i
+			unit.color = data[i].color
+			data.ai_units.append(unit)
+			
 		if data.has(i):
 			data[i].team_name = RandomNameGenerator.generate()
-			for u in Units.UNITS:
-				var unit = u.duplicate()
-				unit.team = i
-				unit.color = data[i].color
-				data[i].units.append(unit)
 			
 			var castle = Buildings.BUILDINGS[0].duplicate()
 			castle.team = i

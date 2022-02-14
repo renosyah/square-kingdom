@@ -5,6 +5,8 @@ onready var _input_name = $CanvasLayer/Control/VBoxContainer2/ScrollContainer/VB
 onready var _team_1_color = $CanvasLayer/Control/VBoxContainer2/ScrollContainer/VBoxContainer/HBoxContainer/team_1_setting/hbox/color
 onready var _team_2_color = $CanvasLayer/Control/VBoxContainer2/ScrollContainer/VBoxContainer/HBoxContainer/team_2_setting/hbox/color
 
+onready var _color_picker = $CanvasLayer/Control/input_color
+
 onready var _ai_label = $CanvasLayer/Control/VBoxContainer2/ScrollContainer/VBoxContainer/Label4
 onready var _easy_button = $CanvasLayer/Control/VBoxContainer2/ScrollContainer/VBoxContainer/ai_setting/easy_btn
 onready var _medium_button = $CanvasLayer/Control/VBoxContainer2/ScrollContainer/VBoxContainer/ai_setting/medium
@@ -47,32 +49,36 @@ func _on_save_name_pressed():
 	Global.save_player_data()
 	
 func _on_team_1_randomize_color_pressed():
-	var color = Color(randf(), randf(), randf(), 1.0)
-	_team_1_color.color = color
-	Global.player_game_data[Global.TEAM_1].color = color
+	_color_picker.visible = true
+	clear_color_picker_signal()
+	_color_picker.connect("on_pick", self, "_pick_for_team_1")
 	
-	for i in Global.player_game_data[Global.TEAM_1].units:
-		if i.team == Global.TEAM_1:
-			i.color = color
+func _on_team_2_randomize_color_pressed():
+	_color_picker.visible = true
+	clear_color_picker_signal()
+	_color_picker.connect("on_pick", self, "_pick_for_team_2")
+	
+func clear_color_picker_signal():
+	for i in _color_picker.get_signal_connection_list("on_pick"):
+		_color_picker.disconnect("on_pick", self, i.method)
 		
+func _pick_for_team_1(_color):
+	_team_1_color.color = _color
+	Global.player_game_data[Global.TEAM_1].color = _color
+
 	for i in Global.player_game_data.buildings:
-		if i.team == Global.TEAM_1:
-			i.color = color
+		if i.type_building == Buildings.TYPE_CASTLE and i.team == Global.TEAM_1:
+			i.color = _color
 		
 	Global.save_player_game_data()
 	
-func _on_team_2_randomize_color_pressed():
-	var color = Color(randf(), randf(), randf(), 1.0)
-	_team_2_color.color = color
-	Global.player_game_data[Global.TEAM_2].color = color
-	
-	for i in Global.player_game_data[Global.TEAM_1].units:
-		if i.team == Global.TEAM_1:
-			i.color = color
-		
+func _pick_for_team_2(_color):
+	_team_2_color.color = _color
+	Global.player_game_data[Global.TEAM_2].color = _color
+
 	for i in Global.player_game_data.buildings:
-		if i.team == Global.TEAM_1:
-			i.color = color
+		if i.type_building == Buildings.TYPE_CASTLE and i.team == Global.TEAM_2:
+			i.color = _color
 		
 	Global.save_player_game_data()
 	
@@ -93,6 +99,9 @@ func _on_hard_pressed():
 	Global.player_game_data.ai_level = Global.AI_LEVEL[Global.HARD_AI]
 	apply_diff()
 	Global.save_player_game_data()
+
+
+
 
 
 

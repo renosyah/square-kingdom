@@ -162,3 +162,4 @@ func _add_timer(timer, func_name):
 	if func_name:
 		timer.connect("timeout", self, func_name)
 	self.add_child(timer)
+
