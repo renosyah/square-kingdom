@@ -185,12 +185,12 @@ margin_right = 600.0
 margin_bottom = 365.0
 
 [node name="team_1_setting" type="VBoxContainer" parent="CanvasLayer/Control/VBoxContainer2/ScrollContainer/VBoxContainer/HBoxContainer"]
-margin_right = 298.0
+margin_right = 291.0
 margin_bottom = 144.0
 size_flags_horizontal = 3
 
 [node name="Label2" type="Label" parent="CanvasLayer/Control/VBoxContainer2/ScrollContainer/VBoxContainer/HBoxContainer/team_1_setting"]
-margin_right = 298.0
+margin_right = 291.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 1 )
@@ -200,7 +200,7 @@ valign = 1
 
 [node name="hbox" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer2/ScrollContainer/VBoxContainer/HBoxContainer/team_1_setting"]
 margin_top = 44.0
-margin_right = 298.0
+margin_right = 291.0
 margin_bottom = 144.0
 rect_min_size = Vector2( 0, 100 )
 
@@ -211,14 +211,14 @@ rect_min_size = Vector2( 10, 0 )
 
 [node name="color" type="ColorRect" parent="CanvasLayer/Control/VBoxContainer2/ScrollContainer/VBoxContainer/HBoxContainer/team_1_setting/hbox"]
 margin_left = 14.0
-margin_right = 180.0
+margin_right = 187.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 0, 100 )
 size_flags_horizontal = 3
 
 [node name="team_1_randomize_color" type="Button" parent="CanvasLayer/Control/VBoxContainer2/ScrollContainer/VBoxContainer/HBoxContainer/team_1_setting/hbox"]
-margin_left = 184.0
-margin_right = 284.0
+margin_left = 191.0
+margin_right = 291.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 0 )
 
@@ -232,20 +232,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Control/VBoxContainer2/ScrollContainer/VBoxContainer/HBoxContainer/team_1_setting/hbox"]
-margin_left = 288.0
-margin_right = 298.0
-margin_bottom = 100.0
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/VBoxContainer2/ScrollContainer/VBoxContainer/HBoxContainer"]
+margin_left = 295.0
+margin_right = 305.0
+margin_bottom = 144.0
 rect_min_size = Vector2( 10, 0 )
 
 [node name="team_2_setting" type="VBoxContainer" parent="CanvasLayer/Control/VBoxContainer2/ScrollContainer/VBoxContainer/HBoxContainer"]
-margin_left = 302.0
+margin_left = 309.0
 margin_right = 600.0
 margin_bottom = 144.0
 size_flags_horizontal = 3
 
 [node name="Label2" type="Label" parent="CanvasLayer/Control/VBoxContainer2/ScrollContainer/VBoxContainer/HBoxContainer/team_2_setting"]
-margin_right = 298.0
+margin_right = 291.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 1 )
@@ -255,25 +255,19 @@ valign = 1
 
 [node name="hbox" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer2/ScrollContainer/VBoxContainer/HBoxContainer/team_2_setting"]
 margin_top = 44.0
-margin_right = 298.0
+margin_right = 291.0
 margin_bottom = 144.0
 rect_min_size = Vector2( 0, 100 )
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/VBoxContainer2/ScrollContainer/VBoxContainer/HBoxContainer/team_2_setting/hbox"]
-margin_right = 10.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 10, 0 )
-
 [node name="color" type="ColorRect" parent="CanvasLayer/Control/VBoxContainer2/ScrollContainer/VBoxContainer/HBoxContainer/team_2_setting/hbox"]
-margin_left = 14.0
-margin_right = 180.0
+margin_right = 173.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 0, 100 )
 size_flags_horizontal = 3
 
 [node name="team_2_randomize_color" type="Button" parent="CanvasLayer/Control/VBoxContainer2/ScrollContainer/VBoxContainer/HBoxContainer/team_2_setting/hbox"]
-margin_left = 184.0
-margin_right = 284.0
+margin_left = 177.0
+margin_right = 277.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 0 )
 
@@ -288,8 +282,8 @@ __meta__ = {
 }
 
 [node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Control/VBoxContainer2/ScrollContainer/VBoxContainer/HBoxContainer/team_2_setting/hbox"]
-margin_left = 288.0
-margin_right = 298.0
+margin_left = 281.0
+margin_right = 291.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 10, 0 )
 

@@ -16,6 +16,7 @@ onready var _team_2_color = $CanvasLayer/Control/VBoxContainer2/VBoxContainer/ch
 
 onready var _battle_button = $CanvasLayer/Control/VBoxContainer2/VBoxContainer/battle/battle
 onready var _exit_timer = $exit_timer
+onready var _enter_game_timer = $enter_game_timer
 
 var team_colors = {
 	Global.TEAM_1 : Color.blue,
@@ -90,6 +91,14 @@ remote func _receive_host_game_data(_team_colors : Dictionary):
 		flag = PLAYER_STATUS_NOT_READY
 	}
 	rpc_id(Network.PLAYER_HOST_ID, "_request_append_player_joined",Global.client.network_unique_id, data)
+	
+	
+remotesync func _battle():
+	if get_tree().is_network_server():
+		_enter_game_timer.start()
+		
+	_loading.visible = true
+	_control_ui.visible = false
 	
 ################################################################
 
@@ -251,14 +260,15 @@ func _on_battle_pressed():
 	
 	for i in player_joined:
 		total_player_sides[i.team] += 1
-	
-	Global.mp_game_data = Global.player_game_data.duplicate()
+		
+	Global.mp_game_data = {}
+	Global.mp_game_data = Global.player_game_data.duplicate(true)
 	
 	# enable ai if no player in afromation team
 	for i in Global.TEAMS:
 		Global.mp_game_data[i].enable_ai = (total_player_sides[i] == 0)
 		
-	get_tree().change_scene("res://map/multi-player/host/battle.tscn")
+	rpc("_battle")
 	
 func _on_back_pressed():
 	if get_tree().is_network_server():
@@ -274,6 +284,10 @@ func _on_back_pressed():
 func _on_exit_timer_timeout():
 	Network.disconnect_from_server()
 	get_tree().change_scene("res://menu/main-menu/main_menu.tscn")
+
+func _on_enter_game_timer_timeout():
+	get_tree().change_scene("res://map/multi-player/host/battle.tscn")
+
 
 
 

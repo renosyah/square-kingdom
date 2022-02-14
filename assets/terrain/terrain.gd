@@ -9,8 +9,8 @@ var translations = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_grass.mesh.size = Vector3(size, 2, size)
-	_ground.mesh.size = Vector3(size, 8, size)
+	#_grass.mesh.size = Vector3(size, 2, size)
+	#_ground.mesh.size = Vector3(size, 8, size)
 	_collision_shape.shape = _grass.mesh.create_convex_shape(true, true)
 	translations = _create_box_shape_translations()
 	

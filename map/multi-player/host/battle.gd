@@ -30,7 +30,7 @@ func generate_spawn():
 		Global.TEAM_1 : pos_1[randi() % pos_1.size()].translation,
 		Global.TEAM_2 : pos_2[randi() % pos_2.size()].translation
 	}
-	game_data = Global.mp_game_data
+	game_data = Global.mp_game_data.duplicate(true)
 	
 	var pos = $terrain.translations.duplicate()
 	
@@ -121,8 +121,8 @@ func on_building_captured(_building,_last_owner_team,_capture_by):
 	
 func _on_ui_on_deploy_card(unit):
 	._deploy_card(unit)
-	._player_deploy_card(unit, Global.player_data.units)
 	_ui.add_to_deck(._player_draw_card(Global.player_data.units, 1))
+	._player_deploy_card(unit, Global.player_data.units)
 	
 func _unit_spawned():
 	._unit_spawned()

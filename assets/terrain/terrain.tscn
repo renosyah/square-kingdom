@@ -14,7 +14,7 @@ albedo_color = Color( 0.623529, 0.329412, 0.0666667, 1 )
 
 [sub_resource type="CubeMesh" id=4]
 material = SubResource( 3 )
-size = Vector3( 80, 8, 80 )
+size = Vector3( 80, 14, 80 )
 
 [sub_resource type="ConvexPolygonShape" id=5]
 points = PoolVector3Array( -25, -0.5, -25, -25, 0.5, -25, 25, -0.5, -25, -25, -0.5, 25, -25, 0.5, 25, 25, 0.5, -25, 25, -0.5, 25, 25, 0.5, 25 )
@@ -28,7 +28,7 @@ mesh = SubResource( 2 )
 material/0 = null
 
 [node name="ground" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.06921, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.02603, 0 )
 mesh = SubResource( 4 )
 material/0 = null
 

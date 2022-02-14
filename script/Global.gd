@@ -97,8 +97,8 @@ static func generate_game_data(max_farm : int = 10, max_tower : int = 4) -> Dict
 			color = Color.red,
 			coin = 100,
 		},
-		ai_units = [],
 		ai_level = AI_LEVEL[EASY_AI],
+		ai_units = [],
 		buildings = []
 	}
 	

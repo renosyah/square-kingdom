@@ -28,7 +28,7 @@ background_color = Color( 0.254902, 0.823529, 1, 1 )
 [node name="terrain" parent="." instance=ExtResource( 3 )]
 
 [node name="cameraPivot" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 0.913508, 0.406816, 0, -0.406816, 0.913508, 0, 5.34044, 20.0037 )
+transform = Transform( 1, 0, 0, 0, 0.965924, 0.258819, 0, -0.258819, 0.965924, 0, 5.34044, 8.44342 )
 is_enable = false
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
@@ -424,7 +424,7 @@ alpha_cut = 2
 texture = ExtResource( 8 )
 
 [node name="castle_1" type="Spatial" parent="."]
-transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, -8.75462, 1.0726, 32.1447 )
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, -8.75462, 1.0726, 19.9079 )
 
 [node name="flag" parent="castle_1" instance=ExtResource( 13 )]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.377628, 0 )
@@ -661,7 +661,7 @@ alpha_cut = 2
 texture = ExtResource( 4 )
 
 [node name="tower_2" type="Spatial" parent="."]
-transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, -0.647804, 1.0726, 25.0877 )
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, -0.647804, 1.0726, 12.8509 )
 
 [node name="tower_1" type="Sprite3D" parent="tower_2"]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.271888, 0.483249, -0.00784492 )
