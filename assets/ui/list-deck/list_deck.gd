@@ -3,7 +3,7 @@ extends VBoxContainer
 signal on_item_press(data)
 
 onready var _container = $HBoxContainer
-onready var min_size = rect_size
+onready var _tween = $Tween
 
 func update_list_clickable_by_cost(_clickable : bool, _coin_amount : int = 0):
 	if _container.get_children().empty():
@@ -30,15 +30,12 @@ func update_list(_datas : Array):
 			
 		var item = preload("res://assets/ui/list-deck/item/item.tscn").instance()
 		item.connect("pressed", self, "_pressed")
-		item.connect("gone", self, "_item_gone")
 		item.data = i
 		_container.add_child(item)
-	
+		
+		
 func _pressed(data):
 	emit_signal("on_item_press", data)
-	
-func _item_gone(item):
-	rect_size = min_size
 
 
 

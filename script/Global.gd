@@ -11,9 +11,9 @@ const MEDIUM_AI = "MEDIUM"
 const HARD_AI = "HARD"
 
 const AI_LEVEL = {
-	 EASY_AI : {name = EASY_AI, timeout = 15, deploy_chance = 0.2},
-	 MEDIUM_AI : {name = MEDIUM_AI, timeout = 10, deploy_chance = 0.3},
-	 HARD_AI : {name = HARD_AI ,timeout = 8, deploy_chance = 0.4}
+	 EASY_AI : {name = EASY_AI, timeout = 4, deploy_chance = 0.4},
+	 MEDIUM_AI : {name = MEDIUM_AI, timeout = 2, deploy_chance = 0.7},
+	 HARD_AI : {name = HARD_AI ,timeout = 0.5, deploy_chance = 0.8}
 }
 
 func _ready():
@@ -89,13 +89,13 @@ static func generate_game_data(max_farm : int = 10, max_tower : int = 4) -> Dict
 			team_name = "",
 			enable_ai = true,
 			color = Color.blue,
-			coin = 100,
+			coin = 25,
 		},
 		TEAM_2 : {
 			team_name = "",
 			enable_ai = true,
 			color = Color.red,
-			coin = 100,
+			coin = 25,
 		},
 		ai_level = AI_LEVEL[EASY_AI],
 		ai_units = [],

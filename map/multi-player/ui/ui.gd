@@ -7,7 +7,7 @@ onready var _control_ui = $CanvasLayer/Control
 onready var _pop_cap = $CanvasLayer/Control/HBoxContainer3/HBoxContainer2/label
 onready var _coin = $CanvasLayer/Control/HBoxContainer3/HBoxContainer/label
 onready var _hurt = $CanvasLayer/Control/hurt_effect
-onready var _deck_list = $CanvasLayer/Control/HBoxContainer2/deck_list
+onready var _deck_list = $CanvasLayer/Control/deck_list
 onready var _info = $CanvasLayer/Control/info
 onready var _tween = $Tween
 

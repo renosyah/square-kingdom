@@ -30,7 +30,7 @@ func _ready():
 	_border.modulate = data.color
 	
 	rect_scale.y = 0
-	_tween.interpolate_property(self, "rect_scale:y", rect_scale.y, 1, 1.3, Tween.TRANS_SINE, Tween.EASE_IN)
+	_tween.interpolate_property(self, "rect_scale:y", rect_scale.y, 1, 0.3, Tween.TRANS_SINE, Tween.EASE_IN)
 	_tween.start()
 	
 	cooldown()
@@ -40,10 +40,11 @@ func cooldown():
 	_cooldown.start()
 	
 func remove_card():
-	_tween2.interpolate_property(self, "modulate:a", 1, 0, 0.2, Tween.TRANS_SINE, Tween.EASE_IN)
+	_tween2.interpolate_property(self, "rect_scale:x", 1, 0, 0.4, Tween.TRANS_SINE, Tween.EASE_IN)
 	_tween2.start()
 	
 func _on_Tween_tween_completed(object, key):
+	hide()
 	emit_signal("gone", self)
 	queue_free()
 	

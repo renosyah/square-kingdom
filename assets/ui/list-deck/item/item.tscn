@@ -8,9 +8,9 @@
 [ext_resource path="res://assets/ui/fonts/montserrat_eb_16.tres" type="DynamicFont" id=6]
 
 [node name="item" type="HBoxContainer"]
-margin_right = 109.0
-margin_bottom = 170.0
-rect_min_size = Vector2( 150, 230 )
+margin_right = 135.0
+margin_bottom = 220.0
+rect_min_size = Vector2( 145, 220 )
 alignment = 2
 script = ExtResource( 4 )
 __meta__ = {
@@ -18,8 +18,8 @@ __meta__ = {
 }
 
 [node name="button" type="Button" parent="."]
-margin_right = 141.0
-margin_bottom = 230.0
+margin_right = 136.0
+margin_bottom = 220.0
 rect_min_size = Vector2( 100, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -54,13 +54,13 @@ __meta__ = {
 }
 
 [node name="MarginContainer2" type="MarginContainer" parent="button/PanelContainer/VBoxContainer"]
-margin_right = 141.0
+margin_right = 136.0
 margin_bottom = 5.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="name" type="Label" parent="button/PanelContainer/VBoxContainer"]
 margin_top = 9.0
-margin_right = 141.0
+margin_right = 136.0
 margin_bottom = 25.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
@@ -75,7 +75,7 @@ __meta__ = {
 
 [node name="cost" type="Label" parent="button/PanelContainer/VBoxContainer"]
 margin_top = 29.0
-margin_right = 141.0
+margin_right = 136.0
 margin_bottom = 57.0
 custom_colors/font_color = Color( 1, 0.756863, 0.027451, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
@@ -90,7 +90,7 @@ __meta__ = {
 
 [node name="MarginContainer" type="MarginContainer" parent="button/PanelContainer/VBoxContainer"]
 margin_top = 61.0
-margin_right = 141.0
+margin_right = 136.0
 margin_bottom = 66.0
 rect_min_size = Vector2( 0, 5 )
 
@@ -133,9 +133,9 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-margin_left = 145.0
-margin_right = 150.0
-margin_bottom = 230.0
+margin_left = 140.0
+margin_right = 145.0
+margin_bottom = 220.0
 rect_min_size = Vector2( 5, 0 )
 __meta__ = {
 "_edit_use_anchors_": false

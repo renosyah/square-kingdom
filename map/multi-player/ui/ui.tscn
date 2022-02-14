@@ -134,37 +134,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Control"]
+[node name="deck_list" parent="CanvasLayer/Control" instance=ExtResource( 9 )]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -282.0
-mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Control/HBoxContainer2"]
-margin_right = 271.0
-margin_bottom = 282.0
-rect_min_size = Vector2( 35, 0 )
-mouse_filter = 2
-size_flags_horizontal = 3
-
-[node name="deck_list" parent="CanvasLayer/Control/HBoxContainer2" instance=ExtResource( 9 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 275.0
-margin_right = 325.0
-margin_bottom = 282.0
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/HBoxContainer2"]
-margin_left = 329.0
-margin_right = 600.0
-margin_bottom = 282.0
-rect_min_size = Vector2( 35, 0 )
-mouse_filter = 2
-size_flags_horizontal = 3
+margin_top = -299.0
+margin_right = 0.0
+margin_bottom = 2.0
+alignment = 1
 
 [node name="info" type="Label" parent="CanvasLayer/Control"]
 anchor_right = 1.0
@@ -410,7 +387,7 @@ volume_db = -15.0
 autoplay = true
 
 [connection signal="pressed" from="CanvasLayer/Control/CenterContainer/menu_btn" to="." method="_on_menu_btn_pressed"]
-[connection signal="on_item_press" from="CanvasLayer/Control/HBoxContainer2/deck_list" to="." method="_on_deck_list_on_item_press"]
+[connection signal="on_item_press" from="CanvasLayer/Control/deck_list" to="." method="_on_deck_list_on_item_press"]
 [connection signal="pressed" from="CanvasLayer/game_over/VBoxContainer/HBoxContainer/re_match" to="." method="_on_re_match_pressed"]
 [connection signal="pressed" from="CanvasLayer/game_over/VBoxContainer/HBoxContainer/exit_game" to="." method="_on_exit_game_pressed"]
 [connection signal="pressed" from="CanvasLayer/menu/CenterContainer2/close_menu" to="." method="_on_close_menu_pressed"]

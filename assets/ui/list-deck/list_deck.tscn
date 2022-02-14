@@ -3,10 +3,11 @@
 [ext_resource path="res://assets/ui/list-deck/list_deck.gd" type="Script" id=1]
 
 [node name="weapon_list" type="VBoxContainer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-rect_min_size = Vector2( 0, 150 )
+margin_right = 600.0
+margin_bottom = 314.0
+rect_min_size = Vector2( 600, 150 )
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -15,8 +16,11 @@ __meta__ = {
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 margin_right = 600.0
 margin_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 0
 rect_min_size = Vector2( 50, 150 )
 mouse_filter = 2
+size_flags_horizontal = 3
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -28,3 +32,5 @@ margin_right = 600.0
 margin_bottom = 234.0
 rect_min_size = Vector2( 0, 80 )
 mouse_filter = 2
+
+[node name="Tween" type="Tween" parent="."]

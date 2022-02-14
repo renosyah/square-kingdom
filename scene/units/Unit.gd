@@ -49,7 +49,6 @@ var _idle_timmer : Timer = null
 
 ############################################################
 # multiplayer func
-
 func _network_timmer_timeout():
 	if not target:
 		return
@@ -57,7 +56,7 @@ func _network_timmer_timeout():
 	if is_dead:
 		return
 		
-	if get_tree().network_peer and is_network_master():
+	if is_master():
 		rset_unreliable("_puppet_translation", translation)
 	
 puppet var _puppet_translation :Vector3 setget _set_puppet_translation
