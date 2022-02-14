@@ -15,6 +15,7 @@ onready var _team_1_color = $CanvasLayer/Control/VBoxContainer2/VBoxContainer/ch
 onready var _team_2_color = $CanvasLayer/Control/VBoxContainer2/VBoxContainer/choose_side/join_team_2/ColorRect
 
 onready var _battle_button = $CanvasLayer/Control/VBoxContainer2/VBoxContainer/battle/battle
+onready var _exit_timer = $exit_timer
 
 var team_colors = {
 	Global.TEAM_1 : Color.blue,
@@ -258,8 +259,21 @@ func _on_battle_pressed():
 	get_tree().change_scene("res://map/multi-player/host/battle.tscn")
 	
 func _on_back_pressed():
+	if get_tree().is_network_server():
+		_on_exit_timer_timeout()
+		return
+		
+	_loading.visible = true
+	_control_ui.visible = false
+	_exit_timer.start()
+	
+	rpc("_request_erase_player_joined",{ id = Global.player_data.id})
+	
+func _on_exit_timer_timeout():
 	Network.disconnect_from_server()
 	get_tree().change_scene("res://menu/main-menu/main_menu.tscn")
+
+
 
 
 

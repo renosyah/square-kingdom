@@ -349,7 +349,12 @@ stream = ExtResource( 7 )
 volume_db = -15.0
 autoplay = true
 
+[node name="exit_timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer2/PanelContainer/HBoxContainer/back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer2/VBoxContainer/choose_side/join_team_1" to="." method="_on_join_team_1_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer2/VBoxContainer/choose_side/join_team_2" to="." method="_on_join_team_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer2/VBoxContainer/battle/battle" to="." method="_on_battle_pressed"]
+[connection signal="timeout" from="exit_timer" to="." method="_on_exit_timer_timeout"]

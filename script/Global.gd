@@ -1,6 +1,6 @@
 extends Node
 
-const PERSISTEN_SAVE = true
+const PERSISTEN_SAVE = false
 
 const TEAM_1 = "TEAM_1"
 const TEAM_2 = "TEAM_2"
