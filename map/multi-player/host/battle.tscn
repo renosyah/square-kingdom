@@ -46,7 +46,12 @@ autostart = true
 wait_time = 3.0
 one_shot = true
 
+[node name="coin_update" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
 [connection signal="on_deploy_card" from="ui" to="." method="_on_ui_on_deploy_card"]
 [connection signal="timeout" from="bot_timer" to="." method="_on_bot_timer_timeout"]
 [connection signal="timeout" from="countdown_start" to="." method="_on_countdown_start_timeout"]
 [connection signal="timeout" from="countdown_end" to="." method="_on_countdown_end_timeout"]
+[connection signal="timeout" from="coin_update" to="." method="_on_coin_update_timeout"]

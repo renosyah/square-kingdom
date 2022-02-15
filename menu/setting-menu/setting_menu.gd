@@ -11,6 +11,7 @@ onready var _easy_button = $CanvasLayer/Control/VBoxContainer2/ScrollContainer/V
 onready var _medium_button = $CanvasLayer/Control/VBoxContainer2/ScrollContainer/VBoxContainer/ai_setting/medium
 onready var _hard_button = $CanvasLayer/Control/VBoxContainer2/ScrollContainer/VBoxContainer/ai_setting/hard
 
+onready var _map_small = $CanvasLayer/Control/VBoxContainer2/ScrollContainer/VBoxContainer/map_setting/map_small_btn
 onready var _map_normal = $CanvasLayer/Control/VBoxContainer2/ScrollContainer/VBoxContainer/map_setting/map_normal_btn
 onready var _map_large = $CanvasLayer/Control/VBoxContainer2/ScrollContainer/VBoxContainer/map_setting/map_large_btn
 
@@ -36,6 +37,7 @@ func set_all_enable():
 	_easy_button.disabled = false
 	_medium_button.disabled = false
 	_hard_button.disabled = false
+	_map_small.disabled = false
 	_map_normal.disabled = false
 	_map_large.disabled = false
 	_cap_small.disabled = false
@@ -46,6 +48,7 @@ func apply_btn_condition():
 	_easy_button.disabled = (Global.player_game_data.ai_level.name == Global.EASY_AI)
 	_medium_button.disabled = (Global.player_game_data.ai_level.name == Global.MEDIUM_AI)
 	_hard_button.disabled = (Global.player_game_data.ai_level.name == Global.HARD_AI)
+	_map_small.disabled =  (Global.player_game_data.map_size.name == Global.SMALL_SIZE.name)
 	_map_normal.disabled = (Global.player_game_data.map_size.name == Global.NORMAL_SIZE.name)
 	_map_large.disabled = (Global.player_game_data.map_size.name == Global.LARGE_SIZE.name)
 	_cap_small.disabled = (Global.player_game_data.max_unit_spawn == 10)
@@ -113,18 +116,25 @@ func _on_hard_pressed():
 	Global.player_game_data.ai_level = Global.AI_LEVEL[Global.HARD_AI]
 	apply_btn_condition()
 	Global.save_player_game_data()
-
+	
+func _on_map_small_btn_pressed():
+	set_all_enable()
+	Global.player_game_data.map_size = Global.SMALL_SIZE
+	Global.player_game_data = Global.generate_farm_and_tower(Global.player_game_data)
+	apply_btn_condition()
+	Global.save_player_game_data()
+	
 func _on_map_normal_btn_pressed():
 	set_all_enable()
 	Global.player_game_data.map_size = Global.NORMAL_SIZE
-	Global.player_game_data = Global.generate_farm_and_tower(Global.player_game_data)
+	Global.player_game_data = Global.generate_farm_and_tower(Global.player_game_data, 14, 6)
 	apply_btn_condition()
 	Global.save_player_game_data()
 
 func _on_map_large_btn_pressed():
 	set_all_enable()
 	Global.player_game_data.map_size = Global.LARGE_SIZE
-	Global.player_game_data = Global.generate_farm_and_tower(Global.player_game_data, 14,7)
+	Global.player_game_data = Global.generate_farm_and_tower(Global.player_game_data, 18,9)
 	apply_btn_condition()
 	Global.save_player_game_data()
 

@@ -16,9 +16,30 @@ const AI_LEVEL = {
 	 HARD_AI : {name = HARD_AI ,timeout = 2, deploy_chance = 0.7}
 }
 
-const NORMAL_SIZE = { name = "Normal", size = 1, number_of_unit = 24, space = 9, offset = 4 } #OK
-const LARGE_SIZE = { name = "Large", size = 2, number_of_unit = 79, space = 12, offset = 18 } #OK
-const SIZES = [NORMAL_SIZE, LARGE_SIZE]
+const SMALL_SIZE = { 
+	name = "Small",
+	size = 1,
+	number_of_unit = 24,
+	space = 9, 
+	offset = 2 
+} #OK
+
+const NORMAL_SIZE = { 
+	name = "Normal",
+	size = 1.5,
+	number_of_unit = 49,
+	space = 10, 
+	offset = 14
+} #OK
+
+const LARGE_SIZE = { 
+	name = "Large",
+	size = 2,
+	number_of_unit = 79,
+	space = 12,
+	offset = 18
+} #OK
+
 
 func _ready():
 	load_player_data()
@@ -104,8 +125,8 @@ static func generate_game_data() -> Dictionary:
 		ai_level = AI_LEVEL[EASY_AI],
 		ai_units = [],
 		buildings = [],
-		map_size = { name = "Normal", size = 1, number_of_unit = 24, space = 9, offset = 4 },
-		max_unit_spawn = 15,
+		map_size = SMALL_SIZE,
+		max_unit_spawn = 10,
 	}
 	
 	for i in TEAMS:

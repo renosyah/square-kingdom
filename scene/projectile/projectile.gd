@@ -9,7 +9,7 @@ var attack_damage = 4.0
 var speed = 25.0
 var spread = 0.1
 var travel_distance = 0.0
-var max_distance = 45
+var max_distance = 25
 
 # tag
 var team : String = ""

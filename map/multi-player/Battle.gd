@@ -116,7 +116,8 @@ remote func _deploy_card(_player: Dictionary, _unit : Dictionary):
 	game_data[team].coin -= _unit.cost
 	_unit.node_name = "UNIT-" + GDUUID.v4()
 	_unit.translation = castles[team].translation
-	rpc("_on_coin_updated",team, game_data[team].coin)
+	
+	rpc("_on_coin_updated", _get_coin_each_team())
 	rpc("_spawn_unit", $unit_holder.get_path(), _player, _unit)
 	
 ################################################################
@@ -206,18 +207,17 @@ func _on_coin_produce(_team : String, _amount : int):
 	if _team == "":
 		return
 		
-	if game_data[_team].coin >= 1000:
+	if game_data[_team].coin > 999:
 		return
 		
 	if game_flag != GAME_START:
 		return
 		
 	game_data[_team].coin += _amount
-	rpc("_on_coin_updated",_team, game_data[_team].coin)
-	
-		
-remotesync func _on_coin_updated(_team : String , _amount : int):
-	on_coin_updated(_team,_amount)
+
+remotesync func _on_coin_updated(_coin_update : Dictionary):
+	for i in _coin_update.keys():
+		on_coin_updated(i, _coin_update[i])
 	
 func on_coin_updated(_team : String , _amount : int):
 	game_data[_team].coin = _amount
@@ -362,7 +362,12 @@ func _building_captured_message(_building_name, _team,_capture_by, _last_owner_t
 		
 	return ""
 
-
+func _get_coin_each_team() -> Dictionary:
+	var data = {}
+	for i in Global.TEAMS:
+		data[i] = game_data[i].coin
+		
+	return data
 
 
 

@@ -196,6 +196,10 @@ func _on_countdown_start_timeout():
 func _on_countdown_end_timeout():
 	game_flag = GAME_FINISH
 	rpc("_game_info", game_flag , { winner = winner_team, message = "" })
+	
+func _on_coin_update_timeout():
+	rpc("_on_coin_updated", _get_coin_each_team())
+
 
 
 

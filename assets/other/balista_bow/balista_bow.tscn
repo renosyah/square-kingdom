@@ -32,6 +32,144 @@ tracks/1/keys = {
 "values": [ Vector3( 0.704895, 0.261284, -0.206858 ) ]
 }
 tracks/2/type = "value"
+tracks/2/path = NodePath("body_1:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -0.331596, 0, 0.219516 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("body_2:translation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -0.331596, 0, -0.231188 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("body_3:translation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -0.486021, 0.178179, -0.182133 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("body_4:translation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -0.486021, 0.178179, 0.129471 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("bolt:translation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0.326822, 0 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("bolt:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "firing"
+tracks/0/type = "value"
+tracks/0/path = NodePath("bow_1:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -35, 0 ), Vector3( 0, 0, 0 ), Vector3( 0, -35, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("bow_2:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 35, 0 ), Vector3( 0, 0, 0 ), Vector3( 0, 35, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("bolt:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "stop"
+tracks/0/type = "value"
+tracks/0/path = NodePath("bow_2:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 35, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("bow_1:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, -35, 0 ) ]
+}
+tracks/2/type = "value"
 tracks/2/path = NodePath("bolt:translation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
@@ -41,133 +179,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( 0.58465, 0.261284, 0 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("body_1:translation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( -0.331596, 0, 0.219516 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("body_2:translation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( -0.331596, 0, -0.231188 ) ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("body_3:translation")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( -0.486021, 0.178179, -0.182133 ) ]
-}
-tracks/6/type = "value"
-tracks/6/path = NodePath("body_4:translation")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( -0.486021, 0.178179, 0.129471 ) ]
-}
-
-[sub_resource type="Animation" id=1]
-resource_name = "firing"
-tracks/0/type = "value"
-tracks/0/path = NodePath("bolt:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ true, false, true ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("bow_1:rotation_degrees")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector3( 0, -35, 0 ), Vector3( 0, 0, 0 ), Vector3( 0, -35, 0 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("bow_2:rotation_degrees")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.1, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector3( 0, 35, 0 ), Vector3( 0, 0, 0 ), Vector3( 0, 35, 0 ) ]
-}
-
-[sub_resource type="Animation" id=2]
-resource_name = "stop"
-tracks/0/type = "value"
-tracks/0/path = NodePath("bolt:translation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 0.536858, 0.261284, 0 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("bow_2:rotation_degrees")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 0, 35, 0 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("bow_1:rotation_degrees")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 0, -35, 0 ) ]
+"values": [ Vector3( 0, 0.326822, 0 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("bolt:visible")
@@ -189,7 +201,7 @@ script = ExtResource( 4 )
 transform = Transform( 0.819152, 0, -0.573577, 0, 1, 0, 0.573577, 0, 0.819152, 0.622255, 0.345994, 0.140542 )
 
 [node name="Sprite3D" type="Sprite3D" parent="bow_1"]
-transform = Transform( -4.37114e-08, 1, 0, 4.37114e-08, 1.91069e-15, 1, 1, 4.37114e-08, -4.37114e-08, -0.0774352, -0.171818, 0.813847 )
+transform = Transform( -1.62921e-07, 2, 4.37114e-08, 0, -8.74228e-08, 1, 1, 3.25841e-07, 7.12149e-15, -0.0774352, -0.171818, 0.813847 )
 modulate = Color( 0.407843, 0.407843, 0.407843, 1 )
 alpha_cut = 2
 texture = ExtResource( 1 )
@@ -198,21 +210,22 @@ texture = ExtResource( 1 )
 transform = Transform( 0.819152, 0, 0.573577, 0, 1, 0, -0.573577, 0, 0.819152, 0.704895, 0.261284, -0.206858 )
 
 [node name="Sprite3D" type="Sprite3D" parent="bow_2"]
-transform = Transform( 1.31134e-07, 1, 4.37114e-08, 3.82137e-15, 4.37114e-08, -1, -1, 1.31134e-07, 1.91069e-15, -0.108012, -0.0306246, -0.740211 )
+transform = Transform( 7.54979e-08, 2, -8.74228e-08, 0, -8.74228e-08, -2, -1, 1.50996e-07, -6.60024e-15, -0.108012, -0.0306246, -0.740211 )
 modulate = Color( 0.407843, 0.407843, 0.407843, 1 )
 alpha_cut = 2
 texture = ExtResource( 1 )
 
 [node name="bolt" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.58465, 0.261284, 0 )
+transform = Transform( -8.62481e-08, -0.326755, -1.97313, -1.42829e-08, 1.97313, -0.326755, 2, 0, -8.74228e-08, 0, 0.326822, 0 )
 
-[node name="bolt_1" type="Sprite3D" parent="bolt"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+[node name="Sprite3D" type="Sprite3D" parent="bolt"]
+transform = Transform( -6.55573e-08, 0.666892, -2.91508e-08, 0, -4.37114e-08, -1, -1.49978, -2.91508e-08, 1.27422e-15, 0, 0, 0 )
 modulate = Color( 0.258824, 0.223529, 0.164706, 1 )
 alpha_cut = 2
 texture = ExtResource( 2 )
 
-[node name="bolt_2" type="Sprite3D" parent="bolt"]
+[node name="Sprite3D2" type="Sprite3D" parent="bolt"]
+transform = Transform( -6.55573e-08, 0, 0.666892, 0, 1, 0, -1.49978, 0, -2.91508e-08, 0, 0, 0 )
 modulate = Color( 0.258824, 0.223529, 0.164706, 1 )
 alpha_cut = 2
 texture = ExtResource( 2 )
