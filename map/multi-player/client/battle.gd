@@ -88,7 +88,7 @@ func on_building_captured(_building,_last_owner_team,_capture_by):
 	
 	
 func _on_ui_on_deploy_card(unit):
-	rpc_id(Network.PLAYER_HOST_ID, "_deploy_card", unit)
+	rpc_id(Network.PLAYER_HOST_ID, "_deploy_card", Global.player_data, unit)
 	_ui.add_to_deck(._player_draw_card(Global.player_data.units, 1))
 	._player_deploy_card(unit, Global.player_data.units)
 	

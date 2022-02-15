@@ -12,7 +12,7 @@ func _ready():
 		
 	get_tree().set_quit_on_go_back(true)
 	get_tree().set_auto_accept_quit(true)
-
+	
 func _on_play_pressed():
 	Network.connect("server_player_connected", self ,"_server_player_connected")
 	var err = Network.create_server(Global.server.max_player, Global.server.port , {})
@@ -42,7 +42,7 @@ func _on_join_pressed():
 	_server_browser.start_finding()
 	_server_browser.visible = true
 	_control_ui.visible = false
-
+	
 func _on_server_browser_close():
 	_server_browser.visible = false
 	_control_ui.visible = true

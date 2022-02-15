@@ -8,6 +8,7 @@ signal on_dead(_unit)
 signal on_take_damage(_unit, _hit_by, _damage, _hp, _max_hp)
 
 # base
+var player = {}
 var type_unit = ""
 
 # weapons
@@ -203,7 +204,9 @@ func _check_is_walking(_is_walking):
 		is_walking = _is_walking
 		rpc("_set_walking_state", _is_walking)
 		
-		
+func display_player_name(_show : bool):
+	pass
+	
 func _idle_timmer_timeout():
 	if not is_master():
 		return

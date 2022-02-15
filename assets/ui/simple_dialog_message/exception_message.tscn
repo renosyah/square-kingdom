@@ -1,9 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://assets/ui/fonts/montserrat_eb_48.tres" type="DynamicFont" id=1]
-[ext_resource path="res://assets/ui/fonts/montserrat_eb_32.tres" type="DynamicFont" id=2]
 [ext_resource path="res://assets/ui/simple_dialog_message/exception_message.gd" type="Script" id=3]
-[ext_resource path="res://assets/ui/fonts/montserrat_eb_16.tres" type="DynamicFont" id=4]
 
 [node name="exception_message" type="Control"]
 anchor_right = 1.0
@@ -21,118 +19,152 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Panel" type="PanelContainer" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -200.0
-margin_top = -200.0
-margin_right = 200.0
-margin_bottom = 170.0
-rect_min_size = Vector2( 90, 200 )
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+margin_right = 600.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 0, 150 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 154.0
+margin_right = 600.0
+margin_bottom = 870.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
+margin_right = 25.0
+margin_bottom = 716.0
+rect_min_size = Vector2( 25, 0 )
+
+[node name="Panel" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+margin_left = 29.0
+margin_top = 156.0
+margin_right = 571.0
+margin_bottom = 559.0
+rect_min_size = Vector2( 90, 200 )
+size_flags_horizontal = 3
+size_flags_vertical = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/Panel"]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 393.0
-margin_bottom = 363.0
+margin_right = 535.0
+margin_bottom = 396.0
+size_flags_vertical = 0
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="Panel/VBoxContainer"]
-margin_right = 386.0
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer"]
+margin_right = 528.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 0, 100 )
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel/VBoxContainer/HBoxContainer3"]
-margin_right = 80.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 80, 0 )
-
-[node name="Label" type="Label" parent="Panel/VBoxContainer/HBoxContainer3"]
-margin_left = 84.0
-margin_top = 30.0
-margin_right = 302.0
-margin_bottom = 70.0
-size_flags_horizontal = 3
-custom_colors/font_color = Color( 1, 0.521569, 0.054902, 1 )
-custom_fonts/font = ExtResource( 2 )
-text = "Attention!"
-align = 1
-valign = 1
-
-[node name="MarginContainer2" type="MarginContainer" parent="Panel/VBoxContainer/HBoxContainer3"]
-margin_left = 306.0
-margin_right = 386.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 80, 0 )
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer"]
-margin_top = 104.0
-margin_right = 386.0
-margin_bottom = 194.0
-size_flags_vertical = 3
-
-[node name="MarginContainer2" type="MarginContainer" parent="Panel/VBoxContainer/HBoxContainer2"]
-margin_right = 25.0
-margin_bottom = 90.0
-rect_min_size = Vector2( 25, 0 )
-
-[node name="message" type="Label" parent="Panel/VBoxContainer/HBoxContainer2"]
-margin_left = 29.0
-margin_top = 31.0
-margin_right = 357.0
-margin_bottom = 59.0
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 4 )
-text = "aaaaaaaaaaaaaaaaaaa"
-align = 1
-valign = 1
-autowrap = true
-
-[node name="MarginContainer" type="MarginContainer" parent="Panel/VBoxContainer/HBoxContainer2"]
-margin_left = 361.0
-margin_right = 386.0
-margin_bottom = 90.0
-rect_min_size = Vector2( 25, 0 )
-
-[node name="MarginContainer2" type="MarginContainer" parent="Panel/VBoxContainer"]
-margin_top = 198.0
-margin_right = 386.0
-margin_bottom = 238.0
-rect_min_size = Vector2( 0, 40 )
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer"]
-margin_top = 242.0
-margin_right = 386.0
-margin_bottom = 342.0
-rect_min_size = Vector2( 0, 100 )
-
-[node name="MarginContainer" type="MarginContainer" parent="Panel/VBoxContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer3"]
 margin_right = 10.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 10, 0 )
 
-[node name="close_exeption_message" type="Button" parent="Panel/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer3"]
 margin_left = 14.0
-margin_right = 372.0
+margin_top = 20.0
+margin_right = 514.0
+margin_bottom = 80.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 0.521569, 0.054902, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "Attention!"
+align = 1
+valign = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer3"]
+margin_left = 518.0
+margin_right = 528.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer"]
+margin_top = 104.0
+margin_right = 528.0
+margin_bottom = 227.0
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2"]
+margin_right = 25.0
+margin_bottom = 123.0
+rect_min_size = Vector2( 25, 0 )
+
+[node name="message" type="Label" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2"]
+margin_left = 29.0
+margin_right = 499.0
+margin_bottom = 123.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+text = "Exception has encountered"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2"]
+margin_left = 503.0
+margin_right = 528.0
+margin_bottom = 123.0
+rect_min_size = Vector2( 25, 0 )
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer"]
+margin_top = 231.0
+margin_right = 528.0
+margin_bottom = 271.0
+rect_min_size = Vector2( 0, 40 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer"]
+margin_top = 275.0
+margin_right = 528.0
+margin_bottom = 375.0
+rect_min_size = Vector2( 0, 100 )
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer"]
+margin_right = 10.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="close_exeption_message" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer"]
+margin_left = 14.0
+margin_right = 514.0
 margin_bottom = 100.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 1 )
 text = "Close"
 
-[node name="MarginContainer3" type="MarginContainer" parent="Panel/VBoxContainer/HBoxContainer"]
-margin_left = 376.0
-margin_right = 386.0
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer"]
+margin_left = 518.0
+margin_right = 528.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 10, 0 )
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel/VBoxContainer"]
-margin_top = 346.0
-margin_right = 386.0
-margin_bottom = 356.0
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer"]
+margin_top = 379.0
+margin_right = 528.0
+margin_bottom = 389.0
 rect_min_size = Vector2( 0, 10 )
 
-[connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/close_exeption_message" to="." method="_on_close_exeption_message_pressed"]
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
+margin_left = 575.0
+margin_right = 600.0
+margin_bottom = 716.0
+rect_min_size = Vector2( 25, 0 )
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 874.0
+margin_right = 600.0
+margin_bottom = 1024.0
+rect_min_size = Vector2( 0, 150 )
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/close_exeption_message" to="." method="_on_close_exeption_message_pressed"]

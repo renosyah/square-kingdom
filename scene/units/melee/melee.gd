@@ -1,5 +1,6 @@
 extends Unit
 
+onready var _owner = $owner
 onready var _hp_bar = $hpBar
 onready var _pivot = $pivot
 onready var _tween = $Tween
@@ -82,6 +83,9 @@ func _ready():
 	for i in _bodies:
 		i.modulate = color
 		
+	if not player.empty():
+		_owner.set_message(player.name)
+		
 	_hp_bar.show_label(false)
 	_hp_bar.set_hp_bar_color(color)
 	_hp_bar.update_bar(hp,max_hp)
@@ -116,7 +120,9 @@ func _on_finish_died():
 	emit_signal("on_dead", self)
 	
 	
-	
+func display_player_name(_show : bool):
+	.display_player_name(_show)
+	_owner.visible = _show
 	
 
 

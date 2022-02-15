@@ -104,20 +104,19 @@ func _ai_draw_card(quantity : int) -> Array:
 	return cards
 	
 # deploy card
-remote func _deploy_card(unit : Dictionary):
+remote func _deploy_card(_player: Dictionary, _unit : Dictionary):
 	if not get_tree().is_network_server():
 		return
 		
-	var team = unit.team
-	if game_data[team].coin - unit.cost < 0:
-		return 
-
-	game_data[team].coin -= unit.cost
-	unit.node_name = "UNIT-" + GDUUID.v4()
-	unit.translation = castles[team].translation
-
+	var team = _unit.team
+	if game_data[team].coin - _unit.cost < 0:
+		return
+		
+	game_data[team].coin -= _unit.cost
+	_unit.node_name = "UNIT-" + GDUUID.v4()
+	_unit.translation = castles[team].translation
 	rpc("_on_coin_updated",team, game_data[team].coin)
-	rpc("_spawn_unit", $unit_holder.get_path() , unit)
+	rpc("_spawn_unit", $unit_holder.get_path(), _player, _unit)
 	
 ################################################################
 # host broadcast about game status
@@ -224,13 +223,14 @@ func on_coin_updated(_team : String , _amount : int):
 	
 ################################################################
 # spawning units
-remotesync func _spawn_unit(unit_holder : NodePath, _unit : Dictionary):
+remotesync func _spawn_unit(unit_holder : NodePath, _player: Dictionary, _unit : Dictionary):
 	var _unit_holder = get_node_or_null(unit_holder)
 	if not is_instance_valid(_unit_holder):
 		return
 		
 	var unit = load(_unit.scene).instance()
 	unit.name = _unit.node_name
+	unit.player = _player
 	unit.set_network_master(Network.PLAYER_HOST_ID)
 	unit.translation = _unit.translation
 	unit.set_data(_unit)
@@ -238,6 +238,9 @@ remotesync func _spawn_unit(unit_holder : NodePath, _unit : Dictionary):
 	unit.connect("on_dead", self, "_on_unit_dead")
 	unit.connect("on_take_damage", self, "_on_unit_take_damage")
 	_unit_holder.add_child(unit)
+	
+	if not _player.empty():
+		unit.display_player_name(_player.id != Global.player_data.id)
 	
 	if get_tree().is_network_server():
 		units.append(unit)

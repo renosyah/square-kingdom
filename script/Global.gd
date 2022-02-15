@@ -1,6 +1,6 @@
 extends Node
 
-const PERSISTEN_SAVE = false
+const PERSISTEN_SAVE = true
 
 const TEAM_1 = "TEAM_1"
 const TEAM_2 = "TEAM_2"
@@ -11,9 +11,9 @@ const MEDIUM_AI = "MEDIUM"
 const HARD_AI = "HARD"
 
 const AI_LEVEL = {
-	 EASY_AI : {name = EASY_AI, timeout = 4, deploy_chance = 0.4},
-	 MEDIUM_AI : {name = MEDIUM_AI, timeout = 2, deploy_chance = 0.7},
-	 HARD_AI : {name = HARD_AI ,timeout = 0.5, deploy_chance = 0.8}
+	 EASY_AI : {name = EASY_AI, timeout = 5, deploy_chance = 0.5},
+	 MEDIUM_AI : {name = MEDIUM_AI, timeout = 4, deploy_chance = 0.6},
+	 HARD_AI : {name = HARD_AI ,timeout = 2, deploy_chance = 0.7}
 }
 
 func _ready():

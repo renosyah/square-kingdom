@@ -120,7 +120,7 @@ func on_building_captured(_building,_last_owner_team,_capture_by):
 	_ui.display_info(message)
 	
 func _on_ui_on_deploy_card(unit):
-	._deploy_card(unit)
+	._deploy_card(Global.player_data, unit)
 	_ui.add_to_deck(._player_draw_card(Global.player_data.units, 1))
 	._player_deploy_card(unit, Global.player_data.units)
 	
@@ -156,7 +156,7 @@ func _on_bot_timer_timeout():
 			continue
 			
 		var cards = ._ai_draw_card(MAX_DRAW_CARD)
-		
+		var bot = { id = "BOT-" + game_data.ai_level.name, name = "BOT-" + game_data.ai_level.name}
 		var unit = cards[randi() % cards.size()]
 		unit.team = team
 		unit.color = game_data[team].color
@@ -168,7 +168,7 @@ func _on_bot_timer_timeout():
 		
 		unit.node_name = "UNIT-" + GDUUID.v4()
 		unit.translation = castles[team].translation
-		rpc("_spawn_unit", $unit_holder.get_path() , unit)
+		rpc("_spawn_unit", $unit_holder.get_path(), {}, unit)
 	
 func _on_countdown_start_timeout():
 	var message = "Ready in " + str(_time_count_down) + "..."
