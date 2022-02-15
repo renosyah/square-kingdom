@@ -8,7 +8,8 @@ onready var _pop_cap = $CanvasLayer/Control/HBoxContainer3/HBoxContainer2/label
 onready var _coin = $CanvasLayer/Control/HBoxContainer3/HBoxContainer/label
 onready var _hurt = $CanvasLayer/Control/hurt_effect
 onready var _deck_list = $CanvasLayer/Control/deck_list
-onready var _info = $CanvasLayer/Control/info
+onready var _info_title = $CanvasLayer/Control/info/VBoxContainer/info_title
+onready var _info_message = $CanvasLayer/Control/info/VBoxContainer/info_message
 onready var _tween = $Tween
 
 onready var _loading = $CanvasLayer/loading
@@ -21,6 +22,8 @@ onready var _game_over_rematch_btn = $CanvasLayer/game_over/VBoxContainer/HBoxCo
 onready var _game_over_rematch_tip = $CanvasLayer/game_over/VBoxContainer/label4
 
 onready var _menu = $CanvasLayer/menu
+onready var _music = $CanvasLayer/menu/VBoxContainer/HBoxContainer/music
+onready var _sfx = $CanvasLayer/menu/VBoxContainer/HBoxContainer/sfx
 
 func _ready():
 	_menu.visible = false
@@ -36,9 +39,11 @@ func _on_close_menu_pressed():
 	_menu.visible = false
 	_control_ui.visible = true
 	
-func display_info(_message : String):
-	_info.text = _message
-	_tween.interpolate_property(_info, "modulate:a", 1 , 0.0, 4.0)
+func display_info(_title, _message : String):
+	_info_title.text = _title
+	_info_message.text = _message
+	_tween.interpolate_property(_info_title, "modulate:a", 1 , 0.0, 4.2)
+	_tween.interpolate_property(_info_message, "modulate:a", 1 , 0.0, 4.0)
 	_tween.start()
 		
 func display_coin( _amount : int):
@@ -86,13 +91,22 @@ func _on_re_match_pressed():
 		
 	get_tree().change_scene("res://map/multi-player/host/battle.tscn")
 	
-func _on_force_exit_pressed():
+func _on_music_pressed():
+	Global.audio_setting.music = not Global.audio_setting.music
+	Global.play_music()
+	_music.text = "Music : On" if Global.audio_setting.music else "Music : Off"
+	Global.save_audio_setting()
+	
+func _on_sfx_pressed():
+	Global.audio_setting.sfx = not Global.audio_setting.sfx
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("sfx"),not Global.audio_setting.sfx)
+	_sfx.text = "Sfx : Enable" if Global.audio_setting.sfx else "Sfx : Disable"
+	Global.save_audio_setting()
+	
+	
+func _on_main_menu_pressed():
 	Network.disconnect_from_server()
 	get_tree().change_scene("res://menu/main-menu/main_menu.tscn")
-
-
-
-
 
 
 

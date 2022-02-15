@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/ui/bar-3d/hp_bar_3d.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scene/units/sieges/ram/ram.gd" type="Script" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://scene/units/sieges/ram/ram_base.png" type="Texture" id=5]
 [ext_resource path="res://assets/other/ram/ram_weapon.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/ui/message-3d/message_3d.tscn" type="PackedScene" id=7]
-[ext_resource path="res://assets/ui/message-3d/message_3d.gd" type="Script" id=8]
 
 [sub_resource type="SphereShape" id=1]
 radius = 0.975245
@@ -19,13 +18,13 @@ script = ExtResource( 2 )
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.3453, 0 )
 
 [node name="roof_1" type="Sprite3D" parent="pivot"]
-transform = Transform( 2.39296, 0, 0, 0, 2.53753, -0.707107, 0, 2.53753, 0.707107, 0, 0, -0.595394 )
+transform = Transform( 2.39296, 0, 0, 0, 2.53753, -0.707107, 0, 2.53753, 0.707107, 0.000378132, -0.00711906, -0.590026 )
 modulate = Color( 0.356863, 0.223529, 0, 1 )
 alpha_cut = 2
 texture = ExtResource( 5 )
 
 [node name="roof_2" type="Sprite3D" parent="pivot"]
-transform = Transform( 2.39296, 0, 0, 0, 2.53753, 0.707107, 0, -2.53753, 0.707107, 0, 0, 0.691662 )
+transform = Transform( 2.39296, 0, 0, 0, 2.53753, 0.707107, 0, -2.53753, 0.707107, 1.18543e-09, 0, 0.664542 )
 modulate = Color( 0.356863, 0.223529, 0, 1 )
 alpha_cut = 2
 texture = ExtResource( 5 )
@@ -66,6 +65,12 @@ transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -1.00062, -0.986078, -1.27739 
 [node name="wheel_3" parent="pivot" instance=ExtResource( 4 )]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -1.00062, -0.986078, 1.34599 )
 
+[node name="wheel_5" parent="pivot" instance=ExtResource( 4 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -0.0294175, -0.986078, 1.34599 )
+
+[node name="wheel_6" parent="pivot" instance=ExtResource( 4 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -0.0294173, -0.986078, -1.31078 )
+
 [node name="ram" parent="pivot" instance=ExtResource( 6 )]
 transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 0.898297, -0.253725, 0 )
 
@@ -79,16 +84,16 @@ shape = SubResource( 1 )
 [node name="hpBar" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.352857, 0, 0, 0, 0.623045, 0, 0, 0, 1, 0, 2.21166, 0 )
 
-[node name="owner" type="Sprite3D" parent="." instance=ExtResource( 7 )]
+[node name="owner" parent="." instance=ExtResource( 7 )]
 transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 3.09387, 0 )
-billboard = 1
-script = ExtResource( 8 )
 
 [node name="Tween" type="Tween" parent="."]
 
 [node name="Tween_dead" type="Tween" parent="."]
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-unit_db = 20.0
+unit_db = 10.0
+unit_size = 5.0
+bus = "sfx"
 
 [connection signal="tween_completed" from="Tween_dead" to="." method="_on_Tween_dead_tween_completed"]

@@ -18,52 +18,52 @@ script = ExtResource( 4 )
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.3453, 0 )
 
 [node name="side_1" type="Sprite3D" parent="pivot"]
-transform = Transform( 2.393, 0, 0, 0, 1, 0, 0, 0, 1, 2.48127e-08, -0.66249, 0.51706 )
+transform = Transform( 2.393, 0, 0, 0, 1, 0, 0, 0, 1, 1.59771e-08, -0.66249, 0.719196 )
 modulate = Color( 0.356863, 0.223529, 0, 1 )
 alpha_cut = 2
 texture = ExtResource( 7 )
 
 [node name="side_2" type="Sprite3D" parent="pivot"]
-transform = Transform( 2.393, 0, 0, 0, 1, 0, 0, 0, 1, -1.81912e-08, -0.66249, -0.554157 )
+transform = Transform( 2.393, 0, 0, 0, 1, 0, 0, 0, 1, -7.17553e-09, -0.66249, -0.806166 )
 modulate = Color( 0.356863, 0.223529, 0, 1 )
 alpha_cut = 2
 texture = ExtResource( 7 )
 
 [node name="side_3" type="Sprite3D" parent="pivot"]
-transform = Transform( -9.70742e-08, 0, 1, 0, 1, 0, -0.779201, 0, -1.7019e-09, 1.63444, -0.750271, -0.0583263 )
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 1.63444, -0.750271, -0.0583263 )
 modulate = Color( 0.356863, 0.223529, 0, 1 )
 alpha_cut = 2
 texture = ExtResource( 7 )
 
 [node name="side_4" type="Sprite3D" parent="pivot"]
-transform = Transform( -9.70742e-08, 0, 1, 0, 1, 0, -0.779201, 0, -1.7019e-09, -1.66018, -0.750271, -0.0583264 )
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -1.75105, -0.750271, -0.0583264 )
 modulate = Color( 0.356863, 0.223529, 0, 1 )
 alpha_cut = 2
 texture = ExtResource( 7 )
 
 [node name="side_5" type="Sprite3D" parent="pivot"]
-transform = Transform( -8.3997e-08, 0, 1, 0, 1, 0, -1.07837, 0, -1.91382e-08, -1.02699, -0.750271, -0.0583264 )
+transform = Transform( -4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, -0.998328, -0.569723, -0.0583264 )
 modulate = Color( 0.278431, 0.278431, 0.278431, 1 )
 alpha_cut = 2
 texture = ExtResource( 7 )
 
 [node name="side_6" type="Sprite3D" parent="pivot"]
-transform = Transform( -6.17318e-08, 0, 1, 0, 1, 0, -1.58774, 0, -4.88252e-08, 0.865787, -0.750271, -0.0558537 )
+transform = Transform( -4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0.865787, -0.58347, -0.0558537 )
 modulate = Color( 0.278431, 0.278431, 0.278431, 1 )
 alpha_cut = 2
 texture = ExtResource( 7 )
 
 [node name="wheel_1" parent="pivot" instance=ExtResource( 1 )]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0.968586, -0.986078, -1.27739 )
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0.968586, -0.986078, -0.874817 )
 
 [node name="wheel_4" parent="pivot" instance=ExtResource( 1 )]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0.968586, -0.986078, 1.1851 )
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0.968586, -0.986078, 0.764432 )
 
 [node name="wheel_2" parent="pivot" instance=ExtResource( 1 )]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -1.00062, -0.986078, -0.902393 )
 
 [node name="wheel_3" parent="pivot" instance=ExtResource( 1 )]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -1.00062, -0.986078, 0.751173 )
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -1.00062, -0.986078, 0.812747 )
 
 [node name="balista_bow" parent="pivot" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25113, -0.403109, 5.46885e-08 )
@@ -86,6 +86,8 @@ transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 3.09387, 0 )
 [node name="Tween_dead" type="Tween" parent="."]
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-unit_db = 20.0
+unit_db = 10.0
+unit_size = 5.0
+bus = "sfx"
 
 [connection signal="tween_completed" from="Tween_dead" to="." method="_on_Tween_dead_tween_completed"]

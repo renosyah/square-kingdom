@@ -19,6 +19,9 @@ onready var _cap_small = $CanvasLayer/Control/VBoxContainer2/ScrollContainer/VBo
 onready var _cap_medium = $CanvasLayer/Control/VBoxContainer2/ScrollContainer/VBoxContainer/pop_cap/medium_size
 onready var _cap_huge = $CanvasLayer/Control/VBoxContainer2/ScrollContainer/VBoxContainer/pop_cap/huge_size
 
+onready var _music = $CanvasLayer/Control/VBoxContainer2/ScrollContainer/VBoxContainer/HBoxContainer2/team_1_setting/hbox/music
+onready var _sfx = $CanvasLayer/Control/VBoxContainer2/ScrollContainer/VBoxContainer/HBoxContainer2/team_2_setting/hbox/sfx
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_current_setting()
@@ -54,6 +57,8 @@ func apply_btn_condition():
 	_cap_small.disabled = (Global.player_game_data.max_unit_spawn == 10)
 	_cap_medium.disabled = (Global.player_game_data.max_unit_spawn == 15)
 	_cap_huge.disabled = (Global.player_game_data.max_unit_spawn == 20)
+	_music.text = "On" if Global.audio_setting.music else "Off"
+	_sfx.text = "Enable" if Global.audio_setting.sfx else "Disable"
 
 func _on_back_pressed():
 	get_tree().change_scene("res://menu/main-menu/main_menu.tscn")
@@ -156,15 +161,22 @@ func _on_huge_size_pressed():
 	apply_btn_condition()
 	Global.save_player_game_data()
 	
+func _on_music_pressed():
+	Global.audio_setting.music = not Global.audio_setting.music
+	Global.play_music()
+	_music.text = "On" if Global.audio_setting.music else "Off"
+	Global.save_audio_setting()
 	
-	
-	
-	
-	
-	
-	
-	
-	
+func _on_sfx_pressed():
+	Global.audio_setting.sfx = not Global.audio_setting.sfx
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("sfx"),not Global.audio_setting.sfx) 
+	_sfx.text = "Enable" if Global.audio_setting.sfx else "Disable"
+	Global.save_audio_setting()  
+
+
+
+
+
 
 
 

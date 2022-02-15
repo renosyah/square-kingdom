@@ -16,8 +16,6 @@ __meta__ = {
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 margin_right = 600.0
 margin_bottom = 150.0
-grow_horizontal = 2
-grow_vertical = 0
 rect_min_size = Vector2( 50, 150 )
 mouse_filter = 2
 size_flags_horizontal = 3

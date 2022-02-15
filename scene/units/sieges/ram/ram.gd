@@ -5,12 +5,12 @@ onready var _hp_bar = $hpBar
 onready var _pivot = $pivot
 onready var _tween = $Tween
 onready var _tween_dead = $Tween_dead
-onready var _wheels = [$pivot/wheel_1, $pivot/wheel_2, $pivot/wheel_3, $pivot/wheel_4]
 onready var _audio = $AudioStreamPlayer3D
 
 onready var turn_speed = speed * 2
 
 var _ram_weapon
+var _wheels
 
 ############################################################
 # multiplayer func
@@ -72,6 +72,10 @@ remotesync func _perform_attack():
 	
 remotesync func _dead():
 	._dead()
+	
+	_audio.stream = load("res://assets/sound/explode3.wav")
+	_audio.play()
+	
 	_tween_dead.interpolate_property(_pivot, "translation:y", _pivot.translation.y , -4, 5.0, Tween.TRANS_SINE, Tween.EASE_IN)
 	_tween_dead.start()
 	
@@ -107,6 +111,7 @@ func _ready():
 	
 func init_siege():
 	_ram_weapon =  $pivot/ram
+	_wheels = [$pivot/wheel_1, $pivot/wheel_2, $pivot/wheel_3, $pivot/wheel_4,$pivot/wheel_5, $pivot/wheel_6]
 	$pivot/flag.set_flag_color(color)
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -130,7 +135,9 @@ func _process(delta):
 	if is_instance_valid(target):
 		direction = translation.direction_to(target.translation)
 		distance_to_target = translation.distance_to(target.translation)
-
+		
+		transform_turning((Vector3(target.translation.x , translation.y ,target.translation.z)), delta)
+		
 		if not target.is_targetable(team):
 			_check_is_walking(false)
 			target = null
@@ -138,13 +145,13 @@ func _process(delta):
 		elif distance_to_target > range_attack:
 			_check_is_walking(true)
 			translation.y -= (1.0 * delta) if translation.y > 0.0 else 0.0
-			transform_turning((Vector3(target.translation.x , translation.y ,target.translation.z)), delta)
 			velocity = Vector3(direction.x, 0.0 , direction.z) * speed
 			
 		elif distance_to_target <= range_attack and _cooldown_timmer.is_stopped():
 			_check_is_walking(false)
 			perform_attack()
 			_cooldown_timmer.start()
+			
 		
 		var collide = move_and_collide(velocity * delta)
 		if collide != null:

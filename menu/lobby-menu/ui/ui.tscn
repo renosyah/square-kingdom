@@ -1,11 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/ui/fonts/montserrat_eb_32.tres" type="DynamicFont" id=1]
 [ext_resource path="res://menu/lobby-menu/ui/ui.gd" type="Script" id=2]
 [ext_resource path="res://assets/ui/icon/back.png" type="Texture" id=3]
 [ext_resource path="res://assets/ui/fonts/montserrat_eb_48.tres" type="DynamicFont" id=4]
 [ext_resource path="res://addons/LANServerBroadcast/server_advertiser/ServerAdvertiser.gd" type="Script" id=6]
-[ext_resource path="res://assets/sound/background.wav" type="AudioStream" id=7]
 [ext_resource path="res://assets/ui/fonts/montserrat_eb_16.tres" type="DynamicFont" id=8]
 
 [sub_resource type="Animation" id=1]
@@ -343,11 +342,6 @@ anims/loading = SubResource( 2 )
 
 [node name="server_advertise" type="Node" parent="."]
 script = ExtResource( 6 )
-
-[node name="music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 7 )
-volume_db = -15.0
-autoplay = true
 
 [node name="exit_timer" type="Timer" parent="."]
 wait_time = 2.0

@@ -28,6 +28,7 @@ func set_data(_data):
 	
 func init_siege():
 	_balista_bow = $pivot/balista_bow
+	_wheels = [$pivot/wheel_1, $pivot/wheel_2, $pivot/wheel_3, $pivot/wheel_4]
 	$pivot/flag.set_flag_color(color)
 		
 func perform_attack():

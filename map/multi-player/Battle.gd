@@ -345,12 +345,15 @@ func _number_of_unit_spawn(holder, team) -> int:
 		if not is_instance_valid(i):
 			continue
 			
+		if i.is_dead:
+			continue
+			
 		if i.team == team:
 			unit_count += 1
 			
 	return unit_count
-
-func _building_captured_message(_building_name, _team,_capture_by, _last_owner_team) -> String:
+	
+func _building_captured_title(_building_name, _team,_capture_by, _last_owner_team) -> String:
 	if _capture_by == _team and _last_owner_team == "":
 		return _building_name + " Seized!"
 		
@@ -361,7 +364,34 @@ func _building_captured_message(_building_name, _team,_capture_by, _last_owner_t
 		return "We have lost a " + _building_name + "!"
 		
 	return ""
-
+	
+func _building_captured_message(_building, _team,_capture_by, _last_owner_team) -> String:
+	if _building.type_building == Buildings.TYPE_FARM:
+		if _capture_by == _team and _last_owner_team == "":
+			return "+" + str(_building.amount) + " of Income"
+			
+		if _capture_by == _team and _last_owner_team != "":
+			return "+" + str(_building.amount) + " of Income"
+			
+		if _capture_by != _team and _last_owner_team == _team:
+			return "-" + str(_building.amount) + " of Income"
+			
+	elif _building.type_building == Buildings.TYPE_TOWER:
+		if _capture_by == _team and _last_owner_team == "":
+			return "+" + str(int(_building.attack_damage)) + " of Defence"
+			
+		if _capture_by == _team and _last_owner_team != "":
+			return "+" + str(int(_building.attack_damage)) + " of Defence"
+			
+		if _capture_by != _team and _last_owner_team == _team:
+			return "-" + str(int(_building.attack_damage)) + " of Defence"
+			
+	elif _building.type_building == Buildings.TYPE_CASTLE:
+		if _capture_by != _team and _last_owner_team == _team:
+			return "Your team's castle has fallen into enemy hand!"
+			
+	return ""
+	
 func _get_coin_each_team() -> Dictionary:
 	var data = {}
 	for i in Global.TEAMS:

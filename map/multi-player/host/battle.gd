@@ -120,11 +120,12 @@ func _on_capture_progress(_building, _capture_by, _cp_damage, _cp, _max_cp):
 	
 func on_building_captured(_building,_last_owner_team,_capture_by):
 	.on_building_captured(_building,_last_owner_team,_capture_by)
-	var message = _building_captured_message(_building.building_name,Global.player_data.team,_capture_by,_last_owner_team)
-	if message == "":
+	var title = _building_captured_title(_building.building_name,Global.player_data.team,_capture_by,_last_owner_team)
+	var message = _building_captured_message(_building,Global.player_data.team,_capture_by,_last_owner_team)
+	if message == "" or title == "":
 		return
 
-	_ui.display_info(message)
+	_ui.display_info(title, message)
 	
 func _on_ui_on_deploy_card(unit):
 	._deploy_card(Global.player_data, unit)

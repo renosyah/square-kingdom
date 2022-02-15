@@ -8,8 +8,8 @@
 [ext_resource path="res://assets/ui/message-3d/message_3d.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/ui/bar-3d/hp_bar_3d.tscn" type="PackedScene" id=7]
 
-[sub_resource type="BoxShape" id=1]
-extents = Vector3( 0.366465, 0.843063, 0.316568 )
+[sub_resource type="SphereShape" id=38]
+radius = 0.537918
 
 [sub_resource type="Animation" id=3]
 length = 0.001
@@ -864,12 +864,12 @@ alpha_cut = 2
 texture = ExtResource( 2 )
 
 [node name="arm_1" type="Sprite3D" parent="pivot/upper_body"]
-transform = Transform( 0.999999, 0, 0, 0, 0.788033, -0.615634, 0, 0.615634, 0.788032, 0.436772, 0.0356706, 0.119754 )
+transform = Transform( 0.999999, 0, 0, 0, 0.788032, -0.615634, 0, 0.615634, 0.788032, 0.436772, 0.0356706, 0.119754 )
 alpha_cut = 2
 texture = ExtResource( 5 )
 
 [node name="arm_2" type="Sprite3D" parent="pivot/upper_body"]
-transform = Transform( 0.797521, -0.603291, 0, 0.603291, 0.797521, 0, 0, 0, 1, 0.436772, 0.220904, -0.107806 )
+transform = Transform( 0.797521, -0.603292, 0, 0.603292, 0.797521, 0, 0, 0, 1, 0.436772, 0.220904, -0.107806 )
 alpha_cut = 2
 texture = ExtResource( 5 )
 
@@ -885,7 +885,7 @@ texture = ExtResource( 4 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.819152, 0.573577, 0, -0.573577, 0.819152, 0, 0.8, 0 )
-shape = SubResource( 1 )
+shape = SubResource( 38 )
 
 [node name="hpBar" parent="." instance=ExtResource( 7 )]
 transform = Transform( 0.352857, 0, 0, 0, 0.623045, 0, 0, 0, 1, 0, 2.58021, 0 )
@@ -911,4 +911,6 @@ active = true
 parameters/playback = SubResource( 17 )
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-unit_db = 20.0
+unit_db = 10.0
+unit_size = 5.0
+bus = "sfx"

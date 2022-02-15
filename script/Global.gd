@@ -44,6 +44,41 @@ const LARGE_SIZE = {
 func _ready():
 	load_player_data()
 	load_player_game_data()
+	load_audio_setting()
+	play_music()
+################################################################
+# play music!
+var _audio
+var audio_setting = { music = true, sfx = true }
+
+func play_music():
+	if not _audio:
+		_audio = AudioStreamPlayer.new()
+		_audio.volume_db = -20
+		_audio.stream = preload("res://assets/sound/music.ogg")
+		_audio.bus = "music"
+		add_child(_audio)
+		
+	if audio_setting.music:
+		_audio.play()
+	else:
+		_audio.stop()
+		
+func save_audio_setting():
+	if PERSISTEN_SAVE:
+		SaveLoad.save("audio_setting.dat", audio_setting)
+	
+func load_audio_setting():
+	var _audio_setting = null 
+	
+	if PERSISTEN_SAVE:
+		_audio_setting = SaveLoad.load_save("audio_setting.dat")
+		
+	if not _audio_setting:
+		_audio_setting = { music = 1, sfx = 1 }
+		
+	audio_setting  = _audio_setting 
+	save_audio_setting()
 	
 ################################################################
 # player data

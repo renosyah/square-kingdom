@@ -8,8 +8,8 @@
 [ext_resource path="res://scene/units/uniform/arm.png" type="Texture" id=6]
 [ext_resource path="res://assets/ui/message-3d/message_3d.tscn" type="PackedScene" id=7]
 
-[sub_resource type="BoxShape" id=1]
-extents = Vector3( 0.366465, 0.843063, 0.316568 )
+[sub_resource type="SphereShape" id=43]
+radius = 0.581992
 
 [sub_resource type="Animation" id=3]
 length = 0.001
@@ -983,7 +983,7 @@ texture = ExtResource( 5 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.819152, 0.573577, 0, -0.573577, 0.819152, 0, 0.8, 0 )
-shape = SubResource( 1 )
+shape = SubResource( 43 )
 
 [node name="hpBar" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.352857, 0, 0, 0, 0.623045, 0, 0, 0, 1, 0, 2.58021, 0 )
@@ -1010,4 +1010,6 @@ active = true
 parameters/playback = SubResource( 38 )
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-unit_db = 20.0
+unit_db = 10.0
+unit_size = 5.0
+bus = "sfx"
