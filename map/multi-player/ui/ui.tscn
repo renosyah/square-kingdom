@@ -397,17 +397,19 @@ valign = 1
 margin_top = 127.0
 margin_right = 600.0
 margin_bottom = 227.0
+alignment = 1
 
 [node name="MarginContainer3" type="MarginContainer" parent="CanvasLayer/menu/VBoxContainer/HBoxContainer"]
-margin_right = 60.0
+margin_right = 84.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 60, 0 )
+size_flags_horizontal = 3
 
 [node name="music" type="Button" parent="CanvasLayer/menu/VBoxContainer/HBoxContainer"]
-margin_left = 64.0
+margin_left = 88.0
 margin_right = 288.0
 margin_bottom = 100.0
-rect_min_size = Vector2( 0, 100 )
+rect_min_size = Vector2( 200, 100 )
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 12 )
 text = "Music On"
@@ -424,9 +426,9 @@ rect_min_size = Vector2( 15, 0 )
 
 [node name="sfx" type="Button" parent="CanvasLayer/menu/VBoxContainer/HBoxContainer"]
 margin_left = 311.0
-margin_right = 536.0
+margin_right = 511.0
 margin_bottom = 100.0
-rect_min_size = Vector2( 0, 100 )
+rect_min_size = Vector2( 200, 100 )
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 12 )
 text = "Sfx : Enable"
@@ -436,10 +438,11 @@ __meta__ = {
 }
 
 [node name="MarginContainer4" type="MarginContainer" parent="CanvasLayer/menu/VBoxContainer/HBoxContainer"]
-margin_left = 540.0
+margin_left = 515.0
 margin_right = 600.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 60, 0 )
+size_flags_horizontal = 3
 
 [node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/menu/VBoxContainer"]
 margin_top = 231.0
@@ -454,15 +457,16 @@ margin_bottom = 365.0
 alignment = 1
 
 [node name="MarginContainer3" type="MarginContainer" parent="CanvasLayer/menu/VBoxContainer/HBoxContainer2"]
-margin_right = 60.0
+margin_right = 88.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 60, 0 )
+size_flags_horizontal = 3
 
 [node name="main_menu" type="Button" parent="CanvasLayer/menu/VBoxContainer/HBoxContainer2"]
-margin_left = 64.0
-margin_right = 536.0
+margin_left = 92.0
+margin_right = 507.0
 margin_bottom = 100.0
-rect_min_size = Vector2( 0, 100 )
+rect_min_size = Vector2( 415, 100 )
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 5 )
 text = "Main Menu"
@@ -471,10 +475,11 @@ __meta__ = {
 }
 
 [node name="MarginContainer4" type="MarginContainer" parent="CanvasLayer/menu/VBoxContainer/HBoxContainer2"]
-margin_left = 540.0
+margin_left = 511.0
 margin_right = 600.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 60, 0 )
+size_flags_horizontal = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/menu/VBoxContainer"]
 margin_top = 369.0

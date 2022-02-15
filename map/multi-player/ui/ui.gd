@@ -31,13 +31,14 @@ func _ready():
 	_control_ui.visible = false
 	_loading.visible = true
 	
+	_music.text = "Music : On" if Global.audio_setting.music else "Music : Off"
+	_sfx.text = "Sfx : Enable" if Global.audio_setting.sfx else "Sfx : Disable"
+	
 func _on_menu_btn_pressed():
 	_menu.visible = true
-	_control_ui.visible = false
 	
 func _on_close_menu_pressed():
 	_menu.visible = false
-	_control_ui.visible = true
 	
 func display_info(_title, _message : String):
 	_info_title.text = _title

@@ -912,5 +912,5 @@ parameters/playback = SubResource( 17 )
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 unit_db = 10.0
-unit_size = 5.0
+unit_size = 10.0
 bus = "sfx"

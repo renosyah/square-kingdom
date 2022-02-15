@@ -54,7 +54,7 @@ var audio_setting = { music = true, sfx = true }
 func play_music():
 	if not _audio:
 		_audio = AudioStreamPlayer.new()
-		_audio.volume_db = -20
+		#_audio.volume_db = -20
 		_audio.stream = preload("res://assets/sound/music.ogg")
 		_audio.bus = "music"
 		add_child(_audio)

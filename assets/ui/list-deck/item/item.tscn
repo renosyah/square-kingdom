@@ -165,7 +165,6 @@ __meta__ = {
 one_shot = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-volume_db = -20.0
 bus = "sfx"
 
 [connection signal="pressed" from="HBoxContainer/button" to="." method="_on_button_pressed"]

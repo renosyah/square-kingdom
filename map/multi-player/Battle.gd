@@ -387,6 +387,9 @@ func _building_captured_message(_building, _team,_capture_by, _last_owner_team) 
 			return "-" + str(int(_building.attack_damage)) + " of Defence"
 			
 	elif _building.type_building == Buildings.TYPE_CASTLE:
+		if _capture_by == _team and _last_owner_team != "":
+			return "Enemy castle has fallen into our hand!"
+			
 		if _capture_by != _team and _last_owner_team == _team:
 			return "Your team's castle has fallen into enemy hand!"
 			
