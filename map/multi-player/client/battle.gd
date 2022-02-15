@@ -2,6 +2,7 @@ extends BattleMP
 
 onready var _ui = $ui
 onready var _camera = $cameraPivot
+onready var _terrain = $terrain
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,7 +14,14 @@ func _ready():
 func _init_client():
 	.init_connection_watcher()
 	_set_on_restart_match()
-	game_data = Global.mp_game_data
+	
+	game_data = Global.mp_game_data.duplicate(true)
+	MAX_UNIT_SPAWN = game_data.max_unit_spawn
+	_unit_spawned()
+	
+	_terrain.map_size = game_data.map_size
+	_terrain.generate()
+	
 	_spawn_buildings($castle_holder.get_path(), $farm_holder.get_path())
 	
 ################################################################

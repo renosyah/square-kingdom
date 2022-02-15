@@ -3,7 +3,7 @@ class_name BattleMP
 
 const MIN_FARM_AQUIRE = 2
 const MAX_DRAW_CARD = 3
-const MAX_UNIT_SPAWN = 10
+var MAX_UNIT_SPAWN = 10
 
 const GAME_LOADING = 0
 const GAME_START = 1
@@ -28,7 +28,8 @@ var game_data = {
 		coin = 100,
 		units = [],
 	},
-	buildings = []
+	buildings = [],
+	map_size = {}
 }
 
 # spawned object

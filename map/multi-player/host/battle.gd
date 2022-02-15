@@ -2,6 +2,7 @@ extends BattleMP
 
 onready var _ui = $ui
 onready var _camera = $cameraPivot
+onready var _terrain = $terrain
 
 onready var _bot_timer = $bot_timer
 onready var _countdown_start = $countdown_start
@@ -23,15 +24,21 @@ func _init_host():
 func generate_spawn():
 	randomize()
 	
-	var pos_1 = $spawn_point_1.get_children()
-	var pos_2 = $spawn_point_2.get_children()
+	game_data = Global.mp_game_data.duplicate(true)
+	MAX_UNIT_SPAWN = game_data.max_unit_spawn
+	_unit_spawned()
+	
+	_terrain.map_size = game_data.map_size
+	_terrain.generate()
+	
+	var pos_1 = _terrain.west_spawn_translations
+	var pos_2 = _terrain.east_spawn_translations
 	
 	var castle_spawn_pos = {
-		Global.TEAM_1 : pos_1[randi() % pos_1.size()].translation,
-		Global.TEAM_2 : pos_2[randi() % pos_2.size()].translation
+		Global.TEAM_1 : pos_1[randi() % pos_1.size()],
+		Global.TEAM_2 : pos_2[randi() % pos_2.size()]
 	}
-	game_data = Global.mp_game_data.duplicate(true)
-	
+
 	var pos = $terrain.translations.duplicate()
 	
 	for i in game_data.buildings:

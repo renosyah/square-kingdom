@@ -1,6 +1,6 @@
 extends Node
 
-const PERSISTEN_SAVE = true
+const PERSISTEN_SAVE = false
 
 const TEAM_1 = "TEAM_1"
 const TEAM_2 = "TEAM_2"
@@ -15,6 +15,10 @@ const AI_LEVEL = {
 	 MEDIUM_AI : {name = MEDIUM_AI, timeout = 4, deploy_chance = 0.6},
 	 HARD_AI : {name = HARD_AI ,timeout = 2, deploy_chance = 0.7}
 }
+
+const NORMAL_SIZE = { name = "Normal", size = 1, number_of_unit = 24, space = 9, offset = 4 } #OK
+const LARGE_SIZE = { name = "Large", size = 2, number_of_unit = 79, space = 12, offset = 18 } #OK
+const SIZES = [NORMAL_SIZE, LARGE_SIZE]
 
 func _ready():
 	load_player_data()
@@ -83,7 +87,7 @@ func load_player_game_data():
 	player_game_data = _player_game_data
 	save_player_game_data()
 	
-static func generate_game_data(max_farm : int = 10, max_tower : int = 4) -> Dictionary:
+static func generate_game_data() -> Dictionary:
 	var data = {
 		TEAM_1 : {
 			team_name = "",
@@ -99,7 +103,9 @@ static func generate_game_data(max_farm : int = 10, max_tower : int = 4) -> Dict
 		},
 		ai_level = AI_LEVEL[EASY_AI],
 		ai_units = [],
-		buildings = []
+		buildings = [],
+		map_size = { name = "Normal", size = 1, number_of_unit = 24, space = 9, offset = 4 },
+		max_unit_spawn = 15,
 	}
 	
 	for i in TEAMS:
@@ -117,16 +123,31 @@ static func generate_game_data(max_farm : int = 10, max_tower : int = 4) -> Dict
 			castle.color = data[i].color
 			data.buildings.append(castle)
 			
+	data = generate_farm_and_tower(data)
+		
+	return data
+	
+static func generate_farm_and_tower(data : Dictionary, max_farm : int = 8, max_tower : int = 4) -> Dictionary:
+	var holder = []
+	for i in data.buildings:
+		if i.type_building == Buildings.TYPE_CASTLE:
+			holder.append(i)
+			
+	data.buildings.clear()
+	data.buildings.append_array(holder)
+	
 	for i in max_farm:
 		var farm = Buildings.BUILDINGS[1].duplicate()
+		farm.id = "FARM-" + GDUUID.v4()
 		farm.amount = round(rand_range(2,10))
 		farm.coin_produce_cooldown = rand_range(10,15)
 		data.buildings.append(farm)
 		
 	for i in max_tower:
-		var tower = Buildings.BUILDINGS[1].duplicate()
+		var tower = Buildings.BUILDINGS[2].duplicate()
+		tower.id = "TOWER-" + GDUUID.v4()
 		tower.attack_damage = rand_range(2,8)
-		data.buildings.append(Buildings.BUILDINGS[2].duplicate())
+		data.buildings.append(tower)
 		
 	return data
 	
