@@ -1,0 +1,228 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://assets/flag/flag.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scene/weapon/shield/wooden_shield/shield.png" type="Texture" id=2]
+[ext_resource path="res://assets/ui/bar-3d/hp_bar_3d.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scene/buildings/training_field/fence.png" type="Texture" id=4]
+[ext_resource path="res://scene/buildings/training_field/training_field.gd" type="Script" id=5]
+[ext_resource path="res://assets/ui/bar-3d/hp_bar_3d.gd" type="Script" id=6]
+[ext_resource path="res://assets/flag/flag.gd" type="Script" id=7]
+[ext_resource path="res://scene/weapon/melee/sword/sword.png" type="Texture" id=8]
+[ext_resource path="res://assets/ui/bar/bar.png" type="Texture" id=9]
+[ext_resource path="res://scene/buildings/training_field/training_dummy.png" type="Texture" id=10]
+[ext_resource path="res://scene/buildings/training_field/pilar.png" type="Texture" id=11]
+[ext_resource path="res://scene/weapon/melee/spear/spear.png" type="Texture" id=12]
+[ext_resource path="res://scene/buildings/training_field/wall.png" type="Texture" id=13]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 2.01974, 1, 1.44283 )
+
+[node name="training_field" type="StaticBody"]
+script = ExtResource( 5 )
+
+[node name="pivot1" type="Spatial" parent="."]
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.417379, 0 )
+visible = false
+
+[node name="fence_1" type="Sprite3D" parent="pivot1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.562693, 0, 1.16101 )
+modulate = Color( 0.627451, 0.337255, 0, 1 )
+alpha_cut = 2
+texture = ExtResource( 4 )
+
+[node name="fence_2" type="Sprite3D" parent="pivot1"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.17091, 0, 0.563871 )
+modulate = Color( 0.627451, 0.337255, 0, 1 )
+alpha_cut = 2
+texture = ExtResource( 4 )
+
+[node name="fence_3" type="Sprite3D" parent="pivot1"]
+transform = Transform( -0.0110477, 0, 0.999939, 0, 1, 0, -0.999939, 0, -0.0110477, 1.17705, 0, -0.673132 )
+modulate = Color( 0.627451, 0.337255, 0, 1 )
+alpha_cut = 2
+texture = ExtResource( 4 )
+
+[node name="fence_4" type="Sprite3D" parent="pivot1"]
+transform = Transform( -0.999939, 0, -0.0110478, 0, 1, 0, 0.0110478, 0, -0.999939, 0.573228, 0, -1.27472 )
+modulate = Color( 0.627451, 0.337255, 0, 1 )
+alpha_cut = 2
+texture = ExtResource( 4 )
+
+[node name="fence_5" type="Sprite3D" parent="pivot1"]
+transform = Transform( -0.999651, 0, -0.0264212, 0, 1, 0, 0.0264212, 0, -0.999651, -0.633947, 0, -1.25367 )
+modulate = Color( 0.627451, 0.337255, 0, 1 )
+alpha_cut = 2
+texture = ExtResource( 4 )
+
+[node name="fence_6" type="Sprite3D" parent="pivot1"]
+transform = Transform( 0.0264213, 0, -0.999651, 0, 1, 0, 0.999651, 0, 0.0264213, -1.22618, 0, -0.640677 )
+modulate = Color( 0.627451, 0.337255, 0, 1 )
+alpha_cut = 2
+texture = ExtResource( 4 )
+
+[node name="fence_7" type="Sprite3D" parent="pivot1"]
+transform = Transform( 0.005428, 0, -0.999985, 0, 1, 0, 0.999985, 0, 0.005428, -1.21801, 0, 0.563281 )
+modulate = Color( 0.627451, 0.337255, 0, 1 )
+alpha_cut = 2
+texture = ExtResource( 4 )
+
+[node name="fence_8" type="Sprite3D" parent="pivot1"]
+transform = Transform( 0.999985, 0, 0.00542805, 0, 1, 0, -0.00542805, 0, 0.999985, -0.617577, 0, 1.16825 )
+modulate = Color( 0.627451, 0.337255, 0, 1 )
+alpha_cut = 2
+texture = ExtResource( 4 )
+
+[node name="stuff_1" type="Sprite3D" parent="pivot1"]
+transform = Transform( 0.799988, -1.86265e-10, 0.00542805, -0.00139325, 0.757706, 0.32084, -0.00411287, -0.256676, 0.947118, -1.10768, 0.210337, 1.27531 )
+alpha_cut = 2
+texture = ExtResource( 2 )
+
+[node name="stuff_2" type="Sprite3D" parent="pivot1"]
+transform = Transform( 0.323194, 0.73181, 3.99855e-08, 0, -3.49691e-08, 1, 0.73181, -0.323194, -1.76591e-08, -0.416633, -0.222548, 1.47052 )
+alpha_cut = 2
+texture = ExtResource( 2 )
+
+[node name="stuff_8" type="Sprite3D" parent="pivot1"]
+transform = Transform( 0.8, 0, 0, 0, 0.779669, 0.224016, 0, -0.179213, 0.974585, -1.1788, 0.403385, -0.38207 )
+alpha_cut = 2
+texture = ExtResource( 12 )
+
+[node name="stuff_3" type="Sprite3D" parent="pivot1"]
+transform = Transform( 0.8, 0, 0, 0, 0.703579, 0.475947, 0, -0.380757, 0.879474, 1.12269, 0.191934, 1.23749 )
+alpha_cut = 2
+texture = ExtResource( 8 )
+
+[node name="stuff_4" type="Sprite3D" parent="pivot1"]
+transform = Transform( 0.571237, 0, 0, 0, 0.8, 0, 0, 0, 1, 0.661373, 0.367837, -1.21633 )
+modulate = Color( 0.537255, 0.423529, 0.301961, 1 )
+alpha_cut = 2
+texture = ExtResource( 10 )
+
+[node name="stuff_6" type="Sprite3D" parent="pivot1"]
+transform = Transform( 0.400516, 0, 0.379144, 0, 0.799784, 0, -0.482848, 0, 0.796979, -0.868002, 0.367837, -0.936223 )
+modulate = Color( 0.537255, 0.423529, 0.301961, 1 )
+alpha_cut = 2
+texture = ExtResource( 10 )
+
+[node name="pivot2" type="Spatial" parent="."]
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.417379, 0 )
+visible = false
+
+[node name="fence_1" type="Sprite3D" parent="pivot2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.562693, 0, 1.16101 )
+modulate = Color( 0.627451, 0.337255, 0, 1 )
+alpha_cut = 2
+texture = ExtResource( 4 )
+
+[node name="fence_2" type="Sprite3D" parent="pivot2"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.17091, 0, 0.563871 )
+modulate = Color( 0.627451, 0.337255, 0, 1 )
+alpha_cut = 2
+texture = ExtResource( 4 )
+
+[node name="fence_3" type="Sprite3D" parent="pivot2"]
+transform = Transform( -0.0110477, 0, 0.999939, 0, 1, 0, -0.999939, 0, -0.0110477, 1.17705, 0, -0.673132 )
+modulate = Color( 0.627451, 0.337255, 0, 1 )
+alpha_cut = 2
+texture = ExtResource( 4 )
+
+[node name="fence_4" type="Sprite3D" parent="pivot2"]
+transform = Transform( -0.999939, 0, -0.0110478, 0, 1, 0, 0.0110478, 0, -0.999939, 0.573228, 0, -1.27472 )
+modulate = Color( 0.627451, 0.337255, 0, 1 )
+alpha_cut = 2
+texture = ExtResource( 4 )
+
+[node name="fence_5" type="Sprite3D" parent="pivot2"]
+transform = Transform( -0.999651, 0, -0.0264212, 0, 1, 0, 0.0264212, 0, -0.999651, -0.633947, 0, -1.25367 )
+modulate = Color( 0.627451, 0.337255, 0, 1 )
+alpha_cut = 2
+texture = ExtResource( 4 )
+
+[node name="fence_6" type="Sprite3D" parent="pivot2"]
+transform = Transform( 0.0264213, 0, -0.999651, 0, 1, 0, 0.999651, 0, 0.0264213, -1.22618, 0, -0.640677 )
+modulate = Color( 0.627451, 0.337255, 0, 1 )
+alpha_cut = 2
+texture = ExtResource( 4 )
+
+[node name="fence_7" type="Sprite3D" parent="pivot2"]
+transform = Transform( 0.005428, 0, -0.999985, 0, 1, 0, 0.999985, 0, 0.005428, -1.21801, 0, 0.563281 )
+modulate = Color( 0.627451, 0.337255, 0, 1 )
+alpha_cut = 2
+texture = ExtResource( 4 )
+
+[node name="fence_8" type="Sprite3D" parent="pivot2"]
+transform = Transform( 0.999985, 0, 0.00542805, 0, 1, 0, -0.00542805, 0, 0.999985, -0.617577, 0, 1.16825 )
+modulate = Color( 0.627451, 0.337255, 0, 1 )
+alpha_cut = 2
+texture = ExtResource( 4 )
+
+[node name="wall_1" type="Sprite3D" parent="pivot2"]
+transform = Transform( 0.771964, 0, 0.00419032, 0, 0.657193, 0, -0.00542805, 0, 0.999985, 0.422917, 0.316199, 0.069432 )
+modulate = Color( 0.627451, 0.337255, 0, 1 )
+alpha_cut = 2
+texture = ExtResource( 13 )
+
+[node name="wall_3" type="Sprite3D" parent="pivot2"]
+transform = Transform( 0.771964, 0, 0.00419032, 0, 0.657193, 0, -0.00542805, 0, 0.999985, 0.422917, 0.316199, -1.0399 )
+modulate = Color( 0.627451, 0.337255, 0, 1 )
+alpha_cut = 2
+texture = ExtResource( 13 )
+
+[node name="wall_2" type="Sprite3D" parent="pivot2"]
+transform = Transform( 0.749599, -2.7412e-05, -0.239057, 0.184549, 0.000111342, 0.970999, 0, -0.657194, 0.000174478, 0.396483, 1.18936, -0.461981 )
+modulate = Color( 0.627451, 0.337255, 0, 1 )
+alpha_cut = 2
+texture = ExtResource( 13 )
+
+[node name="wall_4" type="Sprite3D" parent="pivot2"]
+transform = Transform( 0.771983, 0, 0, 0, 0.657194, 0, 0, 0, 0.999994, 0.973546, 0.602188, 0.0251571 )
+modulate = Color( 0.627451, 0.337255, 0, 1 )
+alpha_cut = 2
+texture = ExtResource( 11 )
+
+[node name="stuff_5" type="Sprite3D" parent="pivot2"]
+transform = Transform( 0.799266, 0.0123014, -0.0399695, -0.00139325, 0.757706, 0.32084, 0.034232, -0.256381, 0.94629, 0.1556, 0.236679, 0.293436 )
+alpha_cut = 2
+texture = ExtResource( 2 )
+
+[node name="stuff_7" type="Sprite3D" parent="pivot2"]
+transform = Transform( 0.28775, 0.746458, 4.07859e-08, 0, -3.49691e-08, 1, 0.746458, -0.28775, -1.57224e-08, 0.8365, -0.196206, 0.521547 )
+alpha_cut = 2
+texture = ExtResource( 2 )
+
+[node name="stuff_6" type="Sprite3D" parent="pivot2"]
+transform = Transform( 0.8, 0, 0, 0, 0.703579, 0.475947, 0, -0.380757, 0.879474, -0.737518, 0.191934, -1.12311 )
+alpha_cut = 2
+texture = ExtResource( 8 )
+
+[node name="stuff_8" type="Sprite3D" parent="pivot2"]
+transform = Transform( 0.8, 0, 0, 0, 0.703579, 0.475947, 0, -0.380757, 0.879474, -1.01155, 0.191934, -1.12311 )
+alpha_cut = 2
+texture = ExtResource( 8 )
+
+[node name="flag" type="Spatial" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.86596, 0, -2.10069 )
+script = ExtResource( 7 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.417379, 0 )
+shape = SubResource( 1 )
+disabled = true
+
+[node name="hpBar" type="Sprite3D" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.40958, 0, 0, 0, 0.840809, 0, 0, 0, 1, 0, 3.65155, -2 )
+billboard = 1
+texture = ExtResource( 9 )
+script = ExtResource( 6 )
+
+[node name="capture_reset_timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="."]
+
+[connection signal="timeout" from="capture_reset_timer" to="." method="_on_capture_reset_timer_timeout"]
+[connection signal="screen_entered" from="VisibilityNotifier" to="." method="_on_VisibilityNotifier_screen_entered"]
+[connection signal="screen_exited" from="VisibilityNotifier" to="." method="_on_VisibilityNotifier_screen_exited"]

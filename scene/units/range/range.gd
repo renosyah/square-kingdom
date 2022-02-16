@@ -33,6 +33,10 @@ func perform_attack():
 		
 	rpc("_shot_at", target.translation)
 
-
+func _on_VisibilityNotifier_screen_entered():
+	visible = true
+	
+func _on_VisibilityNotifier_screen_exited():
+	visible = false
 
 

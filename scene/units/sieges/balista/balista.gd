@@ -42,3 +42,9 @@ func perform_attack():
 		target.capture(capture_damage, {node_path = self.get_path(), team = team, color = color})
 		
 	rpc("_shot_at", target.translation)
+	
+func _on_VisibilityNotifier_screen_entered():
+	visible = true
+	
+func _on_VisibilityNotifier_screen_exited():
+	visible = false

@@ -58,7 +58,14 @@ func generate_spawn():
 			i.translation = p
 			pos.erase(p)
 			
+		elif i.type_building == Buildings.TYPE_UNIT_BUFF:
+			var p = pos[randi() % pos.size()]
+			i.node_name = "TRAINING-FIELD-" + GDUUID.v4()
+			i.translation = p
+			pos.erase(p)
+			
 	_spawn_buildings($castle_holder.get_path(), $farm_holder.get_path())
+	_ui.update_victory_bar(_get_building_own_each_team($castle_holder.get_path(), $farm_holder.get_path()))
 	
 	Global.rpc("on_host_game_session_ready", game_data)
 	
@@ -120,12 +127,14 @@ func _on_capture_progress(_building, _capture_by, _cp_damage, _cp, _max_cp):
 	
 func on_building_captured(_building,_last_owner_team,_capture_by):
 	.on_building_captured(_building,_last_owner_team,_capture_by)
+	_ui.update_victory_bar(_get_building_own_each_team($castle_holder.get_path(), $farm_holder.get_path()))
+	
 	var title = _building_captured_title(_building.building_name,Global.player_data.team,_capture_by,_last_owner_team)
 	var message = _building_captured_message(_building,Global.player_data.team,_capture_by,_last_owner_team)
 	if message == "" or title == "":
 		return
-
 	_ui.display_info(title, message)
+	
 	
 func _on_ui_on_deploy_card(unit):
 	._deploy_card(Global.player_data, unit)

@@ -4,12 +4,13 @@ signal on_deploy_card(_card)
 
 onready var _control_ui = $CanvasLayer/Control
 
-onready var _pop_cap = $CanvasLayer/Control/HBoxContainer3/HBoxContainer2/label
-onready var _coin = $CanvasLayer/Control/HBoxContainer3/HBoxContainer/label
+onready var _pop_cap = $CanvasLayer/Control/HBoxContainer/HBoxContainer3/HBoxContainer2/label
+onready var _coin = $CanvasLayer/Control/HBoxContainer/HBoxContainer3/HBoxContainer/label
 onready var _hurt = $CanvasLayer/Control/hurt_effect
 onready var _deck_list = $CanvasLayer/Control/deck_list
 onready var _info_title = $CanvasLayer/Control/info/VBoxContainer/info_title
 onready var _info_message = $CanvasLayer/Control/info/VBoxContainer/info_message
+onready var _victory_bar = $CanvasLayer/Control/HBoxContainer/CenterContainer2/vic_bar
 onready var _tween = $Tween
 
 onready var _loading = $CanvasLayer/loading
@@ -46,8 +47,18 @@ func display_info(_title, _message : String):
 	_tween.interpolate_property(_info_title, "modulate:a", 1 , 0.0, 4.2)
 	_tween.interpolate_property(_info_message, "modulate:a", 1 , 0.0, 4.0)
 	_tween.start()
-		
-func display_coin( _amount : int):
+	
+func update_victory_bar(teams : Dictionary):
+	# {team_1 : { building : 0, color : Color }, team_2 : { building : 0, color : Color }
+	var _val = teams[Global.TEAM_1].building
+	var _max = teams[Global.TEAM_1].building + teams[Global.TEAM_2].building
+	_victory_bar.max_value = _max
+	_victory_bar.tint_progress = teams[Global.TEAM_1].color
+	_victory_bar.tint_under = teams[Global.TEAM_2].color
+	_tween.interpolate_property(_victory_bar, "value",_victory_bar.value , _val, 1.3, Tween.TRANS_SINE, Tween.EASE_IN)
+	_tween.start()
+	
+func display_coin(_amount : int):
 	_coin.text = str(_amount)
 		
 func display_population(_team : String , _amount : int, max_amount :int):

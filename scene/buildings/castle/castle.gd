@@ -164,7 +164,9 @@ func _on_idle_timmer_timeout():
 		
 	if not target.is_targetable(team):
 		emit_signal("on_ready", self)
-
-
-
-
+		
+func _on_VisibilityNotifier_screen_entered():
+	visible = true
+	
+func _on_VisibilityNotifier_screen_exited():
+	visible = false

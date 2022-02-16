@@ -4,6 +4,7 @@ class_name Buildings
 const TYPE_CASTLE = "CASTLE"
 const TYPE_FARM = "FARM"
 const TYPE_TOWER= "TOWER"
+const TYPE_UNIT_BUFF = "TYPE_UNIT_BUFF"
 
 const BUILDINGS = [
 	{
@@ -53,6 +54,19 @@ const BUILDINGS = [
 		cp_regen_rate = 8.0,
 		amount = 0,
 		coin_produce_cooldown = 5,
+		team = "",
+		color = Color.white,
+		translation = Vector3.ZERO
+	},
+	{
+		id = "b-4",
+		type_building = TYPE_UNIT_BUFF,
+		name = "Training Field",
+		node_name = "",
+		scene = "res://scene/buildings/training_field/training_field.tscn",
+		cp = 75.0,
+		max_cp = 75.0,
+		cp_regen_rate = 8.0,
 		team = "",
 		color = Color.white,
 		translation = Vector3.ZERO

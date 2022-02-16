@@ -1,6 +1,8 @@
 extends Node
 
-const PERSISTEN_SAVE = false
+var PERSISTEN_SAVE = false
+
+const DEKSTOP =  ["Server", "Windows", "WinRT", "X11"]
 
 const TEAM_1 = "TEAM_1"
 const TEAM_2 = "TEAM_2"
@@ -42,16 +44,21 @@ const LARGE_SIZE = {
 
 
 func _ready():
+	PERSISTEN_SAVE = not OS.get_name() in DEKSTOP
 	load_player_data()
 	load_player_game_data()
 	load_audio_setting()
 	play_music()
+	
 ################################################################
 # play music!
 var _audio
 var audio_setting = { music = true, sfx = true }
 
 func play_music():
+	if OS.get_name() in DEKSTOP:
+		return
+		
 	if not _audio:
 		_audio = AudioStreamPlayer.new()
 		#_audio.volume_db = -20
@@ -183,7 +190,9 @@ static func generate_game_data() -> Dictionary:
 		
 	return data
 	
-static func generate_farm_and_tower(data : Dictionary, max_farm : int = 8, max_tower : int = 4) -> Dictionary:
+static func generate_farm_and_tower(data : Dictionary, max_farm = 8, max_tower = 4, max_unit_buffer : int = 2) -> Dictionary:
+	randomize()
+	
 	var holder = []
 	for i in data.buildings:
 		if i.type_building == Buildings.TYPE_CASTLE:
@@ -204,6 +213,24 @@ static func generate_farm_and_tower(data : Dictionary, max_farm : int = 8, max_t
 		tower.id = "TOWER-" + GDUUID.v4()
 		tower.attack_damage = rand_range(2,8)
 		data.buildings.append(tower)
+	
+	var pivots = ["PV_1","PV_1"]
+	var type_upgrades = [
+		["attack_damage","Attack"],
+		["max_hp","HP"],
+		["speed","Speed"],
+		["capture_damage","Capturing"]
+	]
+	
+	for i in max_unit_buffer:
+		var training_field = Buildings.BUILDINGS[3].duplicate()
+		var key = type_upgrades[randi() % type_upgrades.size()]
+		training_field.upgrades = { 
+			key[0] : { "name" : key[1], "value" : rand_range(0.10, 1.0) }
+		}
+		training_field.pivot = pivots[randi() % pivots.size()]
+		training_field.id = "TRAINING-FIELD-" + GDUUID.v4()
+		data.buildings.append(training_field)
 		
 	return data
 	

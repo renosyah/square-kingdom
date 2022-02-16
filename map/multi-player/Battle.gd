@@ -117,6 +117,11 @@ remote func _deploy_card(_player: Dictionary, _unit : Dictionary):
 	_unit.node_name = "UNIT-" + GDUUID.v4()
 	_unit.translation = castles[team].translation
 	
+	# apply buff
+	for _building in farms:
+		if _building.type_building == Buildings.TYPE_UNIT_BUFF and _building.team == team:
+			_building.apply_upgrade(_unit)
+			
 	rpc("_on_coin_updated", _get_coin_each_team())
 	rpc("_spawn_unit", $unit_holder.get_path(), _player, _unit)
 	
@@ -152,7 +157,9 @@ func _spawn_buildings(castle_holder : NodePath, farm_holder : NodePath):
 		building.connect("on_ready", self, "_on_building_ready")
 		building.connect("on_building_captured", self, "_on_building_captured")
 		building.connect("on_capture_progress", self, "_on_capture_progress")
-		building.connect("on_coin_produce", self,"_on_coin_produce")
+		
+		if i.type_building != Buildings.TYPE_UNIT_BUFF:
+			building.connect("on_coin_produce", self,"_on_coin_produce")
 		
 		if i.type_building == Buildings.TYPE_CASTLE:
 			if get_tree().is_network_server():
@@ -386,6 +393,16 @@ func _building_captured_message(_building, _team,_capture_by, _last_owner_team) 
 		if _capture_by != _team and _last_owner_team == _team:
 			return "-" + str(int(_building.attack_damage)) + " of Defence"
 			
+	elif _building.type_building == Buildings.TYPE_UNIT_BUFF:
+		if _capture_by == _team and _last_owner_team == "":
+			return "+" + _building.upgrade_to_text()
+			
+		if _capture_by == _team and _last_owner_team != "":
+			return "+" + _building.upgrade_to_text()
+			
+		if _capture_by != _team and _last_owner_team == _team:
+			return "-" + _building.upgrade_to_text() + ""
+			
 	elif _building.type_building == Buildings.TYPE_CASTLE:
 		if _capture_by == _team and _last_owner_team != "":
 			return "Enemy castle has fallen into our hand!"
@@ -401,8 +418,31 @@ func _get_coin_each_team() -> Dictionary:
 		data[i] = game_data[i].coin
 		
 	return data
-
-
+	
+func _get_building_own_each_team(_castle_holder, _farm_holder : NodePath) -> Dictionary:
+	var data = {
+		Global.TEAM_1 : { "building" : 0, "color" : game_data[Global.TEAM_1].color },
+		Global.TEAM_2 : { "building" : 0, "color" : game_data[Global.TEAM_2].color }
+	}
+	
+	var _farms = get_node_or_null(_farm_holder)
+	if not is_instance_valid(_farms):
+		return data
+		
+	var _castles = get_node_or_null(_castle_holder)
+	if not is_instance_valid(_castles):
+		return data
+		
+	for team in data.keys():
+		for f in _castles.get_children():
+			if f.team == team:
+				data[team].building += 1
+				
+		for f in _farms.get_children():
+			if f.team == team:
+				data[team].building += 1
+				
+	return data
 
 
 

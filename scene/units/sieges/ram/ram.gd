@@ -181,8 +181,11 @@ func display_player_name(_show : bool):
 	.display_player_name(_show)
 	_owner.visible = _show
 
-
-
+func _on_VisibilityNotifier_screen_entered():
+	visible = true
+	
+func _on_VisibilityNotifier_screen_exited():
+	visible = false
 
 
 

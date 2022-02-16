@@ -914,3 +914,8 @@ parameters/playback = SubResource( 17 )
 unit_db = 10.0
 unit_size = 10.0
 bus = "sfx"
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="."]
+
+[connection signal="screen_entered" from="VisibilityNotifier" to="." method="_on_VisibilityNotifier_screen_entered"]
+[connection signal="screen_exited" from="VisibilityNotifier" to="." method="_on_VisibilityNotifier_screen_exited"]
