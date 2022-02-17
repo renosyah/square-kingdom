@@ -15,7 +15,7 @@ radius = 0.975245
 script = ExtResource( 2 )
 
 [node name="pivot" type="Spatial" parent="."]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.3453, 0 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
 
 [node name="roof_1" type="Sprite3D" parent="pivot"]
 transform = Transform( 2.39296, 0, 0, 0, 2.53753, -0.707107, 0, 2.53753, 0.707107, 0.000378132, -0.00711906, -0.590026 )
@@ -78,7 +78,7 @@ transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 0.898297, -0.253725, 0 )
 transform = Transform( -0.8, 0, -1.50996e-07, 0, 0.8, 0, 1.20797e-07, 0, -1, -1.22791, -0.79214, -1.04564 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.17575, -0.115328 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.115328 )
 shape = SubResource( 1 )
 
 [node name="hpBar" parent="." instance=ExtResource( 1 )]

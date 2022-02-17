@@ -1,6 +1,9 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=19 format=2]
 
+[ext_resource path="res://assets/gameplay-camera/gameplay_camera.gd" type="Script" id=1]
 [ext_resource path="res://menu/lobby-menu/ui/ui.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/terrain/terrain.gd" type="Script" id=3]
+[ext_resource path="res://assets/flag/flag.gd" type="Script" id=4]
 [ext_resource path="res://assets/terrain/terrain.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/flag/flag.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/gameplay-camera/gameplay_camera.tscn" type="PackedScene" id=8]
@@ -25,10 +28,12 @@ background_color = Color( 0.254902, 0.823529, 1, 1 )
 
 [node name="ui" parent="." instance=ExtResource( 2 )]
 
-[node name="terrain" parent="." instance=ExtResource( 6 )]
+[node name="terrain" type="StaticBody" parent="." instance=ExtResource( 6 )]
+script = ExtResource( 3 )
 
-[node name="cameraPivot" parent="." instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 0.913508, 0.406816, 0, -0.406816, 0.913508, -2.27736, -6.82664, 14.1111 )
+[node name="cameraPivot" type="Spatial" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 0.993881, 0.110446, 0, -0.110446, 0.993881, -3.53499, -1.12097, 3.54494 )
+script = ExtResource( 1 )
 is_enable = false
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
@@ -40,7 +45,7 @@ shadow_enabled = true
 environment = SubResource( 2 )
 
 [node name="farm_1" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1993, 0, 32.145 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24.1923, -1.5, 7.47996 )
 
 [node name="fence_1" type="Sprite3D" parent="farm_1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.562693, 0, 1.16101 )
@@ -136,7 +141,7 @@ alpha_cut = 2
 texture = ExtResource( 13 )
 
 [node name="farm_2" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.78249, 0, 24.4838 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.78249, -1.5, 24.4838 )
 
 [node name="fence_1" type="Sprite3D" parent="farm_2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.562693, 0, 1.16101 )
@@ -232,7 +237,7 @@ alpha_cut = 2
 texture = ExtResource( 13 )
 
 [node name="farm_3" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34505, 0, -1.95736 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34505, -1.5, -1.95736 )
 
 [node name="fence_1" type="Sprite3D" parent="farm_3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.562693, 0, 1.16101 )
@@ -328,7 +333,7 @@ alpha_cut = 2
 texture = ExtResource( 13 )
 
 [node name="farm_4" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5517, 0, 5.82697 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5517, -1.5, 5.82697 )
 
 [node name="fence_1" type="Sprite3D" parent="farm_4"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.562693, 0, 1.16101 )
@@ -424,10 +429,11 @@ alpha_cut = 2
 texture = ExtResource( 13 )
 
 [node name="castle_1" type="Spatial" parent="."]
-transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, -8.75462, 1.0726, 32.1447 )
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, -8.75462, 0, 19.9079 )
 
-[node name="flag" parent="castle_1" instance=ExtResource( 7 )]
+[node name="flag" type="Spatial" parent="castle_1" instance=ExtResource( 7 )]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.377628, 0 )
+script = ExtResource( 4 )
 color = Color( 0, 0.0862745, 1, 1 )
 
 [node name="wall_1" type="Sprite3D" parent="castle_1"]
@@ -516,7 +522,7 @@ alpha_cut = 2
 texture = ExtResource( 15 )
 
 [node name="castle_2" type="Spatial" parent="."]
-transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 22.1186, 1.0726, -10.0308 )
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 22.1186, 0, -10.0308 )
 
 [node name="wall_1" type="Sprite3D" parent="castle_2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.445189, -4.76837e-07, 0.767853 )
@@ -603,50 +609,59 @@ transform = Transform( 0.936435, 0, 0, 0, -4.02315e-08, -0.999483, 0, 0.920389, 
 alpha_cut = 2
 texture = ExtResource( 15 )
 
-[node name="flag" parent="castle_2" instance=ExtResource( 7 )]
+[node name="flag" type="Spatial" parent="castle_2" instance=ExtResource( 7 )]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.00418091, 0.376794, 0.00603795 )
+script = ExtResource( 4 )
 color = Color( 1, 0, 0, 1 )
 
 [node name="tower_1" type="Spatial" parent="."]
-transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 11.6757, 1.0726, 11.5248 )
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 11.6757, 0, 11.5248 )
 
 [node name="tower_1" type="Sprite3D" parent="tower_1"]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.271888, 0.483249, -0.00784492 )
+modulate = Color( 0.509804, 0.321569, 0.0784314, 1 )
 alpha_cut = 2
 texture = ExtResource( 10 )
 
 [node name="tower_2" type="Sprite3D" parent="tower_1"]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.302196, 0.483249, -0.00784492 )
+modulate = Color( 0.509804, 0.321569, 0.0784314, 1 )
 alpha_cut = 2
 texture = ExtResource( 10 )
 
 [node name="tower_3" type="Sprite3D" parent="tower_1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0187773, 0.483249, 0.292994 )
+modulate = Color( 0.509804, 0.321569, 0.0784314, 1 )
 alpha_cut = 2
 texture = ExtResource( 10 )
 
 [node name="tower_4" type="Sprite3D" parent="tower_1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0187773, 0.483249, -0.299697 )
+modulate = Color( 0.509804, 0.321569, 0.0784314, 1 )
 alpha_cut = 2
 texture = ExtResource( 10 )
 
 [node name="pilar_2" type="Sprite3D" parent="tower_1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24469, 0.184066, 0.285246 )
+modulate = Color( 0.509804, 0.321569, 0.0784314, 1 )
 alpha_cut = 2
 texture = ExtResource( 14 )
 
 [node name="pilar_3" type="Sprite3D" parent="tower_1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.206993, 0.184066, 0.270263 )
+modulate = Color( 0.509804, 0.321569, 0.0784314, 1 )
 alpha_cut = 2
 texture = ExtResource( 14 )
 
 [node name="pilar_4" type="Sprite3D" parent="tower_1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.206993, 0.184066, -0.271043 )
+modulate = Color( 0.509804, 0.321569, 0.0784314, 1 )
 alpha_cut = 2
 texture = ExtResource( 14 )
 
 [node name="pilar_5" type="Sprite3D" parent="tower_1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.233784, 0.184066, -0.271043 )
+modulate = Color( 0.509804, 0.321569, 0.0784314, 1 )
 alpha_cut = 2
 texture = ExtResource( 14 )
 
@@ -657,49 +672,58 @@ texture = ExtResource( 17 )
 
 [node name="roof" type="Sprite3D" parent="tower_1"]
 transform = Transform( 0.936435, 0, 0, 0, -4.02315e-08, -0.999483, 0, 0.920389, -4.36888e-08, 0.0187773, 0.683177, 0.0133343 )
+modulate = Color( 0.509804, 0.321569, 0.0784314, 1 )
 alpha_cut = 2
 texture = ExtResource( 9 )
 
 [node name="tower_2" type="Spatial" parent="."]
-transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, -0.647804, 1.0726, 25.0877 )
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, -0.647804, 0, -25.0717 )
 
 [node name="tower_1" type="Sprite3D" parent="tower_2"]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.271888, 0.483249, -0.00784492 )
+modulate = Color( 0.509804, 0.321569, 0.0784314, 1 )
 alpha_cut = 2
 texture = ExtResource( 10 )
 
 [node name="tower_2" type="Sprite3D" parent="tower_2"]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.302196, 0.483249, -0.00784492 )
+modulate = Color( 0.509804, 0.321569, 0.0784314, 1 )
 alpha_cut = 2
 texture = ExtResource( 10 )
 
 [node name="tower_3" type="Sprite3D" parent="tower_2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0187773, 0.483249, 0.292994 )
+modulate = Color( 0.509804, 0.321569, 0.0784314, 1 )
 alpha_cut = 2
 texture = ExtResource( 10 )
 
 [node name="tower_4" type="Sprite3D" parent="tower_2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0187773, 0.483249, -0.299697 )
+modulate = Color( 0.509804, 0.321569, 0.0784314, 1 )
 alpha_cut = 2
 texture = ExtResource( 10 )
 
 [node name="pilar_2" type="Sprite3D" parent="tower_2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24469, 0.184066, 0.285246 )
+modulate = Color( 0.509804, 0.321569, 0.0784314, 1 )
 alpha_cut = 2
 texture = ExtResource( 14 )
 
 [node name="pilar_3" type="Sprite3D" parent="tower_2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.206993, 0.184066, 0.270263 )
+modulate = Color( 0.509804, 0.321569, 0.0784314, 1 )
 alpha_cut = 2
 texture = ExtResource( 14 )
 
 [node name="pilar_4" type="Sprite3D" parent="tower_2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.206993, 0.184066, -0.271043 )
+modulate = Color( 0.509804, 0.321569, 0.0784314, 1 )
 alpha_cut = 2
 texture = ExtResource( 14 )
 
 [node name="pilar_5" type="Sprite3D" parent="tower_2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.233784, 0.184066, -0.271043 )
+modulate = Color( 0.509804, 0.321569, 0.0784314, 1 )
 alpha_cut = 2
 texture = ExtResource( 14 )
 
@@ -710,49 +734,58 @@ texture = ExtResource( 17 )
 
 [node name="roof" type="Sprite3D" parent="tower_2"]
 transform = Transform( 0.936435, 0, 0, 0, -4.02315e-08, -0.999483, 0, 0.920389, -4.36888e-08, 0.0187773, 0.683177, 0.0133343 )
+modulate = Color( 0.509804, 0.321569, 0.0784314, 1 )
 alpha_cut = 2
 texture = ExtResource( 9 )
 
 [node name="tower_3" type="Spatial" parent="."]
-transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, -19.1556, 1.0726, -10.4423 )
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, -19.1556, 0, -10.4423 )
 
 [node name="tower_1" type="Sprite3D" parent="tower_3"]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.271888, 0.483249, -0.00784492 )
+modulate = Color( 0.509804, 0.321569, 0.0784314, 1 )
 alpha_cut = 2
 texture = ExtResource( 10 )
 
 [node name="tower_2" type="Sprite3D" parent="tower_3"]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.302196, 0.483249, -0.00784492 )
+modulate = Color( 0.509804, 0.321569, 0.0784314, 1 )
 alpha_cut = 2
 texture = ExtResource( 10 )
 
 [node name="tower_3" type="Sprite3D" parent="tower_3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0187773, 0.483249, 0.292994 )
+modulate = Color( 0.509804, 0.321569, 0.0784314, 1 )
 alpha_cut = 2
 texture = ExtResource( 10 )
 
 [node name="tower_4" type="Sprite3D" parent="tower_3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0187773, 0.483249, -0.299697 )
+modulate = Color( 0.509804, 0.321569, 0.0784314, 1 )
 alpha_cut = 2
 texture = ExtResource( 10 )
 
 [node name="pilar_2" type="Sprite3D" parent="tower_3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24469, 0.184066, 0.285246 )
+modulate = Color( 0.509804, 0.321569, 0.0784314, 1 )
 alpha_cut = 2
 texture = ExtResource( 14 )
 
 [node name="pilar_3" type="Sprite3D" parent="tower_3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.206993, 0.184066, 0.270263 )
+modulate = Color( 0.509804, 0.321569, 0.0784314, 1 )
 alpha_cut = 2
 texture = ExtResource( 14 )
 
 [node name="pilar_4" type="Sprite3D" parent="tower_3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.206993, 0.184066, -0.271043 )
+modulate = Color( 0.509804, 0.321569, 0.0784314, 1 )
 alpha_cut = 2
 texture = ExtResource( 14 )
 
 [node name="pilar_5" type="Sprite3D" parent="tower_3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.233784, 0.184066, -0.271043 )
+modulate = Color( 0.509804, 0.321569, 0.0784314, 1 )
 alpha_cut = 2
 texture = ExtResource( 14 )
 
@@ -763,5 +796,6 @@ texture = ExtResource( 17 )
 
 [node name="roof" type="Sprite3D" parent="tower_3"]
 transform = Transform( 0.936435, 0, 0, 0, -4.02315e-08, -0.999483, 0, 0.920389, -4.36888e-08, 0.0187773, 0.683177, 0.0133343 )
+modulate = Color( 0.509804, 0.321569, 0.0784314, 1 )
 alpha_cut = 2
 texture = ExtResource( 9 )

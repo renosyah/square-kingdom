@@ -12,7 +12,6 @@ remotesync func _shot_at(target_translation : Vector3):
 	arrow.is_master = is_master()
 	add_child(arrow)
 	arrow.translation = translation
-	arrow.translation.y += 2
 	arrow.launch(target_translation)
 	
 	._perform_attack()

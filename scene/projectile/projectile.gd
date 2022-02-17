@@ -7,7 +7,7 @@ var attack_damage = 4.0
 
 # speed
 var speed = 25.0
-var spread = 0.1
+var spread = 1.5
 var travel_distance = 0.0
 var max_distance = 25
 
@@ -26,11 +26,12 @@ func _ready():
 	$Sprite3D2.texture = load(sprite)
 	set_as_toplevel(true)
 	parent = get_parent()
-
+	
 func launch(to : Vector3):
+	to.z += rand_range(-spread, spread)
+	to.x += rand_range(-spread, spread)
+	to.y += rand_range(-spread, spread)
 	velocity = translation.direction_to(to)
-	velocity.z += rand_range(-spread, spread)
-	velocity.x += rand_range(-spread, spread)
 	look_at(to, Vector3.UP)
 	
 func _process(delta):

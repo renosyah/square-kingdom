@@ -153,8 +153,8 @@ func shot_at(target_translation : Vector3):
 	add_child(arrow)
 	arrow.parent = parent
 	arrow.translation = global_transform.origin
-	arrow.translation.y += 4
-	arrow.spread = 0.2
+	arrow.translation.y += 2.5
+	arrow.spread = 1.8
 	arrow.launch(target_translation)
 	
 func update_amount(_amount : int):

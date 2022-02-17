@@ -15,7 +15,7 @@ radius = 1.22142
 script = ExtResource( 4 )
 
 [node name="pivot" type="Spatial" parent="."]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.3453, 0 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
 
 [node name="side_1" type="Sprite3D" parent="pivot"]
 transform = Transform( 2.393, 0, 0, 0, 1, 0, 0, 0, 1, 1.59771e-08, -0.66249, 0.719196 )
@@ -43,19 +43,18 @@ transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0.968586, -0.986078, 0.764432 
 
 [node name="wheel_2" parent="pivot" instance=ExtResource( 1 )]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -1.00062, -0.986078, -0.902393 )
-modulate = Color( 0.509804, 0.321569, 0.0784314, 1 )
 
 [node name="wheel_3" parent="pivot" instance=ExtResource( 1 )]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -1.00062, -0.986078, 0.812747 )
 
 [node name="balista_bow" parent="pivot" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25113, -0.403109, 5.46885e-08 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.274744, -0.403109, 1.20094e-08 )
 
 [node name="flag" parent="pivot" instance=ExtResource( 5 )]
 transform = Transform( -0.8, 0, 0, 0, 0.8, -8.74228e-08, 0, 6.99382e-08, 1, -1.56154, -0.745768, -0.524553 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.17575, -0.115328 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.115 )
 shape = SubResource( 1 )
 
 [node name="hpBar" parent="." instance=ExtResource( 2 )]

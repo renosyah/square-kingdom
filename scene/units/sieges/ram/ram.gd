@@ -1,7 +1,5 @@
 extends Unit
 
-const MAX_BODY_BREAK = 4
-
 onready var _owner = $owner
 onready var _hp_bar = $hpBar
 onready var _pivot = $pivot
@@ -9,7 +7,7 @@ onready var _tween = $Tween
 onready var _tween_dead = $Tween_dead
 onready var _audio = $AudioStreamPlayer3D
 
-onready var turn_speed = speed * 2
+onready var turn_speed = speed
 
 var _ram_weapon
 var _wheels
@@ -60,8 +58,6 @@ remotesync func _take_damage(_damage : float, _hit_by: Dictionary):
 	if is_dead:
 		return
 		
-	#break_random_part()
-	
 	_hp_bar.update_bar(hp,max_hp)
 	_tween.interpolate_property(_hp_bar, "modulate:a", 1 , 0, 2.0, Tween.TRANS_SINE, Tween.EASE_IN)
 	_tween.start()
@@ -78,6 +74,7 @@ remotesync func _dead():
 	._dead()
 	
 	spawn_explosive()
+	break_random_part()
 	
 	_audio.stream = load("res://assets/sound/explode3.wav")
 	_audio.play()
@@ -142,7 +139,7 @@ func _process(delta):
 		direction = translation.direction_to(target.translation)
 		distance_to_target = translation.distance_to(target.translation)
 		
-		transform_turning((Vector3(target.translation.x , translation.y ,target.translation.z)), delta)
+		transform_turning(Vector3(target.translation.x , translation.y ,target.translation.z), delta)
 		
 		if not target.is_targetable(team):
 			_check_is_walking(false)
@@ -196,24 +193,17 @@ func _on_VisibilityNotifier_screen_exited():
 	
 func break_random_part():
 	var _body = _pivot.get_children()
-	var broken = 0
+	var _max_break = _body.size()
+	var _break = int(rand_range(1,_max_break))
+	for i in _break:
+		_body[randi() % _body.size()].visible = false
 	
-	for i in _body:
-		if not i.visible:
-			broken += 1
 	
-	if broken > MAX_BODY_BREAK:
-		return
-		
-	_body[randi() % _body.size()].visible = false
-
-
 func spawn_explosive():
 	var explosive = preload("res://assets/explosive/explosive.tscn").instance()
 	explosive.scale = Vector3.ONE * 12
 	add_child(explosive)
 	explosive.translation = translation
-	explosive.translation.y += 2
 
 
 

@@ -93,10 +93,10 @@ func apply_upgrade(_unit):
 		return
 		
 	for attribute in upgrades.keys():
-		_unit[attribute] = _unit[attribute] * upgrades[attribute].value
+		_unit[attribute] += _unit[attribute] * upgrades[attribute].value
 		
 		if attribute == "max_hp":
-			_unit["hp"] = _unit[attribute]
+			_unit["hp"] = _unit["max_hp"]
 	
 
 func _on_capture_reset_timer_timeout():

@@ -238,8 +238,10 @@ static func generate_farm_and_tower(data : Dictionary, max_farm = 8, max_tower =
 	
 static func create_array_range(_range : int) -> Array:
 	var arr = []
+	var mult = 0.2
 	for i in _range:
-		arr.append(rand_range(1,2))
+		arr.append(rand_range(1,2) + mult)
+		mult += 0.2
 		
 	return arr
 	

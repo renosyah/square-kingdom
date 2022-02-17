@@ -16,7 +16,7 @@ extents = Vector3( 1.83237, 0.84971, 1.62462 )
 script = ExtResource( 4 )
 
 [node name="pivot" type="Spatial" parent="."]
-transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 1.0726, 0 )
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0 )
 
 [node name="tower_1" type="Sprite3D" parent="pivot"]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.271888, 0.483249, -0.00784492 )
@@ -78,10 +78,10 @@ alpha_cut = 2
 texture = ExtResource( 10 )
 
 [node name="flag" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.80176, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.77542, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0344505, 0.944574, 0.00295162 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.034, 0, 0.003 )
 shape = SubResource( 1 )
 disabled = true
 

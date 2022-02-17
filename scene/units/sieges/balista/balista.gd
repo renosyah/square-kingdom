@@ -14,13 +14,19 @@ remotesync func _shot_at(target_translation : Vector3):
 	arrow.is_master = is_master()
 	add_child(arrow)
 	arrow.translation = translation
-	arrow.translation.y += 2
 	arrow.launch(target_translation)
 	
 	_balista_bow.shot()
+	_balista_bow.target = target_translation
+	
 	_audio.stream = preload("res://assets/sound/arrow_fly.wav")
 	_audio.play()
 	
+remotesync func _set_walking_state(_val : bool):
+	._set_walking_state(_val)
+	if is_walking:
+		_balista_bow.target = Vector3.ZERO
+		
 ############################################################
 func set_data(_data):
 	.set_data(_data)
@@ -28,9 +34,12 @@ func set_data(_data):
 	
 func init_siege():
 	_balista_bow = $pivot/balista_bow
+	_balista_bow.set_network_master(get_network_master())
+	
 	_wheels = [$pivot/wheel_1, $pivot/wheel_2, $pivot/wheel_3, $pivot/wheel_4]
 	$pivot/flag.set_flag_color(color)
-		
+	
+
 func perform_attack():
 	# we override this shit!
 	#.perform_attack()
@@ -42,6 +51,7 @@ func perform_attack():
 		target.capture(capture_damage, {node_path = self.get_path(), team = team, color = color})
 		
 	rpc("_shot_at", target.translation)
+	
 	
 func _on_VisibilityNotifier_screen_entered():
 	visible = true

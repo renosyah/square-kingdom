@@ -845,7 +845,7 @@ graph_offset = Vector2( 0, 8.08254 )
 script = ExtResource( 1 )
 
 [node name="pivot" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.819152, 0.573577, 0, -0.573577, 0.819152, 0, 0.8, 0 )
+transform = Transform( 1, 0, 0, 0, 0.819152, 0.573577, 0, -0.573577, 0.819152, 0, 0, 0 )
 
 [node name="upper_body" type="Spatial" parent="pivot"]
 transform = Transform( 0.822303, -0.56905, 0, 0.56905, 0.822303, 0, 0, 0, 1, 0, 0, 0 )
@@ -884,7 +884,7 @@ alpha_cut = 2
 texture = ExtResource( 4 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.819152, 0.573577, 0, -0.573577, 0.819152, 0, 0.8, 0 )
+transform = Transform( 1, 0, 0, 0, 0.819152, 0.573577, 0, -0.573577, 0.819152, 0, 0, 0 )
 shape = SubResource( 38 )
 
 [node name="hpBar" parent="." instance=ExtResource( 7 )]
