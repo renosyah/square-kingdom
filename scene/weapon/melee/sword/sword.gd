@@ -5,10 +5,5 @@ func _ready():
 		"sword_attack_1",
 		"sword_attack_2"
 	]
-	attack_sounds = [
-		"res://assets/sound/fight1.wav",
-		"res://assets/sound/fight2.wav",
-		"res://assets/sound/fight3.wav",
-		"res://assets/sound/fight4.wav",
-		"res://assets/sound/fight5.wav"
-	]
+	
+	attack_sounds = MELEE_ATTACK_SOUND

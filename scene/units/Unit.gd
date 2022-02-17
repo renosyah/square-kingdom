@@ -1,7 +1,12 @@
 extends KinematicBody
 class_name Unit
 
-const dead_sounds = ["res://assets/sound/maledeath1.wav", "res://assets/sound/maledeath2.wav", "res://assets/sound/maledeath3.wav", "res://assets/sound/maledeath4.wav"]
+const dead_sounds = [
+	"res://assets/sound/maledeath1.wav",
+	"res://assets/sound/maledeath2.wav",
+	"res://assets/sound/maledeath3.wav",
+	"res://assets/sound/maledeath4.wav"
+]
 
 signal on_ready(_unit)
 signal on_dead(_unit)

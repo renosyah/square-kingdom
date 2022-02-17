@@ -9,19 +9,11 @@ onready var _timer = $coin_gain_timer
 onready var _capture_reset_timer = $capture_reset_timer
 onready var _cp_bar = $hpBar
 
-var amount = 0
-var coin_produce_cooldown = 10
+var amount : int = 10
+var coin_produce_cooldown : float = 10
 
 ############################################################
 # multiplayer func
-remotesync func _display_message(_msg):
-	_message.set_message(_msg)
-	_message.set_color(Color(1, 0.776471, 0.364706))
-	_message.visible = true
-	_tween.interpolate_property(_message, "translation:y", 0 , 10, 2.3, Tween.TRANS_SINE, Tween.EASE_IN)
-	_tween.interpolate_property(_message, "modulate:a", 1 , 0, 2.0, Tween.TRANS_SINE, Tween.EASE_IN)
-	_tween.start()
-	
 remotesync func _recapture(_cp_damage_restore : float):
 	._recapture(_cp_damage_restore)
 	_cp_bar.update_bar(cp, max_cp)
@@ -64,23 +56,30 @@ func _ready():
 	_cp_bar.update_bar(cp,max_cp)
 	_cp_bar.modulate.a = 0.0
 	
-	if not .is_master():
-		return
-		
 	if amount != 0:
 		_timer.wait_time = coin_produce_cooldown
 		_timer.start()
-	
-	_capture_reset_timer.wait_time = 5
-	_capture_reset_timer.start()
-	
-func _on_coin_gain_timer_timeout():
+		
 	if not .is_master():
 		return
 		
-	var _amount = amount if amount > 0 else int(rand_range(2,8))
-	rpc("_display_message", "+" + str(_amount))
-	emit_signal("on_coin_produce",team,_amount)
+	_capture_reset_timer.wait_time = 5
+	_capture_reset_timer.start()
+	
+func display_message(_msg):
+	_message.set_message(_msg)
+	_message.set_color(Color(1, 0.776471, 0.364706))
+	_message.visible = true
+	_tween.interpolate_property(_message, "translation:y", 0 , 10, 2.3, Tween.TRANS_SINE, Tween.EASE_IN)
+	_tween.interpolate_property(_message, "modulate:a", 1 , 0, 2.0, Tween.TRANS_SINE, Tween.EASE_IN)
+	_tween.start()
+	
+func _on_coin_gain_timer_timeout():
+	if amount == 0:
+		return
+		
+	display_message("+" + str(amount))
+	emit_signal("on_coin_produce",team , amount)
 	
 func _on_capture_reset_timer_timeout():
 	if not .is_master():

@@ -21,6 +21,7 @@ var color : Color = Color.white
 # capture
 var capture_by : Dictionary = {team = "", color = Color.white}
 var last_owner_team = ""
+var can_be_capture = true
 
 ############################################################
 # multiplayer func
@@ -67,9 +68,12 @@ func set_data(_data):
 	last_owner_team = team
 	
 func _ready():
-	set_process(is_master())
+	pass
 
 func capture(_cp_damage : float, _capture_by: Dictionary):
+	if not can_be_capture:
+		return
+		
 	if not is_master():
 		return
 	

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/cross.png-548d01cdae14a5fad832eeded23287af.s3tc.stex"
-path.etc="res://.import/cross.png-548d01cdae14a5fad832eeded23287af.etc.stex"
+path.s3tc="res://.import/2.png-e31a2ea7a78e7d4895602a8eeb92d4ea.s3tc.stex"
+path.etc="res://.import/2.png-e31a2ea7a78e7d4895602a8eeb92d4ea.etc.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://scene/weapon/range/bow/crossbow/cross.png"
-dest_files=[ "res://.import/cross.png-548d01cdae14a5fad832eeded23287af.s3tc.stex", "res://.import/cross.png-548d01cdae14a5fad832eeded23287af.etc.stex" ]
+source_file="res://assets/explosive/2.png"
+dest_files=[ "res://.import/2.png-e31a2ea7a78e7d4895602a8eeb92d4ea.s3tc.stex", "res://.import/2.png-e31a2ea7a78e7d4895602a8eeb92d4ea.etc.stex" ]
 
 [params]
 

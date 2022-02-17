@@ -43,6 +43,7 @@ transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0.968586, -0.986078, 0.764432 
 
 [node name="wheel_2" parent="pivot" instance=ExtResource( 1 )]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -1.00062, -0.986078, -0.902393 )
+modulate = Color( 0.509804, 0.321569, 0.0784314, 1 )
 
 [node name="wheel_3" parent="pivot" instance=ExtResource( 1 )]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -1.00062, -0.986078, 0.812747 )

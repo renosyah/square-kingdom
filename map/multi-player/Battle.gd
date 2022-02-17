@@ -2,6 +2,7 @@ extends Node
 class_name BattleMP
 
 const MIN_FARM_AQUIRE = 2
+const MAX_CASTLE_PRODUCING = 50
 const MAX_DRAW_CARD = 3
 var MAX_UNIT_SPAWN = 10
 
@@ -187,14 +188,27 @@ func _on_building_captured(_building):
 	if not get_tree().is_network_server():
 		return
 		
-	if _building.type_building == Buildings.TYPE_CASTLE:
+	if _building.team == "":
+		return
 		
+	if _building.last_owner_team == "":
+		return
+		
+	if _building.type_building == Buildings.TYPE_CASTLE:
 		# winner is set
 		winner_team = _building.team
 		game_flag = GAME_OVER
 		
 		rpc("_game_info",  game_flag , { message =  "" })
 		
+	elif _building.type_building == Buildings.TYPE_FARM:
+		if castles[_building.team].amount >= MAX_CASTLE_PRODUCING:
+			return
+			
+		var _current_amount = castles[_building.team].amount
+		castles[_building.team].update_amount(_current_amount + _building.amount)
+		
+	
 func _on_castle_spawn(_team, _translation):
 	pass
 	
@@ -301,10 +315,10 @@ func _assign_building_target(_building):
 		return
 		
 	if _building.type_building == Buildings.TYPE_CASTLE:
-		_building.target = target
+		_building.set_target(target.get_path())
 		
 	elif _building.type_building == Buildings.TYPE_TOWER:
-		_building.target = target
+		_building.set_target(target.get_path())
 		
 	elif _building.type_building == Buildings.TYPE_FARM:
 		pass

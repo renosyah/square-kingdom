@@ -18,10 +18,14 @@ var color : Color = Color.white
 var velocity = Vector3.ZERO
 var is_master : bool = true
 
+# misc
+var parent
+
 func _ready():
 	$Sprite3D.texture = load(sprite)
 	$Sprite3D2.texture = load(sprite)
 	set_as_toplevel(true)
+	parent = get_parent()
 
 func launch(to : Vector3):
 	velocity = translation.direction_to(to)
@@ -52,7 +56,7 @@ func _on_projectile_body_entered(body):
 		return
 		
 	if is_master:
-		body.take_damage(attack_damage, {node_path = get_parent().get_path(), team = team, color = color})
+		body.take_damage(attack_damage, {node_path = parent.get_path(), team = team, color = color})
 	
 	set_process(false)
 	queue_free()

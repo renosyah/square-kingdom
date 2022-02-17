@@ -401,10 +401,25 @@ custom_fonts/font = ExtResource( 5 )
 text = " Main Menu "
 
 [node name="menu" type="ColorRect" parent="CanvasLayer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ping_counter" type="Label" parent="CanvasLayer/menu"]
+visible = false
+margin_right = 219.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 80, 80 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_as_outline = 1
+custom_fonts/font = ExtResource( 12 )
+text = "ping : 28/ms"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }

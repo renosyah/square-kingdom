@@ -1,5 +1,8 @@
 extends Node
 
+const ping_interval = 1.0
+const ping_increment = 0.06
+
 const DEFAULT_IP : String = '127.0.0.1'
 const DEFAULT_PORT : int = 31400
 const MAX_PLAYERS : int = 5
@@ -22,10 +25,50 @@ signal server_disconnected()
 signal connection_closed()
 signal connection_failed()
 
+signal on_ping(_ping)
+
+var ping_interval_timer
+var ping_increment_timer
+var ping = 0
+
 func _ready():
 	get_tree().connect('network_peer_connected', self, '_network_peer_connected')
 	get_tree().connect('network_peer_disconnected', self, '_on_peer_disconnected')
 	get_tree().connect('server_disconnected', self, '_on_server_disconnected')
+	
+	setup_ping()
+	
+func setup_ping():
+	ping_interval_timer = Timer.new()
+	ping_interval_timer.wait_time = ping_interval
+	ping_interval_timer.autostart = false
+	ping_interval_timer.one_shot = true
+	ping_interval_timer.connect("timeout", self ,"_on_ping_interval_timer_timeout")
+	add_child(ping_interval_timer)
+	
+	ping_increment_timer = Timer.new()
+	ping_increment_timer.wait_time = ping_increment
+	ping_increment_timer.autostart = false
+	ping_increment_timer.one_shot = false
+	ping_increment_timer.connect("timeout", self ,"_on_ping_increment_timer_timeout")
+	add_child(ping_increment_timer)
+	
+func _on_ping_interval_timer_timeout():
+	emit_signal("on_ping", ping)
+	rpc_unreliable_id(PLAYER_HOST_ID, "_ping", get_tree().get_network_unique_id())
+	ping_interval_timer.start()
+	
+func _on_ping_increment_timer_timeout():
+	if ping > 99:
+		return
+		
+	ping += 1
+	
+remote func _ping(from : int):
+	rpc_unreliable_id(from, "_pong")
+	
+remote func _pong():
+	ping = 0
 	
 # for player to want become host
 # hosting server
@@ -55,8 +98,11 @@ func connect_to_server(_ip:String = DEFAULT_IP, _port :int = DEFAULT_PORT, _data
 	get_tree().connect('connection_failed', self,'_connection_to_server_failed')
 	get_tree().set_network_peer(null) 
 	get_tree().set_network_peer(peer)
-	return OK
 	
+	ping_interval_timer.start()
+	ping_increment_timer.start()
+	
+	return OK
 	
 # server just went dive crash LOL
 # this function is call for
@@ -65,6 +111,9 @@ func _on_server_disconnected():
 	for _signal in get_tree().get_signal_connection_list("connected_to_server"):
 		get_tree().disconnect("connected_to_server",self, _signal.method)
 		
+	ping_interval_timer.stop()
+	ping_increment_timer.stop()
+	
 	emit_signal("server_disconnected")
 	
 # if player want to disconnect
@@ -78,6 +127,10 @@ func disconnect_from_server() -> void:
 		
 	get_tree().get_network_peer().close_connection()
 	get_tree().set_network_peer(null)
+	
+	ping_interval_timer.stop()
+	ping_increment_timer.stop()
+	
 	emit_signal("connection_closed")
 	
 	

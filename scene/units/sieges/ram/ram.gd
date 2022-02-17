@@ -1,5 +1,7 @@
 extends Unit
 
+const MAX_BODY_BREAK = 4
+
 onready var _owner = $owner
 onready var _hp_bar = $hpBar
 onready var _pivot = $pivot
@@ -58,6 +60,8 @@ remotesync func _take_damage(_damage : float, _hit_by: Dictionary):
 	if is_dead:
 		return
 		
+	#break_random_part()
+	
 	_hp_bar.update_bar(hp,max_hp)
 	_tween.interpolate_property(_hp_bar, "modulate:a", 1 , 0, 2.0, Tween.TRANS_SINE, Tween.EASE_IN)
 	_tween.start()
@@ -72,6 +76,8 @@ remotesync func _perform_attack():
 	
 remotesync func _dead():
 	._dead()
+	
+	spawn_explosive()
 	
 	_audio.stream = load("res://assets/sound/explode3.wav")
 	_audio.play()
@@ -186,6 +192,31 @@ func _on_VisibilityNotifier_screen_entered():
 	
 func _on_VisibilityNotifier_screen_exited():
 	visible = false
+	
+	
+func break_random_part():
+	var _body = _pivot.get_children()
+	var broken = 0
+	
+	for i in _body:
+		if not i.visible:
+			broken += 1
+	
+	if broken > MAX_BODY_BREAK:
+		return
+		
+	_body[randi() % _body.size()].visible = false
+
+
+func spawn_explosive():
+	var explosive = preload("res://assets/explosive/explosive.tscn").instance()
+	explosive.scale = Vector3.ONE * 12
+	add_child(explosive)
+	explosive.translation = translation
+	explosive.translation.y += 2
+
+
+
 
 
 

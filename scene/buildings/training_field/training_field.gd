@@ -1,6 +1,11 @@
 extends Building
 
-onready var _pivots = {"PV_1" : $pivot1,"PV_2" : $pivot2}
+onready var _pivots = {
+	"PV_1" : [$pivot1, "Training Field"],
+	"PV_2" : [$pivot2, "Blacksmith"],
+	"PV_3" : [$pivot3, "Weapon Depot"],
+
+}
 onready var _flag = $flag
 onready var _tween = $Tween
 onready var _capture_reset_timer = $capture_reset_timer
@@ -54,7 +59,11 @@ func _ready():
 	_cp_bar.update_bar(cp,max_cp)
 	_cp_bar.modulate.a = 0.0
 	
-	_pivots[pivot].visible = true
+	for i in _pivots.keys():
+		_pivots[i][0].visible = false
+		
+	_pivots[pivot][0].visible = true
+	building_name = _pivots[pivot][1]
 	
 	if not .is_master():
 		return

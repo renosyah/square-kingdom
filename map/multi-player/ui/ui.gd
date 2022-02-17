@@ -22,6 +22,7 @@ onready var _game_over_message = $CanvasLayer/game_over/VBoxContainer/label3
 onready var _game_over_rematch_btn = $CanvasLayer/game_over/VBoxContainer/HBoxContainer/re_match
 onready var _game_over_rematch_tip = $CanvasLayer/game_over/VBoxContainer/label4
 
+onready var _ping_counter = $CanvasLayer/menu/ping_counter
 onready var _menu = $CanvasLayer/menu
 onready var _music = $CanvasLayer/menu/VBoxContainer/HBoxContainer/music
 onready var _sfx = $CanvasLayer/menu/VBoxContainer/HBoxContainer/sfx
@@ -34,6 +35,13 @@ func _ready():
 	
 	_music.text = "Music : On" if Global.audio_setting.music else "Music : Off"
 	_sfx.text = "Sfx : Enable" if Global.audio_setting.sfx else "Sfx : Disable"
+	
+	if not get_tree().is_network_server():
+		_ping_counter.visible = true
+		Network.connect("on_ping", self ,"_on_ping")
+		
+func _on_ping(_ping):
+	_ping_counter.text = "Ping : " + str(_ping) + "/ms"
 	
 func _on_menu_btn_pressed():
 	_menu.visible = true

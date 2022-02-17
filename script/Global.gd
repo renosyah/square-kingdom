@@ -183,6 +183,7 @@ static func generate_game_data() -> Dictionary:
 			
 			var castle = Buildings.BUILDINGS[0].duplicate()
 			castle.team = i
+			castle.garrison_units = create_array_range(6)
 			castle.color = data[i].color
 			data.buildings.append(castle)
 			
@@ -211,10 +212,11 @@ static func generate_farm_and_tower(data : Dictionary, max_farm = 8, max_tower =
 	for i in max_tower:
 		var tower = Buildings.BUILDINGS[2].duplicate()
 		tower.id = "TOWER-" + GDUUID.v4()
+		tower.garrison_units = create_array_range(4)
 		tower.attack_damage = rand_range(2,8)
 		data.buildings.append(tower)
 	
-	var pivots = ["PV_1","PV_1"]
+	var pivots = ["PV_1","PV_2","PV_3"]
 	var type_upgrades = [
 		["attack_damage","Attack"],
 		["max_hp","HP"],
@@ -233,6 +235,13 @@ static func generate_farm_and_tower(data : Dictionary, max_farm = 8, max_tower =
 		data.buildings.append(training_field)
 		
 	return data
+	
+static func create_array_range(_range : int) -> Array:
+	var arr = []
+	for i in _range:
+		arr.append(rand_range(1,2))
+		
+	return arr
 	
 ################################################################
 # multiplayer connection and data
