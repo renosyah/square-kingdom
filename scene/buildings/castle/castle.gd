@@ -2,7 +2,10 @@ extends Building
 
 signal on_coin_produce(_for_team, _with_amount)
 
-
+const ARROW_SOUND = [
+	preload("res://assets/sound/stab1.wav"),
+	preload("res://assets/sound/stab2.wav")
+]
 
 # attack
 var attack_damage = 4.0
@@ -100,7 +103,14 @@ func _ready():
 		_cooldown_timmer.wait_time = i
 		_cooldown_timmer.autostart = false
 		_cooldown_timmer.one_shot = true
-		garrison.append({ cooldown_timmer = _cooldown_timmer })
+		
+		var _sound = $AudioStreamPlayer3D.duplicate()
+
+		garrison.append({ 
+			cooldown_timmer = _cooldown_timmer,
+			sound = _sound
+		})
+		add_child(_sound)
 		add_child(_cooldown_timmer)
 		
 	if not .is_master():
@@ -119,6 +129,8 @@ func _process(delta):
 			for i in garrison:
 				if i.cooldown_timmer.is_stopped():
 					shot_at(target.global_transform.origin)
+					i.sound.stream = ARROW_SOUND[randi() % ARROW_SOUND.size()]
+					i.sound.play()
 					i.cooldown_timmer.start()
 					
 		elif not target.is_targetable(team) or distance_to_target > range_attack:

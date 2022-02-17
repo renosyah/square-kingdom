@@ -105,6 +105,11 @@ autostart = true
 
 [node name="VisibilityNotifier" type="VisibilityNotifier" parent="."]
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+unit_db = 10.0
+unit_size = 10.0
+bus = "sfx"
+
 [connection signal="timeout" from="coin_gain_timer" to="." method="_on_coin_gain_timer_timeout"]
 [connection signal="timeout" from="capture_reset_timer" to="." method="_on_capture_reset_timer_timeout"]
 [connection signal="timeout" from="idle_timmer" to="." method="_on_idle_timmer_timeout"]
