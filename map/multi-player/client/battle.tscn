@@ -35,4 +35,6 @@ environment = SubResource( 2 )
 
 [node name="ui" parent="." instance=ExtResource( 2 )]
 
+[node name="tween_cinematic" type="Tween" parent="."]
+
 [connection signal="on_deploy_card" from="ui" to="." method="_on_ui_on_deploy_card"]

@@ -10,6 +10,7 @@ remotesync func _shot_at(target_translation : Vector3):
 	arrow.team = team
 	arrow.color = color
 	arrow.is_master = is_master()
+	arrow.spread = 0.4
 	add_child(arrow)
 	arrow.translation = translation
 	arrow.launch(target_translation)

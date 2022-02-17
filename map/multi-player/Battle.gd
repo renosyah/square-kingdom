@@ -1,6 +1,44 @@
 extends Node
 class_name BattleMP
 
+const CINEMATICS = [
+	# sides
+	{
+		start = Vector3(-25, 0, 0),
+		end = Vector3(25, 0, 0),
+	},
+	{
+		start = Vector3(25, 0, 0),
+		end = Vector3(-25, 0, 0),
+	},
+	# tops bottom
+	{
+		start = Vector3(0, 0, -25),
+		end = Vector3(0, 0, 25),
+	},
+	{
+		start = Vector3(0, 0, 25),
+		end = Vector3(0, 0, -25),
+	},
+	# tops side to botton side
+	{
+		start = Vector3(-25, 0, -25),
+		end = Vector3(25, 0, 25),
+	},
+	{
+		start = Vector3(25, 0, 25),
+		end = Vector3(-25, 0, -25),
+	},
+	{
+		start = Vector3(25, 0, 25),
+		end = Vector3(-25, 0, -25),
+	},
+	{
+		start = Vector3(25, 0, -25),
+		end = Vector3(-25, 0, 25),
+	}
+]
+
 const MIN_FARM_AQUIRE = 2
 const MAX_CASTLE_PRODUCING = 50
 const MAX_DRAW_CARD = 3
@@ -163,10 +201,7 @@ func _spawn_buildings(castle_holder : NodePath, farm_holder : NodePath):
 			building.connect("on_coin_produce", self,"_on_coin_produce")
 		
 		if i.type_building == Buildings.TYPE_CASTLE:
-			if get_tree().is_network_server():
-				castles[i.team] = building
-			
-			_on_castle_spawn(i.team, i.translation)
+			castles[i.team] = building
 			_castle_holder.add_child(building)
 			
 		else:
@@ -208,9 +243,6 @@ func _on_building_captured(_building):
 		var _current_amount = castles[_building.team].amount
 		castles[_building.team].update_amount(_current_amount + _building.amount)
 		
-	
-func _on_castle_spawn(_team, _translation):
-	pass
 	
 func _on_capture_progress(_building, _capture_by, _cp_damage, _cp, _max_cp):
 	pass

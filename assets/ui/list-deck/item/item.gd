@@ -35,7 +35,7 @@ func _ready():
 	_border.modulate = data.color
 	
 	_content.rect_pivot_offset = _content.rect_size / 2
-	_tween.interpolate_property(_content, "rect_scale", Vector2.ZERO, Vector2.ONE, 0.3, Tween.TRANS_SINE, Tween.EASE_IN)
+	_tween.interpolate_property(_content, "rect_scale", Vector2(-1, 1), Vector2.ONE, 0.3, Tween.TRANS_SINE, Tween.EASE_IN)
 	_tween.start()
 	
 	cooldown()
@@ -45,6 +45,7 @@ func cooldown():
 	_cooldown.start()
 	
 func remove_card():
+	set_process(false)
 	_content.rect_pivot_offset = _content.rect_size / 2
 	_tween2.interpolate_property(_content, "rect_scale",Vector2.ONE, Vector2.ZERO, 0.4, Tween.TRANS_SINE, Tween.EASE_IN)
 	_tween2.start()
@@ -73,7 +74,7 @@ func _on_button_pressed():
 	is_clickable = false
 	_audio.stream = preload("res://assets/sound/click.wav")
 	_audio.play()
-	
+
 	remove_card()
 	emit_signal("pressed", data)
 

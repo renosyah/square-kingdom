@@ -218,10 +218,10 @@ static func generate_farm_and_tower(data : Dictionary, max_farm = 8, max_tower =
 	
 	var pivots = ["PV_1","PV_2","PV_3"]
 	var type_upgrades = [
-		["attack_damage","Attack"],
-		["max_hp","HP"],
-		["speed","Speed"],
-		["capture_damage","Capturing"]
+		["attack_damage","Unit Attack Damage"],
+		["max_hp","Unit Hitpoint"],
+		["speed","Unit Walking Speed"],
+		["capture_damage","Unit Capturing building"]
 	]
 	
 	for i in max_unit_buffer:

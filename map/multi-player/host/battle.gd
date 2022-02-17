@@ -8,6 +8,12 @@ onready var _bot_timer = $bot_timer
 onready var _countdown_start = $countdown_start
 onready var _countdown_end = $countdown_end
 
+onready var _castle_holder = $castle_holder
+onready var _farm_holder = $farm_holder
+onready var _unit_holder = $unit_holder
+
+onready var _tween_cinematic = $tween_cinematic
+
 var _time_count_down = 5
 
 # Called when the node enters the scene tree for the first time.
@@ -20,6 +26,12 @@ func _ready():
 func _init_host():
 	.init_connection_watcher()
 	generate_spawn()
+	
+	randomize()
+	var cin = CINEMATICS[randi() % CINEMATICS.size()]
+	_camera.translation = cin.start
+	_tween_cinematic.interpolate_property(_camera, "translation", _camera.translation, cin.end, 6.1)
+	_tween_cinematic.start()
 	
 func generate_spawn():
 	randomize()
@@ -39,7 +51,7 @@ func generate_spawn():
 		Global.TEAM_2 : pos_2[randi() % pos_2.size()]
 	}
 
-	var pos = $terrain.translations.duplicate()
+	var pos = _terrain.translations.duplicate()
 	
 	for i in game_data.buildings:
 		if i.type_building == Buildings.TYPE_CASTLE:
@@ -64,18 +76,10 @@ func generate_spawn():
 			i.translation = p
 			pos.erase(p)
 			
-	_spawn_buildings($castle_holder.get_path(), $farm_holder.get_path())
-	_ui.update_victory_bar(_get_building_own_each_team($castle_holder.get_path(), $farm_holder.get_path()))
+	_spawn_buildings(_castle_holder.get_path(), _farm_holder.get_path())
+	_ui.update_victory_bar(_get_building_own_each_team(_castle_holder.get_path(), _farm_holder.get_path()))
 	
 	Global.rpc("on_host_game_session_ready", game_data)
-	
-################################################################
-# camera
-func _on_castle_spawn(_team, _translation):
-	if _team != Global.player_data.team:
-		return
-		
-	_camera.translation = _translation
 	
 ################################################################
 # grpc server func
@@ -85,6 +89,10 @@ remotesync func _game_info(_flag : int, _data : Dictionary):
 	
 	if _flag == GAME_START:
 		_ui.add_to_deck(._player_draw_card(Global.player_data.units, MAX_DRAW_CARD))
+		
+		_tween_cinematic.stop(_camera, "translation")
+		_tween_cinematic.interpolate_property(_camera, "translation", _camera.translation,castles[Global.player_data.team].translation, 2.1)
+		_tween_cinematic.start()
 		
 	elif _flag == GAME_INFO:
 		pass
@@ -101,10 +109,10 @@ remotesync func _game_info(_flag : int, _data : Dictionary):
 		clear_entity()
 	
 func clear_entity():
-	for i in $castle_holder.get_children() + $farm_holder.get_children() + $unit_holder.get_children():
+	for i in _castle_holder.get_children() + _farm_holder.get_children() + _unit_holder.get_children():
 		i.queue_free()
 		
-	$terrain.visible = false
+	_terrain.visible = false
 	
 ################################################################
 # update from ui and call update to ui
@@ -114,7 +122,7 @@ func on_coin_updated(_team : String , _amount : int):
 	if team != _team:
 		return
 		
-	var pop = _number_of_unit_spawn($unit_holder,team)
+	var pop = _number_of_unit_spawn(_unit_holder,team)
 	_ui.display_clickable_deck(pop, MAX_UNIT_SPAWN, _amount)
 	_ui.display_coin(_amount)
 	
@@ -127,7 +135,7 @@ func _on_capture_progress(_building, _capture_by, _cp_damage, _cp, _max_cp):
 	
 func on_building_captured(_building,_last_owner_team,_capture_by):
 	.on_building_captured(_building,_last_owner_team,_capture_by)
-	_ui.update_victory_bar(_get_building_own_each_team($castle_holder.get_path(), $farm_holder.get_path()))
+	_ui.update_victory_bar(_get_building_own_each_team(_castle_holder.get_path(), _farm_holder.get_path()))
 	
 	var title = _building_captured_title(_building.building_name,Global.player_data.team,_capture_by,_last_owner_team)
 	var message = _building_captured_message(_building,Global.player_data.team,_capture_by,_last_owner_team)
@@ -152,7 +160,7 @@ func _on_unit_dead(_unit):
 func check_deck():
 	var team = Global.player_data.team
 	var coin = game_data[team].coin
-	var pop = _number_of_unit_spawn($unit_holder,team)
+	var pop = _number_of_unit_spawn(_unit_holder,team)
 	_ui.display_clickable_deck(pop, MAX_UNIT_SPAWN, coin)
 	_ui.display_population(team, pop, MAX_UNIT_SPAWN)
 	
@@ -168,7 +176,7 @@ func _on_bot_timer_timeout():
 		if randf() < game_data.ai_level.deploy_chance:
 			continue
 			
-		var pop = _number_of_unit_spawn($unit_holder, team)
+		var pop = _number_of_unit_spawn(_unit_holder, team)
 		if pop >= MAX_UNIT_SPAWN:
 			continue
 			
@@ -185,7 +193,7 @@ func _on_bot_timer_timeout():
 		
 		unit.node_name = "UNIT-" + GDUUID.v4()
 		unit.translation = castles[team].translation
-		rpc("_spawn_unit", $unit_holder.get_path(), {}, unit)
+		rpc("_spawn_unit", _unit_holder.get_path(), {}, unit)
 	
 func _on_countdown_start_timeout():
 	var message = "Ready in " + str(_time_count_down) + "..."

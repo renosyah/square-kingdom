@@ -8,8 +8,6 @@ var attack_damage = 4.0
 # speed
 var speed = 25.0
 var spread = 1.5
-var travel_distance = 0.0
-var max_distance = 25
 
 # tag
 var team : String = ""
@@ -17,6 +15,7 @@ var color : Color = Color.white
 
 var velocity = Vector3.ZERO
 var is_master : bool = true
+var _timeout_timer
 
 # misc
 var parent
@@ -25,6 +24,12 @@ func _ready():
 	$Sprite3D.texture = load(sprite)
 	$Sprite3D2.texture = load(sprite)
 	set_as_toplevel(true)
+	_timeout_timer = Timer.new()
+	_timeout_timer.wait_time = 5
+	_timeout_timer.one_shot = true
+	_timeout_timer.autostart = true
+	_timeout_timer.connect("timeout", self, "_timeout_timer_timeout")
+	add_child(_timeout_timer)
 	parent = get_parent()
 	
 func launch(to : Vector3):
@@ -37,11 +42,10 @@ func launch(to : Vector3):
 func _process(delta):
 	var _distance = speed * delta
 	translation += velocity * _distance
-	
-	travel_distance += _distance
-	if travel_distance > max_distance:
-		set_process(false)
-		queue_free()
+
+func _timeout_timer_timeout():
+	set_process(false)
+	queue_free()
 	
 func _on_projectile_body_entered(body):
 	if not is_instance_valid(body):
@@ -51,6 +55,7 @@ func _on_projectile_body_entered(body):
 		return
 		
 	if body is StaticBody:
+		stop_projectile()
 		return
 		
 	if body.team == team:
@@ -59,5 +64,16 @@ func _on_projectile_body_entered(body):
 	if is_master:
 		body.take_damage(attack_damage, {node_path = parent.get_path(), team = team, color = color})
 	
+	stop_projectile()
+	
+	
+func stop_projectile():
+	set_deferred("monitoring", false)
 	set_process(false)
-	queue_free()
+
+
+
+
+
+
+

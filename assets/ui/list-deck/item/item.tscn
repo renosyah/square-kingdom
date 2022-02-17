@@ -12,6 +12,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 rect_min_size = Vector2( 145, 220 )
 script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchor_left = 0.5
@@ -24,15 +27,15 @@ margin_right = 73.0
 margin_bottom = 110.0
 grow_horizontal = 2
 grow_vertical = 2
-rect_min_size = Vector2( 145, 220 )
+rect_min_size = Vector2( 150, 250 )
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="button" type="Button" parent="HBoxContainer"]
-margin_right = 136.0
-margin_bottom = 220.0
+margin_right = 141.0
+margin_bottom = 250.0
 rect_min_size = Vector2( 100, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -43,7 +46,7 @@ __meta__ = {
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer/button"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = -66.0
+margin_bottom = -70.0
 texture = ExtResource( 3 )
 expand = true
 __meta__ = {
@@ -70,13 +73,13 @@ __meta__ = {
 }
 
 [node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer/button/PanelContainer/VBoxContainer"]
-margin_right = 136.0
+margin_right = 141.0
 margin_bottom = 5.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="name" type="Label" parent="HBoxContainer/button/PanelContainer/VBoxContainer"]
 margin_top = 9.0
-margin_right = 136.0
+margin_right = 141.0
 margin_bottom = 25.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
@@ -91,7 +94,7 @@ __meta__ = {
 
 [node name="cost" type="Label" parent="HBoxContainer/button/PanelContainer/VBoxContainer"]
 margin_top = 29.0
-margin_right = 136.0
+margin_right = 141.0
 margin_bottom = 57.0
 custom_colors/font_color = Color( 1, 0.756863, 0.027451, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
@@ -106,7 +109,7 @@ __meta__ = {
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/button/PanelContainer/VBoxContainer"]
 margin_top = 61.0
-margin_right = 136.0
+margin_right = 141.0
 margin_bottom = 66.0
 rect_min_size = Vector2( 0, 5 )
 
@@ -124,16 +127,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="hide" type="TextureRect" parent="HBoxContainer/button"]
+[node name="hide" type="ColorRect" parent="HBoxContainer/button"]
 visible = false
-modulate = Color( 0, 0, 0, 0.682353 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 2 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+mouse_filter = 2
+color = Color( 0.364706, 0.364706, 0.364706, 0.639216 )
 
 [node name="border" type="NinePatchRect" parent="HBoxContainer/button"]
 anchor_right = 1.0
@@ -149,9 +148,9 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
-margin_left = 140.0
-margin_right = 145.0
-margin_bottom = 220.0
+margin_left = 145.0
+margin_right = 150.0
+margin_bottom = 250.0
 rect_min_size = Vector2( 5, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
