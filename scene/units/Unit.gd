@@ -142,6 +142,7 @@ func _ready():
 		
 	emit_signal("on_ready", self)
 	
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if is_dead:

@@ -12,6 +12,7 @@ remotesync func _shot_at(target_translation : Vector3):
 	arrow.color = color
 	arrow.sprite = "res://scene/projectile/balista/ram_weapon.png"
 	arrow.is_master = is_master()
+	arrow.spread = 0.2
 	add_child(arrow)
 	arrow.translation = translation
 	arrow.launch(target_translation)

@@ -49,7 +49,6 @@ func set_data(_data):
 	coin_produce_cooldown = _data.coin_produce_cooldown
 	
 func _ready():
-	._ready()
 	_flag.set_flag_color(color)
 	_cp_bar.show_label(false)
 	_cp_bar.set_hp_bar_color(color)

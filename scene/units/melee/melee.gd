@@ -79,7 +79,6 @@ remotesync func _dead():
 ############################################################
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	._ready()
 	for i in _bodies:
 		i.modulate = color
 		

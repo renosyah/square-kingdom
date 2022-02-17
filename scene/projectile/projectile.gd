@@ -31,6 +31,8 @@ func _ready():
 	_timeout_timer.connect("timeout", self, "_timeout_timer_timeout")
 	add_child(_timeout_timer)
 	parent = get_parent()
+
+	connect("body_entered", self,"_on_projectile_body_entered")
 	
 func launch(to : Vector3):
 	to.z += rand_range(-spread, spread)
@@ -70,8 +72,6 @@ func _on_projectile_body_entered(body):
 func stop_projectile():
 	set_deferred("monitoring", false)
 	set_process(false)
-
-
 
 
 
