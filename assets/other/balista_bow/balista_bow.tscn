@@ -263,3 +263,6 @@ autoplay = "stop"
 anims/RESET = SubResource( 3 )
 anims/firing = SubResource( 1 )
 anims/stop = SubResource( 2 )
+
+[node name="firing_delay" type="Timer" parent="."]
+one_shot = true

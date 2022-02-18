@@ -5,6 +5,7 @@ onready var _exception_message = $CanvasLayer/exception_message
 onready var _server_browser = $CanvasLayer/server_browser
 
 func _ready():
+	_server_browser.start_finding()
 	if Global.mp_exception_message != "":
 		_exception_message.display_message("Network Error!", Global.mp_exception_message)
 		_exception_message.visible = true
@@ -39,7 +40,6 @@ func _on_host_pressed():
 	get_tree().change_scene("res://menu/lobby-menu/lobby_menu.tscn")
 	
 func _on_join_pressed():
-	_server_browser.start_finding()
 	_server_browser.visible = true
 	_control_ui.visible = false
 	

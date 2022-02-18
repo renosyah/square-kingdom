@@ -34,16 +34,16 @@ func _on_server_listener_new_server(serverInfo):
 	_item_holder.add_child(item)
 	
 func _on_server_listener_remove_server(serverIp):
-	show_loading(_item_holder.get_children().empty())
 	for child in _item_holder.get_children():
 		if child.info["ip"] == serverIp:
 			_item_holder.remove_child(child)
-			return
+			break
+			
+	show_loading(_item_holder.get_children().empty())
 	
 func _join(info):
 	stop_finding()
 	emit_signal("on_join", info)
-	
 	
 func show_loading(_show):
 	_find_server.visible = _show

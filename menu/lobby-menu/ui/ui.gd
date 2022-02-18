@@ -136,13 +136,6 @@ func _server_player_connected(_player_network_unique_id : int, _player : Diction
 	_loading.visible = false
 	_control_ui.visible = true
 	
-	_server_advertise.setup()
-	_server_advertise.serverInfo["name"] = Global.player_data.name
-	_server_advertise.serverInfo["port"] = Global.server.port
-	_server_advertise.serverInfo["public"] = true
-	_server_advertise.serverInfo["player"] = 1
-	_server_advertise.serverInfo["max_player"] = Global.server.max_player
-	
 	var data = {
 		id = Global.player_data.id,
 		name = Global.player_data.name,
@@ -153,6 +146,12 @@ func _server_player_connected(_player_network_unique_id : int, _player : Diction
 	}
 	_request_append_player_joined(Global.client.network_unique_id, data)
 	
+	_server_advertise.setup()
+	_server_advertise.serverInfo["name"] = Global.player_data.name
+	_server_advertise.serverInfo["port"] = Global.server.port
+	_server_advertise.serverInfo["public"] = true
+	_server_advertise.serverInfo["player"] = player_joined.size()
+	_server_advertise.serverInfo["max_player"] = Global.server.max_player
 	
 ################################################################
 # join player section

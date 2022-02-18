@@ -137,7 +137,7 @@ func _process(delta):
 		direction = translation.direction_to(target.translation)
 		distance_to_target = translation.distance_to(target.translation)
 		
-		transform_turning(Vector3(target.translation.x , translation.y ,target.translation.z), delta)
+#		transform_turning(Vector3(target.translation.x , translation.y ,target.translation.z), delta)
 		
 		if not target.is_targetable(team):
 			_check_is_walking(false)
@@ -147,6 +147,7 @@ func _process(delta):
 			_check_is_walking(true)
 			translation.y -= (1.0 * delta) if translation.y > 0.0 else 0.0
 			velocity = Vector3(direction.x, 0.0 , direction.z) * speed
+			transform_turning(Vector3(target.translation.x , translation.y ,target.translation.z), delta)
 			
 		elif distance_to_target <= range_attack and _cooldown_timmer.is_stopped():
 			_check_is_walking(false)
