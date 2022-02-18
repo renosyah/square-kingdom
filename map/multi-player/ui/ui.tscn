@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/ui/fonts/montserrat_eb_48.tres" type="DynamicFont" id=1]
 [ext_resource path="res://map/multi-player/ui/ui.gd" type="Script" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://assets/ui/bar/bar_over.png" type="Texture" id=11]
 [ext_resource path="res://assets/ui/fonts/montserrat_eb_16.tres" type="DynamicFont" id=12]
 [ext_resource path="res://assets/ui/bar/bar.png" type="Texture" id=13]
+[ext_resource path="res://assets/ui/scoreboard/scoreboard.tscn" type="PackedScene" id=14]
 
 [node name="ui" type="Control"]
 anchor_right = 1.0
@@ -26,6 +27,7 @@ __meta__ = {
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Control" type="Control" parent="CanvasLayer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -35,7 +37,7 @@ __meta__ = {
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control"]
 anchor_right = 1.0
-margin_bottom = 164.0
+margin_bottom = 173.0
 size_flags_horizontal = 3
 alignment = 1
 __meta__ = {
@@ -45,6 +47,7 @@ __meta__ = {
 [node name="HBoxContainer3" type="VBoxContainer" parent="CanvasLayer/Control/HBoxContainer"]
 margin_right = 154.0
 margin_bottom = 173.0
+rect_min_size = Vector2( 154, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -120,25 +123,25 @@ __meta__ = {
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/HBoxContainer"]
 margin_left = 158.0
-margin_right = 168.0
+margin_right = 171.0
 margin_bottom = 173.0
 rect_min_size = Vector2( 10, 0 )
 size_flags_horizontal = 3
 
 [node name="CenterContainer2" type="VBoxContainer" parent="CanvasLayer/Control/HBoxContainer"]
-margin_left = 172.0
-margin_right = 432.0
+margin_left = 175.0
+margin_right = 425.0
 margin_bottom = 173.0
-rect_min_size = Vector2( 260, 0 )
+rect_min_size = Vector2( 250, 0 )
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/HBoxContainer/CenterContainer2"]
-margin_right = 260.0
+margin_right = 250.0
 margin_bottom = 15.0
 rect_min_size = Vector2( 0, 15 )
 
 [node name="vic_bar" type="TextureProgress" parent="CanvasLayer/Control/HBoxContainer/CenterContainer2"]
 margin_top = 19.0
-margin_right = 260.0
+margin_right = 250.0
 margin_bottom = 44.0
 rect_min_size = Vector2( 0, 25 )
 size_flags_horizontal = 3
@@ -155,8 +158,8 @@ __meta__ = {
 }
 
 [node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Control/HBoxContainer"]
-margin_left = 436.0
-margin_right = 446.0
+margin_left = 429.0
+margin_right = 442.0
 margin_bottom = 173.0
 rect_min_size = Vector2( 10, 0 )
 size_flags_horizontal = 3
@@ -165,8 +168,8 @@ __meta__ = {
 }
 
 [node name="CenterContainer" type="VBoxContainer" parent="CanvasLayer/Control/HBoxContainer"]
-margin_left = 450.0
-margin_right = 604.0
+margin_left = 446.0
+margin_right = 600.0
 margin_bottom = 173.0
 rect_min_size = Vector2( 154, 0 )
 
@@ -176,21 +179,15 @@ margin_bottom = 5.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="menu_btn" type="TextureButton" parent="CanvasLayer/Control/HBoxContainer/CenterContainer"]
-margin_left = 37.0
+margin_left = 32.0
 margin_top = 9.0
-margin_right = 117.0
+margin_right = 122.0
 margin_bottom = 89.0
-rect_min_size = Vector2( 80, 80 )
+rect_min_size = Vector2( 90, 80 )
 size_flags_horizontal = 4
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
 expand = true
-
-[node name="MarginContainer4" type="MarginContainer" parent="CanvasLayer/Control/HBoxContainer"]
-margin_left = 608.0
-margin_right = 623.0
-margin_bottom = 173.0
-rect_min_size = Vector2( 15, 0 )
 
 [node name="info" type="HBoxContainer" parent="CanvasLayer/Control"]
 anchor_right = 1.0
@@ -318,7 +315,6 @@ rect_min_size = Vector2( 0, 120 )
 color = Color( 0, 0, 0, 1 )
 
 [node name="game_over" type="ColorRect" parent="CanvasLayer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.117647 )
@@ -327,19 +323,17 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/game_over"]
-anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 0.5
-margin_top = -158.5
-margin_bottom = 158.5
+anchor_bottom = 1.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="label2" type="Label" parent="CanvasLayer/game_over/VBoxContainer"]
+margin_top = 215.0
 margin_right = 600.0
-margin_bottom = 60.0
+margin_bottom = 275.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/line_spacing = 2
@@ -353,9 +347,9 @@ __meta__ = {
 }
 
 [node name="label3" type="Label" parent="CanvasLayer/game_over/VBoxContainer"]
-margin_top = 64.0
+margin_top = 279.0
 margin_right = 600.0
-margin_bottom = 104.0
+margin_bottom = 319.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/line_spacing = 2
@@ -369,16 +363,62 @@ __meta__ = {
 }
 
 [node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/game_over/VBoxContainer"]
-margin_top = 108.0
+margin_top = 323.0
 margin_right = 600.0
-margin_bottom = 133.0
+margin_bottom = 348.0
 rect_min_size = Vector2( 0, 25 )
 
+[node name="MarginContainer3" type="MarginContainer" parent="CanvasLayer/game_over/VBoxContainer"]
+margin_top = 352.0
+margin_right = 600.0
+margin_bottom = 352.0
+rect_min_size = Vector2( 50, 0 )
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/game_over/VBoxContainer"]
+margin_top = 356.0
+margin_right = 600.0
+margin_bottom = 656.0
+rect_min_size = Vector2( 0, 300 )
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/game_over/VBoxContainer/HBoxContainer2"]
+margin_right = 15.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 15, 0 )
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/game_over/VBoxContainer/HBoxContainer2"]
+margin_left = 19.0
+margin_right = 581.0
+margin_bottom = 300.0
+size_flags_horizontal = 3
+color = Color( 0, 0, 0, 0.666667 )
+
+[node name="scoreboard" parent="CanvasLayer/game_over/VBoxContainer/HBoxContainer2/ColorRect" instance=ExtResource( 14 )]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 0.0
+margin_bottom = 0.0
+rect_min_size = Vector2( 0, 300 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/game_over/VBoxContainer/HBoxContainer2"]
+margin_left = 585.0
+margin_right = 600.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 15, 0 )
+
+[node name="MarginContainer4" type="MarginContainer" parent="CanvasLayer/game_over/VBoxContainer"]
+margin_top = 660.0
+margin_right = 600.0
+margin_bottom = 660.0
+rect_min_size = Vector2( 50, 0 )
+
 [node name="label4" type="Label" parent="CanvasLayer/game_over/VBoxContainer"]
+visible = false
 margin_left = 120.0
-margin_top = 137.0
+margin_top = 627.0
 margin_right = 480.0
-margin_bottom = 195.0
+margin_bottom = 685.0
 rect_min_size = Vector2( 360, 0 )
 size_flags_horizontal = 4
 custom_colors/font_color = Color( 1, 1, 1, 1 )
@@ -395,15 +435,15 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/game_over/VBoxContainer"]
-margin_top = 199.0
+margin_top = 664.0
 margin_right = 600.0
-margin_bottom = 324.0
-rect_min_size = Vector2( 0, 125 )
+margin_bottom = 714.0
+rect_min_size = Vector2( 0, 50 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/game_over/VBoxContainer"]
-margin_top = 328.0
+margin_top = 718.0
 margin_right = 600.0
-margin_bottom = 418.0
+margin_bottom = 808.0
 alignment = 1
 
 [node name="re_match" type="Button" parent="CanvasLayer/game_over/VBoxContainer/HBoxContainer"]

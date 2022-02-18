@@ -246,7 +246,7 @@ func _on_building_captured(_building):
 		winner_team = _building.team
 		game_flag = GAME_OVER
 		
-		rpc("_game_info",  game_flag , { message =  "" })
+		rpc("_game_info",  game_flag , { message =  "", "scores" : scores })
 		
 	elif _building.type_building == Buildings.TYPE_FARM:
 		if castles[_building.team].amount >= MAX_CASTLE_PRODUCING:
@@ -306,26 +306,26 @@ remotesync func _spawn_unit(unit_holder : NodePath, _player: Dictionary, _unit :
 	_unit_holder.add_child(unit)
 	
 	if not _player.empty():
-		unit.display_player_name(_player.id != Global.player_data.id)
+		# siplay if not from local player and is not bot
+		unit.display_player_name(_player.id != Global.player_data.id and not _player.has("is_bot"))
 	
 	if get_tree().is_network_server():
 		units.append(unit)
-
+		
+	_unit_spawned(unit)
+	
 func _on_unit_ready(_unit):
-	if get_tree().is_network_server():
+	if not get_tree().is_network_server():
+		return
 		
-		# player,unit_deploy, unit_kill, unit_lost, building_own
-		update_scores(_unit.player, 1, 0, 0 , 0)
-		_assign_unit_target(_unit)
+	_assign_unit_target(_unit)
 		
-	_unit_spawned()
 	
 func _on_unit_take_damage(_unit, _hit_by, _damage, _hp, _max_hp):
 	pass
 	
 func _on_unit_dead(_unit):
 	if get_tree().is_network_server():
-		
 		# player,unit_deploy, unit_kill, unit_lost, building_own
 		update_scores(_unit.hit_by.player, 0, 1, 0 , 0)
 		update_scores(_unit.player, 0, 0, 1 , 0)
@@ -333,8 +333,10 @@ func _on_unit_dead(_unit):
 		
 	_unit.queue_free()
 	
-func _unit_spawned():
-	pass
+func _unit_spawned(_unit):
+	
+	# player,unit_deploy, unit_kill, unit_lost, building_own
+	update_scores(_unit.player, 1, 0, 0 , 0)
 	
 ################################################################
 # targeting assigment
@@ -394,7 +396,7 @@ func _assign_unit_target(_unit):
 	
 ################################################################
 # utils function
-func update_scores(player : Dictionary, unit_deploy, unit_kill, unit_lost, building_own : int = 0):
+func update_scores(player : Dictionary, unit_deploy, unit_kill, unit_lost, building_captured : int = 0):
 	if not get_tree().is_network_server():
 		return
 		
@@ -402,13 +404,22 @@ func update_scores(player : Dictionary, unit_deploy, unit_kill, unit_lost, build
 		return
 		
 	if not scores.has(player.id):
-		scores[player.id] = {"unit_deploy" : 0, "unit_kill" : 0, "unit_lost": 0, "building_own": 0}
+		scores[player.id] = {
+			"team" : player.color,
+			"player_name" : player.name,
+			"unit_deploy" : 0,
+			"unit_kill" : 0,
+			"unit_lost": 0,
+			"building_captured": 0,
+			"total" : 0
+		}
 		
 	var prev_score = scores[player.id].duplicate()
 	prev_score.unit_deploy += unit_deploy
 	prev_score.unit_kill += unit_kill
 	prev_score.unit_lost += unit_lost
-	prev_score.building_own += building_own
+	prev_score.building_captured += building_captured
+	prev_score.total = prev_score.unit_deploy + prev_score.unit_kill + prev_score.unit_lost + prev_score.building_captured
 	
 	scores[player.id] = prev_score
 

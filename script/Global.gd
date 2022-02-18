@@ -53,7 +53,7 @@ func _ready():
 ################################################################
 # play music!
 var _audio
-var audio_setting = { music = true, sfx = true }
+var audio_setting = { music = false, sfx = true }
 
 func play_music():
 	if OS.get_name() in DEKSTOP:
@@ -82,7 +82,7 @@ func load_audio_setting():
 		_audio_setting = SaveLoad.load_save("audio_setting.dat")
 		
 	if not _audio_setting:
-		_audio_setting = { music = 1, sfx = 1 }
+		_audio_setting = { music = false, sfx = true }
 		
 	audio_setting  = _audio_setting 
 	save_audio_setting()

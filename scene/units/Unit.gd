@@ -76,12 +76,12 @@ remotesync func _set_walking_state(_val : bool):
 	is_walking = _val
 	
 remotesync func _take_damage(_damage : float, _hit_by: Dictionary):
-	if is_dead:
-		return
-		
 	hp -= _damage
 	hit_by = _hit_by
 	
+	if is_dead:
+		return
+		
 	if hp < 1:
 		dead()
 		
@@ -90,6 +90,7 @@ remotesync func _take_damage(_damage : float, _hit_by: Dictionary):
 remotesync func _perform_attack():
 	if is_dead:
 		return
+		
 	
 remotesync func _dead():
 	is_dead = true
@@ -186,7 +187,7 @@ func take_damage(_damage : float, _hit_by: Dictionary):
 	if is_instance_valid(_aggresor):
 		target = _aggresor
 		
-	rpc("_take_damage", _damage, hit_by)
+	rpc("_take_damage", _damage, _hit_by)
 	
 func dead():
 	if not is_master():

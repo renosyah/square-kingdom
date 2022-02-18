@@ -53,6 +53,7 @@ remotesync func _finish_captured():
 	last_owner_team = team
 	team = capture_by.team
 	color = capture_by.color
+	player = capture_by.player
 	cp = max_cp
 	
 	emit_signal("on_building_captured", self)

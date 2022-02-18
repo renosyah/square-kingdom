@@ -29,7 +29,7 @@ func _init_client():
 	
 	game_data = Global.mp_game_data.duplicate(true)
 	MAX_UNIT_SPAWN = game_data.max_unit_spawn
-	_unit_spawned()
+	check_deck()
 	
 	_terrain.map_size = game_data.map_size
 	_terrain.generate()
@@ -54,6 +54,7 @@ remotesync func _game_info(_flag : int, _data : Dictionary):
 		pass
 		
 	elif _flag == GAME_OVER:
+		scores = _data.scores
 		_ui.display_loading(true, "Battle is Over!")
 		
 	elif _flag == GAME_FINISH:
@@ -61,7 +62,7 @@ remotesync func _game_info(_flag : int, _data : Dictionary):
 		var is_win = winner_team == Global.player_data.team
 		var condition = "Victory!" if is_win else "Defeat!"
 		var message = "Our team win!" if is_win else "Our team lose!"
-		_ui.display_game_over(false, condition, message)
+		_ui.display_game_over(false, condition, message, scores)
 		clear_entity()
 	
 func clear_entity():
@@ -113,8 +114,8 @@ func _on_ui_on_deploy_card(unit):
 	_ui.add_to_deck(._player_draw_card(Global.player_data.units, 1))
 	._player_deploy_card(unit, Global.player_data.units)
 	
-func _unit_spawned():
-	._unit_spawned()
+func _unit_spawned(_unit):
+	._unit_spawned(_unit)
 	check_deck()
 	
 func _on_unit_dead(_unit):

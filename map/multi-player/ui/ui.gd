@@ -21,6 +21,7 @@ onready var _game_over_condition = $CanvasLayer/game_over/VBoxContainer/label2
 onready var _game_over_message = $CanvasLayer/game_over/VBoxContainer/label3
 onready var _game_over_rematch_btn = $CanvasLayer/game_over/VBoxContainer/HBoxContainer/re_match
 onready var _game_over_rematch_tip = $CanvasLayer/game_over/VBoxContainer/label4
+onready var _game_over_scoreboard = $CanvasLayer/game_over/VBoxContainer/HBoxContainer2/ColorRect/scoreboard
 
 onready var _ping_counter = $CanvasLayer/menu/ping_counter
 onready var _menu = $CanvasLayer/menu
@@ -28,9 +29,7 @@ onready var _music = $CanvasLayer/menu/VBoxContainer/HBoxContainer/music
 onready var _sfx = $CanvasLayer/menu/VBoxContainer/HBoxContainer/sfx
 
 func _ready():
-	_menu.visible = false
-	_game_over.visible = false
-	_control_ui.visible = false
+	hide_all()
 	_loading.visible = true
 	
 	_music.text = "Music : On" if Global.audio_setting.music else "Music : Off"
@@ -48,6 +47,12 @@ func _on_menu_btn_pressed():
 	
 func _on_close_menu_pressed():
 	_menu.visible = false
+	
+func hide_all():
+	_menu.visible = false
+	_game_over.visible = false
+	_control_ui.visible = false
+	_loading.visible = false
 	
 func display_info(_title, _message : String):
 	_info_title.text = _title
@@ -85,13 +90,14 @@ func display_loading(show : bool, message : String):
 	_loading.visible = show
 	_loading_message.text = message
 	
-func display_game_over(show_rematch : bool , condition, message : String):
+func display_game_over(show_rematch : bool , condition, message : String, _scores : Dictionary):
+	hide_all()
 	_game_over_rematch_btn.visible = show_rematch
-	_control_ui.visible = false
 	_game_over.visible = true
 	_game_over_condition.text = condition
 	_game_over_message.text = message
 	_game_over_rematch_tip.text = "Wanna play again?" if get_tree().is_network_server() else "You can wait to play again or leave"
+	_game_over_scoreboard.display_scores(_scores)
 	
 func display_hurt(_team : String):
 	if _team == Global.player_data.team:
@@ -122,7 +128,6 @@ func _on_sfx_pressed():
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("sfx"),not Global.audio_setting.sfx)
 	_sfx.text = "Sfx : Enable" if Global.audio_setting.sfx else "Sfx : Disable"
 	Global.save_audio_setting()
-	
 	
 func _on_main_menu_pressed():
 	Network.disconnect_from_server()

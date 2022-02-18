@@ -142,6 +142,7 @@ unit_size = 10.0
 bus = "sfx"
 
 [node name="VisibilityNotifier" type="VisibilityNotifier" parent="."]
+aabb = AABB( -4.28562, -1, -4.39329, 8.57124, 2, 8.78659 )
 
 [connection signal="timeout" from="coin_gain_timer" to="." method="_on_coin_gain_timer_timeout"]
 [connection signal="timeout" from="capture_reset_timer" to="." method="_on_capture_reset_timer_timeout"]

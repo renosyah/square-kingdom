@@ -5,12 +5,13 @@ var projectile_scene = ""
 
 ############################################################
 # multiplayer func
-remotesync func _shot_at(target_translation : Vector3):
+remotesync func _shot_at(target_translation : Vector3, from : Dictionary):
 	var arrow = load(projectile_scene).instance()
 	arrow.attack_damage = attack_damage
 	arrow.player = player
 	arrow.team = team
 	arrow.color = color
+	arrow.player = from
 	arrow.sprite = "res://scene/projectile/balista/ram_weapon.png"
 	arrow.is_master = is_master()
 	arrow.spread = 0.2
@@ -55,7 +56,7 @@ func perform_attack():
 			Utils.create_hit_by(player, self.get_path(), team, color)
 		)
 		
-	rpc("_shot_at", target.translation)
+	rpc("_shot_at", target.translation, player)
 	
 	
 func _on_VisibilityNotifier_screen_entered():
