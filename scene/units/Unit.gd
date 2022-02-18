@@ -46,7 +46,7 @@ var team : String = ""
 var color : Color = Color.white
 
 # hit
-var hit_by : Dictionary = {node_path = "", team = "", color = Color.white}
+var hit_by : Dictionary = {player = {}, node_path = "", team = "", color = Color.white}
 
 # misc
 var _network_timmer : Timer = null

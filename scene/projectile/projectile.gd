@@ -1,5 +1,7 @@
 extends Area
 
+onready var _sprites = [$Sprite3D, $Sprite3D2]
+
 var sprite = "res://scene/projectile/arrow/arrow.png"
 
 # attack
@@ -10,6 +12,7 @@ var speed = 25.0
 var spread = 1.5
 
 # tag
+var player = {}
 var team : String = ""
 var color : Color = Color.white
 
@@ -21,9 +24,10 @@ var _timeout_timer
 var parent
 
 func _ready():
-	$Sprite3D.texture = load(sprite)
-	$Sprite3D2.texture = load(sprite)
 	set_as_toplevel(true)
+	for i in _sprites:
+		i.texture = load(sprite)
+		
 	_timeout_timer = Timer.new()
 	_timeout_timer.wait_time = 5
 	_timeout_timer.one_shot = true
@@ -64,7 +68,10 @@ func _on_projectile_body_entered(body):
 		return
 		
 	if is_master:
-		body.take_damage(attack_damage, {node_path = parent.get_path(), team = team, color = color})
+		body.take_damage(
+			attack_damage,
+			Utils.create_hit_by(player, parent.get_path(), team, color)
+		)
 	
 	stop_projectile()
 	

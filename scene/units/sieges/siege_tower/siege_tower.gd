@@ -11,6 +11,7 @@ func set_data(_data):
 	
 func init_siege():
 	_tower = load(_tower_data.scene).instance()
+	_tower.player = player
 	_tower.name = _tower_data.node_name
 	_tower.set_network_master(get_network_master())
 	_tower.set_data(_tower_data)
@@ -32,7 +33,10 @@ func perform_attack():
 		return
 		
 	if target is Building:
-		target.capture(capture_damage, {node_path = self.get_path(), team = team, color = color})
+		target.capture(
+			capture_damage,
+			Utils.create_hit_by(player, self.get_path(), team, color)
+		)
 		
 	_tower.set_target(target.get_path())
 	

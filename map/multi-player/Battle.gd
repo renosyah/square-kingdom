@@ -42,7 +42,6 @@ const CINEMATICS = [
 const MIN_FARM_AQUIRE = 2
 const MAX_CASTLE_PRODUCING = 50
 const MAX_DRAW_CARD = 3
-var MAX_UNIT_SPAWN = 10
 
 const GAME_LOADING = 0
 const GAME_START = 1
@@ -50,9 +49,7 @@ const GAME_INFO = 2
 const GAME_OVER = 3
 const GAME_FINISH = 4
 
-var game_flag = GAME_LOADING
-var winner_team = ""
-
+var MAX_UNIT_SPAWN = 10
 # data match each team
 var game_data = {
 	Global.TEAM_1 : {
@@ -76,8 +73,18 @@ var castles = {
 	Global.TEAM_1 : null,
 	Global.TEAM_2 : null
 }
+
+################################################################
+# server variables
+var game_flag = GAME_LOADING
+var winner_team = ""
 var units = []
 var farms = []
+
+# {player : {}, unit_deploy : 0, unit_kill : 0, unit_lost: 0, building_own: 0 }
+var scores = {}
+
+################################################################
 
 func _ready():
 	Global.apply_players_unit_team()
@@ -161,6 +168,7 @@ remote func _deploy_card(_player: Dictionary, _unit : Dictionary):
 		if _building.type_building == Buildings.TYPE_UNIT_BUFF and _building.team == team:
 			_building.apply_upgrade(_unit)
 			
+			
 	rpc("_on_coin_updated", _get_coin_each_team())
 	rpc("_spawn_unit", $unit_holder.get_path(), _player, _unit)
 	
@@ -189,6 +197,7 @@ func _spawn_buildings(castle_holder : NodePath, farm_holder : NodePath):
 
 	for i in game_data.buildings:
 		var building = load(i.scene).instance()
+		building.player = {}
 		building.name = i.node_name
 		building.set_network_master(Network.PLAYER_HOST_ID)
 		building.set_data(i)
@@ -223,6 +232,9 @@ func _on_building_captured(_building):
 	if not get_tree().is_network_server():
 		return
 		
+	# player,unit_deploy, unit_kill, unit_lost, building_own
+	update_scores(_building.capture_by.player, 0, 0, 0 , 1)
+	
 	if _building.team == "":
 		return
 		
@@ -298,31 +310,28 @@ remotesync func _spawn_unit(unit_holder : NodePath, _player: Dictionary, _unit :
 	
 	if get_tree().is_network_server():
 		units.append(unit)
+
+func _on_unit_ready(_unit):
+	if get_tree().is_network_server():
+		
+		# player,unit_deploy, unit_kill, unit_lost, building_own
+		update_scores(_unit.player, 1, 0, 0 , 0)
+		_assign_unit_target(_unit)
 		
 	_unit_spawned()
-		
-func _on_unit_ready(_unit):
-	if not get_tree().is_network_server():
-		return
-		
-	_assign_unit_target(_unit)
 	
 func _on_unit_take_damage(_unit, _hit_by, _damage, _hp, _max_hp):
 	pass
 	
 func _on_unit_dead(_unit):
-	if not get_tree().is_network_server():
-		return
+	if get_tree().is_network_server():
 		
-	units.erase(units)
-	rpc("_erase_node",_unit.get_path())
-	
-remotesync func _erase_node(_node_path : NodePath):
-	var _node = get_node_or_null(_node_path)
-	if not is_instance_valid(_node):
-		return
-	
-	_node.queue_free()
+		# player,unit_deploy, unit_kill, unit_lost, building_own
+		update_scores(_unit.hit_by.player, 0, 1, 0 , 0)
+		update_scores(_unit.player, 0, 0, 1 , 0)
+		units.erase(units)
+		
+	_unit.queue_free()
 	
 func _unit_spawned():
 	pass
@@ -384,9 +393,30 @@ func _assign_unit_target(_unit):
 	_unit.target = target
 	
 ################################################################
-# utils
+# utils function
+func update_scores(player : Dictionary, unit_deploy, unit_kill, unit_lost, building_own : int = 0):
+	if not get_tree().is_network_server():
+		return
+		
+	if player.empty():
+		return
+		
+	if not scores.has(player.id):
+		scores[player.id] = {"unit_deploy" : 0, "unit_kill" : 0, "unit_lost": 0, "building_own": 0}
+		
+	var prev_score = scores[player.id].duplicate()
+	prev_score.unit_deploy += unit_deploy
+	prev_score.unit_kill += unit_kill
+	prev_score.unit_lost += unit_lost
+	prev_score.building_own += building_own
+	
+	scores[player.id] = prev_score
+
 func _number_of_farm_owned(team) -> int:
 	var farm_own = 0
+	if not get_tree().is_network_server():
+		return farm_own
+		
 	for i in farms:
 		if i.team == team:
 			farm_own += 1

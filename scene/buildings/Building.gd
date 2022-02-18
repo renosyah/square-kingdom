@@ -6,6 +6,7 @@ signal on_building_captured(_building)
 signal on_capture_progress(_building, _capture_by, _cp_damage, _cp, _max_cp)
 
 # base
+var player = {}
 var type_building = ""
 
 # attr
@@ -19,7 +20,7 @@ var team : String = ""
 var color : Color = Color.white
 
 # capture
-var capture_by : Dictionary = {team = "", color = Color.white}
+var capture_by : Dictionary = {player = {}, team = "", color = Color.white}
 var last_owner_team = ""
 var can_be_capture = true
 
@@ -69,7 +70,7 @@ func set_data(_data):
 	
 func _ready():
 	pass
-
+	
 func capture(_cp_damage : float, _capture_by: Dictionary):
 	if not can_be_capture:
 		return

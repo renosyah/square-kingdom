@@ -147,6 +147,7 @@ func shot_at(target_translation : Vector3):
 	arrow.attack_damage = attack_damage
 	arrow.team = team
 	arrow.color = color
+	arrow.player = player
 	arrow.is_master = is_master()
 	add_child(arrow)
 	arrow.parent = parent

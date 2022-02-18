@@ -8,6 +8,7 @@ var projectile_scene = ""
 remotesync func _shot_at(target_translation : Vector3):
 	var arrow = load(projectile_scene).instance()
 	arrow.attack_damage = attack_damage
+	arrow.player = player
 	arrow.team = team
 	arrow.color = color
 	arrow.sprite = "res://scene/projectile/balista/ram_weapon.png"
@@ -49,7 +50,10 @@ func perform_attack():
 		return
 		
 	if target is Building:
-		target.capture(capture_damage, {node_path = self.get_path(), team = team, color = color})
+		target.capture(
+			capture_damage, 
+			Utils.create_hit_by(player, self.get_path(), team, color)
+		)
 		
 	rpc("_shot_at", target.translation)
 	

@@ -111,9 +111,15 @@ func perform_attack():
 		return
 		
 	if target is Building:
-		target.capture(capture_damage, {node_path = self.get_path(), team = team, color = color})
+		target.capture(
+			capture_damage, 
+			Utils.create_hit_by(player, self.get_path(), team, color)
+		)
 	else:
-		target.take_damage(attack_damage, {node_path = self.get_path(), team = team, color = color})
+		target.take_damage(
+			attack_damage,
+			Utils.create_hit_by(player, self.get_path(), team, color)
+		)
 	
 func _on_finish_died():
 	emit_signal("on_dead", self)

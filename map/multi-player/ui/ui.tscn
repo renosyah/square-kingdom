@@ -26,7 +26,6 @@ __meta__ = {
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Control" type="Control" parent="CanvasLayer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -45,14 +44,20 @@ __meta__ = {
 
 [node name="HBoxContainer3" type="VBoxContainer" parent="CanvasLayer/Control/HBoxContainer"]
 margin_right = 154.0
-margin_bottom = 164.0
+margin_bottom = 173.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/HBoxContainer/HBoxContainer3"]
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Control/HBoxContainer/HBoxContainer3"]
 margin_right = 154.0
-margin_bottom = 80.0
+margin_bottom = 5.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/HBoxContainer/HBoxContainer3"]
+margin_top = 9.0
+margin_right = 154.0
+margin_bottom = 89.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -82,9 +87,9 @@ __meta__ = {
 }
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Control/HBoxContainer/HBoxContainer3"]
-margin_top = 84.0
+margin_top = 93.0
 margin_right = 154.0
-margin_bottom = 164.0
+margin_bottom = 173.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -116,14 +121,14 @@ __meta__ = {
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/HBoxContainer"]
 margin_left = 158.0
 margin_right = 168.0
-margin_bottom = 164.0
+margin_bottom = 173.0
 rect_min_size = Vector2( 10, 0 )
 size_flags_horizontal = 3
 
 [node name="CenterContainer2" type="VBoxContainer" parent="CanvasLayer/Control/HBoxContainer"]
 margin_left = 172.0
 margin_right = 432.0
-margin_bottom = 164.0
+margin_bottom = 173.0
 rect_min_size = Vector2( 260, 0 )
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/HBoxContainer/CenterContainer2"]
@@ -152,30 +157,40 @@ __meta__ = {
 [node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Control/HBoxContainer"]
 margin_left = 436.0
 margin_right = 446.0
-margin_bottom = 164.0
+margin_bottom = 173.0
 rect_min_size = Vector2( 10, 0 )
 size_flags_horizontal = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control/HBoxContainer"]
+[node name="CenterContainer" type="VBoxContainer" parent="CanvasLayer/Control/HBoxContainer"]
 margin_left = 450.0
-margin_right = 600.0
-margin_bottom = 164.0
-rect_min_size = Vector2( 150, 0 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+margin_right = 604.0
+margin_bottom = 173.0
+rect_min_size = Vector2( 154, 0 )
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/HBoxContainer/CenterContainer"]
+margin_right = 154.0
+margin_bottom = 5.0
+rect_min_size = Vector2( 0, 5 )
 
 [node name="menu_btn" type="TextureButton" parent="CanvasLayer/Control/HBoxContainer/CenterContainer"]
-margin_left = 25.0
-margin_top = 32.0
-margin_right = 125.0
-margin_bottom = 132.0
+margin_left = 37.0
+margin_top = 9.0
+margin_right = 117.0
+margin_bottom = 89.0
 rect_min_size = Vector2( 80, 80 )
+size_flags_horizontal = 4
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
+expand = true
+
+[node name="MarginContainer4" type="MarginContainer" parent="CanvasLayer/Control/HBoxContainer"]
+margin_left = 608.0
+margin_right = 623.0
+margin_bottom = 173.0
+rect_min_size = Vector2( 15, 0 )
 
 [node name="info" type="HBoxContainer" parent="CanvasLayer/Control"]
 anchor_right = 1.0
@@ -265,6 +280,7 @@ margin_bottom = 2.0
 alignment = 1
 
 [node name="loading" type="VBoxContainer" parent="CanvasLayer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {

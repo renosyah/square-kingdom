@@ -98,6 +98,7 @@ remotesync func _game_info(_flag : int, _data : Dictionary):
 		pass
 		
 	elif _flag == GAME_OVER:
+		_ui.display_loading(true, "Battle is Over!")
 		_countdown_end.start()
 		_bot_timer.stop()
 		
@@ -145,7 +146,9 @@ func on_building_captured(_building,_last_owner_team,_capture_by):
 	
 	
 func _on_ui_on_deploy_card(unit):
-	._deploy_card(Global.player_data, unit)
+	var _player_clone = Global.player_data.duplicate()
+	_player_clone.units = []
+	._deploy_card(_player_clone, unit)
 	_ui.add_to_deck(._player_draw_card(Global.player_data.units, 1))
 	._player_deploy_card(unit, Global.player_data.units)
 	

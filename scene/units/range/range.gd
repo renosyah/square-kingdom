@@ -29,7 +29,10 @@ func perform_attack():
 		return
 		
 	if target is Building:
-		target.capture(capture_damage, {node_path = self.get_path(), team = team, color = color})
+		target.capture(
+			capture_damage,
+			Utils.create_hit_by(player, self.get_path(), team, color)
+		)
 		
 	rpc("_shot_at", target.translation)
 

@@ -12,6 +12,9 @@ func _ready():
 
 func stop_projectile():
 	.stop_projectile()
+	for i in _sprites:
+		i.visible = false
+		
 	spawn_explosive()
 	_sound.play()
 	
