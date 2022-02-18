@@ -202,6 +202,7 @@ func _spawn_buildings(castle_holder : NodePath, farm_holder : NodePath):
 		building.set_network_master(Network.PLAYER_HOST_ID)
 		building.set_data(i)
 		building.translation = i.translation
+		building.translation.y = 0.0
 		building.connect("on_ready", self, "_on_building_ready")
 		building.connect("on_building_captured", self, "_on_building_captured")
 		building.connect("on_capture_progress", self, "_on_capture_progress")
