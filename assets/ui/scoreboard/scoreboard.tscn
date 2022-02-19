@@ -1,12 +1,18 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://assets/ui/fonts/montserrat_eb_16.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/ui/fonts/montserrat_eb_14.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/ui/fonts/montserrat_eb_32.tres" type="DynamicFont" id=2]
 [ext_resource path="res://assets/ui/scoreboard/scoreboard.gd" type="Script" id=3]
+[ext_resource path="res://assets/ui/scoreboard/player.png" type="Texture" id=4]
+[ext_resource path="res://assets/ui/scoreboard/flag.png" type="Texture" id=5]
+[ext_resource path="res://assets/ui/scoreboard/recruit.png" type="Texture" id=6]
+[ext_resource path="res://assets/ui/scoreboard/focus_attack.png" type="Texture" id=7]
+[ext_resource path="res://assets/ui/scoreboard/skull.png" type="Texture" id=8]
+[ext_resource path="res://assets/ui/scoreboard/target_sword.png" type="Texture" id=9]
 
-[node name="scoreboard" type="ScrollContainer"]
-margin_right = 600.0
-margin_bottom = 100.0
+[node name="scoreboard" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 rect_min_size = Vector2( 0, 100 )
 script = ExtResource( 3 )
 __meta__ = {
@@ -14,87 +20,71 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_right = 1372.0
-margin_bottom = 49.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 size_flags_horizontal = 3
-
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
-margin_right = 15.0
-margin_bottom = 49.0
-rect_min_size = Vector2( 15, 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="player_team" type="VBoxContainer" parent="HBoxContainer"]
-margin_left = 19.0
-margin_right = 113.0
-margin_bottom = 49.0
-rect_min_size = Vector2( 15, 40 )
+margin_right = 116.0
+margin_bottom = 1024.0
+rect_min_size = Vector2( 90, 50 )
 size_flags_horizontal = 3
 
-[node name="Label2" type="Label" parent="HBoxContainer/player_team"]
-margin_right = 94.0
-margin_bottom = 40.0
+[node name="Label2" type="TextureRect" parent="HBoxContainer/player_team"]
+margin_right = 116.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
 size_flags_horizontal = 3
 size_flags_vertical = 5
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_as_outline = 2
-custom_fonts/font = ExtResource( 2 )
-text = "Team"
-align = 1
-valign = 1
+texture = ExtResource( 5 )
+stretch_mode = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/player_team"]
-margin_top = 44.0
-margin_right = 94.0
-margin_bottom = 49.0
+margin_top = 54.0
+margin_right = 116.0
+margin_bottom = 59.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="player_team" type="ColorRect" parent="HBoxContainer/player_team"]
 visible = false
-margin_top = 41.0
-margin_right = 68.0
-margin_bottom = 71.0
-rect_min_size = Vector2( 25, 30 )
-size_flags_horizontal = 3
+margin_left = 33.0
+margin_top = 63.0
+margin_right = 83.0
+margin_bottom = 93.0
+rect_min_size = Vector2( 50, 30 )
+size_flags_horizontal = 4
 size_flags_vertical = 5
-
-[node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer"]
-margin_left = 117.0
-margin_right = 132.0
-margin_bottom = 49.0
-rect_min_size = Vector2( 15, 15 )
 
 [node name="player_name" type="VBoxContainer" parent="HBoxContainer"]
-margin_left = 136.0
-margin_right = 354.0
-margin_bottom = 49.0
-rect_min_size = Vector2( 15, 40 )
+margin_left = 120.0
+margin_right = 237.0
+margin_bottom = 1024.0
+rect_min_size = Vector2( 90, 50 )
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="HBoxContainer/player_name"]
-margin_right = 218.0
-margin_bottom = 40.0
+[node name="Label" type="TextureRect" parent="HBoxContainer/player_name"]
+margin_right = 117.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
 size_flags_horizontal = 3
 size_flags_vertical = 5
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_as_outline = 2
-custom_fonts/font = ExtResource( 2 )
-text = "Player Name"
-align = 1
-valign = 1
+texture = ExtResource( 4 )
+stretch_mode = 4
 
 [node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer/player_name"]
-margin_top = 44.0
-margin_right = 218.0
-margin_bottom = 49.0
+margin_top = 54.0
+margin_right = 117.0
+margin_bottom = 59.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="player_name" type="Label" parent="HBoxContainer/player_name"]
 visible = false
-margin_top = 53.0
-margin_right = 218.0
-margin_bottom = 83.0
+margin_top = 63.0
+margin_right = 117.0
+margin_bottom = 93.0
 rect_min_size = Vector2( 0, 30 )
 size_flags_horizontal = 3
 size_flags_vertical = 5
@@ -106,36 +96,27 @@ text = "-"
 align = 1
 valign = 1
 
-[node name="MarginContainer4" type="MarginContainer" parent="HBoxContainer"]
-margin_left = 358.0
-margin_right = 373.0
-margin_bottom = 49.0
-rect_min_size = Vector2( 15, 15 )
-
 [node name="unit_deploy" type="VBoxContainer" parent="HBoxContainer"]
-margin_left = 377.0
-margin_right = 577.0
-margin_bottom = 49.0
-rect_min_size = Vector2( 15, 40 )
+visible = false
+margin_left = 241.0
+margin_right = 358.0
+margin_bottom = 69.0
+rect_min_size = Vector2( 90, 50 )
 size_flags_horizontal = 3
 
-[node name="Label2" type="Label" parent="HBoxContainer/unit_deploy"]
-margin_right = 200.0
-margin_bottom = 40.0
+[node name="Label2" type="TextureRect" parent="HBoxContainer/unit_deploy"]
+margin_right = 117.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 5
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_as_outline = 2
-custom_fonts/font = ExtResource( 2 )
-text = "Unit Deploy"
-align = 1
-valign = 1
+texture = ExtResource( 6 )
+stretch_mode = 4
 
 [node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer/unit_deploy"]
-margin_top = 44.0
-margin_right = 200.0
-margin_bottom = 49.0
+margin_top = 54.0
+margin_right = 117.0
+margin_bottom = 59.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="unit_deploy" type="Label" parent="HBoxContainer/unit_deploy"]
@@ -154,43 +135,33 @@ text = "-"
 align = 1
 valign = 1
 
-[node name="MarginContainer5" type="MarginContainer" parent="HBoxContainer"]
-margin_left = 581.0
-margin_right = 596.0
-margin_bottom = 49.0
-rect_min_size = Vector2( 15, 15 )
-
 [node name="unit_kill" type="VBoxContainer" parent="HBoxContainer"]
-margin_left = 600.0
-margin_right = 734.0
-margin_bottom = 49.0
-rect_min_size = Vector2( 15, 40 )
+margin_left = 241.0
+margin_right = 358.0
+margin_bottom = 1024.0
+rect_min_size = Vector2( 90, 50 )
 size_flags_horizontal = 3
 
-[node name="Label3" type="Label" parent="HBoxContainer/unit_kill"]
-margin_right = 134.0
-margin_bottom = 40.0
+[node name="Label3" type="TextureRect" parent="HBoxContainer/unit_kill"]
+margin_right = 117.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 25 )
 size_flags_horizontal = 3
 size_flags_vertical = 5
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_as_outline = 2
-custom_fonts/font = ExtResource( 2 )
-text = "Unit Kill"
-align = 1
-valign = 1
+texture = ExtResource( 9 )
+stretch_mode = 4
 
 [node name="MarginContainer4" type="MarginContainer" parent="HBoxContainer/unit_kill"]
-margin_top = 44.0
-margin_right = 134.0
-margin_bottom = 49.0
+margin_top = 54.0
+margin_right = 117.0
+margin_bottom = 59.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="unit_kill" type="Label" parent="HBoxContainer/unit_kill"]
 visible = false
-margin_top = 53.0
-margin_right = 134.0
-margin_bottom = 83.0
+margin_top = 63.0
+margin_right = 117.0
+margin_bottom = 93.0
 rect_min_size = Vector2( 0, 30 )
 size_flags_horizontal = 3
 size_flags_vertical = 5
@@ -202,43 +173,33 @@ text = "-"
 align = 1
 valign = 1
 
-[node name="MarginContainer6" type="MarginContainer" parent="HBoxContainer"]
-margin_left = 738.0
-margin_right = 753.0
-margin_bottom = 49.0
-rect_min_size = Vector2( 15, 15 )
-
 [node name="unit_lost" type="VBoxContainer" parent="HBoxContainer"]
-margin_left = 757.0
-margin_right = 910.0
-margin_bottom = 49.0
-rect_min_size = Vector2( 15, 40 )
+margin_left = 362.0
+margin_right = 479.0
+margin_bottom = 1024.0
+rect_min_size = Vector2( 90, 50 )
 size_flags_horizontal = 3
 
-[node name="Label4" type="Label" parent="HBoxContainer/unit_lost"]
-margin_right = 153.0
-margin_bottom = 40.0
+[node name="Label5" type="TextureRect" parent="HBoxContainer/unit_lost"]
+margin_right = 117.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 25 )
 size_flags_horizontal = 3
 size_flags_vertical = 5
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_as_outline = 2
-custom_fonts/font = ExtResource( 2 )
-text = "Unit Lost"
-align = 1
-valign = 1
+texture = ExtResource( 8 )
+stretch_mode = 4
 
 [node name="MarginContainer5" type="MarginContainer" parent="HBoxContainer/unit_lost"]
-margin_top = 44.0
-margin_right = 153.0
-margin_bottom = 49.0
+margin_top = 54.0
+margin_right = 117.0
+margin_bottom = 59.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="unit_lost" type="Label" parent="HBoxContainer/unit_lost"]
 visible = false
-margin_top = 53.0
-margin_right = 153.0
-margin_bottom = 83.0
+margin_top = 63.0
+margin_right = 117.0
+margin_bottom = 93.0
 rect_min_size = Vector2( 0, 30 )
 size_flags_horizontal = 3
 size_flags_vertical = 5
@@ -250,36 +211,27 @@ text = "-"
 align = 1
 valign = 1
 
-[node name="MarginContainer7" type="MarginContainer" parent="HBoxContainer"]
-margin_left = 914.0
-margin_right = 929.0
-margin_bottom = 49.0
-rect_min_size = Vector2( 15, 15 )
-
 [node name="building_capture" type="VBoxContainer" parent="HBoxContainer"]
-margin_left = 933.0
-margin_right = 1245.0
-margin_bottom = 49.0
-rect_min_size = Vector2( 15, 40 )
+visible = false
+margin_left = 503.0
+margin_right = 600.0
+margin_bottom = 73.0
+rect_min_size = Vector2( 90, 50 )
 size_flags_horizontal = 3
 
-[node name="Label5" type="Label" parent="HBoxContainer/building_capture"]
-margin_right = 312.0
-margin_bottom = 40.0
+[node name="Label6" type="TextureRect" parent="HBoxContainer/building_capture"]
+margin_right = 97.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 50, 25 )
 size_flags_horizontal = 3
 size_flags_vertical = 5
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_as_outline = 2
-custom_fonts/font = ExtResource( 2 )
-text = "Building Captured"
-align = 1
-valign = 1
+texture = ExtResource( 7 )
+stretch_mode = 4
 
 [node name="MarginContainer6" type="MarginContainer" parent="HBoxContainer/building_capture"]
-margin_top = 44.0
-margin_right = 312.0
-margin_bottom = 49.0
+margin_top = 68.0
+margin_right = 97.0
+margin_bottom = 73.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="building_capture" type="Label" parent="HBoxContainer/building_capture"]
@@ -298,43 +250,38 @@ text = "-"
 align = 1
 valign = 1
 
-[node name="MarginContainer8" type="MarginContainer" parent="HBoxContainer"]
-margin_left = 1249.0
-margin_right = 1264.0
-margin_bottom = 49.0
-rect_min_size = Vector2( 15, 15 )
-
 [node name="total" type="VBoxContainer" parent="HBoxContainer"]
-margin_left = 1268.0
-margin_right = 1353.0
-margin_bottom = 49.0
-rect_min_size = Vector2( 15, 40 )
+margin_left = 483.0
+margin_right = 600.0
+margin_bottom = 1024.0
+rect_min_size = Vector2( 90, 50 )
 size_flags_horizontal = 3
 
 [node name="Label6" type="Label" parent="HBoxContainer/total"]
-margin_right = 85.0
-margin_bottom = 40.0
+margin_right = 117.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
 size_flags_horizontal = 3
 size_flags_vertical = 5
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_as_outline = 2
 custom_fonts/font = ExtResource( 2 )
-text = "Total"
+text = " Total "
 align = 1
 valign = 1
 
 [node name="MarginContainer7" type="MarginContainer" parent="HBoxContainer/total"]
-margin_top = 44.0
-margin_right = 85.0
-margin_bottom = 49.0
+margin_top = 54.0
+margin_right = 117.0
+margin_bottom = 59.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="total" type="Label" parent="HBoxContainer/total"]
 visible = false
-margin_top = 53.0
-margin_right = 85.0
-margin_bottom = 83.0
+margin_top = 63.0
+margin_right = 103.0
+margin_bottom = 93.0
 rect_min_size = Vector2( 0, 30 )
 size_flags_horizontal = 3
 size_flags_vertical = 5
@@ -345,9 +292,3 @@ custom_fonts/font = ExtResource( 1 )
 text = "-"
 align = 1
 valign = 1
-
-[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
-margin_left = 1357.0
-margin_right = 1372.0
-margin_bottom = 49.0
-rect_min_size = Vector2( 15, 15 )

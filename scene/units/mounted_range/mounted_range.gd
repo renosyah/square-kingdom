@@ -1,4 +1,4 @@
-extends "res://scene/units/melee/melee.gd"
+extends "res://scene/units/mounted_melee/mounted_melee.gd"
 
 var projectile_scene = ""
 
@@ -14,6 +14,7 @@ remotesync func _shot_at(target_translation : Vector3, from : Dictionary):
 	arrow.spread = 0.4
 	add_child(arrow)
 	arrow.translation = translation
+	arrow.translation.y += 2
 	arrow.launch(target_translation)
 	
 	._perform_attack()
@@ -36,3 +37,6 @@ func perform_attack():
 		)
 		
 	rpc("_shot_at", target.translation, player)
+
+
+

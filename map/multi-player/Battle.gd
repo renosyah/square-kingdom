@@ -236,26 +236,26 @@ func _on_building_captured(_building):
 	# player,unit_deploy, unit_kill, unit_lost, building_own
 	update_scores(_building.capture_by.player, 0, 0, 0 , 1)
 	
-	if _building.team == "":
-		return
-		
-	if _building.last_owner_team == "":
-		return
-		
-	if _building.type_building == Buildings.TYPE_CASTLE:
-		# winner is set
-		winner_team = _building.team
-		game_flag = GAME_OVER
-		
-		rpc("_game_info",  game_flag , { message =  "", "scores" : scores })
-		
-	elif _building.type_building == Buildings.TYPE_FARM:
+	if _building.type_building == Buildings.TYPE_FARM:
 		if castles[_building.team].amount >= MAX_CASTLE_PRODUCING:
 			return
 			
 		var _current_amount = castles[_building.team].amount
 		castles[_building.team].update_amount(_current_amount + _building.amount)
 		
+	elif _building.type_building == Buildings.TYPE_CASTLE:
+		
+		if _building.team == "":
+			return
+			
+		if _building.last_owner_team == "":
+			return
+			
+		# winner is set
+		winner_team = _building.team
+		game_flag = GAME_OVER
+		
+		rpc("_game_info",  game_flag , { message =  "", "scores" : scores })
 	
 func _on_capture_progress(_building, _capture_by, _cp_damage, _cp, _max_cp):
 	pass
@@ -420,7 +420,8 @@ func update_scores(player : Dictionary, unit_deploy, unit_kill, unit_lost, build
 	prev_score.unit_kill += unit_kill
 	prev_score.unit_lost += unit_lost
 	prev_score.building_captured += building_captured
-	prev_score.total = prev_score.unit_deploy + prev_score.unit_kill + prev_score.unit_lost + prev_score.building_captured
+	
+	prev_score.total = prev_score.unit_kill + prev_score.unit_lost
 	
 	scores[player.id] = prev_score
 
@@ -469,7 +470,7 @@ func _building_captured_message(_building, _team,_capture_by, _last_owner_team) 
 			return "+" + str(_building.amount) + " of Income"
 			
 		if _capture_by != _team and _last_owner_team == _team:
-			return "-" + str(_building.amount) + " of Income"
+			return "+" + str(_building.amount) + " of Income is lost"
 			
 	elif _building.type_building == Buildings.TYPE_TOWER:
 		if _capture_by == _team and _last_owner_team == "":
@@ -479,7 +480,7 @@ func _building_captured_message(_building, _team,_capture_by, _last_owner_team) 
 			return "+" + str(int(_building.attack_damage)) + " of Defence"
 			
 		if _capture_by != _team and _last_owner_team == _team:
-			return "-" + str(int(_building.attack_damage)) + " of Defence"
+			return "+" + str(int(_building.attack_damage)) + " of Defence is lost"
 			
 	elif _building.type_building == Buildings.TYPE_UNIT_BUFF:
 		if _capture_by == _team and _last_owner_team == "":

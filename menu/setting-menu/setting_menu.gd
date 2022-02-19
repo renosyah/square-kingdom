@@ -125,21 +125,21 @@ func _on_hard_pressed():
 func _on_map_small_btn_pressed():
 	set_all_enable()
 	Global.player_game_data.map_size = Global.SMALL_SIZE
-	Global.player_game_data = Global.generate_farm_and_tower(Global.player_game_data)
+	Global.player_game_data = Global.generate_farm_and_tower(Global.player_game_data, 6, 4, 2)
 	apply_btn_condition()
 	Global.save_player_game_data()
 	
 func _on_map_normal_btn_pressed():
 	set_all_enable()
 	Global.player_game_data.map_size = Global.NORMAL_SIZE
-	Global.player_game_data = Global.generate_farm_and_tower(Global.player_game_data, 14, 6, 4)
+	Global.player_game_data = Global.generate_farm_and_tower(Global.player_game_data, 8, 6, 4)
 	apply_btn_condition()
 	Global.save_player_game_data()
 
 func _on_map_large_btn_pressed():
 	set_all_enable()
 	Global.player_game_data.map_size = Global.LARGE_SIZE
-	Global.player_game_data = Global.generate_farm_and_tower(Global.player_game_data, 18, 9, 6)
+	Global.player_game_data = Global.generate_farm_and_tower(Global.player_game_data, 12, 8, 6)
 	apply_btn_condition()
 	Global.save_player_game_data()
 

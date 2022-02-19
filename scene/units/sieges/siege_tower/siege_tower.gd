@@ -5,9 +5,24 @@ var _tower_data = {}
 
 func set_data(_data):
 	.set_data(_data)
-	_tower_data = _data.tower_data
-	_tower_data.team = team
-	_tower_data.range_attack = range_attack + 5.0
+	_tower_data = {
+		id = "b-3",
+		type_building = "TOWER",
+		name = "Tower",
+		node_name = "tower",
+		scene = "res://scene/buildings/tower/tower.tscn",
+		attack_damage = attack_damage,
+		range_attack = range_attack + 5.0,
+		garrison_units = [1.2, 1.8, 1.4, 1.1],
+		cp = 75.0,
+		max_cp = 75.0,
+		cp_regen_rate = 8.0,
+		amount = 0,
+		coin_produce_cooldown = 5,
+		team = team,
+		color = color,
+		translation = Vector3.ZERO
+	}
 	
 func init_siege():
 	_tower = load(_tower_data.scene).instance()

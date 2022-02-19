@@ -21,7 +21,7 @@ onready var _game_over_condition = $CanvasLayer/game_over/VBoxContainer/label2
 onready var _game_over_message = $CanvasLayer/game_over/VBoxContainer/label3
 onready var _game_over_rematch_btn = $CanvasLayer/game_over/VBoxContainer/HBoxContainer/re_match
 onready var _game_over_rematch_tip = $CanvasLayer/game_over/VBoxContainer/label4
-onready var _game_over_scoreboard = $CanvasLayer/game_over/VBoxContainer/HBoxContainer2/ColorRect/scoreboard
+onready var _game_over_scoreboard = $CanvasLayer/game_over/VBoxContainer/scoreboard
 
 onready var _ping_counter = $CanvasLayer/menu/ping_counter
 onready var _menu = $CanvasLayer/menu

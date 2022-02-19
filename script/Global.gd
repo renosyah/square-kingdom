@@ -191,7 +191,7 @@ static func generate_game_data() -> Dictionary:
 		
 	return data
 	
-static func generate_farm_and_tower(data : Dictionary, max_farm = 8, max_tower = 4, max_unit_buffer : int = 2) -> Dictionary:
+static func generate_farm_and_tower(data : Dictionary, max_farm = 6, max_tower = 4, max_unit_buffer : int = 2) -> Dictionary:
 	randomize()
 	
 	var holder = []

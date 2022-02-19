@@ -24,6 +24,8 @@ var data = {}
 var is_clickable = false
 var is_enable = true
 
+var _is_clicked = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_name.text = data.name
@@ -70,8 +72,13 @@ func _on_button_pressed():
 	if not is_clickable or not is_enable:
 		_cant_click()
 		return
+	
+	if _is_clicked:
+		_cant_click()
+		return
 		
-	is_clickable = false
+	_is_clicked = true
+	
 	_audio.stream = preload("res://assets/sound/click.wav")
 	_audio.play()
 

@@ -8,7 +8,7 @@
 [ext_resource path="res://scene/units/sieges/siege_tower/siege_tower.gd" type="Script" id=12]
 
 [sub_resource type="SphereShape" id=1]
-radius = 1.29894
+radius = 0.983866
 
 [node name="siege_tower" type="KinematicBody"]
 script = ExtResource( 12 )
@@ -89,7 +89,7 @@ transform = Transform( -0.8, 0, -1.50996e-07, 0, 0.8, 0, 1.20797e-07, 0, -1, -1.
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.330703, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.785 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0555767 )
 shape = SubResource( 1 )
 
 [node name="hpBar" parent="." instance=ExtResource( 1 )]

@@ -1,4 +1,4 @@
-extends ScrollContainer
+extends Control
 
 onready var _templates = {
 	"team" : $HBoxContainer/player_team/player_team,

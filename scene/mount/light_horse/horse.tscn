@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scene/mount/mount.gd" type="Script" id=1]
+[ext_resource path="res://scene/mount/light_horse/horse.png" type="Texture" id=2]
+
+[node name="light_horse" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="body" type="Sprite3D" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 1, 0.29906, 0, 0 )
+alpha_cut = 2
+texture = ExtResource( 2 )
