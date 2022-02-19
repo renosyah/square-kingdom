@@ -50,7 +50,9 @@ remote func _request_erase_player_joined(data : Dictionary):
 	rpc("_update_player_joined", player_joined)
 	
 remotesync func _update_player_joined(data : Array):
-	if not get_tree().is_network_server():
+	if get_tree().is_network_server():
+		_server_advertise.serverInfo["player"] = player_joined.size()
+	else:
 		player_joined = data
 		
 	player_joined.sort_custom(MyCustomSorter, "sort")

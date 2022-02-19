@@ -28,13 +28,13 @@ __meta__ = {
 }
 
 [node name="player_team" type="VBoxContainer" parent="HBoxContainer"]
-margin_right = 116.0
+margin_right = 92.0
 margin_bottom = 1024.0
 rect_min_size = Vector2( 90, 50 )
 size_flags_horizontal = 3
 
 [node name="Label2" type="TextureRect" parent="HBoxContainer/player_team"]
-margin_right = 116.0
+margin_right = 92.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 50, 50 )
 size_flags_horizontal = 3
@@ -44,29 +44,29 @@ stretch_mode = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/player_team"]
 margin_top = 54.0
-margin_right = 116.0
+margin_right = 92.0
 margin_bottom = 59.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="player_team" type="ColorRect" parent="HBoxContainer/player_team"]
 visible = false
-margin_left = 33.0
+margin_left = 22.0
 margin_top = 63.0
-margin_right = 83.0
+margin_right = 72.0
 margin_bottom = 93.0
 rect_min_size = Vector2( 50, 30 )
 size_flags_horizontal = 4
 size_flags_vertical = 5
 
 [node name="player_name" type="VBoxContainer" parent="HBoxContainer"]
-margin_left = 120.0
-margin_right = 237.0
+margin_left = 96.0
+margin_right = 189.0
 margin_bottom = 1024.0
 rect_min_size = Vector2( 90, 50 )
 size_flags_horizontal = 3
 
 [node name="Label" type="TextureRect" parent="HBoxContainer/player_name"]
-margin_right = 117.0
+margin_right = 93.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 50, 50 )
 size_flags_horizontal = 3
@@ -76,7 +76,7 @@ stretch_mode = 4
 
 [node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer/player_name"]
 margin_top = 54.0
-margin_right = 117.0
+margin_right = 93.0
 margin_bottom = 59.0
 rect_min_size = Vector2( 0, 5 )
 
@@ -97,15 +97,14 @@ align = 1
 valign = 1
 
 [node name="unit_deploy" type="VBoxContainer" parent="HBoxContainer"]
-visible = false
-margin_left = 241.0
-margin_right = 358.0
-margin_bottom = 69.0
+margin_left = 193.0
+margin_right = 285.0
+margin_bottom = 1024.0
 rect_min_size = Vector2( 90, 50 )
 size_flags_horizontal = 3
 
 [node name="Label2" type="TextureRect" parent="HBoxContainer/unit_deploy"]
-margin_right = 117.0
+margin_right = 92.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 50, 0 )
 size_flags_horizontal = 3
@@ -115,7 +114,7 @@ stretch_mode = 4
 
 [node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer/unit_deploy"]
 margin_top = 54.0
-margin_right = 117.0
+margin_right = 92.0
 margin_bottom = 59.0
 rect_min_size = Vector2( 0, 5 )
 
@@ -136,14 +135,14 @@ align = 1
 valign = 1
 
 [node name="unit_kill" type="VBoxContainer" parent="HBoxContainer"]
-margin_left = 241.0
-margin_right = 358.0
+margin_left = 289.0
+margin_right = 382.0
 margin_bottom = 1024.0
 rect_min_size = Vector2( 90, 50 )
 size_flags_horizontal = 3
 
 [node name="Label3" type="TextureRect" parent="HBoxContainer/unit_kill"]
-margin_right = 117.0
+margin_right = 93.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 50, 25 )
 size_flags_horizontal = 3
@@ -153,14 +152,14 @@ stretch_mode = 4
 
 [node name="MarginContainer4" type="MarginContainer" parent="HBoxContainer/unit_kill"]
 margin_top = 54.0
-margin_right = 117.0
+margin_right = 93.0
 margin_bottom = 59.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="unit_kill" type="Label" parent="HBoxContainer/unit_kill"]
 visible = false
 margin_top = 63.0
-margin_right = 117.0
+margin_right = 96.0
 margin_bottom = 93.0
 rect_min_size = Vector2( 0, 30 )
 size_flags_horizontal = 3
@@ -174,14 +173,14 @@ align = 1
 valign = 1
 
 [node name="unit_lost" type="VBoxContainer" parent="HBoxContainer"]
-margin_left = 362.0
-margin_right = 479.0
+margin_left = 386.0
+margin_right = 478.0
 margin_bottom = 1024.0
 rect_min_size = Vector2( 90, 50 )
 size_flags_horizontal = 3
 
 [node name="Label5" type="TextureRect" parent="HBoxContainer/unit_lost"]
-margin_right = 117.0
+margin_right = 92.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 50, 25 )
 size_flags_horizontal = 3
@@ -191,7 +190,7 @@ stretch_mode = 4
 
 [node name="MarginContainer5" type="MarginContainer" parent="HBoxContainer/unit_lost"]
 margin_top = 54.0
-margin_right = 117.0
+margin_right = 92.0
 margin_bottom = 59.0
 rect_min_size = Vector2( 0, 5 )
 
@@ -213,14 +212,14 @@ valign = 1
 
 [node name="building_capture" type="VBoxContainer" parent="HBoxContainer"]
 visible = false
-margin_left = 503.0
-margin_right = 600.0
-margin_bottom = 73.0
+margin_left = 397.0
+margin_right = 493.0
+margin_bottom = 1024.0
 rect_min_size = Vector2( 90, 50 )
 size_flags_horizontal = 3
 
 [node name="Label6" type="TextureRect" parent="HBoxContainer/building_capture"]
-margin_right = 97.0
+margin_right = 96.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 50, 25 )
 size_flags_horizontal = 3
@@ -230,7 +229,7 @@ stretch_mode = 4
 
 [node name="MarginContainer6" type="MarginContainer" parent="HBoxContainer/building_capture"]
 margin_top = 68.0
-margin_right = 97.0
+margin_right = 96.0
 margin_bottom = 73.0
 rect_min_size = Vector2( 0, 5 )
 
@@ -251,14 +250,14 @@ align = 1
 valign = 1
 
 [node name="total" type="VBoxContainer" parent="HBoxContainer"]
-margin_left = 483.0
-margin_right = 600.0
+margin_left = 482.0
+margin_right = 585.0
 margin_bottom = 1024.0
 rect_min_size = Vector2( 90, 50 )
 size_flags_horizontal = 3
 
 [node name="Label6" type="Label" parent="HBoxContainer/total"]
-margin_right = 117.0
+margin_right = 103.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 50, 50 )
 size_flags_horizontal = 3
@@ -273,7 +272,7 @@ valign = 1
 
 [node name="MarginContainer7" type="MarginContainer" parent="HBoxContainer/total"]
 margin_top = 54.0
-margin_right = 117.0
+margin_right = 103.0
 margin_bottom = 59.0
 rect_min_size = Vector2( 0, 5 )
 
@@ -292,3 +291,9 @@ custom_fonts/font = ExtResource( 1 )
 text = "-"
 align = 1
 valign = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+margin_left = 589.0
+margin_right = 599.0
+margin_bottom = 1024.0
+rect_min_size = Vector2( 10, 0 )

@@ -421,10 +421,10 @@ func update_scores(player : Dictionary, unit_deploy, unit_kill, unit_lost, build
 	prev_score.unit_lost += unit_lost
 	prev_score.building_captured += building_captured
 	
-	prev_score.total = prev_score.unit_kill + prev_score.unit_lost
+	prev_score.total = prev_score.unit_deploy + prev_score.unit_kill - prev_score.unit_lost
 	
 	scores[player.id] = prev_score
-
+	
 func _number_of_farm_owned(team) -> int:
 	var farm_own = 0
 	if not get_tree().is_network_server():

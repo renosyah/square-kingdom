@@ -66,7 +66,7 @@ remotesync func _game_info(_flag : int, _data : Dictionary):
 		var message = "Our team win!" if is_win else "Our team lose!"
 		_ui.display_game_over(false, condition, message, scores)
 		
-		_tween_cinematic_end.interpolate_property(_camera_cam, "rotation_degrees:x", -15.0 , 90, 2.1)
+		_tween_cinematic_end.interpolate_property(_camera_cam, "rotation_degrees:x", -15.0 , 90, 1.3)
 		_tween_cinematic_end.start()
 		
 ################################################################
