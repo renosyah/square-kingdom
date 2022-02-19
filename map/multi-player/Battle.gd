@@ -1,41 +1,42 @@
 extends Node
 class_name BattleMP
 
+const CAMERA_HEIGHT = 10
 const CINEMATICS = [
 	# sides
 	{
-		start = Vector3(-25, 0, 0),
-		end = Vector3(25, 0, 0),
+		start = Vector3(-25, CAMERA_HEIGHT, 0),
+		end = Vector3(25, CAMERA_HEIGHT, 0),
 	},
 	{
-		start = Vector3(25, 0, 0),
-		end = Vector3(-25, 0, 0),
+		start = Vector3(25, CAMERA_HEIGHT, 0),
+		end = Vector3(-25, CAMERA_HEIGHT, 0),
 	},
 	# tops bottom
 	{
-		start = Vector3(0, 0, -25),
-		end = Vector3(0, 0, 25),
+		start = Vector3(0, CAMERA_HEIGHT, -25),
+		end = Vector3(0, CAMERA_HEIGHT, 25),
 	},
 	{
-		start = Vector3(0, 0, 25),
-		end = Vector3(0, 0, -25),
+		start = Vector3(0, CAMERA_HEIGHT, 25),
+		end = Vector3(0, CAMERA_HEIGHT, -25),
 	},
 	# tops side to botton side
 	{
-		start = Vector3(-25, 0, -25),
-		end = Vector3(25, 0, 25),
+		start = Vector3(-25, CAMERA_HEIGHT, -25),
+		end = Vector3(25, CAMERA_HEIGHT, 25),
 	},
 	{
-		start = Vector3(25, 0, 25),
-		end = Vector3(-25, 0, -25),
+		start = Vector3(25, CAMERA_HEIGHT, 25),
+		end = Vector3(-25, CAMERA_HEIGHT, -25),
 	},
 	{
-		start = Vector3(25, 0, 25),
-		end = Vector3(-25, 0, -25),
+		start = Vector3(25, CAMERA_HEIGHT, 25),
+		end = Vector3(-25, CAMERA_HEIGHT, -25),
 	},
 	{
-		start = Vector3(25, 0, -25),
-		end = Vector3(-25, 0, 25),
+		start = Vector3(25, CAMERA_HEIGHT, -25),
+		end = Vector3(-25, CAMERA_HEIGHT, 25),
 	}
 ]
 
@@ -470,7 +471,7 @@ func _building_captured_message(_building, _team,_capture_by, _last_owner_team) 
 			return "+" + str(_building.amount) + " of Income"
 			
 		if _capture_by != _team and _last_owner_team == _team:
-			return "+" + str(_building.amount) + " of Income is lost"
+			return "-" + str(_building.amount) + " of Income"
 			
 	elif _building.type_building == Buildings.TYPE_TOWER:
 		if _capture_by == _team and _last_owner_team == "":
@@ -480,7 +481,7 @@ func _building_captured_message(_building, _team,_capture_by, _last_owner_team) 
 			return "+" + str(int(_building.attack_damage)) + " of Defence"
 			
 		if _capture_by != _team and _last_owner_team == _team:
-			return "+" + str(int(_building.attack_damage)) + " of Defence is lost"
+			return "-" + str(int(_building.attack_damage)) + " of Defence"
 			
 	elif _building.type_building == Buildings.TYPE_UNIT_BUFF:
 		if _capture_by == _team and _last_owner_team == "":

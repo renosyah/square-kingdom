@@ -243,7 +243,7 @@ func _on_collide(body):
 		
 	if body is StaticBody:
 		return
-		
+
 	if not body.is_targetable(team):
 		return
 		

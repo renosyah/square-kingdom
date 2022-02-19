@@ -86,7 +86,7 @@ shape = SubResource( 1 )
 disabled = true
 
 [node name="hpBar" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.43345, -2 )
+transform = Transform( 0.542833, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.6, 0 )
 
 [node name="message_3d" parent="." instance=ExtResource( 2 )]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )

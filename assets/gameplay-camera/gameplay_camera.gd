@@ -1,4 +1,4 @@
-extends Spatial
+extends KinematicBody
 
 signal on_camera_moving(_translation, _zoom)
 
@@ -6,8 +6,8 @@ onready var _camera = $Camera
 
 export(bool) var is_enable = true
 
-var min_zoom : float = 15.0
-var max_zoom : float = 35.0
+var min_zoom : float = 10.0
+var max_zoom : float = 25.0
 var zoom_sensitivity : float = 10.0
 var zoom_speed : float = 0.05
 
@@ -23,7 +23,7 @@ func _process(delta):
 	velocity.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	velocity.z = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up") 
 	
-	translation += velocity * delta * 25
+	move_and_slide(velocity * 25)
 	
 	
 func parsing_input(event):
@@ -52,7 +52,14 @@ func _unhandled_input(event):
 		events[event.index] = event
 		if events.size() == 1:
 			# turn input type vector2 to vector3
-			translation += (-Vector3(event.relative.x, 0, event.relative.y)) * (_camera.translation.z * drag_speed)
+			#translation += (-Vector3(event.relative.x, 0, event.relative.y)) * (_camera.translation.z * drag_speed)
+			
+			var velocity = Vector3.ZERO
+			velocity.x = -event.relative.x
+			velocity.z = -event.relative.y
+			
+			move_and_slide(velocity * (_camera.translation.z * drag_speed) * 40)
+			
 			
 		elif events.size() == 2:
 			var drag_distance = events[0].position.distance_to(events[1].position)

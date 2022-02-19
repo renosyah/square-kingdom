@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://scene/weapon/shield/round_wooden_shield/round_wooden_shield.png" type="Texture" id=1]
-
-[node name="round_wooden_shield" type="Spatial"]
-
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform( 0.883373, 0.46867, 0, -0.46867, 0.883373, 0, 0, 0, 1, 0, -0.0675524, -0.0954535 )
-texture = ExtResource( 1 )
