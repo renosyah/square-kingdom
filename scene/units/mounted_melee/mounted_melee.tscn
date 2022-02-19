@@ -871,7 +871,7 @@ texture = ExtResource( 6 )
 transform = Transform( 3, 0, 0, 0, 3, 2.98023e-08, 0, -3.57628e-07, 1, 0.298643, -0.497096, 0.0960644 )
 
 [node name="leg_3" type="Sprite3D" parent="pivot/upper_body"]
-transform = Transform( 1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0.182833, -0.630349, 0.119556 )
+transform = Transform( 1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0.183, -0.691, 0.3 )
 alpha_cut = 2
 texture = ExtResource( 5 )
 

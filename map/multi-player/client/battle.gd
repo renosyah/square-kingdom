@@ -2,6 +2,7 @@ extends BattleMP
 
 onready var _ui = $ui
 onready var _camera = $cameraPivot
+onready var _camera_cam = $cameraPivot/Camera
 onready var _terrain = $terrain
 
 onready var _castle_holder = $castle_holder
@@ -9,6 +10,7 @@ onready var _farm_holder = $farm_holder
 onready var _unit_holder = $unit_holder
 
 onready var _tween_cinematic = $tween_cinematic
+onready var _tween_cinematic_end = $tween_cinematic_end
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -63,9 +65,13 @@ remotesync func _game_info(_flag : int, _data : Dictionary):
 		var condition = "Victory!" if is_win else "Defeat!"
 		var message = "Our team win!" if is_win else "Our team lose!"
 		_ui.display_game_over(false, condition, message, scores)
-		clear_entity()
-	
-func clear_entity():
+		
+		_tween_cinematic_end.interpolate_property(_camera_cam, "rotation_degrees:x", -15.0 , 90, 2.1)
+		_tween_cinematic_end.start()
+		
+################################################################
+# camera finish cinematic move at end game
+func _on_tween_cinematic_end_tween_all_completed():
 	for i in _castle_holder.get_children() + _farm_holder.get_children() + _unit_holder.get_children():
 		i.queue_free()
 		
@@ -139,6 +145,9 @@ func _set_on_restart_match():
 func _on_host_game_session_ready(_mp_game_data : Dictionary):
 	Global.mp_game_data = _mp_game_data
 	get_tree().change_scene("res://map/multi-player/client/battle.tscn")
+
+
+
 
 
 

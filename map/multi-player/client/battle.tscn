@@ -37,4 +37,7 @@ environment = SubResource( 2 )
 
 [node name="tween_cinematic" type="Tween" parent="."]
 
+[node name="tween_cinematic_end" type="Tween" parent="."]
+
 [connection signal="on_deploy_card" from="ui" to="." method="_on_ui_on_deploy_card"]
+[connection signal="tween_all_completed" from="tween_cinematic_end" to="." method="_on_tween_cinematic_end_tween_all_completed"]

@@ -315,9 +315,10 @@ rect_min_size = Vector2( 0, 120 )
 color = Color( 0, 0, 0, 1 )
 
 [node name="game_over" type="ColorRect" parent="CanvasLayer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0.27451 )
+color = Color( 0, 0, 0, 0.196078 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -329,6 +330,19 @@ alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/game_over/VBoxContainer"]
+margin_right = 600.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 0, 120 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="MarginContainer5" type="MarginContainer" parent="CanvasLayer/game_over/VBoxContainer"]
+margin_top = 124.0
+margin_right = 600.0
+margin_bottom = 213.0
+rect_min_size = Vector2( 0, 50 )
+size_flags_vertical = 3
 
 [node name="label2" type="Label" parent="CanvasLayer/game_over/VBoxContainer"]
 margin_top = 217.0
@@ -439,6 +453,20 @@ rect_min_size = Vector2( 150, 90 )
 size_flags_horizontal = 4
 custom_fonts/font = ExtResource( 5 )
 text = " Main Menu "
+
+[node name="MarginContainer4" type="MarginContainer" parent="CanvasLayer/game_over/VBoxContainer"]
+margin_top = 810.0
+margin_right = 600.0
+margin_bottom = 900.0
+rect_min_size = Vector2( 0, 50 )
+size_flags_vertical = 3
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/game_over/VBoxContainer"]
+margin_top = 904.0
+margin_right = 600.0
+margin_bottom = 1024.0
+rect_min_size = Vector2( 0, 120 )
+color = Color( 0, 0, 0, 1 )
 
 [node name="menu" type="ColorRect" parent="CanvasLayer"]
 visible = false

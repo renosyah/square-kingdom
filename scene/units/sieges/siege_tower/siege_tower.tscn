@@ -83,7 +83,7 @@ transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -0.0294175, -0.986078, 1.34599
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -0.0294173, -0.986078, -1.31078 )
 
 [node name="flag" parent="pivot" instance=ExtResource( 4 )]
-transform = Transform( -0.8, 0, -1.50996e-07, 0, 0.8, 0, 1.20797e-07, 0, -1, -1.22791, -0.79214, -1.04564 )
+transform = Transform( -0.8, 0, -1.50996e-07, 0, 0.8, 0, 1.20797e-07, 0, -1, -1.04264, 1.36403, -1.2826 )
 
 [node name="tower_pos" type="Position3D" parent="pivot"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.330703, 0 )

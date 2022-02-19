@@ -2,6 +2,7 @@ extends BattleMP
 
 onready var _ui = $ui
 onready var _camera = $cameraPivot
+onready var _camera_cam = $cameraPivot/Camera
 onready var _terrain = $terrain
 
 onready var _bot_timer = $bot_timer
@@ -13,6 +14,7 @@ onready var _farm_holder = $farm_holder
 onready var _unit_holder = $unit_holder
 
 onready var _tween_cinematic = $tween_cinematic
+onready var _tween_cinematic_end = $tween_cinematic_end
 
 var _time_count_down = 5
 
@@ -108,9 +110,13 @@ remotesync func _game_info(_flag : int, _data : Dictionary):
 		var condition = "Victory!" if is_win else "Defeat!"
 		var message = "Our team win!" if is_win else "Our team lose!"
 		_ui.display_game_over(true, condition, message, scores)
-		clear_entity()
-	
-func clear_entity():
+		
+		_tween_cinematic_end.interpolate_property(_camera_cam, "rotation_degrees:x", -15.0 , 90, 2.1)
+		_tween_cinematic_end.start()
+		
+################################################################
+# camera finish cinematic move at end game
+func _on_tween_cinematic_end_tween_all_completed():
 	for i in _castle_holder.get_children() + _farm_holder.get_children() + _unit_holder.get_children():
 		i.queue_free()
 		
@@ -226,6 +232,12 @@ func _on_countdown_end_timeout():
 	
 func _on_coin_update_timeout():
 	rpc("_on_coin_updated", _get_coin_each_team())
+
+
+
+
+
+
 
 
 

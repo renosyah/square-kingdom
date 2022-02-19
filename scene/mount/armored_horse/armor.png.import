@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/armored_horse.png-270c2b49b0a282f94360456217af0bfd.s3tc.stex"
-path.etc="res://.import/armored_horse.png-270c2b49b0a282f94360456217af0bfd.etc.stex"
+path.s3tc="res://.import/armor.png-b7cfa7c2676c5c86649885a43cced9f5.s3tc.stex"
+path.etc="res://.import/armor.png-b7cfa7c2676c5c86649885a43cced9f5.etc.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://scene/mount/armored_horse/armored_horse.png"
-dest_files=[ "res://.import/armored_horse.png-270c2b49b0a282f94360456217af0bfd.s3tc.stex", "res://.import/armored_horse.png-270c2b49b0a282f94360456217af0bfd.etc.stex" ]
+source_file="res://scene/mount/armored_horse/armor.png"
+dest_files=[ "res://.import/armor.png-b7cfa7c2676c5c86649885a43cced9f5.s3tc.stex", "res://.import/armor.png-b7cfa7c2676c5c86649885a43cced9f5.etc.stex" ]
 
 [params]
 
