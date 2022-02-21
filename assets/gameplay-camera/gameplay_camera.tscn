@@ -3,6 +3,7 @@
 [ext_resource path="res://assets/gameplay-camera/gameplay_camera.gd" type="Script" id=1]
 
 [sub_resource type="SphereShape" id=1]
+radius = 0.393563
 
 [node name="cameraPivot" type="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0.0998206 )
@@ -13,7 +14,7 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, -4.91738e-07, 25 )
+transform = Transform( 1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 20 )
 keep_aspect = 0
 current = true
 size = 20.0

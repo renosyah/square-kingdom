@@ -6,8 +6,8 @@ onready var _camera = $Camera
 
 export(bool) var is_enable = true
 
-var min_zoom : float = 10.0
-var max_zoom : float = 25.0
+var min_zoom : float = 5.0
+var max_zoom : float = 20.0
 var zoom_sensitivity : float = 10.0
 var zoom_speed : float = 0.05
 

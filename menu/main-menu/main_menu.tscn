@@ -28,13 +28,12 @@ background_color = Color( 0.254902, 0.823529, 1, 1 )
 [node name="terrain" parent="." instance=ExtResource( 3 )]
 
 [node name="cameraPivot" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 0.965924, 0.258819, 0, -0.258819, 0.965924, 0, 5.34044, 8.44342 )
+transform = Transform( 1, 0, 0, 0, 0.965924, 0.258819, 0, -0.258819, 0.965924, 0, 5.34044, 17.6043 )
 is_enable = false
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 40, 70 )
 light_energy = 0.4
-shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 2 )
