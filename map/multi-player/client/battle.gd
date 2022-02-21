@@ -48,8 +48,10 @@ remotesync func _game_info(_flag : int, _data : Dictionary):
 	if _flag == GAME_START:
 		_ui.add_to_deck(._player_draw_card(Global.player_data.units, MAX_DRAW_CARD))
 		
+		var castle_pos = castles[Global.player_data.team].translation
+		castle_pos.y = CAMERA_HEIGHT
 		_tween_cinematic.stop(_camera, "translation")
-		_tween_cinematic.interpolate_property(_camera, "translation", _camera.translation, castles[Global.player_data.team].translation, 2.1)
+		_tween_cinematic.interpolate_property(_camera, "translation", _camera.translation,castle_pos, 2.1)
 		_tween_cinematic.start()
 		
 	elif _flag == GAME_INFO:

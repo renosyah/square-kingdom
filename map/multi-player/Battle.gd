@@ -402,6 +402,9 @@ func update_scores(player : Dictionary, unit_deploy, unit_kill, unit_lost, build
 	if not get_tree().is_network_server():
 		return
 		
+	if game_flag == GAME_OVER:
+		return
+		
 	if player.empty():
 		return
 		
