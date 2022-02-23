@@ -1,0 +1,171 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://menu/deck-menu/deck_menu.gd" type="Script" id=1]
+[ext_resource path="res://assets/ui/fonts/montserrat_eb_16.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/ui/icon/back.png" type="Texture" id=3]
+[ext_resource path="res://assets/ui/fonts/montserrat_eb_32.tres" type="DynamicFont" id=4]
+[ext_resource path="res://assets/ui/fonts/montserrat_eb_48.tres" type="DynamicFont" id=5]
+[ext_resource path="res://assets/ui/simple_dialog_message/exception_message.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/ui/simple_dialog_message/exception_message.gd" type="Script" id=7]
+
+[node name="deck_menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bg" type="ColorRect" parent="CanvasLayer/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control/VBoxContainer2"]
+margin_right = 600.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 0, 120 )
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer2/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 593.0
+margin_bottom = 113.0
+
+[node name="back" type="Button" parent="CanvasLayer/Control/VBoxContainer2/PanelContainer/HBoxContainer"]
+margin_right = 100.0
+margin_bottom = 106.0
+rect_min_size = Vector2( 100, 100 )
+custom_fonts/font = ExtResource( 4 )
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="TextureRect" parent="CanvasLayer/Control/VBoxContainer2/PanelContainer/HBoxContainer/back"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -40.0
+margin_top = -40.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 80, 80 )
+texture = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="margin" type="CenterContainer" parent="CanvasLayer/Control/VBoxContainer2/PanelContainer/HBoxContainer"]
+margin_left = 104.0
+margin_right = 482.0
+margin_bottom = 106.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer2/PanelContainer/HBoxContainer/margin"]
+margin_left = 116.0
+margin_top = 23.0
+margin_right = 262.0
+margin_bottom = 83.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 5 )
+text = "Cards"
+align = 1
+valign = 1
+
+[node name="margin2" type="MarginContainer" parent="CanvasLayer/Control/VBoxContainer2/PanelContainer/HBoxContainer"]
+margin_left = 486.0
+margin_right = 586.0
+margin_bottom = 106.0
+rect_min_size = Vector2( 100, 0 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer2"]
+margin_top = 124.0
+margin_right = 600.0
+margin_bottom = 204.0
+rect_min_size = Vector2( 0, 80 )
+
+[node name="deck" type="Button" parent="CanvasLayer/Control/VBoxContainer2/HBoxContainer"]
+margin_right = 298.0
+margin_bottom = 80.0
+size_flags_horizontal = 3
+custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+custom_constants/hseparation = 2
+custom_fonts/font = ExtResource( 2 )
+text = "Deck"
+
+[node name="inv" type="Button" parent="CanvasLayer/Control/VBoxContainer2/HBoxContainer"]
+margin_left = 302.0
+margin_right = 600.0
+margin_bottom = 80.0
+size_flags_horizontal = 3
+custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+custom_constants/hseparation = 2
+custom_fonts/font = ExtResource( 2 )
+text = "Inventory"
+
+[node name="deck_layout" type="ScrollContainer" parent="CanvasLayer/Control/VBoxContainer2"]
+margin_top = 208.0
+margin_right = 600.0
+margin_bottom = 1024.0
+size_flags_vertical = 3
+scroll_horizontal_enabled = false
+
+[node name="VBoxContainer" type="GridContainer" parent="CanvasLayer/Control/VBoxContainer2/deck_layout"]
+margin_right = 600.0
+size_flags_horizontal = 3
+columns = 4
+
+[node name="inventory_layout" type="ScrollContainer" parent="CanvasLayer/Control/VBoxContainer2"]
+visible = false
+margin_top = 618.0
+margin_right = 600.0
+margin_bottom = 1024.0
+size_flags_vertical = 3
+scroll_horizontal_enabled = false
+
+[node name="VBoxContainer" type="GridContainer" parent="CanvasLayer/Control/VBoxContainer2/inventory_layout"]
+margin_right = 600.0
+size_flags_horizontal = 3
+columns = 4
+
+[node name="exception_message" type="Control" parent="CanvasLayer" instance=ExtResource( 6 )]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer2/PanelContainer/HBoxContainer/back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer2/HBoxContainer/deck" to="." method="_on_deck_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer2/HBoxContainer/inv" to="." method="_on_inv_pressed"]

@@ -34,6 +34,9 @@ func _server_player_connected(_player_network_unique_id : int, _player : Diction
 	
 func _on_setting_pressed():
 	get_tree().change_scene("res://menu/setting-menu/setting_menu.tscn")
+
+func _on_deck_pressed():
+	get_tree().change_scene("res://menu/deck-menu/deck_menu.tscn")
 	
 func _on_host_pressed():
 	Global.mode = Global.MODE_HOST
@@ -51,6 +54,8 @@ func _on_server_browser_on_join(info):
 	Global.mode = Global.MODE_JOIN
 	Global.client.ip = info.ip
 	get_tree().change_scene("res://menu/lobby-menu/lobby_menu.tscn")
+
+
 
 
 

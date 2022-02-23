@@ -47,6 +47,7 @@ func _ready():
 	PERSISTEN_SAVE = not OS.get_name() in DEKSTOP
 	load_player_data()
 	load_player_game_data()
+	load_player_inventories()
 	load_audio_setting()
 	play_music()
 	
@@ -97,7 +98,7 @@ func new_player_data() -> Dictionary:
 		name = OS.get_name(),
 		color = Color.blue,
 		team = TEAM_1,
-		units = []
+		units = [],
 	}
 	
 	for i in Units.UNITS:
@@ -129,6 +130,26 @@ func load_player_data():
 		
 	player_data = _player_data
 	save_player_data()
+	
+################################################################
+# player inventories
+var player_inventories = []
+
+func save_player_inventories():
+	if PERSISTEN_SAVE:
+		SaveLoad.save("player_inventories.dat", player_inventories)
+	
+func load_player_inventories():
+	var _player_inventories = null 
+	
+	if PERSISTEN_SAVE:
+		_player_inventories = SaveLoad.load_save("player_inventories.dat")
+		
+	if not _player_inventories:
+		_player_inventories = []
+		
+	player_inventories = _player_inventories
+	save_player_inventories()
 	
 ################################################################
 # game data
@@ -168,6 +189,7 @@ static func generate_game_data() -> Dictionary:
 		ai_units = [],
 		buildings = [],
 		map_size = SMALL_SIZE,
+		map_season = Color.green,
 		max_unit_spawn = 10,
 	}
 	

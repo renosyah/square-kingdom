@@ -11,7 +11,6 @@ albedo_color = Color( 1, 0, 0, 1 )
 albedo_color = Color( 0, 0.0392157, 1, 1 )
 
 [sub_resource type="SpatialMaterial" id=1]
-albedo_color = Color( 0, 0.686275, 0.117647, 1 )
 
 [sub_resource type="CubeMesh" id=2]
 material = SubResource( 1 )
@@ -37,7 +36,7 @@ size = Vector3( 80, 30, 40 )
 size = Vector3( 160, 2, 60 )
 
 [sub_resource type="SpatialMaterial" id=13]
-albedo_color = Color( 0, 0.686275, 0.117647, 1 )
+albedo_color = Color( 0.74902, 0.792157, 0.796078, 1 )
 
 [sub_resource type="CubeMesh" id=14]
 size = Vector3( 80, 2, 40 )

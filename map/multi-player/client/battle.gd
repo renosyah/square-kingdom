@@ -34,6 +34,7 @@ func _init_client():
 	check_deck()
 	
 	_terrain.map_size = game_data.map_size
+	_terrain.season = game_data.map_season
 	_terrain.generate()
 	
 	_spawn_buildings(_castle_holder.get_path(), _farm_holder.get_path())

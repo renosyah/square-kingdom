@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/ui/fonts/montserrat_eb_48.tres" type="DynamicFont" id=1]
 [ext_resource path="res://menu/main-menu/ui/ui.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/ui/icon/setting.png" type="Texture" id=7]
 [ext_resource path="res://assets/ui/server-browser/server_browser.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/ui/fonts/montserrat_eb_32.tres" type="DynamicFont" id=9]
+[ext_resource path="res://assets/ui/icon/cards.png" type="Texture" id=10]
 [ext_resource path="res://assets/ui/simple_dialog_message/exception_message.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/ui/fonts/montserrat_eb_16.tres" type="DynamicFont" id=12]
 [ext_resource path="res://assets/ui/icon/host.png" type="Texture" id=13]
@@ -245,19 +246,28 @@ __meta__ = {
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -130.0
-margin_bottom = 114.0
+margin_bottom = 164.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="setting" type="Button" parent="CanvasLayer/Control/CenterContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/CenterContainer2"]
 margin_left = 25.0
-margin_top = 17.0
 margin_right = 105.0
-margin_bottom = 97.0
+margin_bottom = 202.0
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Control/CenterContainer2/VBoxContainer"]
+margin_right = 80.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 0, 15 )
+
+[node name="setting" type="Button" parent="CanvasLayer/Control/CenterContainer2/VBoxContainer"]
+margin_top = 19.0
+margin_right = 80.0
+margin_bottom = 99.0
 rect_min_size = Vector2( 80, 80 )
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control/CenterContainer2/setting"]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control/CenterContainer2/VBoxContainer/setting"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.278431, 0.278431, 0.278431, 1 )
@@ -265,10 +275,39 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/CenterContainer2/setting"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/CenterContainer2/VBoxContainer/setting"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 7 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/CenterContainer2/VBoxContainer"]
+margin_top = 103.0
+margin_right = 80.0
+margin_bottom = 118.0
+rect_min_size = Vector2( 0, 15 )
+
+[node name="deck" type="Button" parent="CanvasLayer/Control/CenterContainer2/VBoxContainer"]
+margin_top = 122.0
+margin_right = 80.0
+margin_bottom = 202.0
+rect_min_size = Vector2( 80, 80 )
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control/CenterContainer2/VBoxContainer/deck"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.278431, 0.278431, 0.278431, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/CenterContainer2/VBoxContainer/deck"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 10 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -283,6 +322,7 @@ visible = false
 [connection signal="pressed" from="CanvasLayer/Control/Control/VBoxContainer/play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Control/VBoxContainer/HBoxContainer/host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Control/VBoxContainer/HBoxContainer/join" to="." method="_on_join_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/CenterContainer2/setting" to="." method="_on_setting_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/CenterContainer2/VBoxContainer/setting" to="." method="_on_setting_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/CenterContainer2/VBoxContainer/deck" to="." method="_on_deck_pressed"]
 [connection signal="close" from="CanvasLayer/server_browser" to="." method="_on_server_browser_close"]
 [connection signal="on_join" from="CanvasLayer/server_browser" to="." method="_on_server_browser_on_join"]

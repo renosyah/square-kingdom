@@ -18,3 +18,4 @@ transform = Transform( 1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0
 keep_aspect = 0
 current = true
 size = 20.0
+far = 150.0
