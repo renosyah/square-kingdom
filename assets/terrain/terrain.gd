@@ -1,11 +1,5 @@
 extends StaticBody
 
-const GREEN_GRASS = Color(0, 0.686275, 0.117647)
-const WHITE_SNOW = Color(0.750643, 0.792025, 0.797363)
-const YELLOW_SAND = Color(0.737255, 0.482353, 0.039216)
-
-const SEASONS = [GREEN_GRASS, WHITE_SNOW, YELLOW_SAND]
-
 onready var _pivot = $pivot
 onready var _grass = $pivot/grass
 onready var _collision_shape = $CollisionShape
@@ -29,7 +23,7 @@ var map_size = Global.NORMAL_SIZE
 var translations = []
 var east_spawn_translations = []
 var west_spawn_translations = []
-var season = GREEN_GRASS
+var season = Global.GREEN_GRASS
 
 func _ready():
 	var material = _grass.mesh.surface_get_material(0)

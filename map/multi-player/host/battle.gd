@@ -42,9 +42,7 @@ func generate_spawn():
 	MAX_UNIT_SPAWN = game_data.max_unit_spawn
 	check_deck()
 	
-	_terrain.season = _terrain.SEASONS[randi() % _terrain.SEASONS.size()]
-	game_data.map_season = _terrain.season
-	
+	_terrain.season = game_data.map_season
 	_terrain.map_size = game_data.map_size
 	_terrain.generate()
 	

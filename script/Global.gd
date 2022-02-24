@@ -42,6 +42,12 @@ const LARGE_SIZE = {
 	offset = 18
 } #OK
 
+const GREEN_GRASS = Color(0, 0.686275, 0.117647)
+const WHITE_SNOW = Color(0.750643, 0.792025, 0.797363)
+const YELLOW_SAND = Color(0.737255, 0.482353, 0.039216)
+
+const SEASONS = [GREEN_GRASS, WHITE_SNOW, YELLOW_SAND]
+
 
 func _ready():
 	PERSISTEN_SAVE = not OS.get_name() in DEKSTOP
