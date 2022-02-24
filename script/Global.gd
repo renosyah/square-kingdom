@@ -141,6 +141,12 @@ func load_player_data():
 # player inventories
 var player_inventories = []
 
+func apply_players_unit_inventories():
+	for i in player_inventories:
+		i.team = player_data.team
+		i.color = player_data.color
+		i.is_draw = false
+		
 func save_player_inventories():
 	if PERSISTEN_SAVE:
 		SaveLoad.save("player_inventories.dat", player_inventories)

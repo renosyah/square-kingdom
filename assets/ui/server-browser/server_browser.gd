@@ -52,3 +52,9 @@ func show_loading(_show):
 func _on_back_pressed():
 	clear_list()
 	emit_signal("close")
+
+
+func _on_refresh_pressed():
+	stop_finding()
+	start_finding()
+	

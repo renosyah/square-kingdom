@@ -46,6 +46,9 @@ func _pick_for_team_1(_color):
 	Global.apply_players_unit_team()
 	Global.save_player_data()
 	
+	Global.apply_players_unit_inventories()
+	Global.save_player_inventories()
+	
 func _pick_for_team_2(_color):
 	_team_2_color.color = _color
 	Global.player_game_data[Global.TEAM_2].color = _color
