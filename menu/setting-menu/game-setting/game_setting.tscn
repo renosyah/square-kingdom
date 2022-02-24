@@ -1,0 +1,181 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://menu/setting-menu/game-setting/game_setting.gd" type="Script" id=1]
+[ext_resource path="res://assets/ui/fonts/montserrat_eb_32.tres" type="DynamicFont" id=2]
+
+[node name="game_setting" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer6" type="MarginContainer" parent="VBoxContainer"]
+margin_right = 600.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 40 )
+
+[node name="Label4" type="Label" parent="VBoxContainer"]
+margin_top = 44.0
+margin_right = 600.0
+margin_bottom = 84.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+text = "Bot Difficulty"
+align = 1
+valign = 1
+
+[node name="ai_setting" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 88.0
+margin_right = 600.0
+margin_bottom = 178.0
+alignment = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer/ai_setting"]
+margin_right = 10.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="easy_btn" type="Button" parent="VBoxContainer/ai_setting"]
+margin_left = 14.0
+margin_right = 192.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 150, 90 )
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Easy"
+
+[node name="MarginContainer5" type="MarginContainer" parent="VBoxContainer/ai_setting"]
+margin_left = 196.0
+margin_right = 206.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="medium" type="Button" parent="VBoxContainer/ai_setting"]
+margin_left = 210.0
+margin_right = 389.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 150, 90 )
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Medium"
+
+[node name="MarginContainer6" type="MarginContainer" parent="VBoxContainer/ai_setting"]
+margin_left = 393.0
+margin_right = 403.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="hard" type="Button" parent="VBoxContainer/ai_setting"]
+margin_left = 407.0
+margin_right = 586.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 150, 90 )
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Hard"
+
+[node name="MarginContainer4" type="MarginContainer" parent="VBoxContainer/ai_setting"]
+margin_left = 590.0
+margin_right = 600.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="MarginContainer5" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 182.0
+margin_right = 600.0
+margin_bottom = 222.0
+rect_min_size = Vector2( 0, 40 )
+
+[node name="Label6" type="Label" parent="VBoxContainer"]
+margin_top = 226.0
+margin_right = 600.0
+margin_bottom = 266.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+text = "Max Unit Deploy"
+align = 1
+valign = 1
+
+[node name="pop_cap" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 270.0
+margin_right = 600.0
+margin_bottom = 360.0
+alignment = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer/pop_cap"]
+margin_right = 10.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="small_size" type="Button" parent="VBoxContainer/pop_cap"]
+margin_left = 14.0
+margin_right = 192.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 150, 90 )
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "10"
+
+[node name="MarginContainer5" type="MarginContainer" parent="VBoxContainer/pop_cap"]
+margin_left = 196.0
+margin_right = 206.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="medium_size" type="Button" parent="VBoxContainer/pop_cap"]
+margin_left = 210.0
+margin_right = 389.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 150, 90 )
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "15"
+
+[node name="MarginContainer6" type="MarginContainer" parent="VBoxContainer/pop_cap"]
+margin_left = 393.0
+margin_right = 403.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="huge_size" type="Button" parent="VBoxContainer/pop_cap"]
+margin_left = 407.0
+margin_right = 586.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 150, 90 )
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "20"
+
+[node name="MarginContainer4" type="MarginContainer" parent="VBoxContainer/pop_cap"]
+margin_left = 590.0
+margin_right = 600.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="MarginContainer7" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 364.0
+margin_right = 600.0
+margin_bottom = 489.0
+rect_min_size = Vector2( 0, 125 )
+
+[connection signal="pressed" from="VBoxContainer/ai_setting/easy_btn" to="." method="_on_easy_btn_pressed"]
+[connection signal="pressed" from="VBoxContainer/ai_setting/medium" to="." method="_on_medium_pressed"]
+[connection signal="pressed" from="VBoxContainer/ai_setting/hard" to="." method="_on_hard_pressed"]
+[connection signal="pressed" from="VBoxContainer/pop_cap/small_size" to="." method="_on_small_size_pressed"]
+[connection signal="pressed" from="VBoxContainer/pop_cap/medium_size" to="." method="_on_medium_size_pressed"]
+[connection signal="pressed" from="VBoxContainer/pop_cap/huge_size" to="." method="_on_huge_size_pressed"]

@@ -1,0 +1,194 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/ui/fonts/montserrat_eb_32.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/ui/icon/save.png" type="Texture" id=2]
+[ext_resource path="res://assets/ui/icon/pick_color.png" type="Texture" id=3]
+[ext_resource path="res://menu/setting-menu/tag-setting/tag_setting.gd" type="Script" id=6]
+
+[node name="tag_setting" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer"]
+margin_right = 600.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 40 )
+
+[node name="player_name_setting" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 44.0
+margin_right = 600.0
+margin_bottom = 144.0
+rect_min_size = Vector2( 0, 50 )
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/player_name_setting"]
+margin_right = 10.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="input_name" type="LineEdit" parent="VBoxContainer/player_name_setting"]
+margin_left = 14.0
+margin_right = 482.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 0, 100 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+align = 1
+max_length = 20
+placeholder_text = "Your Name"
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="save_name" type="Button" parent="VBoxContainer/player_name_setting"]
+margin_left = 486.0
+margin_right = 586.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 0 )
+
+[node name="ColorRect" type="TextureRect" parent="VBoxContainer/player_name_setting/save_name"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource( 2 )
+expand = true
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/player_name_setting"]
+margin_left = 590.0
+margin_right = 600.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 148.0
+margin_right = 600.0
+margin_bottom = 188.0
+rect_min_size = Vector2( 0, 40 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 192.0
+margin_right = 600.0
+margin_bottom = 336.0
+
+[node name="team_1_setting" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+margin_right = 291.0
+margin_bottom = 144.0
+size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer/team_1_setting"]
+margin_right = 291.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+text = "Team 1 Color"
+align = 1
+valign = 1
+
+[node name="hbox" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/team_1_setting"]
+margin_top = 44.0
+margin_right = 291.0
+margin_bottom = 144.0
+rect_min_size = Vector2( 0, 100 )
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/team_1_setting/hbox"]
+margin_right = 10.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="color" type="ColorRect" parent="VBoxContainer/HBoxContainer/team_1_setting/hbox"]
+margin_left = 14.0
+margin_right = 187.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 0, 100 )
+size_flags_horizontal = 3
+
+[node name="team_1_randomize_color" type="Button" parent="VBoxContainer/HBoxContainer/team_1_setting/hbox"]
+margin_left = 191.0
+margin_right = 291.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 0 )
+
+[node name="ColorRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/team_1_setting/hbox/team_1_randomize_color"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource( 3 )
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
+margin_left = 295.0
+margin_right = 305.0
+margin_bottom = 144.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="team_2_setting" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+margin_left = 309.0
+margin_right = 600.0
+margin_bottom = 144.0
+size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer/team_2_setting"]
+margin_right = 291.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+text = "Team 2 Color"
+align = 1
+valign = 1
+
+[node name="hbox" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/team_2_setting"]
+margin_top = 44.0
+margin_right = 291.0
+margin_bottom = 144.0
+rect_min_size = Vector2( 0, 100 )
+
+[node name="color" type="ColorRect" parent="VBoxContainer/HBoxContainer/team_2_setting/hbox"]
+margin_right = 173.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 0, 100 )
+size_flags_horizontal = 3
+
+[node name="team_2_randomize_color" type="Button" parent="VBoxContainer/HBoxContainer/team_2_setting/hbox"]
+margin_left = 177.0
+margin_right = 277.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 0 )
+
+[node name="ColorRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/team_2_setting/hbox/team_2_randomize_color"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource( 3 )
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer/team_2_setting/hbox"]
+margin_left = 281.0
+margin_right = 291.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="MarginContainer8" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 340.0
+margin_right = 600.0
+margin_bottom = 380.0
+rect_min_size = Vector2( 0, 40 )
+
+[connection signal="pressed" from="VBoxContainer/player_name_setting/save_name" to="." method="_on_save_name_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/team_1_setting/hbox/team_1_randomize_color" to="." method="_on_team_1_randomize_color_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/team_2_setting/hbox/team_2_randomize_color" to="." method="_on_team_2_randomize_color_pressed"]

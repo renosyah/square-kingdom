@@ -195,7 +195,7 @@ static func generate_game_data() -> Dictionary:
 		ai_units = [],
 		buildings = [],
 		map_size = SMALL_SIZE,
-		map_season = Color.green,
+		map_season = GREEN_GRASS,
 		max_unit_spawn = 10,
 	}
 	

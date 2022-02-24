@@ -264,7 +264,6 @@ func _on_battle_pressed():
 		
 	Global.mp_game_data = {}
 	Global.mp_game_data = Global.player_game_data.duplicate(true)
-	Global.mp_game_data.map_season = Global.SEASONS[randi() % Global.SEASONS.size()]
 	
 	# enable ai if no player in afromation team
 	for i in Global.TEAMS:

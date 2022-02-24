@@ -26,8 +26,6 @@ func _server_player_connected(_player_network_unique_id : int, _player : Diction
 	Global.mp_game_data[Global.TEAM_1].enable_ai = false
 	Global.mp_game_data[Global.TEAM_2].enable_ai = true
 	
-	Global.mp_game_data.map_season = Global.SEASONS[randi() % Global.SEASONS.size()]
-	
 	Global.player_data.team = Global.TEAM_1
 	Global.player_data.color = Global.mp_game_data[Global.TEAM_1].color
 	Global.apply_players_unit_team()

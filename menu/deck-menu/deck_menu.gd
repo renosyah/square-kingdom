@@ -17,6 +17,13 @@ onready var _exception_message = $CanvasLayer/exception_message
 var decks = []
 var inventories = []
 
+class CardSorter:
+	static func sort(a, b):
+		if a["cost"] < b["cost"]:
+			return true
+		return false
+		
+		
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_tree().set_quit_on_go_back(false)
@@ -28,6 +35,9 @@ func _ready():
 func refill_holder():
 	empty_holder(_deck_holder)
 	empty_holder(_inventory_holder)
+	
+	decks.sort_custom(CardSorter, "sort")
+	inventories.sort_custom(CardSorter, "sort")
 	
 	for i in decks:
 		var item = card_deck.instance()

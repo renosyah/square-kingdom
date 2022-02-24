@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://menu/deck-menu/deck_menu.gd" type="Script" id=1]
 [ext_resource path="res://assets/ui/fonts/montserrat_eb_16.tres" type="DynamicFont" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://assets/ui/fonts/montserrat_eb_32.tres" type="DynamicFont" id=4]
 [ext_resource path="res://assets/ui/fonts/montserrat_eb_48.tres" type="DynamicFont" id=5]
 [ext_resource path="res://assets/ui/simple_dialog_message/exception_message.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/ui/simple_dialog_message/exception_message.gd" type="Script" id=7]
 
 [node name="deck_menu" type="Control"]
 anchor_right = 1.0
@@ -157,14 +156,8 @@ margin_right = 600.0
 size_flags_horizontal = 3
 columns = 4
 
-[node name="exception_message" type="Control" parent="CanvasLayer" instance=ExtResource( 6 )]
+[node name="exception_message" parent="CanvasLayer" instance=ExtResource( 6 )]
 visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-script = ExtResource( 7 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer2/PanelContainer/HBoxContainer/back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer2/HBoxContainer/deck" to="." method="_on_deck_pressed"]
