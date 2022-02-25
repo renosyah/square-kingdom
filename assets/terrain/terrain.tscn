@@ -100,6 +100,7 @@ material/0 = SubResource( 10 )
 
 [node name="cliff_top" type="StaticBody" parent="pivot"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 29.8536, 0 )
+collision_layer = 0
 
 [node name="cliff1" type="MeshInstance" parent="pivot/cliff_top"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.127, -14.692, -69 )

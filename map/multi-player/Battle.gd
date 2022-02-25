@@ -345,6 +345,7 @@ func _unit_spawned(_unit):
 func _assign_building_target(_building):
 	var targets = units.duplicate()
 	var target = null
+	var team = _building.team
 	
 	targets.shuffle()
 	
@@ -352,7 +353,7 @@ func _assign_building_target(_building):
 		if not is_instance_valid(i):
 			continue
 			
-		if i.team != _building.team:
+		if i.team != team:
 			target = i
 			break
 			
@@ -382,19 +383,20 @@ func _assign_unit_target(_unit):
 	targets.shuffle()
 	
 	var target = null
+	var team = _unit.team
 	
 	for i in targets:
 		if not is_instance_valid(i):
 			continue
 			
-		if i.team != _unit.team:
+		if i.team != team:
 			target = i
 			break
 			
 	if not is_instance_valid(target):
 		return
 		
-	_unit.target = target
+	_unit.set_target(target.get_path())
 	
 ################################################################
 # utils function

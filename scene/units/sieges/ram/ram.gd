@@ -129,6 +129,10 @@ func _process(delta):
 		rotation.z = lerp_angle(rotation.z, _puppet_rotation.z, delta * 5)
 		return
 		
+	if not target:
+		set_process(false)
+		return
+		
 	var velocity = Vector3.ZERO
 	var direction = Vector3.ZERO
 	var distance_to_target = 0.0
@@ -138,10 +142,11 @@ func _process(delta):
 		distance_to_target = translation.distance_to(target.translation)
 		
 #		transform_turning(Vector3(target.translation.x , translation.y ,target.translation.z), delta)
-		
 		if not target.is_targetable(team):
-			_check_is_walking(false)
 			target = null
+			_check_is_walking(false)
+			set_process(false)
+			return
 			
 		elif distance_to_target > range_attack:
 			_check_is_walking(true)
@@ -149,15 +154,20 @@ func _process(delta):
 			velocity = Vector3(direction.x, 0.0 , direction.z) * speed
 			transform_turning(Vector3(target.translation.x , translation.y ,target.translation.z), delta)
 			
-		elif distance_to_target <= range_attack and _cooldown_timmer.is_stopped():
-			_check_is_walking(false)
-			perform_attack()
-			_cooldown_timmer.start()
-			
-		
+		elif distance_to_target <= range_attack:
+			if _cooldown_timmer.is_stopped():
+				_check_is_walking(false)
+				perform_attack()
+				_cooldown_timmer.start()
+				
 		var collide = move_and_collide(velocity * delta)
 		if collide != null:
 			_on_collide(collide.collider)
+			
+	else:
+		set_process(false)
+		return
+		
 		
 func transform_turning(direction, delta):
 	var new_transform = transform.looking_at(direction, Vector3.UP)

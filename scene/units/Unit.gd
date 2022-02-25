@@ -113,9 +113,18 @@ func set_data(_data):
 	team = _data.team 
 	color = _data.color
 	
+func set_target(_target : NodePath):
+	if not is_master():
+		return
+		
+	var _aggresor = get_node_or_null(_target)
+	if is_instance_valid(_aggresor):
+		target = _aggresor
+		set_process(true)
+	
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	set_process(is_master())
+	set_process(false)
 	
 	if not is_master():
 		return
@@ -136,7 +145,7 @@ func _ready():
 		
 	if not _idle_timmer:
 		_idle_timmer = Timer.new()
-		_idle_timmer.wait_time = rand_range(2,5)
+		_idle_timmer.wait_time = rand_range(5,8)
 		_idle_timmer.connect("timeout", self , "_idle_timmer_timeout")
 		_idle_timmer.autostart = true
 		add_child(_idle_timmer)
@@ -153,6 +162,10 @@ func _process(delta):
 	if not is_master():
 		return
 		
+	if not target:
+		set_process(false)
+		return
+		
 	var velocity = Vector3.ZERO
 	var direction = Vector3.ZERO
 	var distance_to_target = 0.0
@@ -163,30 +176,33 @@ func _process(delta):
 		_check_facing_direction(direction.x)
 		
 		if not target.is_targetable(team):
-			_check_is_walking(false)
 			target = null
+			_check_is_walking(false)
+			set_process(false)
+			return
 			
 		elif distance_to_target > range_attack:
 			_check_is_walking(true)
 			velocity = Vector3(direction.x, 0.0 , direction.z) * speed
 			
-		elif distance_to_target <= range_attack and _cooldown_timmer.is_stopped():
-			perform_attack()
-			_cooldown_timmer.start()
+		elif distance_to_target <= range_attack:
+			if _cooldown_timmer.is_stopped():
+				perform_attack()
+				_cooldown_timmer.start()
 		
 		var collide = move_and_collide(velocity * delta)
 		if collide != null:
 			_on_collide(collide.collider)
-		
+			
+	else:
+		set_process(false)
+		return
 		
 func take_damage(_damage : float, _hit_by: Dictionary):
 	if not is_master():
 		return
 		
-	var _aggresor = get_node_or_null(_hit_by.node_path)
-	if is_instance_valid(_aggresor):
-		target = _aggresor
-		
+	set_target(_hit_by.node_path)
 	rpc("_take_damage", _damage, _hit_by)
 	
 func dead():
@@ -216,6 +232,10 @@ func display_player_name(_show : bool):
 	
 func _idle_timmer_timeout():
 	if not is_master():
+		return
+		
+	if not target:
+		emit_signal("on_ready", self)
 		return
 		
 	if not is_instance_valid(target):

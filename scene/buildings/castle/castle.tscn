@@ -130,10 +130,6 @@ wait_time = 5.0
 [node name="capture_reset_timer" type="Timer" parent="."]
 wait_time = 5.0
 
-[node name="idle_timmer" type="Timer" parent="."]
-wait_time = 5.0
-autostart = true
-
 [node name="Tween" type="Tween" parent="."]
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
@@ -146,6 +142,5 @@ aabb = AABB( -4.28562, -1, -4.39329, 8.57124, 2, 8.78659 )
 
 [connection signal="timeout" from="coin_gain_timer" to="." method="_on_coin_gain_timer_timeout"]
 [connection signal="timeout" from="capture_reset_timer" to="." method="_on_capture_reset_timer_timeout"]
-[connection signal="timeout" from="idle_timmer" to="." method="_on_idle_timmer_timeout"]
 [connection signal="screen_entered" from="VisibilityNotifier" to="." method="_on_VisibilityNotifier_screen_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier" to="." method="_on_VisibilityNotifier_screen_exited"]

@@ -29,6 +29,7 @@ var coin_produce_cooldown : float = 10
 
 # misc
 var parent
+var _idle_timmer : Timer = null
 
 ############################################################
 # multiplayer func
@@ -41,6 +42,7 @@ remotesync func _set_target(_target : NodePath):
 		return
 		
 	target = _target_node
+	set_process(true)
 	
 remotesync func _recapture(_cp_damage_restore : float):
 	._recapture(_cp_damage_restore)
@@ -113,7 +115,14 @@ func _ready():
 		
 	if not .is_master():
 		return
-	
+		
+	if not _idle_timmer:
+		_idle_timmer = Timer.new()
+		_idle_timmer.wait_time = rand_range(5,8)
+		_idle_timmer.connect("timeout", self , "_idle_timmer_timeout")
+		_idle_timmer.autostart = true
+		add_child(_idle_timmer)
+		
 	_capture_reset_timer.wait_time = 5
 	_capture_reset_timer.start()
 	
@@ -131,10 +140,10 @@ func _process(delta):
 					i.sound.play()
 					i.cooldown_timmer.start()
 					
-		elif not target.is_targetable(team) or distance_to_target > range_attack:
-			if .is_master():
-				target = null
-				
+		elif distance_to_target > range_attack or not target.is_targetable(team):
+			target = null
+			set_process(false)
+		
 		
 func set_target(_target : NodePath):
 	if not .is_master():
@@ -187,8 +196,12 @@ func _on_capture_reset_timer_timeout():
 	if cp < max_cp:
 		.recapture(cp_regen_rate)
 	
-func _on_idle_timmer_timeout():
+func _idle_timmer_timeout():
 	if not is_master():
+		return
+		
+	if not target:
+		emit_signal("on_ready", self)
 		return
 		
 	if not is_instance_valid(target):
@@ -198,8 +211,12 @@ func _on_idle_timmer_timeout():
 	if not target.is_targetable(team):
 		emit_signal("on_ready", self)
 		
+	
 func _on_VisibilityNotifier_screen_entered():
 	visible = true
 	
 func _on_VisibilityNotifier_screen_exited():
 	visible = false
+
+
+
