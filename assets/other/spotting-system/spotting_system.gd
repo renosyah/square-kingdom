@@ -2,7 +2,7 @@ extends Spatial
 
 signal on_spotted(_node)
 
-onready var _raycasts = [$east, $west, $north, $south]
+onready var _raycasts = [$east, $west, $north ]
 
 var team = ""
 var spotting_range : int setget _set_spotting_range

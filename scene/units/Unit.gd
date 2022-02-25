@@ -158,7 +158,7 @@ func _ready():
 		_spotting = preload("res://assets/other/spotting-system/spotting_system.tscn").instance()
 		add_child(_spotting)
 		_spotting.enable = true
-		_spotting.spotting_range = 12
+		_spotting.spotting_range = 22
 		_spotting.parent = self
 		_spotting.team = team
 		_spotting.connect("on_spotted", self,"_on_spotted")
@@ -197,7 +197,7 @@ func _process(delta):
 			
 		elif distance_to_target > range_attack:
 			_check_is_walking(true)
-			_spotting.direction = Vector3(target.translation.x, _spotting.translation.y,target.translation.z)
+			_spotting.direction = Vector3(target.translation.x, translation.y, target.translation.z)
 			velocity = Vector3(direction.x, 0.0 , direction.z) * speed
 			
 		elif distance_to_target <= range_attack:

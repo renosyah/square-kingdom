@@ -13,6 +13,3 @@ cast_to = Vector3( -1, 0, 0 )
 
 [node name="north" type="RayCast" parent="."]
 cast_to = Vector3( 0, 0, -1 )
-
-[node name="south" type="RayCast" parent="."]
-cast_to = Vector3( 0, 0, 1 )
