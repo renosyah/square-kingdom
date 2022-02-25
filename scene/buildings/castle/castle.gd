@@ -62,11 +62,9 @@ remotesync func _capture(_cp_damage : float, _capture_by: Dictionary):
 	._capture(_cp_damage, _capture_by)
 	_cp_bar.update_bar(cp, max_cp)
 	_cp_bar.modulate.a = 1
-
-	var _aggresor = get_node_or_null(_capture_by.node_path)
-	if is_instance_valid(_aggresor):
-		target = _aggresor
-		
+	
+	_set_target(_capture_by.node_path)
+	
 remotesync func _finish_captured():
 	._finish_captured()
 	_flag.set_flag_color(color)

@@ -3,6 +3,7 @@ class_name ServerListener, 'res://addons/LANServerBroadcast/server_listener/serv
 
 signal new_server
 signal remove_server
+signal error_listening(_msg)
 
 var cleanUpTimer := Timer.new()
 var socketUDP := PacketPeerUDP.new()
@@ -29,10 +30,11 @@ func setup():
 		
 	if not is_listening:
 		if socketUDP.listen(listenPort) != OK:
-			print("GameServer LAN service: Error listening on port: " + str(listenPort))
+			emit_signal("error_listening", "GameServer LAN service: Error listening on port: " + str(listenPort))
+			return
 		else:
 			is_listening = true
-			print("GameServer LAN service: Listening on port: " + str(listenPort))
+			#print("GameServer LAN service: Listening on port: " + str(listenPort))
 		
 	set_process(true)
 	

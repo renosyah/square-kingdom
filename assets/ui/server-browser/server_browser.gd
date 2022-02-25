@@ -1,7 +1,9 @@
 extends Control
 
 const ITEM = preload("res://assets/ui/server-browser/item/item.tscn")
+
 signal on_join(info)
+signal on_error(msg)
 signal close
 
 onready var _item_holder = $VBoxContainer/ScrollContainer/VBoxContainer
@@ -58,3 +60,8 @@ func _on_refresh_pressed():
 	stop_finding()
 	start_finding()
 	
+func _on_server_listener_error_listening(_msg):
+	emit_signal("on_error", _msg)
+
+
+

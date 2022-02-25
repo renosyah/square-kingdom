@@ -177,6 +177,7 @@ autoplay = "loading"
 anims/RESET = SubResource( 1 )
 anims/loading = SubResource( 2 )
 
+[connection signal="error_listening" from="server_listener" to="." method="_on_server_listener_error_listening"]
 [connection signal="new_server" from="server_listener" to="." method="_on_server_listener_new_server"]
 [connection signal="remove_server" from="server_listener" to="." method="_on_server_listener_remove_server"]
 [connection signal="pressed" from="VBoxContainer/PanelContainer/HBoxContainer/back" to="." method="_on_back_pressed"]

@@ -325,4 +325,5 @@ visible = false
 [connection signal="pressed" from="CanvasLayer/Control/CenterContainer2/VBoxContainer/setting" to="." method="_on_setting_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/CenterContainer2/VBoxContainer/deck" to="." method="_on_deck_pressed"]
 [connection signal="close" from="CanvasLayer/server_browser" to="." method="_on_server_browser_close"]
+[connection signal="on_error" from="CanvasLayer/server_browser" to="." method="_on_server_browser_on_error"]
 [connection signal="on_join" from="CanvasLayer/server_browser" to="." method="_on_server_browser_on_join"]

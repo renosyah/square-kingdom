@@ -55,6 +55,12 @@ func _on_server_browser_on_join(info):
 	Global.client.ip = info.ip
 	get_tree().change_scene("res://menu/lobby-menu/lobby_menu.tscn")
 
+func _on_server_browser_on_error(msg):
+	_exception_message.display_message("Network Error!", msg)
+	_exception_message.visible = true
+	Global.mp_exception_message = ""
+
+
 
 
 
