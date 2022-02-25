@@ -249,7 +249,18 @@ static func generate_farm_and_tower(data : Dictionary, max_farm = 6, max_tower =
 		tower.garrison_units = create_array_range(4)
 		tower.attack_damage = rand_range(2,8)
 		data.buildings.append(tower)
-	
+		
+	for i in max_unit_buffer:
+#		var buff = create_training_field_buff()
+		var training_field = Buildings.BUILDINGS[3].duplicate()
+		training_field.id = "TRAINING-FIELD-" + GDUUID.v4()
+#		training_field.upgrades = buff["upgrades"]
+#		training_field.pivot = buff["pivot"]
+		data.buildings.append(training_field)
+		
+	return data
+
+static func create_training_field_buff() -> Dictionary:
 	var pivots = ["PV_1","PV_2","PV_3"]
 	var type_upgrades = [
 		["attack_damage","Unit Attack Damage"],
@@ -257,18 +268,13 @@ static func generate_farm_and_tower(data : Dictionary, max_farm = 6, max_tower =
 		["speed","Unit Walking Speed"],
 		["capture_damage","Unit Capturing building"]
 	]
-	
-	for i in max_unit_buffer:
-		var training_field = Buildings.BUILDINGS[3].duplicate()
-		var key = type_upgrades[randi() % type_upgrades.size()]
-		training_field.upgrades = { 
+	var key = type_upgrades[randi() % type_upgrades.size()]
+	return {
+		"upgrades" : { 
 			key[0] : { "name" : key[1], "value" : rand_range(0.10, 1.0) }
-		}
-		training_field.pivot = pivots[randi() % pivots.size()]
-		training_field.id = "TRAINING-FIELD-" + GDUUID.v4()
-		data.buildings.append(training_field)
-		
-	return data
+		},
+		"pivot" : pivots[randi() % pivots.size()]
+	}
 	
 static func create_array_range(_range : int) -> Array:
 	var arr = []

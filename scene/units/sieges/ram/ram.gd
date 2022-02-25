@@ -150,6 +150,7 @@ func _process(delta):
 			
 		elif distance_to_target > range_attack:
 			_check_is_walking(true)
+			_spotting.direction = Vector3(target.translation.x, _spotting.translation.y,target.translation.z)
 			translation.y -= (1.0 * delta) if translation.y > 0.0 else 0.0
 			velocity = Vector3(direction.x, 0.0 , direction.z) * speed
 			transform_turning(Vector3(target.translation.x , translation.y ,target.translation.z), delta)
@@ -160,9 +161,7 @@ func _process(delta):
 				perform_attack()
 				_cooldown_timmer.start()
 				
-		var collide = move_and_collide(velocity * delta)
-		if collide != null:
-			_on_collide(collide.collider)
+		move_and_slide(velocity)
 			
 	else:
 		set_process(false)

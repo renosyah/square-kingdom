@@ -74,9 +74,12 @@ func generate_spawn():
 			pos.erase(p)
 			
 		elif i.type_building == Buildings.TYPE_UNIT_BUFF:
+			var buff = Global.create_training_field_buff()
 			var p = pos[randi() % pos.size()]
 			i.node_name = "TRAINING-FIELD-" + GDUUID.v4()
 			i.translation = p
+			i.upgrades = buff["upgrades"]
+			i.pivot = buff["pivot"]
 			pos.erase(p)
 			
 	_spawn_buildings(_castle_holder.get_path(), _farm_holder.get_path())

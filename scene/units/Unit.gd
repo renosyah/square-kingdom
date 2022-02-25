@@ -53,6 +53,9 @@ var _network_timmer : Timer = null
 var _cooldown_timmer : Timer = null
 var _idle_timmer : Timer = null
 
+# spotting
+var _spotting
+
 ############################################################
 # multiplayer func
 func _network_timmer_timeout():
@@ -121,6 +124,7 @@ func set_target(_target : NodePath):
 	if is_instance_valid(_aggresor):
 		target = _aggresor
 		set_process(true)
+		_spotting.enable = true
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -149,6 +153,16 @@ func _ready():
 		_idle_timmer.connect("timeout", self , "_idle_timmer_timeout")
 		_idle_timmer.autostart = true
 		add_child(_idle_timmer)
+		
+	if not _spotting:
+		_spotting = preload("res://assets/other/spotting-system/spotting_system.tscn").instance()
+		add_child(_spotting)
+		_spotting.enable = true
+		_spotting.spotting_range = 12
+		_spotting.parent = self
+		_spotting.team = team
+		_spotting.connect("on_spotted", self,"_on_spotted")
+		_spotting.translation = Vector3(0, 0.5, 0)
 		
 	emit_signal("on_ready", self)
 	
@@ -183,16 +197,15 @@ func _process(delta):
 			
 		elif distance_to_target > range_attack:
 			_check_is_walking(true)
+			_spotting.direction = Vector3(target.translation.x, _spotting.translation.y,target.translation.z)
 			velocity = Vector3(direction.x, 0.0 , direction.z) * speed
 			
 		elif distance_to_target <= range_attack:
 			if _cooldown_timmer.is_stopped():
 				perform_attack()
 				_cooldown_timmer.start()
-		
-		var collide = move_and_collide(velocity * delta)
-		if collide != null:
-			_on_collide(collide.collider)
+			
+		move_and_slide(velocity)
 			
 	else:
 		set_process(false)
@@ -257,22 +270,8 @@ func is_master() -> bool:
 func is_targetable(_team) -> bool:
 	return team != _team and not is_dead
 	
-func _on_collide(body):
-	if not is_instance_valid(body):
-		return
-		
-	if body is StaticBody:
-		return
-
-	if not body.is_targetable(team):
-		return
-		
+func _on_spotted(body):
 	target = body
-	
-	#_check_is_walking(false)
-	#target = null
-
-
 
 
 
