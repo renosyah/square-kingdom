@@ -1,0 +1,358 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://assets/ui/fonts/montserrat_eb_16.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/ui/fonts/montserrat_eb_32.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/ui/icon/squad_icon/icon_empty.png" type="Texture" id=3]
+[ext_resource path="res://menu/deck-menu/item-detail/flag.png" type="Texture" id=4]
+[ext_resource path="res://assets/ui/fonts/montserrat_eb_48.tres" type="DynamicFont" id=5]
+[ext_resource path="res://menu/deck-menu/item-detail/target_sword.png" type="Texture" id=6]
+[ext_resource path="res://menu/deck-menu/item-detail/hp.png" type="Texture" id=7]
+[ext_resource path="res://menu/deck-menu/item-detail/speed.png" type="Texture" id=8]
+[ext_resource path="res://menu/deck-menu/item-detail/item_detail.gd" type="Script" id=9]
+[ext_resource path="res://menu/deck-menu/item-detail/cost.png" type="Texture" id=10]
+
+[node name="item_detail" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.603922 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+margin_right = 600.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 0, 150 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 154.0
+margin_right = 600.0
+margin_bottom = 870.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
+margin_left = 21.0
+margin_right = 46.0
+margin_bottom = 716.0
+rect_min_size = Vector2( 25, 0 )
+
+[node name="Panel" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+margin_left = 50.0
+margin_top = 41.0
+margin_right = 550.0
+margin_bottom = 675.0
+rect_min_size = Vector2( 500, 200 )
+size_flags_vertical = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/Panel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 493.0
+margin_bottom = 627.0
+size_flags_vertical = 0
+
+[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer"]
+margin_right = 486.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 0, 100 )
+
+[node name="color" type="ColorRect" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0.0862745, 1, 0.603922 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 0, 100 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="name" type="Label" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/Control/HBoxContainer3"]
+margin_top = 30.0
+margin_right = 486.0
+margin_bottom = 70.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "NAME"
+align = 1
+valign = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer"]
+margin_top = 104.0
+margin_right = 486.0
+margin_bottom = 109.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer"]
+margin_top = 113.0
+margin_right = 486.0
+margin_bottom = 458.0
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2"]
+margin_right = 10.0
+margin_bottom = 345.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="color2" type="ColorRect" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2"]
+margin_left = 14.0
+margin_right = 214.0
+margin_bottom = 345.0
+rect_min_size = Vector2( 200, 345 )
+color = Color( 0, 0.203922, 1, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="icon" type="TextureRect" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2/color2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -90.0
+margin_top = -158.0
+margin_right = 90.0
+margin_bottom = 158.0
+rect_min_size = Vector2( 180, 300 )
+texture = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2"]
+margin_left = 218.0
+margin_right = 228.0
+margin_bottom = 345.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2"]
+margin_left = 232.0
+margin_right = 472.0
+margin_bottom = 345.0
+size_flags_horizontal = 3
+
+[node name="atk" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2/VBoxContainer"]
+margin_right = 240.0
+margin_bottom = 60.0
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2/VBoxContainer/atk"]
+margin_right = 60.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 60, 60 )
+texture = ExtResource( 6 )
+stretch_mode = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2/VBoxContainer/atk"]
+margin_left = 64.0
+margin_right = 79.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 15, 0 )
+
+[node name="attack" type="Label" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2/VBoxContainer/atk"]
+margin_left = 83.0
+margin_top = 16.0
+margin_right = 240.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+text = "16"
+autowrap = true
+
+[node name="cap" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2/VBoxContainer"]
+margin_top = 64.0
+margin_right = 240.0
+margin_bottom = 124.0
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2/VBoxContainer/cap"]
+margin_right = 60.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 60, 60 )
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 4
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2/VBoxContainer/cap"]
+margin_left = 64.0
+margin_right = 79.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 15, 0 )
+
+[node name="cap" type="Label" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2/VBoxContainer/cap"]
+margin_left = 83.0
+margin_top = 16.0
+margin_right = 240.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+text = "16"
+autowrap = true
+
+[node name="hp" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2/VBoxContainer"]
+margin_top = 128.0
+margin_right = 240.0
+margin_bottom = 188.0
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2/VBoxContainer/hp"]
+margin_right = 60.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 60, 60 )
+texture = ExtResource( 7 )
+expand = true
+stretch_mode = 4
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2/VBoxContainer/hp"]
+margin_left = 64.0
+margin_right = 79.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 15, 0 )
+
+[node name="hp" type="Label" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2/VBoxContainer/hp"]
+margin_left = 83.0
+margin_top = 16.0
+margin_right = 240.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+text = "35"
+autowrap = true
+
+[node name="speed" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2/VBoxContainer"]
+margin_top = 192.0
+margin_right = 240.0
+margin_bottom = 252.0
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2/VBoxContainer/speed"]
+margin_right = 60.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 60, 60 )
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 4
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2/VBoxContainer/speed"]
+margin_left = 64.0
+margin_right = 79.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 15, 0 )
+
+[node name="speed" type="Label" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2/VBoxContainer/speed"]
+margin_left = 83.0
+margin_top = 16.0
+margin_right = 240.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+text = "8"
+autowrap = true
+
+[node name="cost" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2/VBoxContainer"]
+margin_top = 256.0
+margin_right = 240.0
+margin_bottom = 316.0
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2/VBoxContainer/cost"]
+margin_right = 60.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 60, 60 )
+texture = ExtResource( 10 )
+expand = true
+stretch_mode = 4
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2/VBoxContainer/cost"]
+margin_left = 64.0
+margin_right = 79.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 15, 0 )
+
+[node name="cost" type="Label" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2/VBoxContainer/cost"]
+margin_left = 83.0
+margin_top = 16.0
+margin_right = 240.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+text = "8"
+autowrap = true
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2"]
+margin_left = 476.0
+margin_right = 486.0
+margin_bottom = 345.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer"]
+margin_top = 462.0
+margin_right = 486.0
+margin_bottom = 502.0
+rect_min_size = Vector2( 0, 40 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer"]
+margin_top = 506.0
+margin_right = 486.0
+margin_bottom = 606.0
+rect_min_size = Vector2( 0, 100 )
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer"]
+margin_right = 10.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="close" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer"]
+margin_left = 14.0
+margin_right = 472.0
+margin_bottom = 100.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 5 )
+text = "Close"
+
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer"]
+margin_left = 476.0
+margin_right = 486.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer"]
+margin_top = 610.0
+margin_right = 486.0
+margin_bottom = 620.0
+rect_min_size = Vector2( 0, 10 )
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
+margin_left = 554.0
+margin_right = 579.0
+margin_bottom = 716.0
+rect_min_size = Vector2( 25, 0 )
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 874.0
+margin_right = 600.0
+margin_bottom = 1024.0
+rect_min_size = Vector2( 0, 150 )
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/close" to="." method="_on_close_pressed"]

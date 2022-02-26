@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://menu/deck-menu/deck_menu.gd" type="Script" id=1]
 [ext_resource path="res://assets/ui/fonts/montserrat_eb_16.tres" type="DynamicFont" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://assets/ui/fonts/montserrat_eb_32.tres" type="DynamicFont" id=4]
 [ext_resource path="res://assets/ui/fonts/montserrat_eb_48.tres" type="DynamicFont" id=5]
 [ext_resource path="res://assets/ui/simple_dialog_message/exception_message.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/ui/icon/refresh.png" type="Texture" id=7]
+[ext_resource path="res://menu/deck-menu/item-detail/item_detail.tscn" type="PackedScene" id=8]
 
 [node name="deck_menu" type="Control"]
 anchor_right = 1.0
@@ -98,6 +100,34 @@ text = "Cards"
 align = 1
 valign = 1
 
+[node name="test_unlock" type="Button" parent="CanvasLayer/Control/VBoxContainer2/PanelContainer/HBoxContainer"]
+visible = false
+margin_left = 382.0
+margin_right = 482.0
+margin_bottom = 106.0
+rect_min_size = Vector2( 100, 100 )
+custom_fonts/font = ExtResource( 4 )
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="TextureRect" parent="CanvasLayer/Control/VBoxContainer2/PanelContainer/HBoxContainer/test_unlock"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -40.0
+margin_top = -40.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 80, 80 )
+texture = ExtResource( 7 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="margin2" type="MarginContainer" parent="CanvasLayer/Control/VBoxContainer2/PanelContainer/HBoxContainer"]
 margin_left = 486.0
 margin_right = 586.0
@@ -141,7 +171,7 @@ scroll_horizontal_enabled = false
 [node name="VBoxContainer" type="GridContainer" parent="CanvasLayer/Control/VBoxContainer2/deck_layout"]
 margin_right = 600.0
 size_flags_horizontal = 3
-columns = 4
+columns = 3
 
 [node name="inventory_layout" type="ScrollContainer" parent="CanvasLayer/Control/VBoxContainer2"]
 visible = false
@@ -154,11 +184,15 @@ scroll_horizontal_enabled = false
 [node name="VBoxContainer" type="GridContainer" parent="CanvasLayer/Control/VBoxContainer2/inventory_layout"]
 margin_right = 600.0
 size_flags_horizontal = 3
-columns = 4
+columns = 3
 
 [node name="exception_message" parent="CanvasLayer" instance=ExtResource( 6 )]
 visible = false
 
+[node name="item_detail" parent="CanvasLayer" instance=ExtResource( 8 )]
+visible = false
+
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer2/PanelContainer/HBoxContainer/back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer2/PanelContainer/HBoxContainer/test_unlock" to="." method="_on_test_unlock_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer2/HBoxContainer/deck" to="." method="_on_deck_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer2/HBoxContainer/inv" to="." method="_on_inv_pressed"]

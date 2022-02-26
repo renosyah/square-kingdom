@@ -42,7 +42,7 @@ func _pick_for_team_1(_color):
 	Global.save_player_game_data()
 	
 	# for player
-	Global.player_data.color = _color
+	Global.player_data.color = Global.player_game_data[Global.TEAM_1].color
 	Global.apply_players_unit_team()
 	Global.save_player_data()
 	

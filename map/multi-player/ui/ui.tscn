@@ -272,7 +272,7 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -300.0
-margin_top = -325.0
+margin_top = -381.0
 margin_right = 300.0
 margin_bottom = 0.0
 rect_min_size = Vector2( 600, 325 )
@@ -400,27 +400,6 @@ margin_right = 600.0
 margin_bottom = 658.0
 rect_min_size = Vector2( 50, 0 )
 
-[node name="label4" type="Label" parent="CanvasLayer/game_over/VBoxContainer"]
-visible = false
-margin_left = 120.0
-margin_top = 627.0
-margin_right = 480.0
-margin_bottom = 685.0
-rect_min_size = Vector2( 360, 0 )
-size_flags_horizontal = 4
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/line_spacing = 2
-custom_constants/shadow_as_outline = 2
-custom_fonts/font = ExtResource( 12 )
-text = "You can wait to play again or leave"
-align = 1
-valign = 1
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/game_over/VBoxContainer"]
 margin_top = 662.0
 margin_right = 600.0
@@ -470,6 +449,195 @@ margin_right = 600.0
 margin_bottom = 1024.0
 rect_min_size = Vector2( 0, 120 )
 color = Color( 0, 0, 0, 1 )
+
+[node name="reward_dialog" type="Control" parent="CanvasLayer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/reward_dialog"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.603922 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/reward_dialog"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/reward_dialog/VBoxContainer"]
+margin_right = 600.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 0, 150 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/reward_dialog/VBoxContainer"]
+margin_top = 154.0
+margin_right = 600.0
+margin_bottom = 870.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/reward_dialog/VBoxContainer/HBoxContainer"]
+margin_left = 21.0
+margin_right = 46.0
+margin_bottom = 716.0
+rect_min_size = Vector2( 25, 0 )
+
+[node name="Panel" type="PanelContainer" parent="CanvasLayer/reward_dialog/VBoxContainer/HBoxContainer"]
+margin_left = 50.0
+margin_top = 68.0
+margin_right = 550.0
+margin_bottom = 648.0
+rect_min_size = Vector2( 500, 200 )
+size_flags_vertical = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/reward_dialog/VBoxContainer/HBoxContainer/Panel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 493.0
+margin_bottom = 573.0
+size_flags_vertical = 0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/reward_dialog/VBoxContainer/HBoxContainer/Panel/VBoxContainer"]
+margin_right = 486.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 0, 100 )
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/reward_dialog/VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer3"]
+margin_right = 10.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="Label" type="Label" parent="CanvasLayer/reward_dialog/VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer3"]
+margin_left = 14.0
+margin_top = 20.0
+margin_right = 472.0
+margin_bottom = 80.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 0.745098, 0.0470588, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "Unit Unlock!"
+align = 1
+valign = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/reward_dialog/VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer3"]
+margin_left = 476.0
+margin_right = 486.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/reward_dialog/VBoxContainer/HBoxContainer/Panel/VBoxContainer"]
+margin_top = 104.0
+margin_right = 486.0
+margin_bottom = 404.0
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/reward_dialog/VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2"]
+margin_right = 25.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 25, 0 )
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/reward_dialog/VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2"]
+margin_left = 29.0
+margin_right = 486.0
+margin_bottom = 300.0
+size_flags_horizontal = 3
+scroll_vertical_enabled = false
+
+[node name="holder" type="HBoxContainer" parent="CanvasLayer/reward_dialog/VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2/ScrollContainer"]
+margin_right = 457.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 0, 300 )
+mouse_filter = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/reward_dialog/VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2/ScrollContainer/holder"]
+margin_right = 224.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 25, 0 )
+mouse_filter = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/reward_dialog/VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2/ScrollContainer/holder"]
+margin_left = 228.0
+margin_right = 228.0
+margin_bottom = 300.0
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/reward_dialog/VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2/ScrollContainer/holder"]
+margin_left = 232.0
+margin_right = 457.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 25, 0 )
+mouse_filter = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/reward_dialog/VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2"]
+visible = false
+margin_left = 461.0
+margin_right = 486.0
+margin_bottom = 312.0
+rect_min_size = Vector2( 25, 0 )
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/reward_dialog/VBoxContainer/HBoxContainer/Panel/VBoxContainer"]
+margin_top = 408.0
+margin_right = 486.0
+margin_bottom = 448.0
+rect_min_size = Vector2( 0, 40 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/reward_dialog/VBoxContainer/HBoxContainer/Panel/VBoxContainer"]
+margin_top = 452.0
+margin_right = 486.0
+margin_bottom = 552.0
+rect_min_size = Vector2( 0, 100 )
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/reward_dialog/VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer"]
+margin_right = 10.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="close_exeption_message" type="Button" parent="CanvasLayer/reward_dialog/VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer"]
+margin_left = 14.0
+margin_right = 472.0
+margin_bottom = 100.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+text = "Receive"
+
+[node name="MarginContainer3" type="MarginContainer" parent="CanvasLayer/reward_dialog/VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer"]
+margin_left = 476.0
+margin_right = 486.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/reward_dialog/VBoxContainer/HBoxContainer/Panel/VBoxContainer"]
+margin_top = 556.0
+margin_right = 486.0
+margin_bottom = 566.0
+rect_min_size = Vector2( 0, 10 )
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/reward_dialog/VBoxContainer/HBoxContainer"]
+margin_left = 554.0
+margin_right = 579.0
+margin_bottom = 716.0
+rect_min_size = Vector2( 25, 0 )
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/reward_dialog/VBoxContainer"]
+margin_top = 874.0
+margin_right = 600.0
+margin_bottom = 1024.0
+rect_min_size = Vector2( 0, 150 )
 
 [node name="menu" type="ColorRect" parent="CanvasLayer"]
 visible = false
@@ -637,6 +805,7 @@ rect_min_size = Vector2( 0, 30 )
 [connection signal="on_item_press" from="CanvasLayer/Control/deck_list" to="." method="_on_deck_list_on_item_press"]
 [connection signal="pressed" from="CanvasLayer/game_over/VBoxContainer/HBoxContainer/re_match" to="." method="_on_re_match_pressed"]
 [connection signal="pressed" from="CanvasLayer/game_over/VBoxContainer/HBoxContainer/exit_game" to="." method="_on_exit_game_pressed"]
+[connection signal="pressed" from="CanvasLayer/reward_dialog/VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/close_exeption_message" to="." method="_on_close_exeption_message_pressed"]
 [connection signal="pressed" from="CanvasLayer/menu/CenterContainer2/close_menu" to="." method="_on_close_menu_pressed"]
 [connection signal="pressed" from="CanvasLayer/menu/VBoxContainer/HBoxContainer/music" to="." method="_on_music_pressed"]
 [connection signal="pressed" from="CanvasLayer/menu/VBoxContainer/HBoxContainer/sfx" to="." method="_on_sfx_pressed"]

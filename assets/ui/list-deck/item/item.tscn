@@ -7,35 +7,21 @@
 [ext_resource path="res://assets/ui/img/border_no_transparent.png" type="Texture" id=5]
 [ext_resource path="res://assets/ui/fonts/montserrat_eb_16.tres" type="DynamicFont" id=6]
 
-[node name="item" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-rect_min_size = Vector2( 145, 220 )
-script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -72.0
-margin_top = -110.0
-margin_right = 73.0
-margin_bottom = 110.0
+[node name="item" type="HBoxContainer"]
+margin_right = 185.0
+margin_bottom = 300.0
 grow_horizontal = 2
 grow_vertical = 2
-rect_min_size = Vector2( 150, 250 )
+rect_min_size = Vector2( 185, 300 )
 alignment = 1
+script = ExtResource( 4 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_editor_description_": ""
 }
 
-[node name="button" type="Button" parent="HBoxContainer"]
-margin_right = 141.0
-margin_bottom = 250.0
+[node name="button" type="Button" parent="."]
+margin_right = 176.0
+margin_bottom = 300.0
 rect_min_size = Vector2( 100, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -43,44 +29,57 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/button"]
+[node name="TextureRect" type="TextureRect" parent="button"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = -70.0
+margin_bottom = -89.0
 texture = ExtResource( 3 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PanelContainer" type="ColorRect" parent="HBoxContainer/button"]
+[node name="PanelContainer" type="ColorRect" parent="button"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -70.0
+margin_top = -89.0
 margin_bottom = -1.0
-rect_min_size = Vector2( 0, 60 )
+rect_min_size = Vector2( 0, 88 )
 color = Color( 1, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/button/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="button/PanelContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_bottom = 111.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer/button/PanelContainer/VBoxContainer"]
-margin_right = 141.0
+[node name="MarginContainer2" type="MarginContainer" parent="button/PanelContainer/VBoxContainer"]
+margin_right = 176.0
 margin_bottom = 5.0
 rect_min_size = Vector2( 0, 5 )
 
-[node name="name" type="Label" parent="HBoxContainer/button/PanelContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="button/PanelContainer/VBoxContainer"]
 margin_top = 9.0
-margin_right = 141.0
+margin_right = 176.0
 margin_bottom = 25.0
+alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="button/PanelContainer/VBoxContainer/HBoxContainer"]
+margin_right = 5.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 5, 0 )
+
+[node name="name" type="Label" parent="button/PanelContainer/VBoxContainer/HBoxContainer"]
+margin_left = 9.0
+margin_right = 167.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_as_outline = 1
@@ -88,13 +87,20 @@ custom_fonts/font = ExtResource( 1 )
 text = "Cannon"
 align = 1
 valign = 1
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="cost" type="Label" parent="HBoxContainer/button/PanelContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="button/PanelContainer/VBoxContainer/HBoxContainer"]
+margin_left = 171.0
+margin_right = 176.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 5, 0 )
+
+[node name="cost" type="Label" parent="button/PanelContainer/VBoxContainer"]
 margin_top = 29.0
-margin_right = 141.0
+margin_right = 176.0
 margin_bottom = 57.0
 custom_colors/font_color = Color( 1, 0.756863, 0.027451, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
@@ -107,13 +113,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/button/PanelContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="button/PanelContainer/VBoxContainer"]
 margin_top = 61.0
-margin_right = 141.0
+margin_right = 176.0
 margin_bottom = 66.0
 rect_min_size = Vector2( 0, 5 )
 
-[node name="TextureProgress" type="TextureProgress" parent="HBoxContainer/button"]
+[node name="TextureProgress" type="TextureProgress" parent="button"]
 modulate = Color( 0, 0, 0, 1 )
 self_modulate = Color( 1, 1, 1, 0.533333 )
 anchor_right = 1.0
@@ -127,14 +133,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="hide" type="ColorRect" parent="HBoxContainer/button"]
+[node name="hide" type="ColorRect" parent="button"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 color = Color( 0.364706, 0.364706, 0.364706, 0.639216 )
 
-[node name="border" type="NinePatchRect" parent="HBoxContainer/button"]
+[node name="border" type="NinePatchRect" parent="button"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 5 )
@@ -147,10 +153,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
-margin_left = 145.0
-margin_right = 150.0
-margin_bottom = 250.0
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_left = 180.0
+margin_right = 185.0
+margin_bottom = 300.0
 rect_min_size = Vector2( 5, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -166,5 +172,5 @@ one_shot = true
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 bus = "sfx"
 
-[connection signal="pressed" from="HBoxContainer/button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="button" to="." method="_on_button_pressed"]
 [connection signal="tween_completed" from="Tween2" to="." method="_on_Tween_tween_completed"]

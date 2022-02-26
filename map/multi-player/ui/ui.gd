@@ -20,8 +20,10 @@ onready var _game_over = $CanvasLayer/game_over
 onready var _game_over_condition = $CanvasLayer/game_over/VBoxContainer/label2
 onready var _game_over_message = $CanvasLayer/game_over/VBoxContainer/label3
 onready var _game_over_rematch_btn = $CanvasLayer/game_over/VBoxContainer/HBoxContainer/re_match
-onready var _game_over_rematch_tip = $CanvasLayer/game_over/VBoxContainer/label4
 onready var _game_over_scoreboard = $CanvasLayer/game_over/VBoxContainer/scoreboard
+
+onready var _reward_dialog = $CanvasLayer/reward_dialog
+onready var _reward_holder = $CanvasLayer/reward_dialog/VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2/ScrollContainer/holder/HBoxContainer
 
 onready var _ping_counter = $CanvasLayer/menu/ping_counter
 onready var _menu = $CanvasLayer/menu
@@ -53,6 +55,7 @@ func hide_all():
 	_game_over.visible = false
 	_control_ui.visible = false
 	_loading.visible = false
+	_reward_dialog.visible = false
 	
 func display_info(_title, _message : String):
 	_info_title.text = _title
@@ -90,14 +93,26 @@ func display_loading(show : bool, message : String):
 	_loading.visible = show
 	_loading_message.text = message
 	
-func display_game_over(show_rematch : bool , condition, message : String, _scores : Dictionary):
+func display_game_over(is_win : bool , condition, message : String, _scores : Dictionary):
 	hide_all()
-	_game_over_rematch_btn.visible = show_rematch
 	_game_over.visible = true
 	_game_over_condition.text = condition
 	_game_over_message.text = message
-	_game_over_rematch_tip.text = "Wanna play again?" if get_tree().is_network_server() else "You can wait to play again or leave"
+	_game_over_rematch_btn.visible = get_tree().is_network_server()
 	_game_over_scoreboard.display_scores(_scores)
+	
+	if is_win:
+		display_reward_dialog()
+	
+	
+func display_reward_dialog():
+	var unlocked_unit = Global.unlock_random_card_in_inventory()
+	_reward_dialog.visible = not unlocked_unit.empty()
+	for i in unlocked_unit:
+		var item = preload("res://menu/deck-menu/item-inventory/item.tscn").instance()
+		item.data = i
+		_reward_holder.add_child(item)
+	
 	
 func display_hurt(_team : String):
 	if _team == Global.player_data.team:
@@ -132,6 +147,10 @@ func _on_sfx_pressed():
 func _on_main_menu_pressed():
 	Network.disconnect_from_server()
 	get_tree().change_scene("res://menu/main-menu/main_menu.tscn")
+
+func _on_close_exeption_message_pressed():
+	_reward_dialog.visible = false
+
 
 
 

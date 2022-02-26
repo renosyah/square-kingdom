@@ -1,18 +1,16 @@
-extends Control
+extends HBoxContainer
 
 signal pressed(data)
 signal gone(node)
 
-onready var _icon = $HBoxContainer/button/TextureRect
-onready var _name = $HBoxContainer/button/PanelContainer/VBoxContainer/name
-onready var _cost = $HBoxContainer/button/PanelContainer/VBoxContainer/cost
-onready var _progress = $HBoxContainer/button/TextureProgress
-onready var _hide = $HBoxContainer/button/hide
-onready var _button = $HBoxContainer/button
-onready var _panel = $HBoxContainer/button/PanelContainer
-onready var _border = $HBoxContainer/button/border
-
-onready var _content = $HBoxContainer
+onready var _icon = $button/TextureRect
+onready var _name = $button/PanelContainer/VBoxContainer/HBoxContainer/name
+onready var _cost = $button/PanelContainer/VBoxContainer/cost
+onready var _progress = $button/TextureProgress
+onready var _hide = $button/hide
+onready var _button = $button
+onready var _panel = $button/PanelContainer
+onready var _border = $button/border
 
 onready var _cooldown = $cooldown
 onready var _tween = $Tween
@@ -36,8 +34,8 @@ func _ready():
 	_panel.color = data.color
 	_border.modulate = data.color
 	
-	_content.rect_pivot_offset = _content.rect_size / 2
-	_tween.interpolate_property(_content, "rect_scale", Vector2(-1, 1), Vector2.ONE, 0.3, Tween.TRANS_SINE, Tween.EASE_IN)
+	rect_pivot_offset = rect_size / 2
+	_tween.interpolate_property(self, "rect_scale", Vector2(-1, 1), Vector2.ONE, 0.3, Tween.TRANS_SINE, Tween.EASE_IN)
 	_tween.start()
 	
 	cooldown()
@@ -48,8 +46,8 @@ func cooldown():
 	
 func remove_card():
 	set_process(false)
-	_content.rect_pivot_offset = _content.rect_size / 2
-	_tween2.interpolate_property(_content, "rect_scale",Vector2.ONE, Vector2.ZERO, 0.4, Tween.TRANS_SINE, Tween.EASE_IN)
+	rect_pivot_offset = rect_size / 2
+	_tween2.interpolate_property(self, "rect_scale",Vector2.ONE, Vector2.ZERO, 0.4, Tween.TRANS_SINE, Tween.EASE_IN)
 	_tween2.start()
 	
 func _on_Tween_tween_completed(object, key):
@@ -60,7 +58,7 @@ func _on_Tween_tween_completed(object, key):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	_hide.visible = not is_clickable
-	modulate.a = 0.5 if not is_enable else 1.0
+	modulate.a = 0.7 if not is_enable else 1.0
 	_progress.max_value = data.cooldown
 	_progress.value = _cooldown.time_left
 	
@@ -86,8 +84,8 @@ func _on_button_pressed():
 	emit_signal("pressed", data)
 
 func _cant_click():
-	_content.rect_pivot_offset = _content.rect_size / 2
-	_tween.interpolate_property(_content, "rect_scale", Vector2(0.9, 0.9), Vector2.ONE, 0.3, Tween.TRANS_SINE, Tween.EASE_IN)
+	rect_pivot_offset = rect_size / 2
+	_tween.interpolate_property(self, "rect_scale", Vector2(0.9, 0.9), Vector2.ONE, 0.3, Tween.TRANS_SINE, Tween.EASE_IN)
 	_tween.start()
 	
 	_audio.stream = preload("res://assets/sound/assault_click.wav")

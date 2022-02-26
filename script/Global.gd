@@ -1,5 +1,6 @@
 extends Node
 
+const VERSION_SAVE = "1.0"
 var PERSISTEN_SAVE = false
 
 const DEKSTOP =  ["Server", "Windows", "WinRT", "X11"]
@@ -59,6 +60,7 @@ func _ready():
 	
 ################################################################
 # play music!
+const AUDIO_SAVE_FILE = "audio_setting" + "_" + VERSION_SAVE + ".dat"
 var _audio
 var audio_setting = { music = false, sfx = true }
 
@@ -80,13 +82,13 @@ func play_music():
 		
 func save_audio_setting():
 	if PERSISTEN_SAVE:
-		SaveLoad.save("audio_setting.dat", audio_setting)
+		SaveLoad.save(AUDIO_SAVE_FILE, audio_setting)
 	
 func load_audio_setting():
 	var _audio_setting = null 
 	
 	if PERSISTEN_SAVE:
-		_audio_setting = SaveLoad.load_save("audio_setting.dat")
+		_audio_setting = SaveLoad.load_save(AUDIO_SAVE_FILE)
 		
 	if not _audio_setting:
 		_audio_setting = { music = false, sfx = true }
@@ -96,6 +98,7 @@ func load_audio_setting():
 	
 ################################################################
 # player data
+const PLAYER_DATA_SAVE_FILE = "player" + "_" + VERSION_SAVE + ".dat"
 var player_data = {}
 
 func new_player_data() -> Dictionary:
@@ -107,8 +110,8 @@ func new_player_data() -> Dictionary:
 		units = [],
 	}
 	
-	for i in Units.UNITS:
-		var unit = i.duplicate()
+	for i in 8:
+		var unit = Units.UNITS[i].duplicate()
 		unit.team = TEAM_1
 		unit.color = Color.blue
 		_data.units.append(unit)
@@ -123,13 +126,13 @@ func apply_players_unit_team():
 	
 func save_player_data():
 	if PERSISTEN_SAVE:
-		SaveLoad.save("player.dat", player_data)
+		SaveLoad.save(PLAYER_DATA_SAVE_FILE, player_data)
 	
 func load_player_data():
 	var _player_data = null 
 	
 	if PERSISTEN_SAVE:
-		_player_data = SaveLoad.load_save("player.dat")
+		_player_data = SaveLoad.load_save(PLAYER_DATA_SAVE_FILE)
 		
 	if not _player_data:
 		_player_data = new_player_data()
@@ -139,6 +142,10 @@ func load_player_data():
 	
 ################################################################
 # player inventories
+const FLAG_UNIT_LOCKED = 1
+const FLAG_UNIT_UNLOCKED = 2
+
+const PLAYER_INVENTORIES_SAVE_FILE = "player_inventories" + "_" + VERSION_SAVE + ".dat"
 var player_inventories = []
 
 func apply_players_unit_inventories():
@@ -149,33 +156,71 @@ func apply_players_unit_inventories():
 		
 func save_player_inventories():
 	if PERSISTEN_SAVE:
-		SaveLoad.save("player_inventories.dat", player_inventories)
+		SaveLoad.save(PLAYER_INVENTORIES_SAVE_FILE, player_inventories)
 	
 func load_player_inventories():
 	var _player_inventories = null 
 	
 	if PERSISTEN_SAVE:
-		_player_inventories = SaveLoad.load_save("player_inventories.dat")
+		_player_inventories = SaveLoad.load_save(PLAYER_INVENTORIES_SAVE_FILE)
 		
 	if not _player_inventories:
 		_player_inventories = []
+		for i in range(8, Units.UNITS.size()):
+			var unit = Units.UNITS[i].duplicate()
+			unit.team = TEAM_1
+			unit.color = Color.blue
+			_player_inventories.append(unit)
+			
+		for i in 45:
+			var unit = Units.generate_random_locked_unit()
+			unit.team = TEAM_1
+			unit.color = Color.blue
+			unit["FLAG"] = FLAG_UNIT_LOCKED
+			_player_inventories.append(unit)
 		
 	player_inventories = _player_inventories
 	save_player_inventories()
 	
+	
+func unlock_random_card_in_inventory(max_unlock : int = 1) -> Array:
+	var unlocked = []
+	
+	randomize()
+	var _player_inventories = []
+	
+	for unit in player_inventories:
+		if unit.has("FLAG"):
+			if unit["FLAG"] == FLAG_UNIT_LOCKED:
+				_player_inventories.append(unit)
+		
+	if _player_inventories.empty():
+		return unlocked
+		
+	_player_inventories.shuffle()
+	
+	for i in max_unlock:
+		var unit = _player_inventories[randi() % _player_inventories.size()]
+		unit["FLAG"] = FLAG_UNIT_UNLOCKED
+		unlocked.append(unit)
+		
+	save_player_inventories()
+	return unlocked
+	
 ################################################################
 # game data
+const PLAYER_GAME_DATA_SAVE_FILE = "player_game_data" + "_" + VERSION_SAVE + ".dat"
 var player_game_data = {}
 
 func save_player_game_data():
 	if PERSISTEN_SAVE:
-		SaveLoad.save("player_game_data.dat", player_game_data)
+		SaveLoad.save(PLAYER_GAME_DATA_SAVE_FILE, player_game_data)
 	
 func load_player_game_data():
 	var _player_game_data = null 
 	
 	if PERSISTEN_SAVE:
-		_player_game_data = SaveLoad.load_save("player_game_data.dat")
+		_player_game_data = SaveLoad.load_save(PLAYER_GAME_DATA_SAVE_FILE)
 		
 	if not _player_game_data:
 		_player_game_data = generate_game_data()
@@ -198,7 +243,7 @@ static func generate_game_data() -> Dictionary:
 			coin = 25,
 		},
 		ai_level = AI_LEVEL[EASY_AI],
-		ai_units = [],
+		ai_units = generate_ai_units(EASY_AI),
 		buildings = [],
 		map_size = SMALL_SIZE,
 		map_season = GREEN_GRASS,
@@ -206,12 +251,6 @@ static func generate_game_data() -> Dictionary:
 	}
 	
 	for i in TEAMS:
-		for u in Units.UNITS:
-			var unit = u.duplicate()
-			unit.team = i
-			unit.color = data[i].color
-			data.ai_units.append(unit)
-			
 		if data.has(i):
 			data[i].team_name = RandomNameGenerator.generate()
 			
@@ -284,6 +323,24 @@ static func create_array_range(_range : int) -> Array:
 		mult += 0.2
 		
 	return arr
+	
+static func generate_ai_units(_ai_name : String) -> Array:
+	var ai_unit = []
+	for i in 8:
+		var unit = Units.UNITS[randi() % Units.UNITS.size()]
+		ai_unit.append(unit)
+		
+	if _ai_name == MEDIUM_AI:
+		for i in 2:
+			var unit = Units.generate_random_locked_unit()
+			ai_unit.append(unit)
+		
+	elif _ai_name == HARD_AI:
+		for i in 4:
+			var unit = Units.generate_random_locked_unit()
+			ai_unit.append(unit)
+			
+	return ai_unit
 	
 ################################################################
 # multiplayer connection and data

@@ -4,6 +4,56 @@ class_name Units
 const TYPE_UNIT_MELEE = "MELEE"
 const TYPE_UNIT_RANGE = "RANGE"
 
+const UNIT_LEVELS_TITLE = ["Regular", "Veteran", "Elite", "Champion"]
+const MODFIER = {
+	 "Regular" : 0.0, "Veteran" : 0.2, "Elite" : 0.3, "Champion" : 0.5
+}
+const SHIELDS = [
+	"",
+	"res://scene/weapon/shield/iron_shield/iron_shield.tscn",
+	"res://scene/weapon/shield/wooden_shield/shield.tscn"
+]
+const HELMS = [
+	"",
+	"res://scene/units/uniform/helm_0.png",
+	"res://scene/units/uniform/helm_1.png",
+	"res://scene/units/uniform/helm_2.png"
+]
+const ARMORS = [
+	"",
+	"res://scene/units/uniform/armor_0.png",
+	"res://scene/units/uniform/armor_1.png",
+	"res://scene/units/uniform/armor_2.png"
+]
+
+static func generate_random_locked_unit() -> Dictionary:
+	randomize()
+	var unit = UNITS[randi() % UNITS.size()].duplicate()
+	
+	var level_title = UNIT_LEVELS_TITLE[randi() % UNIT_LEVELS_TITLE.size()] 
+	var title = level_title if level_title != "Regular" else RandomNameGenerator.generate() + "'s"
+	
+	unit["id"] = "UNIT-" + str(GDUUID.v4()) + "-" + level_title
+	unit["name"] = title + " " + unit["name"]
+	unit["cooldown"] += int(unit["cooldown"] + (rand_range(-0.5, 2) + MODFIER[level_title]))
+	unit["cost"] += int(unit["cost"] * (rand_range(0.2, 2) + MODFIER[level_title]))
+	unit["max_hp"] += unit["max_hp"] * (rand_range(0.5, 1) + MODFIER[level_title])
+	unit["speed"] += unit["speed"] * (rand_range(0.2, 0.2) + MODFIER[level_title])
+	unit["attack_damage"] += unit["attack_damage"] * (rand_range(0.5, 1.5) + MODFIER[level_title])
+	unit["capture_damage"] += unit["capture_damage"] * (rand_range(0.5, 1) + MODFIER[level_title])
+	unit["range_attack"] += unit["range_attack"] * (rand_range(0.2, 0.5) + MODFIER[level_title])
+	
+	if unit.has("secondary_weapon_scene"):
+		if unit["secondary_weapon_scene"] != "":
+			unit["secondary_weapon_scene"] = SHIELDS[randi() % SHIELDS.size()]
+		
+	if unit.has("helm") and unit.has("armor"):
+		unit["helm"] = HELMS[randi() % HELMS.size()]
+		unit["armor"] = ARMORS[randi() % ARMORS.size()]
+		
+	unit["hp"] = unit["max_hp"]
+	return unit
+
 const UNITS = [
 	# melee sword
 	{
@@ -76,6 +126,82 @@ const UNITS = [
 		capture_damage = 5.0,
 		attack_cooldown = 1.2,
 		range_attack = 2.2,
+		team = "",
+		color = Color.white,
+		translation = Vector3.ZERO,
+		is_draw = false,
+	},
+	# melee spear
+	{
+		id = "u-4",
+		type_unit = TYPE_UNIT_MELEE,
+		name = "Spearman",
+		icon = "res://assets/ui/icon/squad_icon/icon_squad_spearman.png",
+		cooldown = 7.0,
+		cost = 10,
+		node_name = "",
+		scene = "res://scene/units/melee/melee.tscn",
+		primary_weapon_scene = "res://scene/weapon/melee/spear/spear.tscn",
+		helm = "res://scene/units/uniform/helm_0.png",
+		armor = "res://scene/units/uniform/armor_0.png",
+		secondary_weapon_scene = "",
+		hp = 12.0,
+		max_hp = 12.0,
+		speed = 4.5,
+		attack_damage = 7.0,
+		capture_damage = 5.0,
+		attack_cooldown = 1.4,
+		range_attack = 2.8,
+		team = "",
+		color = Color.white,
+		translation = Vector3.ZERO,
+		is_draw = false,
+	},
+	{
+		id = "u-5",
+		type_unit = TYPE_UNIT_MELEE,
+		name = "Pikeman",
+		icon = "res://assets/ui/icon/squad_icon/icon_squad_pikeman.png",
+		cooldown = 9.5,
+		cost = 15,
+		node_name = "",
+		scene = "res://scene/units/melee/melee.tscn",
+		primary_weapon_scene = "res://scene/weapon/melee/pike/pike.tscn",
+		secondary_weapon_scene = "",
+		helm = "res://scene/units/uniform/helm_1.png",
+		armor = "res://scene/units/uniform/armor_1.png",
+		hp = 22.0,
+		max_hp = 22.0,
+		speed = 4.2,
+		attack_damage = 8.0,
+		capture_damage = 5.0,
+		attack_cooldown = 1.4,
+		range_attack = 2.8,
+		team = "",
+		color = Color.white,
+		translation = Vector3.ZERO,
+		is_draw = false,
+	},
+	{
+		id = "u-6",
+		type_unit = TYPE_UNIT_MELEE,
+		name = "Halberdier",
+		icon = "res://assets/ui/icon/squad_icon/icon_squad_halberdier.png",
+		cooldown = 14.5,
+		cost = 20,
+		node_name = "",
+		scene = "res://scene/units/melee/melee.tscn",
+		primary_weapon_scene = "res://scene/weapon/melee/pike/pike.tscn",
+		secondary_weapon_scene = "res://scene/weapon/shield/iron_shield/iron_shield.tscn",
+		helm = "res://scene/units/uniform/helm_2.png",
+		armor = "res://scene/units/uniform/armor_2.png",
+		hp = 28.0,
+		max_hp = 28.0,
+		speed = 3.2,
+		attack_damage = 9.5,
+		capture_damage = 5.0,
+		attack_cooldown = 1.4,
+		range_attack = 2.8,
 		team = "",
 		color = Color.white,
 		translation = Vector3.ZERO,
@@ -209,82 +335,6 @@ const UNITS = [
 		capture_damage = 3.0,
 		attack_cooldown = 1.2,
 		range_attack = 12.4,
-		team = "",
-		color = Color.white,
-		translation = Vector3.ZERO,
-		is_draw = false,
-	},
-	# melee spear
-	{
-		id = "u-4",
-		type_unit = TYPE_UNIT_MELEE,
-		name = "Spearman",
-		icon = "res://assets/ui/icon/squad_icon/icon_squad_spearman.png",
-		cooldown = 7.0,
-		cost = 10,
-		node_name = "",
-		scene = "res://scene/units/melee/melee.tscn",
-		primary_weapon_scene = "res://scene/weapon/melee/spear/spear.tscn",
-		helm = "res://scene/units/uniform/helm_0.png",
-		armor = "res://scene/units/uniform/armor_0.png",
-		secondary_weapon_scene = "",
-		hp = 12.0,
-		max_hp = 12.0,
-		speed = 4.5,
-		attack_damage = 7.0,
-		capture_damage = 5.0,
-		attack_cooldown = 1.4,
-		range_attack = 2.8,
-		team = "",
-		color = Color.white,
-		translation = Vector3.ZERO,
-		is_draw = false,
-	},
-	{
-		id = "u-5",
-		type_unit = TYPE_UNIT_MELEE,
-		name = "Pikeman",
-		icon = "res://assets/ui/icon/squad_icon/icon_squad_pikeman.png",
-		cooldown = 9.5,
-		cost = 15,
-		node_name = "",
-		scene = "res://scene/units/melee/melee.tscn",
-		primary_weapon_scene = "res://scene/weapon/melee/pike/pike.tscn",
-		secondary_weapon_scene = "",
-		helm = "res://scene/units/uniform/helm_1.png",
-		armor = "res://scene/units/uniform/armor_1.png",
-		hp = 22.0,
-		max_hp = 22.0,
-		speed = 4.2,
-		attack_damage = 8.0,
-		capture_damage = 5.0,
-		attack_cooldown = 1.4,
-		range_attack = 2.8,
-		team = "",
-		color = Color.white,
-		translation = Vector3.ZERO,
-		is_draw = false,
-	},
-	{
-		id = "u-6",
-		type_unit = TYPE_UNIT_MELEE,
-		name = "Halberdier",
-		icon = "res://assets/ui/icon/squad_icon/icon_squad_halberdier.png",
-		cooldown = 14.5,
-		cost = 20,
-		node_name = "",
-		scene = "res://scene/units/melee/melee.tscn",
-		primary_weapon_scene = "res://scene/weapon/melee/pike/pike.tscn",
-		secondary_weapon_scene = "res://scene/weapon/shield/iron_shield/iron_shield.tscn",
-		helm = "res://scene/units/uniform/helm_2.png",
-		armor = "res://scene/units/uniform/armor_2.png",
-		hp = 28.0,
-		max_hp = 28.0,
-		speed = 3.2,
-		attack_damage = 9.5,
-		capture_damage = 5.0,
-		attack_cooldown = 1.4,
-		range_attack = 2.8,
 		team = "",
 		color = Color.white,
 		translation = Vector3.ZERO,
@@ -425,7 +475,7 @@ const UNITS = [
 		hp = 70.0,
 		max_hp = 70.0,
 		speed = 1.5,
-		attack_damage = 0.5,
+		attack_damage = 3.5,
 		capture_damage = 8.0,
 		attack_cooldown = 2.7,
 		range_attack = 15.0,
