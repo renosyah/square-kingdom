@@ -3,6 +3,9 @@
 the game top down paper style art 3D for mobile and pc with multiplayer LAN made using godot game engine and some modify addons
 
 
+## Download
+link : [Square Kingdom from itch.io](https://renosyah.itch.io/square-kingdom)
+
 
 ## Feature
 - Simple click/tap to watch
@@ -18,13 +21,13 @@ the game top down paper style art 3D for mobile and pc with multiplayer LAN made
 
 
 ## Gameplay
-![GitHub Logo](/ss/1.png) 
+![GitHub Logo](/ss/ss_gameplay.png) 
 
 
-![GitHub Logo](/ss/2.png) 
+![GitHub Logo](/ss/ss_gameplay_mp.png) 
 
 
-![GitHub Logo](/ss/3.png) 
+![GitHub Logo](/ss/ss_gameplay_mp_2.png) 
  
 
 

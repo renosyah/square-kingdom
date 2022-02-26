@@ -8,7 +8,7 @@
 radius = 0.412076
 
 [sub_resource type="Curve" id=2]
-_data = [ Vector2( 0.0190476, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.980952, 0.0545454 ), 0.0, 0.0, 0, 0 ]
+_data = [ Vector2( 0.0190476, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.752381, 0 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="SpatialMaterial" id=3]
 albedo_color = Color( 0.956863, 0.992157, 1, 1 )

@@ -24,7 +24,7 @@ material = SubResource( 3 )
 size = Vector3( 80, 14, 80 )
 
 [sub_resource type="CubeMesh" id=11]
-size = Vector3( 160, 30, 60 )
+size = Vector3( 160, 30, 2 )
 
 [sub_resource type="SpatialMaterial" id=10]
 albedo_color = Color( 0.623529, 0.329412, 0.0666667, 1 )
@@ -81,7 +81,7 @@ material/0 = null
 [node name="cliff" type="Spatial" parent="pivot"]
 
 [node name="cliff1" type="MeshInstance" parent="pivot/cliff"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.127, -1.052, -69.491 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.127, -1.052, -40.4619 )
 mesh = SubResource( 11 )
 skeleton = NodePath("../..")
 material/0 = SubResource( 10 )
