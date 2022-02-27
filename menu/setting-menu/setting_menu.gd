@@ -9,10 +9,20 @@ onready var _color_picker = $CanvasLayer/input_color
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	get_tree().set_quit_on_go_back(true)
-	get_tree().set_auto_accept_quit(true)
+	get_tree().set_quit_on_go_back(false)
+	get_tree().set_auto_accept_quit(false)
 	_on_tag_pressed()
 	
+func _notification(what):
+	match what:
+		MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
+			_on_back_pressed()
+			return
+			
+		MainLoop.NOTIFICATION_WM_GO_BACK_REQUEST: 
+			_on_back_pressed()
+			return
+		
 func _on_back_pressed():
 	get_tree().change_scene("res://menu/main-menu/main_menu.tscn")
 

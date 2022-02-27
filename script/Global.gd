@@ -16,7 +16,7 @@ const HARD_AI = "HARD"
 const AI_LEVEL = {
 	 EASY_AI : {name = EASY_AI, timeout = 5, deploy_chance = 0.5},
 	 MEDIUM_AI : {name = MEDIUM_AI, timeout = 4, deploy_chance = 0.6},
-	 HARD_AI : {name = HARD_AI ,timeout = 2, deploy_chance = 0.7}
+	 HARD_AI : {name = HARD_AI ,timeout = 3, deploy_chance = 0.7}
 }
 
 const SMALL_SIZE = { 
@@ -58,6 +58,12 @@ func _ready():
 	load_audio_setting()
 	play_music()
 	
+func set_window_size():
+	var _size_landscape = Vector2.ONE * 800
+	var _size_potrait = Vector2(600,1024)
+	if OS.get_name() in DEKSTOP:
+		OS.set_window_size(_size_landscape)
+	
 ################################################################
 # play music!
 const AUDIO_SAVE_FILE = "audio_setting" + "_" + VERSION_SAVE + ".dat"
@@ -65,9 +71,6 @@ var _audio
 var audio_setting = { music = false, sfx = true }
 
 func play_music():
-	if OS.get_name() in DEKSTOP:
-		return
-		
 	if not _audio:
 		_audio = AudioStreamPlayer.new()
 		#_audio.volume_db = -20
@@ -104,7 +107,7 @@ var player_data = {}
 func new_player_data() -> Dictionary:
 	var _data = {
 		id = "PLAYER-" + GDUUID.v4(),
-		name = OS.get_name(),
+		name = "",
 		color = Color.blue,
 		team = TEAM_1,
 		units = [],
@@ -112,6 +115,7 @@ func new_player_data() -> Dictionary:
 	
 	for i in 8:
 		var unit = Units.UNITS[i].duplicate()
+		unit.id = "UNIT-" + str(GDUUID.v4()) + "-starter"
 		unit.team = TEAM_1
 		unit.color = Color.blue
 		_data.units.append(unit)
@@ -168,6 +172,7 @@ func load_player_inventories():
 		_player_inventories = []
 		for i in range(8, Units.UNITS.size()):
 			var unit = Units.UNITS[i].duplicate()
+			unit.id = "UNIT-" + str(GDUUID.v4()) + "-starter"
 			unit.team = TEAM_1
 			unit.color = Color.blue
 			_player_inventories.append(unit)
@@ -326,8 +331,9 @@ static func create_array_range(_range : int) -> Array:
 	
 static func generate_ai_units(_ai_name : String) -> Array:
 	var ai_unit = []
-	for i in 8:
-		var unit = Units.UNITS[randi() % Units.UNITS.size()]
+	var count = int(rand_range(8, 12))
+	for i in count:
+		var unit = Units.UNITS[i].duplicate()
 		ai_unit.append(unit)
 		
 	if _ai_name == MEDIUM_AI:

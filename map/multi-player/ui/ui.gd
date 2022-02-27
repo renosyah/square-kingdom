@@ -25,7 +25,8 @@ onready var _game_over_scoreboard = $CanvasLayer/game_over/VBoxContainer/scorebo
 onready var _reward_dialog = $CanvasLayer/reward_dialog
 onready var _reward_holder = $CanvasLayer/reward_dialog/VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2/ScrollContainer/holder/HBoxContainer
 
-onready var _ping_counter = $CanvasLayer/menu/ping_counter
+onready var _fps_counter = $CanvasLayer/menu/VBoxContainer2/fps_counter
+onready var _ping_counter = $CanvasLayer/menu/VBoxContainer2/ping_counter
 onready var _menu = $CanvasLayer/menu
 onready var _music = $CanvasLayer/menu/VBoxContainer/HBoxContainer/music
 onready var _sfx = $CanvasLayer/menu/VBoxContainer/HBoxContainer/sfx
@@ -40,6 +41,16 @@ func _ready():
 	if not get_tree().is_network_server():
 		_ping_counter.visible = true
 		Network.connect("on_ping", self ,"_on_ping")
+		
+func _notification(what):
+	match what:
+		MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
+			_on_menu_btn_pressed()
+			return
+			
+		MainLoop.NOTIFICATION_WM_GO_BACK_REQUEST: 
+			_on_menu_btn_pressed()
+			return
 		
 func _on_ping(_ping):
 	_ping_counter.text = "Ping : " + str(_ping) + "/ms"
@@ -150,6 +161,10 @@ func _on_main_menu_pressed():
 
 func _on_close_exeption_message_pressed():
 	_reward_dialog.visible = false
+
+func _on_fps_timer_timeout():
+	_fps_counter.text = "fps : " + str(Engine.get_frames_per_second())
+
 
 
 

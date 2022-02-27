@@ -26,10 +26,20 @@ margin_right = 600.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 0, 40 )
 
-[node name="player_name_setting" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Label3" type="Label" parent="VBoxContainer"]
 margin_top = 44.0
 margin_right = 600.0
-margin_bottom = 144.0
+margin_bottom = 84.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+text = "Player Name"
+align = 1
+valign = 1
+
+[node name="player_name_setting" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 88.0
+margin_right = 600.0
+margin_bottom = 188.0
 rect_min_size = Vector2( 0, 50 )
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/player_name_setting"]
@@ -45,7 +55,7 @@ rect_min_size = Vector2( 0, 100 )
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 1 )
 align = 1
-max_length = 20
+max_length = 8
 placeholder_text = "Your Name"
 caret_blink = true
 caret_blink_speed = 0.5
@@ -70,15 +80,15 @@ margin_bottom = 100.0
 rect_min_size = Vector2( 10, 0 )
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
-margin_top = 148.0
+margin_top = 192.0
 margin_right = 600.0
-margin_bottom = 188.0
+margin_bottom = 232.0
 rect_min_size = Vector2( 0, 40 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 192.0
+margin_top = 236.0
 margin_right = 600.0
-margin_bottom = 336.0
+margin_bottom = 380.0
 
 [node name="team_1_setting" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
 margin_right = 291.0
@@ -184,9 +194,9 @@ margin_bottom = 100.0
 rect_min_size = Vector2( 10, 0 )
 
 [node name="MarginContainer8" type="MarginContainer" parent="VBoxContainer"]
-margin_top = 340.0
+margin_top = 384.0
 margin_right = 600.0
-margin_bottom = 380.0
+margin_bottom = 424.0
 rect_min_size = Vector2( 0, 40 )
 
 [connection signal="pressed" from="VBoxContainer/player_name_setting/save_name" to="." method="_on_save_name_pressed"]

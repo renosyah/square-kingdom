@@ -161,7 +161,7 @@ func _process(delta):
 				perform_attack()
 				_cooldown_timmer.start()
 				
-		move_and_slide(velocity)
+		move_and_slide(velocity, Vector3.UP)
 			
 	else:
 		set_process(false)

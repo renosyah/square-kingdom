@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/ui/fonts/montserrat_eb_48.tres" type="DynamicFont" id=1]
 [ext_resource path="res://menu/main-menu/ui/ui.gd" type="Script" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://assets/ui/icon/host.png" type="Texture" id=13]
 [ext_resource path="res://assets/ui/icon/play.png" type="Texture" id=14]
 [ext_resource path="res://assets/ui/icon/find.png" type="Texture" id=15]
+[ext_resource path="res://assets/ui/input-name/input_name.tscn" type="PackedScene" id=16]
 
 [node name="ui" type="Control"]
 anchor_right = 1.0
@@ -26,15 +27,14 @@ __meta__ = {
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Control" type="Control" parent="CanvasLayer"]
+[node name="bg" type="Control" parent="CanvasLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="cloud_1" type="TextureRect" parent="CanvasLayer/Control"]
+[node name="cloud_1" type="TextureRect" parent="CanvasLayer/bg"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -267.0
@@ -47,7 +47,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="cloud_2" type="TextureRect" parent="CanvasLayer/Control"]
+[node name="cloud_2" type="TextureRect" parent="CanvasLayer/bg"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -141.0
@@ -60,7 +60,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="cloud_3" type="TextureRect" parent="CanvasLayer/Control"]
+[node name="cloud_3" type="TextureRect" parent="CanvasLayer/bg"]
 margin_left = -299.0
 margin_top = -61.0
 margin_right = 186.0
@@ -71,7 +71,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="cloud_4" type="TextureRect" parent="CanvasLayer/Control"]
+[node name="cloud_4" type="TextureRect" parent="CanvasLayer/bg"]
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_left = -273.0
@@ -85,7 +85,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="cloud_5" type="TextureRect" parent="CanvasLayer/Control"]
+[node name="cloud_5" type="TextureRect" parent="CanvasLayer/bg"]
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -101,7 +101,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="cloud_6" type="TextureRect" parent="CanvasLayer/Control"]
+[node name="cloud_6" type="TextureRect" parent="CanvasLayer/bg"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -549.0
@@ -114,7 +114,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="cloud_7" type="TextureRect" parent="CanvasLayer/Control"]
+[node name="cloud_7" type="TextureRect" parent="CanvasLayer/bg"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = 100.0
@@ -127,7 +127,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="CanvasLayer/Control"]
+[node name="Label" type="Label" parent="CanvasLayer/bg"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -213.0
@@ -145,7 +145,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label2" type="Label" parent="CanvasLayer/Control"]
+[node name="Label2" type="Label" parent="CanvasLayer/bg"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -96.0
@@ -159,6 +159,14 @@ custom_fonts/font = ExtResource( 12 )
 text = "By Renosyah"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -313,6 +321,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="input_name" parent="CanvasLayer" instance=ExtResource( 16 )]
+visible = false
+
 [node name="server_browser" parent="CanvasLayer" instance=ExtResource( 8 )]
 visible = false
 
@@ -324,6 +335,7 @@ visible = false
 [connection signal="pressed" from="CanvasLayer/Control/Control/VBoxContainer/HBoxContainer/join" to="." method="_on_join_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/CenterContainer2/VBoxContainer/setting" to="." method="_on_setting_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/CenterContainer2/VBoxContainer/deck" to="." method="_on_deck_pressed"]
+[connection signal="on_continue" from="CanvasLayer/input_name" to="." method="_on_input_name_on_continue"]
 [connection signal="close" from="CanvasLayer/server_browser" to="." method="_on_server_browser_close"]
 [connection signal="on_error" from="CanvasLayer/server_browser" to="." method="_on_server_browser_on_error"]
 [connection signal="on_join" from="CanvasLayer/server_browser" to="." method="_on_server_browser_on_join"]

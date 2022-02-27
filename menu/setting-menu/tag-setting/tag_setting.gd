@@ -10,6 +10,7 @@ onready var _team_2_color = $VBoxContainer/HBoxContainer/team_2_setting/hbox/col
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_input_name.placeholder_text = Global.player_data.name
+	_input_name.text = Global.player_data.name
 	
 	_team_1_color.color = Global.player_game_data[Global.TEAM_1].color
 	_team_2_color.color = Global.player_game_data[Global.TEAM_2].color

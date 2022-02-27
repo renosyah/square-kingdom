@@ -34,6 +34,16 @@ func _ready():
 	apply_color()
 	refill_holder()
 	
+func _notification(what):
+	match what:
+		MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
+			_on_back_pressed()
+			return
+			
+		MainLoop.NOTIFICATION_WM_GO_BACK_REQUEST: 
+			_on_back_pressed()
+			return
+			
 func apply_color():
 	Global.player_data.color = Global.player_game_data[Global.TEAM_1].color
 	Global.apply_players_unit_team()

@@ -15,7 +15,7 @@ var html_color = ""
 func _ready():
 	_input_name.text = player_name
 	_rng.randomize()
-	_ready_button.disabled = false
+	_ready_button.disabled = true
 	_on_choose_color_pressed()
 	
 func set_player_name(_name):

@@ -1,18 +1,28 @@
 extends Control
 
 onready var _control_ui = $CanvasLayer/Control
+onready var _input_name = $CanvasLayer/input_name
+
 onready var _exception_message = $CanvasLayer/exception_message
 onready var _server_browser = $CanvasLayer/server_browser
 
 func _ready():
 	_server_browser.start_finding()
+	get_tree().set_quit_on_go_back(true)
+	get_tree().set_auto_accept_quit(true)
+	check_error()
+	check_player_name()
+	
+func check_player_name():
+	if Global.player_data.name == "":
+		_input_name.visible = true
+		_control_ui.visible = false
+	
+func check_error():
 	if Global.mp_exception_message != "":
 		_exception_message.display_message("Network Error!", Global.mp_exception_message)
 		_exception_message.visible = true
 		Global.mp_exception_message = ""
-		
-	get_tree().set_quit_on_go_back(true)
-	get_tree().set_auto_accept_quit(true)
 	
 func _on_play_pressed():
 	Network.connect("server_player_connected", self ,"_server_player_connected")
@@ -59,6 +69,13 @@ func _on_server_browser_on_error(msg):
 	_exception_message.display_message("Network Error!", msg)
 	_exception_message.visible = true
 	Global.mp_exception_message = ""
+
+func _on_input_name_on_continue(_player_name, html_color):
+	Global.player_data.name = _player_name
+	Global.save_player_data()
+	_input_name.visible = false
+	_control_ui.visible = true
+
 
 
 

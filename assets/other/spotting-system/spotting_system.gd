@@ -21,9 +21,6 @@ func _set_spotting_range(_val : int):
 	
 func _set_enable(_enable):
 	enable = _enable
-	for i in _raycasts:
-		i.enabled = enable
-		
 	set_process(enable)
 	
 func _set_parent(_node):

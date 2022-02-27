@@ -46,6 +46,8 @@ func generate_spawn():
 	_terrain.map_size = game_data.map_size
 	_terrain.generate()
 	
+	#_camera.camera_keep_aspect(Camera.KEEP_WIDTH if (not OS.get_name() in Global.DEKSTOP) else Camera.KEEP_HEIGHT)
+	
 	var pos_1 = _terrain.west_spawn_translations
 	var pos_2 = _terrain.east_spawn_translations
 	

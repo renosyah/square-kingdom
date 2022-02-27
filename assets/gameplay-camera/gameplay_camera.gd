@@ -15,6 +15,9 @@ var events : Dictionary = {}
 var last_drag_distance : float = 0.0
 var drag_speed : float = 0.0025
 
+func camera_keep_aspect(_aspect):
+	_camera.keep_aspect = _aspect
+
 func _process(delta):
 	if not is_enable:
 		return

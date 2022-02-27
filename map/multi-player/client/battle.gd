@@ -37,6 +37,8 @@ func _init_client():
 	_terrain.season = game_data.map_season
 	_terrain.generate()
 	
+	#_camera.camera_keep_aspect(Camera.KEEP_WIDTH if (not OS.get_name() in Global.DEKSTOP) else Camera.KEEP_HEIGHT)
+	
 	_spawn_buildings(_castle_holder.get_path(), _farm_holder.get_path())
 	_ui.update_victory_bar(_get_building_own_each_team(_castle_holder.get_path(), _farm_holder.get_path()))
 	

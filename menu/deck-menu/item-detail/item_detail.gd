@@ -19,8 +19,8 @@ func display_detail(data):
 		
 	_icon.texture = load(data.icon)
 	_name.text = data.name
-	_attack.text = str(round(data.attack_damage) * round(data.attack_cooldown)) + " dmg/s"
-	_cap.text = str(round(data.capture_damage) * round(data.attack_cooldown)) + " dmg/s"
+	_attack.text = str(round(data.attack_damage)) + " dmg"
+	_cap.text = str(round(data.capture_damage)) + " dmg"
 	_hp.text = str(round(data.max_hp)) + " hp"
 	_speed.text = str(round(data.speed)) + " mtr/s"
 	_cost.text = str(round(data.cost)) + " coin"

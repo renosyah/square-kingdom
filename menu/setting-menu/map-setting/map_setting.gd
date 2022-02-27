@@ -1,8 +1,8 @@
 extends Control
 
-onready var _spring = $VBoxContainer/map_setting/spring
-onready var _winter = $VBoxContainer/map_setting/winter
-onready var _antum = $VBoxContainer/map_setting/antum
+onready var _spring = $VBoxContainer/map_setting/spring/spring
+onready var _winter = $VBoxContainer/map_setting/winter/winter
+onready var _antum = $VBoxContainer/map_setting/antum/antum
 
 onready var _map_small = $VBoxContainer/map_setting2/map_small_btn
 onready var _map_normal = $VBoxContainer/map_setting2/map_normal_btn

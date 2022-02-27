@@ -640,7 +640,6 @@ margin_bottom = 1024.0
 rect_min_size = Vector2( 0, 150 )
 
 [node name="menu" type="ColorRect" parent="CanvasLayer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
@@ -648,9 +647,38 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ping_counter" type="Label" parent="CanvasLayer/menu"]
+[node name="VBoxContainer2" type="HBoxContainer" parent="CanvasLayer/menu"]
+margin_left = 14.0
+margin_right = 314.0
+margin_bottom = 80.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="fps_counter" type="Label" parent="CanvasLayer/menu/VBoxContainer2"]
+margin_right = 91.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 80, 80 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_as_outline = 1
+custom_fonts/font = ExtResource( 12 )
+text = "fps : 28"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/menu/VBoxContainer2"]
+margin_left = 95.0
+margin_right = 110.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 15, 0 )
+
+[node name="ping_counter" type="Label" parent="CanvasLayer/menu/VBoxContainer2"]
 visible = false
-margin_right = 219.0
+margin_left = 114.0
+margin_right = 270.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 80, 80 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
@@ -658,11 +686,13 @@ custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_as_outline = 1
 custom_fonts/font = ExtResource( 12 )
 text = "ping : 28/ms"
-align = 1
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="fps_timer" type="Timer" parent="CanvasLayer/menu/VBoxContainer2"]
+autostart = true
 
 [node name="CenterContainer2" type="CenterContainer" parent="CanvasLayer/menu"]
 anchor_left = 1.0
@@ -806,6 +836,7 @@ rect_min_size = Vector2( 0, 30 )
 [connection signal="pressed" from="CanvasLayer/game_over/VBoxContainer/HBoxContainer/re_match" to="." method="_on_re_match_pressed"]
 [connection signal="pressed" from="CanvasLayer/game_over/VBoxContainer/HBoxContainer/exit_game" to="." method="_on_exit_game_pressed"]
 [connection signal="pressed" from="CanvasLayer/reward_dialog/VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/close_exeption_message" to="." method="_on_close_exeption_message_pressed"]
+[connection signal="timeout" from="CanvasLayer/menu/VBoxContainer2/fps_timer" to="." method="_on_fps_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/menu/CenterContainer2/close_menu" to="." method="_on_close_menu_pressed"]
 [connection signal="pressed" from="CanvasLayer/menu/VBoxContainer/HBoxContainer/music" to="." method="_on_music_pressed"]
 [connection signal="pressed" from="CanvasLayer/menu/VBoxContainer/HBoxContainer/sfx" to="." method="_on_sfx_pressed"]

@@ -124,6 +124,7 @@ func set_target(_target : NodePath):
 	if is_instance_valid(_aggresor):
 		target = _aggresor
 		set_process(true)
+		
 		_spotting.enable = true
 	
 # Called when the node enters the scene tree for the first time.
@@ -205,7 +206,7 @@ func _process(delta):
 				perform_attack()
 				_cooldown_timmer.start()
 			
-		move_and_slide(velocity)
+		move_and_slide(velocity, Vector3.UP)
 			
 	else:
 		set_process(false)
@@ -215,7 +216,11 @@ func take_damage(_damage : float, _hit_by: Dictionary):
 	if not is_master():
 		return
 		
-	set_target(_hit_by.node_path)
+	var _aggresor = get_node_or_null(_hit_by.node_path)
+	if is_instance_valid(_aggresor):
+		target = _aggresor
+		set_process(true)
+		
 	rpc("_take_damage", _damage, _hit_by)
 	
 func dead():
