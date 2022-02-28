@@ -11,6 +11,19 @@ remotesync func _set_target(_target : NodePath):
 	
 	if is_instance_valid(_turret):
 		_turret.set_target(_target_node)
+		
+remotesync func _take_damage(_damage : float, _hit_by: Dictionary):
+	._take_damage(_damage, _hit_by)
+	
+	if is_dead:
+		return
+		
+	_set_target(_hit_by.node_path)
+	
+remotesync func _dead():
+	._dead()
+	if is_instance_valid(_turret):
+		_turret.is_dead = true
 	
 ############################################################
 func init_siege():
@@ -42,17 +55,6 @@ func set_target(_target : NodePath):
 		return
 		
 	rpc("_set_target", _target)
-	
-func returning_fire(_from : NodePath):
-	.returning_fire(_from)
-	if not is_master():
-		return
-		
-	if is_instance_valid(target):
-		if str(target.get_path()) == str(_from):
-			return
-		
-	rpc("_set_target", _from)
 	
 func _on_spotted(body):
 	._on_spotted(body)

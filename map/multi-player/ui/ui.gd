@@ -115,7 +115,7 @@ func display_game_over(is_win : bool , condition, message : String, _scores : Di
 	_game_over_rematch_btn.visible = get_tree().is_network_server()
 	_game_over_scoreboard.display_scores(_scores)
 	
-	if is_win:
+	if is_win and _scores.has(Global.player_data.id):
 		display_reward_dialog(_scores[Global.player_data.id]["total"])
 	
 	

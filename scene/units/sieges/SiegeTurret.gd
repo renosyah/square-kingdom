@@ -1,6 +1,8 @@
 extends Spatial
 class_name SiegeTurret
 
+var is_dead = false
+
 # attack
 var player = {}
 var target = null
@@ -37,6 +39,10 @@ func set_target(_target):
 	set_process(true)
 	
 func _process(delta):
+	if is_dead:
+		set_process(false)
+		return
+	
 	moving_turret(delta)
 	
 func moving_turret(delta):
