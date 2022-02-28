@@ -129,6 +129,7 @@ func moving(delta):
 		return
 		
 	if not target:
+		_check_is_walking(false)
 		set_process(false)
 		return
 		

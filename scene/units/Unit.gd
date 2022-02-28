@@ -205,6 +205,7 @@ func moving(delta):
 			velocity = Vector3(direction.x, 0.0 , direction.z) * speed
 			
 		elif distance_to_target <= range_attack:
+			_check_is_walking(false)
 			if _cooldown_timmer.is_stopped():
 				perform_attack()
 				_cooldown_timmer.start()
