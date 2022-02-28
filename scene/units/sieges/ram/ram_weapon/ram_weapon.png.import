@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/ram_weapon.png-2b9de533f451c1eeba77c0779d6bea55.s3tc.stex"
-path.etc="res://.import/ram_weapon.png-2b9de533f451c1eeba77c0779d6bea55.etc.stex"
+path.s3tc="res://.import/ram_weapon.png-24b0b975f81ee9a175771d411ce129d2.s3tc.stex"
+path.etc="res://.import/ram_weapon.png-24b0b975f81ee9a175771d411ce129d2.etc.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/other/ram/ram_weapon.png"
-dest_files=[ "res://.import/ram_weapon.png-2b9de533f451c1eeba77c0779d6bea55.s3tc.stex", "res://.import/ram_weapon.png-2b9de533f451c1eeba77c0779d6bea55.etc.stex" ]
+source_file="res://scene/units/sieges/ram/ram_weapon/ram_weapon.png"
+dest_files=[ "res://.import/ram_weapon.png-24b0b975f81ee9a175771d411ce129d2.s3tc.stex", "res://.import/ram_weapon.png-24b0b975f81ee9a175771d411ce129d2.etc.stex" ]
 
 [params]
 

@@ -8,7 +8,6 @@ var use_multiple = true setget _set_use_multiple
 var team = ""
 var spotting_range : int setget _set_spotting_range
 var enable : bool setget _set_enable
-var parent setget _set_parent
 var direction : Vector3 setget _set_direction
 	
 func _set_use_multiple(_val : bool):
@@ -43,10 +42,9 @@ func _set_enable(_enable):
 	enable = _enable
 	set_process(enable)
 	
-func _set_parent(_node):
-	parent = _node
+func add_exception(_node):
 	for i in _raycasts:
-		i.add_exception(parent)
+		i.add_exception(_node)
 	
 func _ready():
 	set_process(false)
@@ -62,6 +60,9 @@ func _process(delta):
 			
 func _is_valid_target(_body) -> bool:
 	if not is_instance_valid(_body):
+		return false
+		
+	if _body is GameplayCamera:
 		return false
 		
 	if _body is StaticBody:

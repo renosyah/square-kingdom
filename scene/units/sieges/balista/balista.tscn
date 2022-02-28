@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/other/wheel/wheel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/ui/bar-3d/hp_bar_3d.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/other/balista_bow/balista_bow.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scene/units/sieges/balista/balista.gd" type="Script" id=4]
 [ext_resource path="res://assets/flag/flag.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/ui/message-3d/message_3d.tscn" type="PackedScene" id=6]
@@ -47,8 +46,8 @@ transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -1.00062, -0.986078, -0.902393
 [node name="wheel_3" parent="pivot" instance=ExtResource( 1 )]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -1.00062, -0.986078, 0.812747 )
 
-[node name="balista_bow" parent="pivot" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.274744, -0.403109, 1.20094e-08 )
+[node name="turret_pos" type="Position3D" parent="pivot"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.275, -0.403, 0 )
 
 [node name="flag" parent="pivot" instance=ExtResource( 5 )]
 transform = Transform( -0.8, 0, 0, 0, 0.8, -8.74228e-08, 0, 6.99382e-08, 1, -1.56154, -0.745768, -0.524553 )

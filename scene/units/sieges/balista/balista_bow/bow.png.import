@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/bow.png-bbbe3f6600a7bc21bf9990c141a9e32d.s3tc.stex"
-path.etc="res://.import/bow.png-bbbe3f6600a7bc21bf9990c141a9e32d.etc.stex"
+path.s3tc="res://.import/bow.png-c0b6c44f27bdd07a8e2388e97e6615cb.s3tc.stex"
+path.etc="res://.import/bow.png-c0b6c44f27bdd07a8e2388e97e6615cb.etc.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/other/balista_bow/bow.png"
-dest_files=[ "res://.import/bow.png-bbbe3f6600a7bc21bf9990c141a9e32d.s3tc.stex", "res://.import/bow.png-bbbe3f6600a7bc21bf9990c141a9e32d.etc.stex" ]
+source_file="res://scene/units/sieges/balista/balista_bow/bow.png"
+dest_files=[ "res://.import/bow.png-c0b6c44f27bdd07a8e2388e97e6615cb.s3tc.stex", "res://.import/bow.png-c0b6c44f27bdd07a8e2388e97e6615cb.etc.stex" ]
 
 [params]
 

@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/flag/flag.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/other/wheel/wheel.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scene/units/sieges/ram/ram_base.png" type="Texture" id=5]
-[ext_resource path="res://assets/other/ram/ram_weapon.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scene/units/sieges/ram/ram_weapon/ram_weapon.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/ui/message-3d/message_3d.tscn" type="PackedScene" id=7]
 
 [sub_resource type="SphereShape" id=1]

@@ -53,7 +53,10 @@ func _notification(what):
 			return
 		
 func _on_ping(_ping):
-	_ping_counter.text = "Ping : " + str(_ping) + "/ms"
+	_ping_counter.text = "ping : " + str(_ping) + "/ms"
+	
+func _on_fps_timer_timeout():
+	_fps_counter.text = "fps : " + str(Engine.get_frames_per_second())
 	
 func _on_menu_btn_pressed():
 	_menu.visible = true
@@ -162,8 +165,6 @@ func _on_main_menu_pressed():
 func _on_close_exeption_message_pressed():
 	_reward_dialog.visible = false
 
-func _on_fps_timer_timeout():
-	_fps_counter.text = "fps : " + str(Engine.get_frames_per_second())
 
 
 

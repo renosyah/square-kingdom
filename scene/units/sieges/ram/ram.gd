@@ -133,13 +133,10 @@ func _process(delta):
 		set_process(false)
 		return
 		
-	var velocity = Vector3.ZERO
-	var direction = Vector3.ZERO
-	var distance_to_target = 0.0
-	
 	if is_instance_valid(target):
-		direction = translation.direction_to(target.translation)
-		distance_to_target = translation.distance_to(target.translation)
+		var velocity = Vector3.ZERO
+		var direction = translation.direction_to(target.translation)
+		var distance_to_target = translation.distance_to(target.translation)
 		
 #		transform_turning(Vector3(target.translation.x , translation.y ,target.translation.z), delta)
 		if not target.is_targetable(team):
@@ -156,8 +153,8 @@ func _process(delta):
 			transform_turning(Vector3(target.translation.x , translation.y ,target.translation.z), delta)
 			
 		elif distance_to_target <= range_attack:
+			_check_is_walking(false)
 			if _cooldown_timmer.is_stopped():
-				_check_is_walking(false)
 				perform_attack()
 				_cooldown_timmer.start()
 				

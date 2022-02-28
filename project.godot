@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/godot-uuid/uuid.gd"
 }, {
+"base": "KinematicBody",
+"class": "GameplayCamera",
+"language": "GDScript",
+"path": "res://assets/gameplay-camera/gameplay_camera.gd"
+}, {
 "base": "InputEventAction",
 "class": "InputEventMultiScreenDrag",
 "language": "GDScript",
@@ -104,6 +109,7 @@ _global_script_class_icons={
 "Building": "",
 "Buildings": "",
 "GDUUID": "",
+"GameplayCamera": "",
 "InputEventMultiScreenDrag": "",
 "InputEventScreenPinch": "",
 "InputEventScreenTwist": "",

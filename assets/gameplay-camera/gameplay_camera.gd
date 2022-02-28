@@ -1,4 +1,5 @@
 extends KinematicBody
+class_name GameplayCamera
 
 signal on_camera_moving(_translation, _zoom)
 

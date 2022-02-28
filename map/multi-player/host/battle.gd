@@ -55,6 +55,12 @@ func generate_spawn():
 		Global.TEAM_1 : pos_1[randi() % pos_1.size()],
 		Global.TEAM_2 : pos_2[randi() % pos_2.size()]
 	}
+	
+	if randf() < 0.5:
+		castle_spawn_pos = {
+			Global.TEAM_1 : pos_2[randi() % pos_2.size()],
+			Global.TEAM_2 : pos_1[randi() % pos_1.size()]
+		}
 
 	var pos = _terrain.translations.duplicate()
 	

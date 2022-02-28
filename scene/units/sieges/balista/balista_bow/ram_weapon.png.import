@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/ram_base.png-61a9289476b37f9863ba96ffcff3e3e9.s3tc.stex"
-path.etc="res://.import/ram_base.png-61a9289476b37f9863ba96ffcff3e3e9.etc.stex"
+path.s3tc="res://.import/ram_weapon.png-e4315ce9a6152c52cd3b0e9786743f63.s3tc.stex"
+path.etc="res://.import/ram_weapon.png-e4315ce9a6152c52cd3b0e9786743f63.etc.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/other/balista_bow/ram_base.png"
-dest_files=[ "res://.import/ram_base.png-61a9289476b37f9863ba96ffcff3e3e9.s3tc.stex", "res://.import/ram_base.png-61a9289476b37f9863ba96ffcff3e3e9.etc.stex" ]
+source_file="res://scene/units/sieges/balista/balista_bow/ram_weapon.png"
+dest_files=[ "res://.import/ram_weapon.png-e4315ce9a6152c52cd3b0e9786743f63.s3tc.stex", "res://.import/ram_weapon.png-e4315ce9a6152c52cd3b0e9786743f63.etc.stex" ]
 
 [params]
 

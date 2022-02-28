@@ -162,7 +162,7 @@ func _ready():
 		add_child(_spotting)
 		_spotting.enable = true
 		_spotting.spotting_range = 22
-		_spotting.parent = self
+		_spotting.add_exception(self)
 		_spotting.team = team
 		_spotting.connect("on_spotted", self,"_on_spotted")
 		_spotting.translation = Vector3(0, 0.5, 0)
@@ -183,13 +183,10 @@ func _process(delta):
 		set_process(false)
 		return
 		
-	var velocity = Vector3.ZERO
-	var direction = Vector3.ZERO
-	var distance_to_target = 0.0
-	
 	if is_instance_valid(target):
-		direction = translation.direction_to(target.translation)
-		distance_to_target = translation.distance_to(target.translation)
+		var velocity = Vector3.ZERO
+		var direction = translation.direction_to(target.translation)
+		var distance_to_target = translation.distance_to(target.translation)
 		_check_facing_direction(direction.x)
 		
 		if not target.is_targetable(team):
@@ -204,6 +201,7 @@ func _process(delta):
 			velocity = Vector3(direction.x, 0.0 , direction.z) * speed
 			
 		elif distance_to_target <= range_attack:
+			_check_is_walking(false)
 			if _cooldown_timmer.is_stopped():
 				perform_attack()
 				_cooldown_timmer.start()
