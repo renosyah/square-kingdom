@@ -396,6 +396,9 @@ func _assign_unit_target(_unit):
 		if not is_instance_valid(i):
 			continue
 			
+		if randf() < 0.5:
+			continue
+			
 		if i.team != team:
 			target = i
 			break

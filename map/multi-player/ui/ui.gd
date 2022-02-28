@@ -116,12 +116,28 @@ func display_game_over(is_win : bool , condition, message : String, _scores : Di
 	_game_over_scoreboard.display_scores(_scores)
 	
 	if is_win:
-		display_reward_dialog()
+		display_reward_dialog(_scores[Global.player_data.id]["total"])
 	
 	
-func display_reward_dialog():
-	var unlocked_unit = Global.unlock_random_card_in_inventory()
+func display_reward_dialog(total_score : int):
+	var total_reward = 0
+	
+	if total_score >= 150:
+		total_reward = 4
+	elif total_score >= 100 and total_score < 150:
+		total_reward = 3
+	elif total_score >= 50 and total_score < 100:
+		total_reward = 2
+	elif total_score >= 15 and total_score < 50:
+		total_reward = 1
+		
+	if total_reward == 0:
+		return
+		
+	var unlocked_unit = Global.unlock_random_card_in_inventory(total_reward)
 	_reward_dialog.visible = not unlocked_unit.empty()
+		
+		
 	for i in unlocked_unit:
 		var item = preload("res://menu/deck-menu/item-inventory/item.tscn").instance()
 		item.data = i
