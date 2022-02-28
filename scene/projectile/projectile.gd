@@ -60,6 +60,9 @@ func _on_projectile_body_entered(body):
 	if body.is_a_parent_of(self):
 		return
 		
+	if body is GameplayCamera:
+		return
+		
 	if body is StaticBody:
 		stop_projectile()
 		return

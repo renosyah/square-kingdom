@@ -132,7 +132,7 @@ func set_target(_target : NodePath):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_process(false)
-	
+
 	if not is_master():
 		return
 		
@@ -172,6 +172,9 @@ func _ready():
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	moving(delta)
+	
+func moving(delta):
 	if is_dead:
 		return
 		
@@ -211,17 +214,22 @@ func _process(delta):
 	else:
 		set_process(false)
 		return
-		
+	
+	
 func take_damage(_damage : float, _hit_by: Dictionary):
 	if not is_master():
 		return
 		
-	var _aggresor = get_node_or_null(_hit_by.node_path)
+	returning_fire(_hit_by.node_path)
+	rpc("_take_damage", _damage, _hit_by)
+	
+	
+func returning_fire(_from : NodePath):
+	var _aggresor = get_node_or_null(_from)
 	if is_instance_valid(_aggresor):
 		target = _aggresor
 		set_process(true)
-		
-	rpc("_take_damage", _damage, _hit_by)
+	
 	
 func dead():
 	if not is_master():

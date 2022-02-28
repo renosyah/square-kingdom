@@ -1,6 +1,6 @@
 extends Node
 
-const VERSION_SAVE = "1.1"
+const VERSION_SAVE = "1.2"
 var PERSISTEN_SAVE = true
 
 const DEKSTOP =  ["Server", "Windows", "WinRT", "X11"]

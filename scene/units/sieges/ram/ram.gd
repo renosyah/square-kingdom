@@ -111,14 +111,13 @@ func _ready():
 	init_siege()
 	
 func init_siege():
-	_ram_weapon =  $pivot/ram
+	_ram_weapon = $pivot/ram
 	_wheels = [$pivot/wheel_1, $pivot/wheel_2, $pivot/wheel_3, $pivot/wheel_4,$pivot/wheel_5, $pivot/wheel_6]
 	$pivot/flag.set_flag_color(color)
-		
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+	
+func moving(delta):
 	# we override this shit!
-	#._process(delta)
+	#.moving(delta)
 	if is_dead:
 		return
 		

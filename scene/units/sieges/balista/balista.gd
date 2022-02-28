@@ -43,6 +43,24 @@ func set_target(_target : NodePath):
 		
 	rpc("_set_target", _target)
 	
+func returning_fire(_from : NodePath):
+	.returning_fire(_from)
+	if not is_master():
+		return
+		
+	if is_instance_valid(target):
+		if str(target.get_path()) == str(_from):
+			return
+		
+	rpc("_set_target", _from)
+	
+func _on_spotted(body):
+	._on_spotted(body)
+	if not is_master():
+		return
+		
+	rpc("_set_target", body.get_path())
+	
 func perform_attack():
 	# we override this shit!
 	#.perform_attack()
