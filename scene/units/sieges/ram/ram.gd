@@ -124,9 +124,9 @@ func _process(delta):
 		
 	# is a puppet
 	if not is_master():
-		rotation.x = lerp_angle(rotation.x, _puppet_rotation.x, delta * 5)
+		#rotation.x = lerp_angle(rotation.x, _puppet_rotation.x, delta * 5)
 		rotation.y = lerp_angle(rotation.y, _puppet_rotation.y, delta * 5)
-		rotation.z = lerp_angle(rotation.z, _puppet_rotation.z, delta * 5)
+		#rotation.z = lerp_angle(rotation.z, _puppet_rotation.z, delta * 5)
 		return
 		
 	if not target:

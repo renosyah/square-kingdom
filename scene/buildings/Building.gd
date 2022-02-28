@@ -24,6 +24,9 @@ var capture_by : Dictionary = {player = {}, team = "", color = Color.white}
 var last_owner_team = ""
 var can_be_capture = true
 
+# misc
+var _capture_reset_timer = null
+
 ############################################################
 # multiplayer func
 remotesync func _recapture(_cp_damage_restore : float):
@@ -70,7 +73,15 @@ func set_data(_data):
 	last_owner_team = team
 	
 func _ready():
-	pass
+	if not is_master():
+		return
+	
+	if not _capture_reset_timer:
+		_capture_reset_timer = Timer.new()
+		_capture_reset_timer.wait_time = cp_regen_rate
+		_capture_reset_timer.connect("timeout", self , "_capture_reset_timer_timeout")
+		_capture_reset_timer.autostart = true
+		add_child(_capture_reset_timer)
 	
 func capture(_cp_damage : float, _capture_by: Dictionary):
 	if not can_be_capture:
@@ -88,7 +99,12 @@ func recapture(_cp_damage_restore : float):
 	rpc("_recapture", _cp_damage_restore)
 	
 	
-	
+func _capture_reset_timer_timeout():
+	if not is_master():
+		return
+		
+	if cp < max_cp:
+		recapture(cp_regen_rate)
 	
 func finish_captured():
 	if not is_master():

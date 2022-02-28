@@ -209,10 +209,10 @@ func _on_bot_timer_timeout():
 		unit.team = team
 		unit.color = game_data[team].color
 		
-#		if game_data[team].coin - unit.cost < 0:
-#			continue
-#		game_data[team].coin -= unit.cost
-#		rpc("_on_coin_updated",team, game_data[team].coin)
+		if game_data[team].coin - unit.cost < 0:
+			continue
+			
+		game_data[team].coin -= unit.cost
 		
 		unit.node_name = "UNIT-" + GDUUID.v4()
 		unit.translation = castles[team].translation

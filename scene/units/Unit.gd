@@ -121,11 +121,13 @@ func set_target(_target : NodePath):
 		return
 		
 	var _aggresor = get_node_or_null(_target)
-	if is_instance_valid(_aggresor):
-		target = _aggresor
-		set_process(true)
+	if not is_instance_valid(_aggresor):
+		return
 		
-		_spotting.enable = true
+	target = _aggresor
+	set_process(true)
+	
+	_spotting.enable = true
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():

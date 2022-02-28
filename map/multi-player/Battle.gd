@@ -82,6 +82,11 @@ var winner_team = ""
 var units = []
 var farms = []
 
+var closes_farm = {
+	Global.TEAM_1 : [],
+	Global.TEAM_2 : []
+}
+
 # {player : {}, unit_deploy : 0, unit_kill : 0, unit_lost: 0, building_own: 0 }
 var scores = {}
 
@@ -221,11 +226,12 @@ func _spawn_buildings(castle_holder : NodePath, farm_holder : NodePath):
 				
 			_farm_holder.add_child(building)
 			
+	_make_list_closes_farm()
+	
+	
+	
 func _on_building_ready(_building):
-	if not get_tree().is_network_server():
-		return
-		
-	_assign_building_target(_building)
+	pass
 	
 	
 func _on_building_captured(_building):
@@ -342,37 +348,37 @@ func _unit_spawned(_unit):
 	
 ################################################################
 # targeting assigment
-func _assign_building_target(_building):
-	var targets = units.duplicate()
-	var target = null
-	var team = _building.team
-	
-	targets.shuffle()
-	
-	for i in targets:
-		if not is_instance_valid(i):
-			continue
+class ClosesFarmShorter:
+	static func sort(a, b):
+		if a["distance"] < b["distance"]:
+			return true
+		return false
+		
+		
+func _make_list_closes_farm():
+	for key in closes_farm.keys():
+		var arr = []
+		for farm in farms:
+			var obj = {
+				"node" : farm,
+				"distance" : farm.global_transform.origin.distance_to(castles[key].global_transform.origin)
+			}
+			arr.append(obj)
 			
-		if i.team != team:
-			target = i
-			break
-			
-	if not is_instance_valid(target):
-		return
+		closes_farm[key] = arr
+		closes_farm[key].sort_custom(ClosesFarmShorter, "sort")
+	
+func _get_list_closes_farm_target(team : String) -> Array:
+	var farms = []
+	for i in closes_farm[team]:
+		if i["node"].team != team:
+			farms.append(i["node"])
 		
-	if _building.type_building == Buildings.TYPE_CASTLE:
-		_building.set_target(target.get_path())
-		
-	elif _building.type_building == Buildings.TYPE_TOWER:
-		_building.set_target(target.get_path())
-		
-	elif _building.type_building == Buildings.TYPE_FARM:
-		pass
-		
-		
+	return farms
+	
 func _assign_unit_target(_unit):
 	var farm_owned = _number_of_farm_owned(_unit.team)
-	var targets = farms.duplicate()
+	var targets = []
 
 	if farm_owned >= MIN_FARM_AQUIRE:
 		targets += units.duplicate()
@@ -381,6 +387,7 @@ func _assign_unit_target(_unit):
 		targets += castles.values().duplicate()
 		
 	targets.shuffle()
+	targets = _get_list_closes_farm_target(_unit.team) + targets
 	
 	var target = null
 	var team = _unit.team

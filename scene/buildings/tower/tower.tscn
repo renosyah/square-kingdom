@@ -94,9 +94,6 @@ transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
 [node name="coin_gain_timer" type="Timer" parent="."]
 wait_time = 5.0
 
-[node name="capture_reset_timer" type="Timer" parent="."]
-wait_time = 5.0
-
 [node name="Tween" type="Tween" parent="."]
 
 [node name="VisibilityNotifier" type="VisibilityNotifier" parent="."]
@@ -107,6 +104,5 @@ unit_size = 10.0
 bus = "sfx"
 
 [connection signal="timeout" from="coin_gain_timer" to="." method="_on_coin_gain_timer_timeout"]
-[connection signal="timeout" from="capture_reset_timer" to="." method="_on_capture_reset_timer_timeout"]
 [connection signal="screen_entered" from="VisibilityNotifier" to="." method="_on_VisibilityNotifier_screen_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier" to="." method="_on_VisibilityNotifier_screen_exited"]

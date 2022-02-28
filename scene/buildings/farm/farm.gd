@@ -6,7 +6,6 @@ onready var _flag = $flag
 onready var _message = $message_3d
 onready var _tween = $Tween
 onready var _timer = $coin_gain_timer
-onready var _capture_reset_timer = $capture_reset_timer
 onready var _cp_bar = $hpBar
 
 var amount : int = 10
@@ -59,11 +58,6 @@ func _ready():
 		_timer.wait_time = coin_produce_cooldown
 		_timer.start()
 		
-	if not .is_master():
-		return
-		
-	_capture_reset_timer.wait_time = 5
-	_capture_reset_timer.start()
 	
 func display_message(_msg):
 	_message.set_message(_msg)
@@ -80,13 +74,6 @@ func _on_coin_gain_timer_timeout():
 	display_message("+" + str(amount))
 	emit_signal("on_coin_produce",team , amount)
 	
-func _on_capture_reset_timer_timeout():
-	if not .is_master():
-		return
-		
-	if cp < max_cp:
-		.recapture(cp_regen_rate)
-		
 func _on_VisibilityNotifier_screen_entered():
 	visible = true
 	

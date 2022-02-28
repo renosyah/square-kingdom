@@ -2,13 +2,33 @@ extends Spatial
 
 signal on_spotted(_node)
 
-onready var _raycasts = [$east, $west, $north ]
+onready var _raycasts = [$north, $east, $west]
 
+var use_multiple = true setget _set_use_multiple
 var team = ""
 var spotting_range : int setget _set_spotting_range
 var enable : bool setget _set_enable
 var parent setget _set_parent
 var direction : Vector3 setget _set_direction
+	
+func _set_use_multiple(_val : bool):
+	use_multiple = _val
+	if use_multiple:
+		_raycasts[0].enabled = true
+		_raycasts[1].enabled = true
+		_raycasts[2].enabled = true
+		
+		_raycasts[0].visible = true
+		_raycasts[1].visible = true
+		_raycasts[2].visible = true
+	else:
+		_raycasts[0].enabled = true
+		_raycasts[1].enabled = false
+		_raycasts[2].enabled = false
+		
+		_raycasts[0].visible = true
+		_raycasts[1].visible = false
+		_raycasts[2].visible = false
 	
 func _set_direction(_val):
 	direction = _val

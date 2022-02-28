@@ -8,7 +8,6 @@ onready var _pivots = {
 }
 onready var _flag = $flag
 onready var _tween = $Tween
-onready var _capture_reset_timer = $capture_reset_timer
 onready var _cp_bar = $hpBar
 
 var pivot : String
@@ -64,12 +63,6 @@ func _ready():
 	_pivots[pivot][0].visible = true
 	building_name = _pivots[pivot][1]
 	
-	if not .is_master():
-		return
-		
-	_capture_reset_timer.wait_time = 5
-	_capture_reset_timer.start()
-	
 func upgrade_to_text() -> String:
 	var msg = ""
 	
@@ -96,15 +89,6 @@ func apply_upgrade(_unit):
 		
 		if attribute == "max_hp":
 			_unit["hp"] = _unit["max_hp"]
-	
-
-func _on_capture_reset_timer_timeout():
-	if not .is_master():
-		return
-		
-	if cp < max_cp:
-		.recapture(cp_regen_rate)
-	
 	
 func _on_VisibilityNotifier_screen_entered():
 	visible = true

@@ -20,7 +20,6 @@ onready var _flag = $flag
 onready var _message = $message_3d
 onready var _tween = $Tween
 onready var _timer = $coin_gain_timer
-onready var _capture_reset_timer = $capture_reset_timer
 onready var _cp_bar = $hpBar
 
 # eco
@@ -30,6 +29,10 @@ var coin_produce_cooldown : float = 10
 # misc
 var parent
 var _idle_timmer : Timer = null
+
+# spotting
+var _spotting
+var _spotting_rotation_speed = 0.03
 
 ############################################################
 # multiplayer func
@@ -42,7 +45,6 @@ remotesync func _set_target(_target : NodePath):
 		return
 		
 	target = _target_node
-	set_process(true)
 	
 remotesync func _recapture(_cp_damage_restore : float):
 	._recapture(_cp_damage_restore)
@@ -121,14 +123,34 @@ func _ready():
 		_idle_timmer.autostart = true
 		add_child(_idle_timmer)
 		
-	_capture_reset_timer.wait_time = 5
-	_capture_reset_timer.start()
-	
+	if not _spotting:
+		_spotting = preload("res://assets/other/spotting-system/spotting_system.tscn").instance()
+		add_child(_spotting)
+		_spotting.enable = true
+		_spotting.use_multiple = false
+		_spotting.spotting_range = range_attack
+		_spotting.parent = self
+		_spotting.team = team
+		_spotting.connect("on_spotted", self,"_on_spotted")
+		_spotting.translation = Vector3(0, 0.5, 0)
+		
 	emit_signal("on_ready", self)
 		
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if is_instance_valid(_spotting):
+		var rot_speed = rad2deg(_spotting_rotation_speed)
+		_spotting.rotate_y(rot_speed * delta)
+		
+	if not target:
+		return
+		
 	if is_instance_valid(target):
+		if not target.is_targetable(team):
+			target = null
+			return
+			
 		var distance_to_target = global_transform.origin.distance_to(target.global_transform.origin)
 		if distance_to_target <= range_attack:
 			for i in garrison:
@@ -138,9 +160,12 @@ func _process(delta):
 					i.sound.play()
 					i.cooldown_timmer.start()
 					
-		elif distance_to_target > range_attack or not target.is_targetable(team):
+		elif distance_to_target > range_attack:
 			target = null
-			set_process(false)
+			
+	else:
+		target = null
+		return
 		
 		
 func set_target(_target : NodePath):
@@ -187,28 +212,16 @@ func _on_coin_gain_timer_timeout():
 	display_message("+" + str(amount))
 	emit_signal("on_coin_produce",team , amount)
 	
-func _on_capture_reset_timer_timeout():
-	if not .is_master():
-		return
-		
-	if cp < max_cp:
-		.recapture(cp_regen_rate)
-	
 func _idle_timmer_timeout():
 	if not is_master():
 		return
 		
 	if not target:
-		emit_signal("on_ready", self)
+		_spotting.enable = true
 		return
 		
-	if not is_instance_valid(target):
-		emit_signal("on_ready", self)
-		return
-		
-	if not target.is_targetable(team):
-		emit_signal("on_ready", self)
-		
+func _on_spotted(body):
+	set_target(body.get_path())
 	
 func _on_VisibilityNotifier_screen_entered():
 	visible = true
