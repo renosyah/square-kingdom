@@ -93,7 +93,7 @@ alpha_cut = 2
 texture = ExtResource( 4 )
 
 [node name="body_6" type="Sprite3D" parent="pivot"]
-transform = Transform( 1.2, 0, 0, 0, -5.24537e-08, -1, 0, 1.2, -4.37114e-08, 0.35765, -0.159055, 1.56334e-08 )
+transform = Transform( 1.2, 0, 0, 0, -5.24537e-08, -1, 0, 1.2, -4.37114e-08, 0, -0.159, 0 )
 modulate = Color( 0.466667, 0.298039, 0.172549, 1 )
 alpha_cut = 2
 texture = ExtResource( 3 )
