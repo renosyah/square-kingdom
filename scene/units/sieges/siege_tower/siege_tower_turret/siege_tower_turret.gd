@@ -58,7 +58,7 @@ func _fire_at(direction : Vector3):
 	arrow.color = color
 	arrow.player = player
 	arrow.is_master = is_master
-	add_child(arrow)
+	parent.add_child(arrow)
 	arrow.parent = parent
 	arrow.translation = _shoting_pos.global_transform.origin
 	arrow.spread = 1.8

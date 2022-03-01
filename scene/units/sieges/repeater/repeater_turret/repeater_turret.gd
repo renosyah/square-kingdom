@@ -19,7 +19,7 @@ func _fire_at(direction : Vector3):
 	arrow.color = color
 	arrow.is_master = is_master
 	arrow.spread = 1.4
-	add_child(arrow)
+	parent.add_child(arrow)
 	arrow.parent = parent
 	arrow.translation = $shot_pos.global_transform.origin
 	arrow.launch(direction)

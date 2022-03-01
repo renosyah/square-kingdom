@@ -130,9 +130,9 @@ func display_player_name(_show : bool):
 	_owner.visible = _show
 	
 func _on_VisibilityNotifier_screen_entered():
-	visible = true
+	_pivot.visible = true
 	
 func _on_VisibilityNotifier_screen_exited():
-	visible = false
+	_pivot.visible = false
 
 

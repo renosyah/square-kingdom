@@ -14,7 +14,7 @@ func _fire_at(direction : Vector3):
 	arrow.color = color
 	arrow.is_master = is_master
 	arrow.spread = 0.2
-	add_child(arrow)
+	parent.add_child(arrow)
 	arrow.parent = parent
 	arrow.translation = global_transform.origin
 	arrow.launch(direction)

@@ -75,10 +75,3 @@ func perform_attack():
 			capture_damage, 
 			Utils.create_hit_by(player, self.get_path(), team, color)
 		)
-		
-	
-func _on_VisibilityNotifier_screen_entered():
-	visible = true
-	
-func _on_VisibilityNotifier_screen_exited():
-	visible = false

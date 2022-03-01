@@ -16,6 +16,7 @@ var target = null # other unit node
 var garrison_units = []
 var garrison = []
 
+onready var _pivot = $pivot
 onready var _flag = $flag
 onready var _message = $message_3d
 onready var _tween = $Tween
@@ -220,10 +221,10 @@ func _on_spotted(body):
 	set_target(body.get_path())
 	
 func _on_VisibilityNotifier_screen_entered():
-	visible = true
+	_pivot.visible = true
 	
 func _on_VisibilityNotifier_screen_exited():
-	visible = false
+	_pivot.visible = false
 
 
 

@@ -21,6 +21,9 @@ link : [Square Kingdom from itch.io](https://renosyah.itch.io/square-kingdom)
 
 
 ## Gameplay
+![GitHub Logo](/ss/cover.png)
+
+
 ![GitHub Logo](/ss/ss_gameplay.png) 
 
 
