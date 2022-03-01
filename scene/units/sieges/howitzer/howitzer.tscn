@@ -1,0 +1,84 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/other/wheel/wheel.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/ui/bar-3d/hp_bar_3d.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scene/units/sieges/howitzer/howitzer.gd" type="Script" id=3]
+[ext_resource path="res://assets/flag/flag.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/ui/message-3d/message_3d.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scene/units/sieges/ram/ram_base.png" type="Texture" id=7]
+
+[sub_resource type="CapsuleShape" id=38]
+radius = 0.456858
+
+[node name="howitzer" type="KinematicBody"]
+script = ExtResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 38 )
+
+[node name="pivot" type="Spatial" parent="."]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
+
+[node name="side_1" type="Sprite3D" parent="pivot"]
+transform = Transform( 2.393, 0, 0, 0, 1, 0, 0, 0, 1, 1.59771e-08, -0.66249, 0.719196 )
+modulate = Color( 0.356863, 0.223529, 0, 1 )
+alpha_cut = 2
+texture = ExtResource( 7 )
+
+[node name="side_2" type="Sprite3D" parent="pivot"]
+transform = Transform( 2.393, 0, 0, 0, 1, 0, 0, 0, 1, -7.17553e-09, -0.66249, -0.806166 )
+modulate = Color( 0.356863, 0.223529, 0, 1 )
+alpha_cut = 2
+texture = ExtResource( 7 )
+
+[node name="top" type="Sprite3D" parent="pivot"]
+transform = Transform( -5.6813e-07, -6.99865, -3.05921e-07, 0, -4.37114e-08, 1, -1, -2.18498e-07, -9.55085e-15, 0.0141917, -0.596741, -0.0583264 )
+modulate = Color( 0.278431, 0.278431, 0.278431, 1 )
+alpha_cut = 2
+texture = ExtResource( 7 )
+
+[node name="wheel_1" parent="pivot" instance=ExtResource( 1 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0.968586, -0.986078, -0.874817 )
+
+[node name="wheel_4" parent="pivot" instance=ExtResource( 1 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0.968586, -0.986078, 0.764432 )
+
+[node name="wheel_2" parent="pivot" instance=ExtResource( 1 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -1.00062, -0.986078, -0.902393 )
+
+[node name="wheel_3" parent="pivot" instance=ExtResource( 1 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -1.00062, -0.986078, 0.812747 )
+
+[node name="wheel_5" parent="pivot" instance=ExtResource( 1 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -0.0294175, -0.986078, 0.759572 )
+
+[node name="wheel_6" parent="pivot" instance=ExtResource( 1 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -0.0294173, -0.986078, -0.864457 )
+
+[node name="turret_pos" type="Position3D" parent="pivot"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.275, -0.403, 0 )
+
+[node name="flag" parent="pivot" instance=ExtResource( 5 )]
+transform = Transform( -0.8, 0, 0, 0, 0.8, -8.74228e-08, 0, 6.99382e-08, 1, -1.56154, -0.745768, -0.524553 )
+
+[node name="hpBar" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.352857, 0, 0, 0, 0.623045, 0, 0, 0, 1, 0, 2.21166, 0 )
+
+[node name="owner" parent="." instance=ExtResource( 6 )]
+transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 3.09387, 0 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Tween_dead" type="Tween" parent="."]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+unit_db = 10.0
+unit_size = 10.0
+bus = "sfx"
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="."]
+
+[connection signal="tween_completed" from="Tween_dead" to="." method="_on_Tween_dead_tween_completed"]
+[connection signal="screen_entered" from="VisibilityNotifier" to="." method="_on_VisibilityNotifier_screen_entered"]
+[connection signal="screen_exited" from="VisibilityNotifier" to="." method="_on_VisibilityNotifier_screen_exited"]

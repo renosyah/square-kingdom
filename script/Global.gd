@@ -331,18 +331,18 @@ static func create_array_range(_range : int) -> Array:
 	
 static func generate_ai_units(_ai_name : String) -> Array:
 	var ai_unit = []
-	var count = int(rand_range(8, 12))
+	var count = int(rand_range(8, 16))
 	for i in count:
 		var unit = Units.UNITS[i].duplicate()
 		ai_unit.append(unit)
 		
 	if _ai_name == MEDIUM_AI:
-		for i in 2:
+		for i in 6:
 			var unit = Units.generate_random_locked_unit()
 			ai_unit.append(unit)
 		
 	elif _ai_name == HARD_AI:
-		for i in 4:
+		for i in 8:
 			var unit = Units.generate_random_locked_unit()
 			ai_unit.append(unit)
 			
