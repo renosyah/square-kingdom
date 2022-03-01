@@ -420,7 +420,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.3, 0.6, 0.8 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector3( 0, 0, 0 ), Vector3( 28.8065, 0.38802, -67.5423 ), Vector3( 39.5698, -39.9317, -129.637 ), Vector3( 55.7005, 9.17732, -69.5104 ) ]
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0.388, -67.542 ), Vector3( 0, 0, -129.637 ), Vector3( 0, 0, -69.51 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("pivot/upper_body/arm_2:translation")
@@ -504,10 +504,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.6, 0.8 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( 0, 0, 0 ), Vector3( 37.998, 0, 0 ), Vector3( 37.998, 26.753, 0 ) ]
+"values": [ Vector3( 0, 0, 0 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("pivot/upper_body/arm_2:translation")
