@@ -16,6 +16,7 @@ rect_min_size = Vector2( 185, 300 )
 alignment = 1
 script = ExtResource( 4 )
 __meta__ = {
+"_edit_use_anchors_": false,
 "_editor_description_": ""
 }
 

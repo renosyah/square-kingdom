@@ -58,7 +58,7 @@ func _on_Tween_tween_completed(object, key):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	_hide.visible = not is_clickable
-	modulate.a = 0.7 if not is_enable else 1.0
+	modulate.a = 0.4 if not is_enable else 1.0
 	_progress.max_value = data.cooldown
 	_progress.value = _cooldown.time_left
 	

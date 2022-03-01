@@ -43,4 +43,5 @@ material = SubResource( 3 )
 [node name="boulder" type="MeshInstance" parent="."]
 transform = Transform( 0.2, -1.86265e-09, -6.77433e-10, 1.86265e-09, 0.2, 1.94289e-16, 6.77438e-10, 1.38778e-16, 0.2, 0, 0, 0 )
 mesh = SubResource( 4 )
+software_skinning_transform_normals = false
 material/0 = SubResource( 5 )
