@@ -28,8 +28,8 @@ onready var _reward_holder = $CanvasLayer/reward_dialog/VBoxContainer/HBoxContai
 onready var _fps_counter = $CanvasLayer/menu/VBoxContainer2/fps_counter
 onready var _ping_counter = $CanvasLayer/menu/VBoxContainer2/ping_counter
 onready var _menu = $CanvasLayer/menu
-onready var _music = $CanvasLayer/menu/VBoxContainer/HBoxContainer/music
-onready var _sfx = $CanvasLayer/menu/VBoxContainer/HBoxContainer/sfx
+onready var _music = $CanvasLayer/menu/HBoxContainer/VBoxContainer/HBoxContainer/music
+onready var _sfx = $CanvasLayer/menu/HBoxContainer/VBoxContainer/HBoxContainer/sfx
 
 func _ready():
 	hide_all()

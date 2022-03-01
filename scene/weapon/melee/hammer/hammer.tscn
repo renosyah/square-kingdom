@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scene/weapon/melee/hammer/hammer.png" type="Texture" id=1]
-[ext_resource path="res://scene/weapon/melee/sword/sword.gd" type="Script" id=2]
+[ext_resource path="res://scene/weapon/melee/mace/mace.gd" type="Script" id=2]
 
 [node name="hammer" type="Spatial"]
 script = ExtResource( 2 )

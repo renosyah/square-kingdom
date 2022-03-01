@@ -713,18 +713,27 @@ texture_normal = ExtResource( 6 )
 texture_pressed = ExtResource( 3 )
 expand = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/menu"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/menu"]
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 margin_top = -199.5
 margin_bottom = 199.5
+alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="CanvasLayer/menu/VBoxContainer"]
-margin_right = 600.0
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/menu/HBoxContainer"]
+margin_left = 88.0
+margin_right = 511.0
+margin_bottom = 399.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/menu/HBoxContainer/VBoxContainer"]
+margin_right = 423.0
 margin_bottom = 123.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
@@ -735,21 +744,14 @@ text = "Menu
 align = 1
 valign = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/menu/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/menu/HBoxContainer/VBoxContainer"]
 margin_top = 127.0
-margin_right = 600.0
+margin_right = 423.0
 margin_bottom = 227.0
 alignment = 1
 
-[node name="MarginContainer3" type="MarginContainer" parent="CanvasLayer/menu/VBoxContainer/HBoxContainer"]
-margin_right = 84.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 60, 0 )
-size_flags_horizontal = 3
-
-[node name="music" type="Button" parent="CanvasLayer/menu/VBoxContainer/HBoxContainer"]
-margin_left = 88.0
-margin_right = 288.0
+[node name="music" type="Button" parent="CanvasLayer/menu/HBoxContainer/VBoxContainer/HBoxContainer"]
+margin_right = 200.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 200, 100 )
 size_flags_horizontal = 3
@@ -760,15 +762,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/menu/VBoxContainer/HBoxContainer"]
-margin_left = 292.0
-margin_right = 307.0
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/menu/HBoxContainer/VBoxContainer/HBoxContainer"]
+margin_left = 204.0
+margin_right = 219.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 15, 0 )
 
-[node name="sfx" type="Button" parent="CanvasLayer/menu/VBoxContainer/HBoxContainer"]
-margin_left = 311.0
-margin_right = 511.0
+[node name="sfx" type="Button" parent="CanvasLayer/menu/HBoxContainer/VBoxContainer/HBoxContainer"]
+margin_left = 223.0
+margin_right = 423.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 200, 100 )
 size_flags_horizontal = 3
@@ -779,34 +781,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer4" type="MarginContainer" parent="CanvasLayer/menu/VBoxContainer/HBoxContainer"]
-margin_left = 515.0
-margin_right = 600.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 60, 0 )
-size_flags_horizontal = 3
-
-[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/menu/VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/menu/HBoxContainer/VBoxContainer"]
 margin_top = 231.0
-margin_right = 600.0
+margin_right = 423.0
 margin_bottom = 261.0
 rect_min_size = Vector2( 0, 30 )
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/menu/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/menu/HBoxContainer/VBoxContainer"]
 margin_top = 265.0
-margin_right = 600.0
+margin_right = 423.0
 margin_bottom = 365.0
 alignment = 1
 
-[node name="MarginContainer3" type="MarginContainer" parent="CanvasLayer/menu/VBoxContainer/HBoxContainer2"]
-margin_right = 88.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 60, 0 )
-size_flags_horizontal = 3
-
-[node name="main_menu" type="Button" parent="CanvasLayer/menu/VBoxContainer/HBoxContainer2"]
-margin_left = 92.0
-margin_right = 507.0
+[node name="main_menu" type="Button" parent="CanvasLayer/menu/HBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_right = 423.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 415, 100 )
 size_flags_horizontal = 3
@@ -816,16 +804,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer4" type="MarginContainer" parent="CanvasLayer/menu/VBoxContainer/HBoxContainer2"]
-margin_left = 511.0
-margin_right = 600.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 60, 0 )
-size_flags_horizontal = 3
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/menu/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/menu/HBoxContainer/VBoxContainer"]
 margin_top = 369.0
-margin_right = 600.0
+margin_right = 423.0
 margin_bottom = 399.0
 rect_min_size = Vector2( 0, 30 )
 
@@ -838,6 +819,6 @@ rect_min_size = Vector2( 0, 30 )
 [connection signal="pressed" from="CanvasLayer/reward_dialog/VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/close_exeption_message" to="." method="_on_close_exeption_message_pressed"]
 [connection signal="timeout" from="CanvasLayer/menu/VBoxContainer2/fps_timer" to="." method="_on_fps_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/menu/CenterContainer2/close_menu" to="." method="_on_close_menu_pressed"]
-[connection signal="pressed" from="CanvasLayer/menu/VBoxContainer/HBoxContainer/music" to="." method="_on_music_pressed"]
-[connection signal="pressed" from="CanvasLayer/menu/VBoxContainer/HBoxContainer/sfx" to="." method="_on_sfx_pressed"]
-[connection signal="pressed" from="CanvasLayer/menu/VBoxContainer/HBoxContainer2/main_menu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="CanvasLayer/menu/HBoxContainer/VBoxContainer/HBoxContainer/music" to="." method="_on_music_pressed"]
+[connection signal="pressed" from="CanvasLayer/menu/HBoxContainer/VBoxContainer/HBoxContainer/sfx" to="." method="_on_sfx_pressed"]
+[connection signal="pressed" from="CanvasLayer/menu/HBoxContainer/VBoxContainer/HBoxContainer2/main_menu" to="." method="_on_main_menu_pressed"]
