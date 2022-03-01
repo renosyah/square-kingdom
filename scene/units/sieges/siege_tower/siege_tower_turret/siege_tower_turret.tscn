@@ -14,60 +14,61 @@ transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0 )
 
 [node name="tower_1" type="Sprite3D" parent="pivot"]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.271888, 0.483249, -0.00784492 )
-modulate = Color( 0.509804, 0.321569, 0.0784314, 1 )
+modulate = Color( 0.356863, 0.223529, 0, 1 )
 alpha_cut = 2
 texture = ExtResource( 3 )
 
 [node name="tower_2" type="Sprite3D" parent="pivot"]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.302196, 0.483249, -0.00784492 )
-modulate = Color( 0.509804, 0.321569, 0.0784314, 1 )
+modulate = Color( 0.356863, 0.223529, 0, 1 )
 alpha_cut = 2
 texture = ExtResource( 3 )
 
 [node name="tower_3" type="Sprite3D" parent="pivot"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0187773, 0.483249, 0.292994 )
-modulate = Color( 0.509804, 0.321569, 0.0784314, 1 )
+modulate = Color( 0.356863, 0.223529, 0, 1 )
 alpha_cut = 2
 texture = ExtResource( 3 )
 
 [node name="tower_4" type="Sprite3D" parent="pivot"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0187773, 0.483249, -0.299697 )
-modulate = Color( 0.509804, 0.321569, 0.0784314, 1 )
+modulate = Color( 0.356863, 0.223529, 0, 1 )
 alpha_cut = 2
 texture = ExtResource( 3 )
 
 [node name="pilar_2" type="Sprite3D" parent="pivot"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24469, 0.184066, 0.285246 )
-modulate = Color( 0.509804, 0.321569, 0.0784314, 1 )
+modulate = Color( 0.356863, 0.223529, 0, 1 )
 alpha_cut = 2
 texture = ExtResource( 4 )
 
 [node name="pilar_3" type="Sprite3D" parent="pivot"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.206993, 0.184066, 0.270263 )
-modulate = Color( 0.509804, 0.321569, 0.0784314, 1 )
+modulate = Color( 0.356863, 0.223529, 0, 1 )
 alpha_cut = 2
 texture = ExtResource( 4 )
 
 [node name="pilar_4" type="Sprite3D" parent="pivot"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.206993, 0.184066, -0.271043 )
-modulate = Color( 0.509804, 0.321569, 0.0784314, 1 )
+modulate = Color( 0.356863, 0.223529, 0, 1 )
 alpha_cut = 2
 texture = ExtResource( 4 )
 
 [node name="pilar_5" type="Sprite3D" parent="pivot"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.233784, 0.184066, -0.271043 )
-modulate = Color( 0.509804, 0.321569, 0.0784314, 1 )
+modulate = Color( 0.356863, 0.223529, 0, 1 )
 alpha_cut = 2
 texture = ExtResource( 4 )
 
 [node name="floor" type="Sprite3D" parent="pivot"]
 transform = Transform( 0.936435, 0, 0, 0, -4.02315e-08, -0.999483, 0, 0.920389, -4.36888e-08, 0.0187773, 0.388808, -0.00348476 )
+modulate = Color( 0.356863, 0.223529, 0, 1 )
 alpha_cut = 2
 texture = ExtResource( 2 )
 
 [node name="roof" type="Sprite3D" parent="pivot"]
 transform = Transform( 0.936435, 0, 0, 0, -4.02315e-08, -0.999483, 0, 0.920389, -4.36888e-08, 0.0187773, 0.683177, 0.0133343 )
-modulate = Color( 0.509804, 0.321569, 0.0784314, 1 )
+modulate = Color( 0.356863, 0.223529, 0, 1 )
 alpha_cut = 2
 texture = ExtResource( 1 )
 

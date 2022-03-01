@@ -45,7 +45,7 @@ func init_siege():
 		
 		if is_instance_valid(target):
 			_turret.set_target(target)
-		
+
 	_wheels = [$pivot/wheel_1, $pivot/wheel_2, $pivot/wheel_3, $pivot/wheel_4]
 	$pivot/flag.set_flag_color(color)
 	

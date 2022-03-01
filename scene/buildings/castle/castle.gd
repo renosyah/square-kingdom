@@ -32,7 +32,6 @@ var _idle_timmer : Timer = null
 
 # spotting
 var _spotting
-var _spotting_rotation_speed = 0.03
 
 ############################################################
 # multiplayer func
@@ -45,6 +44,7 @@ remotesync func _set_target(_target : NodePath):
 		return
 		
 	target = _target_node
+	set_process(true)
 	
 remotesync func _recapture(_cp_damage_restore : float):
 	._recapture(_cp_damage_restore)
@@ -127,7 +127,6 @@ func _ready():
 		_spotting = preload("res://assets/other/spotting-system/spotting_system.tscn").instance()
 		add_child(_spotting)
 		_spotting.enable = true
-		_spotting.use_multiple = false
 		_spotting.spotting_range = range_attack
 		_spotting.add_exception(self)
 		_spotting.add_exception(parent)
@@ -136,21 +135,11 @@ func _ready():
 		_spotting.translation = Vector3(0, 0.5, 0)
 		
 	emit_signal("on_ready", self)
-		
-	
-# warning
-# if call from client
-# it will return null
-func get_spotting_system_node() -> Spatial:
-	return _spotting
-	
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if is_instance_valid(_spotting):
-		var rot_speed = rad2deg(_spotting_rotation_speed)
-		_spotting.rotate_y(rot_speed * delta)
-		
 	if not target:
+		set_process(false)
 		return
 		
 	if is_instance_valid(target):

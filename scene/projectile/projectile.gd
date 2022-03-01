@@ -25,8 +25,10 @@ var parent
 
 func _ready():
 	set_as_toplevel(true)
-	for i in _sprites:
-		i.texture = load(sprite)
+	
+	if sprite != "":
+		for i in _sprites:
+			i.texture = load(sprite)
 		
 	_timeout_timer = Timer.new()
 	_timeout_timer.wait_time = 5

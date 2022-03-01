@@ -152,7 +152,7 @@ func _ready():
 		
 	if not _idle_timmer:
 		_idle_timmer = Timer.new()
-		_idle_timmer.wait_time = rand_range(5,8)
+		_idle_timmer.wait_time = rand_range(2,4)
 		_idle_timmer.connect("timeout", self , "_idle_timmer_timeout")
 		_idle_timmer.autostart = true
 		add_child(_idle_timmer)
@@ -165,7 +165,7 @@ func _ready():
 		_spotting.add_exception(self)
 		_spotting.team = team
 		_spotting.connect("on_spotted", self,"_on_spotted")
-		_spotting.translation = Vector3(0, 0.5, 0)
+		_spotting.translation = Vector3(0, 0.3, 0)
 		
 	emit_signal("on_ready", self)
 	
@@ -201,7 +201,6 @@ func moving(delta):
 			
 		elif distance_to_target > range_attack:
 			_check_is_walking(true)
-			_spotting.direction = Vector3(target.translation.x, translation.y, target.translation.z)
 			velocity = Vector3(direction.x, 0.0 , direction.z) * speed
 			
 		elif distance_to_target <= range_attack:
@@ -213,6 +212,7 @@ func moving(delta):
 		move_and_slide(velocity, Vector3.UP)
 			
 	else:
+		_check_is_walking(false)
 		set_process(false)
 		return
 	
@@ -286,7 +286,7 @@ func is_targetable(_team) -> bool:
 	
 func _on_spotted(body):
 	target = body
-
+	set_process(true)
 
 
 

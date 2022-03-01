@@ -7,11 +7,15 @@
 [ext_resource path="res://scene/units/sieges/ram/ram_base.png" type="Texture" id=10]
 [ext_resource path="res://scene/units/sieges/siege_tower/siege_tower.gd" type="Script" id=12]
 
-[sub_resource type="SphereShape" id=1]
-radius = 0.983866
+[sub_resource type="CapsuleShape" id=38]
+radius = 0.456858
 
 [node name="siege_tower" type="KinematicBody"]
 script = ExtResource( 12 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 38 )
 
 [node name="pivot" type="Spatial" parent="."]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
@@ -87,10 +91,6 @@ transform = Transform( -0.8, 0, -1.50996e-07, 0, 0.8, 0, 1.20797e-07, 0, -1, -1.
 
 [node name="turret_pos" type="Position3D" parent="pivot"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.330703, 0 )
-
-[node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0555767 )
-shape = SubResource( 1 )
 
 [node name="hpBar" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.352857, 0, 0, 0, 0.623045, 0, 0, 0, 1, 0, 5.02291, 0 )

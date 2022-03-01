@@ -6,7 +6,7 @@ static func create_hit_by(player : Dictionary, node_path : NodePath, team : Stri
 
 
 #const FLOAT_EPSILON = 0.00001
-const FLOAT_EPSILON = 0.001
+const FLOAT_EPSILON = 0.1
 
 static func compare_floats(a, b, epsilon = FLOAT_EPSILON) -> bool:
 	return abs(a - b) <= epsilon

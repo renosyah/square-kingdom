@@ -8,8 +8,8 @@
 [ext_resource path="res://scene/units/sieges/ram/ram_weapon/ram_weapon.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/ui/message-3d/message_3d.tscn" type="PackedScene" id=7]
 
-[sub_resource type="SphereShape" id=1]
-radius = 0.975245
+[sub_resource type="CapsuleShape" id=38]
+radius = 0.456858
 
 [node name="ram" type="KinematicBody"]
 script = ExtResource( 2 )
@@ -77,10 +77,6 @@ transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 0.898297, -0.253725, 0 )
 [node name="flag" parent="pivot" instance=ExtResource( 3 )]
 transform = Transform( -0.8, 0, -1.50996e-07, 0, 0.8, 0, 1.20797e-07, 0, -1, -1.22791, -0.79214, -1.04564 )
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.115328 )
-shape = SubResource( 1 )
-
 [node name="hpBar" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.352857, 0, 0, 0, 0.623045, 0, 0, 0, 1, 0, 2.21166, 0 )
 
@@ -97,6 +93,10 @@ unit_size = 10.0
 bus = "sfx"
 
 [node name="VisibilityNotifier" type="VisibilityNotifier" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 38 )
 
 [connection signal="tween_completed" from="Tween_dead" to="." method="_on_Tween_dead_tween_completed"]
 [connection signal="screen_entered" from="VisibilityNotifier" to="." method="_on_VisibilityNotifier_screen_entered"]

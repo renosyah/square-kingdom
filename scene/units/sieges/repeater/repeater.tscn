@@ -7,11 +7,15 @@
 [ext_resource path="res://scene/units/sieges/ram/ram_base.png" type="Texture" id=5]
 [ext_resource path="res://scene/units/sieges/repeater/repeater.gd" type="Script" id=12]
 
-[sub_resource type="SphereShape" id=1]
-radius = 1.22142
+[sub_resource type="CapsuleShape" id=38]
+radius = 0.456858
 
 [node name="repeater" type="KinematicBody"]
 script = ExtResource( 12 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 38 )
 
 [node name="pivot" type="Spatial" parent="."]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
@@ -52,10 +56,6 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.275, 
 [node name="flag" parent="pivot" instance=ExtResource( 4 )]
 transform = Transform( -0.8, 0, 0, 0, 0.8, -8.74228e-08, 0, 6.99382e-08, 1, -1.56154, -0.745768, -0.524553 )
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.115 )
-shape = SubResource( 1 )
-
 [node name="hpBar" parent="." instance=ExtResource( 2 )]
 transform = Transform( 0.352857, 0, 0, 0, 0.623045, 0, 0, 0, 1, 0, 2.21166, 0 )
 
@@ -74,3 +74,5 @@ bus = "sfx"
 [node name="VisibilityNotifier" type="VisibilityNotifier" parent="."]
 
 [connection signal="tween_completed" from="Tween_dead" to="." method="_on_Tween_dead_tween_completed"]
+[connection signal="screen_entered" from="VisibilityNotifier" to="." method="_on_VisibilityNotifier_screen_entered"]
+[connection signal="screen_exited" from="VisibilityNotifier" to="." method="_on_VisibilityNotifier_screen_exited"]
