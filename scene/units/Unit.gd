@@ -67,11 +67,17 @@ func _network_timmer_timeout():
 		
 	if is_master():
 		rset_unreliable("_puppet_translation", translation)
+		rset_unreliable("_puppet_hp", hp)
 	
 puppet var _puppet_translation :Vector3 setget _set_puppet_translation
 func _set_puppet_translation(_val :Vector3):
 	_puppet_translation = _val
-		
+	
+puppet var _puppet_hp :float setget _set_puppet_hp
+func _set_puppet_hp(_val :float):
+	_puppet_hp = _val
+	hp = _puppet_hp
+	
 remotesync func _set_facing_direction(_val : int):
 	facing_direction = _val
 	
@@ -79,14 +85,8 @@ remotesync func _set_walking_state(_val : bool):
 	is_walking = _val
 	
 remotesync func _take_damage(_damage : float, _hit_by: Dictionary):
-	hp -= _damage
-	hit_by = _hit_by
-	
 	if is_dead:
 		return
-		
-	if hp < 1:
-		dead()
 		
 	emit_signal("on_take_damage", self, hit_by, _damage, hp, max_hp)
 	
@@ -221,8 +221,17 @@ func take_damage(_damage : float, _hit_by: Dictionary):
 	if not is_master():
 		return
 		
+	hp -= _damage
+	hit_by = _hit_by
+	
+	if is_dead:
+		return
+		
+	if hp < 1.0:
+		dead()
+		
 	returning_fire(_hit_by.node_path)
-	rpc("_take_damage", _damage, _hit_by)
+	rpc_unreliable("_take_damage", _damage, _hit_by)
 	
 	
 func returning_fire(_from : NodePath):
@@ -242,17 +251,17 @@ func perform_attack():
 	if not is_master():
 		return
 		
-	rpc("_perform_attack")
+	rpc_unreliable("_perform_attack")
 	
 func _check_facing_direction(_direction : float):
 	var dir = 1 if _direction > 0.0 else -1
 	if facing_direction != dir:
-		rpc("_set_facing_direction" , dir)
+		rpc_unreliable("_set_facing_direction" , dir)
 		
 func _check_is_walking(_is_walking):
 	if is_walking != _is_walking:
 		is_walking = _is_walking
-		rpc("_set_walking_state", _is_walking)
+		rpc_unreliable("_set_walking_state", _is_walking)
 		
 func display_player_name(_show : bool):
 	pass

@@ -104,19 +104,25 @@ func init_connection_watcher():
 	Network.connect("server_disconnected", self , "_server_disconnected")
 	Network.connect("connection_closed", self , "_connection_closed")
 	
-func _connection_closed():
-	print("exit by Client!")
+	# if some player decide or happen to be disconect
+	Network.connect("player_disconnected", self, "_on_player_disconnected")
+	Network.connect("receive_player_info", self,"_on_receive_player_info")
+	
+func _on_player_disconnected(_player_network_unique_id : int):
+	Network.request_player_info(_player_network_unique_id)
+	
+func _on_receive_player_info(_player_network_unique_id : int, data : Dictionary):
+	on_player_disynchronize(data["name"])
+	
+func on_player_disynchronize(_player_name : String):
+	pass
 	
 func _server_disconnected():
 	Global.mp_exception_message = "Unexpected exit by Server!"
 	get_tree().change_scene("res://menu/main-menu/main_menu.tscn")
 	
-remotesync func _disconnect_from_server():
-	if not get_tree().is_network_server():
-		Network.disconnect_from_server()
-	
-func disconnect_from_server():
-	rpc("_disconnect_from_server")
+func _connection_closed():
+	print("exit by Client!")
 	
 ################################################################
 func _player_draw_card(_cards : Array, quantity : int) -> Array:

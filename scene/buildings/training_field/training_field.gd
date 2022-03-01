@@ -34,8 +34,8 @@ remotesync func _capture(_cp_damage : float, _capture_by: Dictionary):
 	_cp_bar.update_bar(cp, max_cp)
 	_cp_bar.modulate.a = 1
 	
-remotesync func _finish_captured():
-	._finish_captured()
+remotesync func _finish_captured(_capture_by: Dictionary):
+	._finish_captured(_capture_by)
 	_flag.set_flag_color(color)
 	_cp_bar.set_hp_bar_color(color)
 	_cp_bar.update_bar(cp, max_cp)

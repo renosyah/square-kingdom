@@ -3,7 +3,9 @@ class_name Building
 
 signal on_ready(_unit)
 signal on_building_captured(_building)
+signal on_building_recaptured(_building)
 signal on_capture_progress(_building, _capture_by, _cp_damage, _cp, _max_cp)
+signal on_recapture_progress(_building, _cp_damage_restore, _cp, _max_cp)
 
 # base
 var player = {}
@@ -25,34 +27,32 @@ var last_owner_team = ""
 var can_be_capture = true
 
 # misc
-var _capture_reset_timer = null
+var _network_timmer : Timer = null
+var _capture_reset_timer : Timer = null
 
 ############################################################
 # multiplayer func
-remotesync func _recapture(_cp_damage_restore : float):
-	if cp + _cp_damage_restore >= max_cp:
-		cp = max_cp
-		finish_recaptured()
-		return
+func _network_timmer_timeout():
+	if is_master():
+		rset_unreliable("_puppet_cp", cp)
 		
-	if cp < max_cp:
-		cp += _cp_damage_restore
-		
-		
-remotesync func _finish_recaptured():
-	pass
+puppet var _puppet_cp :float setget _set_puppet_cp
+func _set_puppet_cp(_val :float):
+	_puppet_cp = _val
+	cp = _puppet_cp
 	
+remotesync func _recapture(_cp_damage_restore : float):
+	emit_signal("on_recapture_progress", self, _cp_damage_restore, cp, max_cp)
+	
+remotesync func _finish_recaptured():
+	emit_signal("on_building_recaptured", self)
 	
 remotesync func _capture(_cp_damage : float, _capture_by: Dictionary):
-	cp -= _cp_damage
 	capture_by = _capture_by
-	
-	if cp < 1 and capture_by.team != team:
-		finish_captured()
-		
 	emit_signal("on_capture_progress", self, capture_by, _cp_damage, cp, max_cp)
 	
-remotesync func _finish_captured():
+remotesync func _finish_captured(_capture_by: Dictionary):
+	capture_by = _capture_by
 	last_owner_team = team
 	team = capture_by.team
 	color = capture_by.color
@@ -82,21 +82,42 @@ func _ready():
 		_capture_reset_timer.connect("timeout", self , "_capture_reset_timer_timeout")
 		_capture_reset_timer.autostart = true
 		add_child(_capture_reset_timer)
-	
+		
+	if not _network_timmer:
+		_network_timmer = Timer.new()
+		_network_timmer.wait_time = 2.0
+		_network_timmer.connect("timeout", self , "_network_timmer_timeout")
+		_network_timmer.autostart = true
+		add_child(_network_timmer)
+		
 func capture(_cp_damage : float, _capture_by: Dictionary):
 	if not can_be_capture:
 		return
 		
 	if not is_master():
 		return
+		
+	cp -= _cp_damage
+	capture_by = _capture_by
 	
-	rpc("_capture", _cp_damage, _capture_by)
+	if cp < 1 and capture_by.team != team:
+		finish_captured(capture_by)
+		
+	rpc_unreliable("_capture", _cp_damage, _capture_by)
 	
 func recapture(_cp_damage_restore : float):
 	if not is_master():
 		return
-	
-	rpc("_recapture", _cp_damage_restore)
+		
+	if cp + _cp_damage_restore >= max_cp:
+		cp = max_cp
+		finish_recaptured()
+		return
+		
+	if cp < max_cp:
+		cp += _cp_damage_restore
+		
+	rpc_unreliable("_recapture", _cp_damage_restore)
 	
 	
 func _capture_reset_timer_timeout():
@@ -106,11 +127,11 @@ func _capture_reset_timer_timeout():
 	if cp < max_cp:
 		recapture(cp_regen_rate)
 	
-func finish_captured():
+func finish_captured(_capture_by : Dictionary):
 	if not is_master():
 		return
 	
-	rpc("_finish_captured")
+	rpc("_finish_captured", _capture_by)
 	
 func finish_recaptured():
 	if not is_master():

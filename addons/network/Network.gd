@@ -18,8 +18,7 @@ var data : Dictionary = {}
 signal server_player_connected(player_network_unique_id, data)
 signal client_player_connected(player_network_unique_id, data)
 signal player_connected(player_network_unique_id)
-signal player_connected_data_receive(player_network_unique_id,data)
-signal player_connected_data_not_found(player_network_unique_id)
+signal receive_player_info(player_network_unique_id,data)
 signal player_disconnected(player_network_unique_id)
 signal server_disconnected()
 signal connection_closed()
@@ -111,6 +110,9 @@ func _on_server_disconnected():
 	for _signal in get_tree().get_signal_connection_list("connected_to_server"):
 		get_tree().disconnect("connected_to_server",self, _signal.method)
 		
+	for _signal in get_tree().get_signal_connection_list("connection_failed"):
+		get_tree().disconnect("connection_failed",self, _signal.method)
+		
 	ping_interval_timer.stop()
 	ping_increment_timer.stop()
 	
@@ -158,7 +160,6 @@ remote func _send_player_info(player_network_unique_id : int, _data : Dictionary
 		
 	players[player_network_unique_id] = _data
 	emit_signal("player_connected", player_network_unique_id)
-	emit_signal("player_connected_data_receive", player_network_unique_id, _data)
 	
 # this will be emit for everybody
 # after new player join
@@ -172,9 +173,13 @@ func _network_peer_connected(player_network_unique_id : int):
 # data from newly join player
 # then they will get response
 # from _receive_player_info
-func request_player_info(player_network_unique_id : int) -> void:
-	rpc_id(PLAYER_HOST_ID,'_request_player_info', get_tree().get_network_unique_id(), player_network_unique_id)
-	
+func request_player_info(requested_player_network_unique_id : int) -> void:
+	# if you are server, just yoink this thing
+	if get_tree().is_network_server():
+		emit_signal("receive_player_info", requested_player_network_unique_id, _get_player_info(requested_player_network_unique_id))
+		return
+		
+	rpc_id(PLAYER_HOST_ID,'_request_player_info', get_tree().get_network_unique_id(), requested_player_network_unique_id)
 	
 # other client request
 # data from newly join player
@@ -182,12 +187,14 @@ func request_player_info(player_network_unique_id : int) -> void:
 remote func _request_player_info(from_player_network_unique_id : int, requested_player_network_unique_id : int):
 	if not get_tree().is_network_server():
 		return
+		
+	rpc_id(from_player_network_unique_id,'_receive_player_info', requested_player_network_unique_id,_get_player_info(requested_player_network_unique_id))
 	
-	var _data = {}
+# just reusable function
+func _get_player_info(requested_player_network_unique_id : int) -> Dictionary:
 	if players.has(requested_player_network_unique_id):
-		_data = players[requested_player_network_unique_id]
-	
-	rpc_id(from_player_network_unique_id,'_receive_player_info', requested_player_network_unique_id, _data)
+		return players[requested_player_network_unique_id]
+	return {}
 	
 # other client receive
 # data from newly join player
@@ -197,11 +204,7 @@ remote func _receive_player_info(player_network_unique_id : int, _data : Diction
 	if get_tree().is_network_server():
 		return
 		
-	if _data.empty():
-		emit_signal("player_connected_data_not_found", player_network_unique_id)
-		return
-		
-	emit_signal("player_connected_data_receive", player_network_unique_id, _data)
+	emit_signal("receive_player_info", player_network_unique_id, _data)
 	
 	
 	
@@ -210,10 +213,9 @@ remote func _receive_player_info(player_network_unique_id : int, _data : Diction
 func _on_peer_disconnected(player_network_unique_id : int):
 	emit_signal("player_disconnected",player_network_unique_id)
 	
+	
+func erase_player(player_network_unique_id : int):
 	if not get_tree().is_network_server():
 		return
 		
 	players.erase(player_network_unique_id)
-	
-	
-	

@@ -140,7 +140,7 @@ func _init_host():
 	_team_2_color.color = team_colors[Global.TEAM_2]
 	
 	Network.connect("server_player_connected", self ,"_server_player_connected")
-	var err = Network.create_server(Global.server.max_player, Global.server.port , {})
+	var err = Network.create_server(Global.server.max_player, Global.server.port , {"name" : Global.player_data.name})
 	if err != OK:
 		return
 	
@@ -174,7 +174,7 @@ func _init_join():
 	Network.connect("server_disconnected", self , "_server_disconnected")
 	Network.connect("client_player_connected", self , "_client_player_connected")
 	
-	var err = Network.connect_to_server(Global.client.ip, Global.client.port , {})
+	var err = Network.connect_to_server(Global.client.ip, Global.client.port , {"name" : Global.player_data.name})
 	if err != OK:
 		return
 	

@@ -28,7 +28,6 @@ var amount : int = 10
 var coin_produce_cooldown : float = 10
 
 # misc
-var parent
 var _idle_timmer : Timer = null
 
 # spotting
@@ -68,8 +67,8 @@ remotesync func _capture(_cp_damage : float, _capture_by: Dictionary):
 	
 	_set_target(_capture_by.node_path)
 	
-remotesync func _finish_captured():
-	._finish_captured()
+remotesync func _finish_captured(_capture_by: Dictionary):
+	._finish_captured(_capture_by)
 	_flag.set_flag_color(color)
 	_cp_bar.set_hp_bar_color(color)
 	_cp_bar.update_bar(cp, max_cp)
@@ -93,8 +92,7 @@ func _ready():
 	_cp_bar.set_hp_bar_color(color)
 	_cp_bar.update_bar(cp,max_cp)
 	_cp_bar.modulate.a = 0.0
-	parent = self
-
+	
 	if amount != 0:
 		_timer.wait_time = coin_produce_cooldown
 		_timer.start()
@@ -130,7 +128,6 @@ func _ready():
 		_spotting.enable = true
 		_spotting.spotting_range = range_attack
 		_spotting.add_exception(self)
-		_spotting.add_exception(parent)
 		_spotting.team = team
 		_spotting.connect("on_spotted", self,"_on_spotted")
 		_spotting.translation = Vector3(0, 0.5, 0)
@@ -179,7 +176,7 @@ func shot_at(target_translation : Vector3):
 	arrow.player = player
 	arrow.is_master = is_master()
 	add_child(arrow)
-	arrow.parent = parent
+	arrow.parent = self
 	arrow.translation = global_transform.origin
 	arrow.translation.y += 2.5
 	arrow.spread = 1.8

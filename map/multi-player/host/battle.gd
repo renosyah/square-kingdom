@@ -188,6 +188,10 @@ func check_deck():
 	_ui.display_clickable_deck(pop, MAX_UNIT_SPAWN, coin)
 	_ui.display_population(team, pop, MAX_UNIT_SPAWN)
 	
+func on_player_disynchronize(_player_name : String):
+	.on_player_disynchronize(_player_name)
+	_ui.display_player_disynchronize(_player_name)
+	
 ################################################################
 # bot timer
 func _on_bot_timer_timeout():
