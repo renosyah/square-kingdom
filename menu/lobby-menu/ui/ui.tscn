@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/ui/fonts/montserrat_eb_32.tres" type="DynamicFont" id=1]
 [ext_resource path="res://menu/lobby-menu/ui/ui.gd" type="Script" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://assets/ui/fonts/montserrat_eb_48.tres" type="DynamicFont" id=4]
 [ext_resource path="res://assets/ui/simple_dialog_option/simple_dialog_option.tscn" type="PackedScene" id=5]
 [ext_resource path="res://addons/LANServerBroadcast/server_advertiser/ServerAdvertiser.gd" type="Script" id=6]
-[ext_resource path="res://assets/ui/simple_dialog_option/simple_dialog_option.gd" type="Script" id=7]
 [ext_resource path="res://assets/ui/fonts/montserrat_eb_16.tres" type="DynamicFont" id=8]
 
 [sub_resource type="Animation" id=1]
@@ -342,14 +341,8 @@ autoplay = "loading"
 anims/RESET = SubResource( 1 )
 anims/loading = SubResource( 2 )
 
-[node name="simple_dialog_option" type="Control" parent="CanvasLayer" instance=ExtResource( 5 )]
+[node name="simple_dialog_option" parent="CanvasLayer" instance=ExtResource( 5 )]
 visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-script = ExtResource( 7 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="server_advertise" type="Node" parent="."]
 script = ExtResource( 6 )

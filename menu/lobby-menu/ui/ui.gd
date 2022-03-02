@@ -284,7 +284,7 @@ func _on_battle_pressed():
 	rpc("_battle")
 	
 func _on_back_pressed():
-	_dialog_exit_option.display_message("Attention!","Are you sure want exit?")
+	_dialog_exit_option.display_message("Attention!","Leave from this lobby?")
 	_dialog_exit_option.visible = true
 	
 func _on_exit_timer_timeout():
