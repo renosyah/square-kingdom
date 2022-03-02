@@ -1017,5 +1017,8 @@ bus = "sfx"
 
 [node name="VisibilityNotifier" type="VisibilityNotifier" parent="."]
 
+[node name="shot_delay" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="screen_entered" from="VisibilityNotifier" to="." method="_on_VisibilityNotifier_screen_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier" to="." method="_on_VisibilityNotifier_screen_exited"]
