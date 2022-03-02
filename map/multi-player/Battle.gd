@@ -219,7 +219,8 @@ func _spawn_buildings(castle_holder : NodePath, farm_holder : NodePath):
 		building.connect("on_building_captured", self, "_on_building_captured")
 		building.connect("on_capture_progress", self, "_on_capture_progress")
 		
-		if i.type_building != Buildings.TYPE_UNIT_BUFF:
+		var not_coin_producer_building_type = [Buildings.TYPE_UNIT_BUFF,Buildings.TYPE_TOWER_PLATFORM]
+		if not i.type_building in not_coin_producer_building_type:
 			building.connect("on_coin_produce", self,"_on_coin_produce")
 		
 		if i.type_building == Buildings.TYPE_CASTLE:
@@ -513,6 +514,16 @@ func _building_captured_message(_building, _team,_capture_by, _last_owner_team) 
 			
 		if _capture_by != _team and _last_owner_team == _team:
 			return "-" + _building.upgrade_to_text() + ""
+			
+	elif _building.type_building == Buildings.TYPE_TOWER_PLATFORM:
+		if _capture_by == _team and _last_owner_team == "":
+			return _building.platform_name + " is occupied!"
+			
+		if _capture_by == _team and _last_owner_team != "":
+			return _building.platform_name + " is re-occupied!"
+			
+		if _capture_by != _team and _last_owner_team == _team:
+			return _building.platform_name + " is lost!"
 			
 	elif _building.type_building == Buildings.TYPE_CASTLE:
 		if _capture_by == _team and _last_owner_team != "":

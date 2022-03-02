@@ -90,7 +90,7 @@ transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -0.0294173, -0.986078, -1.3107
 transform = Transform( -0.8, 0, -1.50996e-07, 0, 0.8, 0, 1.20797e-07, 0, -1, -1.04264, 1.36403, -1.2826 )
 
 [node name="turret_pos" type="Position3D" parent="pivot"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.330703, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7515, 0 )
 
 [node name="hpBar" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.352857, 0, 0, 0, 0.623045, 0, 0, 0, 1, 0, 5.02291, 0 )

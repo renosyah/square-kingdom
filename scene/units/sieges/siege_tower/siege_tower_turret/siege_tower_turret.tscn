@@ -3,7 +3,7 @@
 [ext_resource path="res://scene/buildings/tower/roof.png" type="Texture" id=1]
 [ext_resource path="res://scene/buildings/tower/floor.png" type="Texture" id=2]
 [ext_resource path="res://scene/buildings/tower/tower.png" type="Texture" id=3]
-[ext_resource path="res://scene/buildings/tower/pilars.png" type="Texture" id=4]
+[ext_resource path="res://scene/units/sieges/siege_tower/siege_tower_turret/pilars.png" type="Texture" id=4]
 [ext_resource path="res://scene/units/sieges/siege_tower/siege_tower_turret/siege_tower_turret.gd" type="Script" id=5]
 
 [node name="siege_tower_turret" type="Spatial"]
@@ -13,67 +13,67 @@ script = ExtResource( 5 )
 transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0 )
 
 [node name="tower_1" type="Sprite3D" parent="pivot"]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.271888, 0.483249, -0.00784492 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.271888, 0, -0.00784492 )
 modulate = Color( 0.356863, 0.223529, 0, 1 )
 alpha_cut = 2
 texture = ExtResource( 3 )
 
 [node name="tower_2" type="Sprite3D" parent="pivot"]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.302196, 0.483249, -0.00784492 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.302196, 0, -0.00784492 )
 modulate = Color( 0.356863, 0.223529, 0, 1 )
 alpha_cut = 2
 texture = ExtResource( 3 )
 
 [node name="tower_3" type="Sprite3D" parent="pivot"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0187773, 0.483249, 0.292994 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0187773, 0, 0.292994 )
 modulate = Color( 0.356863, 0.223529, 0, 1 )
 alpha_cut = 2
 texture = ExtResource( 3 )
 
 [node name="tower_4" type="Sprite3D" parent="pivot"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0187773, 0.483249, -0.299697 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0187773, 0, -0.299697 )
 modulate = Color( 0.356863, 0.223529, 0, 1 )
 alpha_cut = 2
 texture = ExtResource( 3 )
 
 [node name="pilar_2" type="Sprite3D" parent="pivot"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24469, 0.184066, 0.285246 )
+transform = Transform( 1, 0, 0, 0, 1.4944, 0, 0, 0, 1, 0.24469, 0.129573, 0.285246 )
 modulate = Color( 0.356863, 0.223529, 0, 1 )
 alpha_cut = 2
 texture = ExtResource( 4 )
 
 [node name="pilar_3" type="Sprite3D" parent="pivot"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.206993, 0.184066, 0.270263 )
+transform = Transform( 1, 0, 0, 0, 1.4944, 0, 0, 0, 1, -0.206993, 0.129573, 0.270263 )
 modulate = Color( 0.356863, 0.223529, 0, 1 )
 alpha_cut = 2
 texture = ExtResource( 4 )
 
 [node name="pilar_4" type="Sprite3D" parent="pivot"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.206993, 0.184066, -0.271043 )
+transform = Transform( 1, 0, 0, 0, 1.4944, 0, 0, 0, 1, -0.206993, 0.129573, -0.271043 )
 modulate = Color( 0.356863, 0.223529, 0, 1 )
 alpha_cut = 2
 texture = ExtResource( 4 )
 
 [node name="pilar_5" type="Sprite3D" parent="pivot"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.233784, 0.184066, -0.271043 )
+transform = Transform( 1, 0, 0, 0, 1.4944, 0, 0, 0, 1, 0.233784, 0.129573, -0.271043 )
 modulate = Color( 0.356863, 0.223529, 0, 1 )
 alpha_cut = 2
 texture = ExtResource( 4 )
 
 [node name="floor" type="Sprite3D" parent="pivot"]
-transform = Transform( 0.936435, 0, 0, 0, -4.02315e-08, -0.999483, 0, 0.920389, -4.36888e-08, 0.0187773, 0.388808, -0.00348476 )
+transform = Transform( 0.936435, 0, 0, 0, -4.02315e-08, -0.999483, 0, 0.920389, -4.36888e-08, 0.0187773, 0, -0.00348476 )
 modulate = Color( 0.356863, 0.223529, 0, 1 )
 alpha_cut = 2
 texture = ExtResource( 2 )
 
 [node name="roof" type="Sprite3D" parent="pivot"]
-transform = Transform( 0.936435, 0, 0, 0, -4.02315e-08, -0.999483, 0, 0.920389, -4.36888e-08, 0.0187773, 0.683177, 0.0133343 )
+transform = Transform( 0.936435, 0, 0, 0, -4.02315e-08, -0.999483, 0, 0.920389, -4.36888e-08, 0.0187773, 0.210006, 0.0133343 )
 modulate = Color( 0.356863, 0.223529, 0, 1 )
 alpha_cut = 2
 texture = ExtResource( 1 )
 
 [node name="shoting_pos" type="Position3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.28394, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.523299, 0 )
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 unit_db = 10.0

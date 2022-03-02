@@ -90,6 +90,14 @@ func generate_spawn():
 			i.pivot = buff["pivot"]
 			pos.erase(p)
 			
+		elif i.type_building == Buildings.TYPE_TOWER_PLATFORM:
+			var p = pos[randi() % pos.size()]
+			i.node_name = "TOWER-PLATFORM-" + GDUUID.v4()
+			i.turret_data = Global.create_tower_platform_turret_data()
+			i.translation = p
+			pos.erase(p)
+			
+			
 	_spawn_buildings(_castle_holder.get_path(), _farm_holder.get_path())
 	_ui.update_victory_bar(_get_building_own_each_team(_castle_holder.get_path(), _farm_holder.get_path()))
 	

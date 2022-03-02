@@ -3,7 +3,8 @@ class_name Buildings
 
 const TYPE_CASTLE = "CASTLE"
 const TYPE_FARM = "FARM"
-const TYPE_TOWER= "TOWER"
+const TYPE_TOWER = "TOWER"
+const TYPE_TOWER_PLATFORM = "TYPE_TOWER_PLATFORM"
 const TYPE_UNIT_BUFF = "TYPE_UNIT_BUFF"
 
 const BUILDINGS = [
@@ -70,5 +71,19 @@ const BUILDINGS = [
 		team = "",
 		color = Color.white,
 		translation = Vector3.ZERO
-	}
+	},
+	{
+		id = "b-4",
+		type_building = TYPE_TOWER_PLATFORM,
+		name = "Tower Platform",
+		node_name = "",
+		scene = "res://scene/buildings/tower_platform/tower_platform.tscn",
+		turret_data = {},
+		cp = 100.0,
+		max_cp = 100.0,
+		cp_regen_rate = 8.0,
+		team = "",
+		color = Color.white,
+		translation = Vector3.ZERO
+	},
 ]

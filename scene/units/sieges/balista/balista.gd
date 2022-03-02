@@ -33,10 +33,10 @@ func init_siege():
 		_turret.player = player
 		_turret.attack_damage = attack_damage
 		_turret.range_attack = range_attack + 5.0
+		_turret.delay = attack_cooldown
 		_turret.team = team
 		_turret.color = color
 		_turret.is_master = is_master()
-		_turret.delay = attack_cooldown
 		_turret.translation = $pivot/turret_pos.translation
 		_turret.rotate_y($pivot/turret_pos.rotation_degrees.y)
 		$pivot.add_child(_turret)

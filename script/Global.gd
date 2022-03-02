@@ -1,6 +1,6 @@
 extends Node
 
-const VERSION_SAVE = "1.2"
+const VERSION_SAVE = "1.3"
 var PERSISTEN_SAVE = true
 
 const DEKSTOP =  ["Server", "Windows", "WinRT", "X11"]
@@ -269,7 +269,7 @@ static func generate_game_data() -> Dictionary:
 		
 	return data
 	
-static func generate_farm_and_tower(data : Dictionary, max_farm = 6, max_tower = 4, max_unit_buffer : int = 2) -> Dictionary:
+static func generate_farm_and_tower(data : Dictionary, max_farm = 6, max_tower = 4, max_unit_buffer : int = 2, max_tower_platform : int = 1) -> Dictionary:
 	randomize()
 	
 	var holder = []
@@ -302,8 +302,57 @@ static func generate_farm_and_tower(data : Dictionary, max_farm = 6, max_tower =
 #		training_field.pivot = buff["pivot"]
 		data.buildings.append(training_field)
 		
+	for i in max_tower_platform:
+		var tower = Buildings.BUILDINGS[4].duplicate()
+		tower.id = "TOWER-PLATFORM-" + GDUUID.v4()
+		#tower.turret_data = create_tower_platform_turret_data()
+		data.buildings.append(tower)
+		
 	return data
-
+	
+static func create_tower_platform_turret_data() -> Dictionary:
+	var turret_scenes = {
+		"res://scene/units/sieges/balista/balista_bow/balista_bow.tscn" : {
+			"attack_damage" : 16.0,
+			"delay" : 2.7,
+			"range_attack" : 20.0,
+			"platform_name" : "Balista Tower"
+		},
+		"res://scene/units/sieges/howitzer/howitzer_turret/howitzer_turret.tscn" : {
+			"attack_damage" : 24.0,
+			"delay" : 8.2,
+			"range_attack" : 14.0,
+			"platform_name" : "Howitzer Tower"
+		},
+		"res://scene/units/sieges/onager/onager_turret/onager_turret.tscn" : {
+			"attack_damage" : 14.0,
+			"delay" : 6.2,
+			"range_attack" : 16.0,
+			"platform_name" : "Onager Tower"
+		},
+		"res://scene/units/sieges/repeater/repeater_turret/repeater_turret.tscn" : {
+			"attack_damage" : 3.0,
+			"delay" : 0.2,
+			"range_attack" : 18.0,
+			"platform_name" : "Repeater Tower"
+		},
+#		"res://scene/units/sieges/siege_tower/siege_tower_turret/siege_tower_turret.tscn" : {
+#			"attack_damage" : 3.5,
+#			"delay" : 1.0,
+#			"range_attack" : 15.0,
+#			"garrison_units" : create_array_range(6),
+#			"platform_name" : "Archer Tower"
+#		}
+	}
+	
+	randomize()
+	var key = turret_scenes.keys()[randi() % turret_scenes.keys().size()]
+	var data = turret_scenes[key]
+	data["turret_scene"] = key
+	data["platform_name"] = data["platform_name"]
+	
+	return data
+	
 static func create_training_field_buff() -> Dictionary:
 	var pivots = ["PV_1","PV_2","PV_3"]
 	var type_upgrades = [
@@ -331,21 +380,24 @@ static func create_array_range(_range : int) -> Array:
 	
 static func generate_ai_units(_ai_name : String) -> Array:
 	var ai_unit = []
-	var count = int(rand_range(8, 16))
+	var count = int(rand_range(8, 12))
 	for i in count:
 		var unit = Units.UNITS[i].duplicate()
 		ai_unit.append(unit)
 		
 	if _ai_name == MEDIUM_AI:
-		for i in 6:
+		for i in 2:
 			var unit = Units.generate_random_locked_unit()
 			ai_unit.append(unit)
 		
 	elif _ai_name == HARD_AI:
-		for i in 8:
+		for i in 4:
 			var unit = Units.generate_random_locked_unit()
 			ai_unit.append(unit)
-			
+		
+	for i in ai_unit:
+		i.cost = i.cost * 0.5
+		
 	return ai_unit
 	
 ################################################################
