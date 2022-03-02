@@ -4,11 +4,7 @@ var _turret
 
 ############################################################
 # multiplayer func
-# to control what puppet targetting
 remotesync func _set_target(_target : NodePath):
-	if is_master():
-		return
-		
 	var _target_node = get_node_or_null(_target)
 	if not is_instance_valid(_target_node):
 		return
@@ -19,9 +15,6 @@ remotesync func _set_target(_target : NodePath):
 remotesync func _take_damage(_damage : float, _hit_by: Dictionary):
 	._take_damage(_damage, _hit_by)
 	if is_dead:
-		return
-		
-	if is_master():
 		return
 		
 	_set_target(_hit_by.node_path)

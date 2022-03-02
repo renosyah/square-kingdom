@@ -13,9 +13,9 @@ remotesync func _set_target(_target : NodePath):
 	var _target_node = get_node_or_null(_target)
 	if not is_instance_valid(_target_node):
 		return
-	
-	target = _target_node
 		
+	target = _target_node
+	
 remotesync func _take_damage(_damage : float, _hit_by: Dictionary):
 	._take_damage(_damage, _hit_by)
 	if is_dead:
