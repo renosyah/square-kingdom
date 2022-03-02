@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/ui/fonts/montserrat_eb_48.tres" type="DynamicFont" id=1]
 [ext_resource path="res://map/multi-player/ui/ui.gd" type="Script" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://assets/ui/bar/bar.png" type="Texture" id=13]
 [ext_resource path="res://assets/ui/scoreboard/scoreboard.tscn" type="PackedScene" id=14]
 [ext_resource path="res://assets/ui/simple_dialog_message/exception_message.tscn" type="PackedScene" id=15]
+[ext_resource path="res://assets/ui/simple_dialog_option/simple_dialog_option.tscn" type="PackedScene" id=16]
 
 [node name="ui" type="Control"]
 anchor_right = 1.0
@@ -812,7 +813,11 @@ margin_right = 423.0
 margin_bottom = 399.0
 rect_min_size = Vector2( 0, 30 )
 
+[node name="simple_dialog_option" parent="CanvasLayer" instance=ExtResource( 16 )]
+visible = false
+
 [node name="exception_message" parent="CanvasLayer" instance=ExtResource( 15 )]
+visible = false
 
 [node name="Tween" type="Tween" parent="."]
 
@@ -826,4 +831,5 @@ rect_min_size = Vector2( 0, 30 )
 [connection signal="pressed" from="CanvasLayer/menu/HBoxContainer/VBoxContainer/HBoxContainer/music" to="." method="_on_music_pressed"]
 [connection signal="pressed" from="CanvasLayer/menu/HBoxContainer/VBoxContainer/HBoxContainer/sfx" to="." method="_on_sfx_pressed"]
 [connection signal="pressed" from="CanvasLayer/menu/HBoxContainer/VBoxContainer/HBoxContainer2/main_menu" to="." method="_on_main_menu_pressed"]
+[connection signal="on_yes" from="CanvasLayer/simple_dialog_option" to="." method="_on_simple_dialog_option_on_yes"]
 [connection signal="on_close" from="CanvasLayer/exception_message" to="." method="_on_exception_message_on_close"]

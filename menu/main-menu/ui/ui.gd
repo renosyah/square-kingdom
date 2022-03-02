@@ -3,16 +3,27 @@ extends Control
 onready var _control_ui = $CanvasLayer/Control
 onready var _input_name = $CanvasLayer/input_name
 
+onready var _dialog_exit_option = $CanvasLayer/simple_dialog_option
 onready var _exception_message = $CanvasLayer/exception_message
 onready var _server_browser = $CanvasLayer/server_browser
 
 func _ready():
 	_server_browser.start_finding()
-	get_tree().set_quit_on_go_back(true)
-	get_tree().set_auto_accept_quit(true)
+	get_tree().set_quit_on_go_back(false)
+	get_tree().set_auto_accept_quit(false)
 	check_error()
 	check_player_name()
 	
+func _notification(what):
+	match what:
+		MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
+			_on_back_pressed()
+			return
+			
+		MainLoop.NOTIFICATION_WM_GO_BACK_REQUEST: 
+			_on_back_pressed()
+			return
+			
 func check_player_name():
 	if Global.player_data.name == "":
 		_input_name.visible = true
@@ -75,7 +86,13 @@ func _on_input_name_on_continue(_player_name, html_color):
 	Global.save_player_data()
 	_input_name.visible = false
 	_control_ui.visible = true
-
+	
+func _on_back_pressed():
+	_dialog_exit_option.display_message("Attention!","Are you sure want exit?")
+	_dialog_exit_option.visible = true
+	
+func _on_simple_dialog_option_on_yes():
+	get_tree().quit()
 
 
 

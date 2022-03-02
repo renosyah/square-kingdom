@@ -31,12 +31,13 @@ onready var _menu = $CanvasLayer/menu
 onready var _music = $CanvasLayer/menu/HBoxContainer/VBoxContainer/HBoxContainer/music
 onready var _sfx = $CanvasLayer/menu/HBoxContainer/VBoxContainer/HBoxContainer/sfx
 
-onready var exception_message = $CanvasLayer/exception_message
+onready var _dialog_exit_option = $CanvasLayer/simple_dialog_option
+onready var _exception_message = $CanvasLayer/exception_message
 
 func _ready():
 	hide_all()
 	_loading.visible = true
-	exception_message.visible = false
+	_exception_message.visible = false
 	
 	_music.text = "Music : On" if Global.audio_setting.music else "Music : Off"
 	_sfx.text = "Sfx : Enable" if Global.audio_setting.sfx else "Sfx : Disable"
@@ -153,16 +154,26 @@ func display_hurt(_team : String):
 		_tween.start()
 	
 func display_player_disynchronize(_player_name : String):
-	exception_message.display_message("Attention!","Game session has lost connection with " + _player_name + "!")
-	exception_message.visible = true
+	_exception_message.display_message("Attention!","Game session has lost connection with " + _player_name + "!")
+	_exception_message.visible = true
+	
+func display_option_on_exit():
+	_dialog_exit_option.display_message("Attention!","Are you sure want exit?")
+	_dialog_exit_option.visible = true
+	
+	
+	
+func exit_game_session():
+	Network.disconnect_from_server()
+	get_tree().change_scene("res://menu/main-menu/main_menu.tscn")
+	
 	
 func _on_deck_list_on_item_press(data):
 	emit_signal("on_deploy_card", data)
 	
 func _on_exit_game_pressed():
-	Network.disconnect_from_server()
-	get_tree().change_scene("res://menu/main-menu/main_menu.tscn")
-
+	exit_game_session()
+	
 func _on_re_match_pressed():
 	if not get_tree().is_network_server():
 		return
@@ -181,18 +192,17 @@ func _on_sfx_pressed():
 	_sfx.text = "Sfx : Enable" if Global.audio_setting.sfx else "Sfx : Disable"
 	Global.save_audio_setting()
 	
-func _on_main_menu_pressed():
-	Network.disconnect_from_server()
-	get_tree().change_scene("res://menu/main-menu/main_menu.tscn")
-
 func _on_close_exeption_message_pressed():
 	_reward_dialog.visible = false
 	
+func _on_main_menu_pressed():
+	display_option_on_exit()
+	
 func _on_exception_message_on_close():
-	_on_exit_game_pressed()
-
-
-
+	exit_game_session()
+	
+func _on_simple_dialog_option_on_yes():
+	exit_game_session()
 
 
 

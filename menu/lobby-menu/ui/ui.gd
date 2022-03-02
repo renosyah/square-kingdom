@@ -8,7 +8,7 @@ onready var _server_advertise = $server_advertise
 onready var _loading = $CanvasLayer/loading
 onready var _control_ui = $CanvasLayer/Control
 
-onready var _player_holder = $CanvasLayer/Control/VBoxContainer2/ScrollContainer/VBoxContainer
+onready var _player_holder = $CanvasLayer/Control/VBoxContainer2/players/VBoxContainer
 onready var _battle_layout = $CanvasLayer/Control/VBoxContainer2/VBoxContainer/battle
 
 onready var _team_1_color = $CanvasLayer/Control/VBoxContainer2/VBoxContainer/choose_side/join_team_1/ColorRect2
@@ -17,6 +17,8 @@ onready var _team_2_color = $CanvasLayer/Control/VBoxContainer2/VBoxContainer/ch
 onready var _battle_button = $CanvasLayer/Control/VBoxContainer2/VBoxContainer/battle/battle
 onready var _exit_timer = $exit_timer
 onready var _enter_game_timer = $enter_game_timer
+
+onready var _dialog_exit_option = $CanvasLayer/simple_dialog_option
 
 var team_colors = {
 	Global.TEAM_1 : Color.blue,
@@ -282,6 +284,17 @@ func _on_battle_pressed():
 	rpc("_battle")
 	
 func _on_back_pressed():
+	_dialog_exit_option.display_message("Attention!","Are you sure want exit?")
+	_dialog_exit_option.visible = true
+	
+func _on_exit_timer_timeout():
+	Network.disconnect_from_server()
+	get_tree().change_scene("res://menu/main-menu/main_menu.tscn")
+	
+func _on_enter_game_timer_timeout():
+	get_tree().change_scene("res://map/multi-player/host/battle.tscn")
+	
+func _on_simple_dialog_option_on_yes():
 	if get_tree().is_network_server():
 		_on_exit_timer_timeout()
 		return
@@ -291,13 +304,6 @@ func _on_back_pressed():
 	_exit_timer.start()
 	
 	rpc("_request_erase_player_joined",{ id = Global.player_data.id})
-	
-func _on_exit_timer_timeout():
-	Network.disconnect_from_server()
-	get_tree().change_scene("res://menu/main-menu/main_menu.tscn")
-
-func _on_enter_game_timer_timeout():
-	get_tree().change_scene("res://map/multi-player/host/battle.tscn")
 
 
 
