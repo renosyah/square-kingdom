@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scene/units/sieges/repeater/repeater_turret/bow.png" type="Texture" id=1]
 [ext_resource path="res://scene/units/sieges/balista/balista_bow/ram_base.png" type="Texture" id=2]
 [ext_resource path="res://scene/units/sieges/repeater/repeater_turret/repeater_turret.gd" type="Script" id=3]
 [ext_resource path="res://scene/units/sieges/repeater/repeater_turret/wheel.png" type="Texture" id=4]
+[ext_resource path="res://scene/units/sieges/onager/onager_turret/wheel.png" type="Texture" id=5]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -95,7 +96,7 @@ transform = Transform( 0.819152, 0, -0.573577, 0, 1, 0, 0.573577, 0, 0.819152, 0
 
 [node name="Sprite3D" type="Sprite3D" parent="pivot/bow_1"]
 transform = Transform( -1.62921e-07, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 1.62921e-07, 7.12149e-15, -0.0774352, -0.171818, 0.813847 )
-modulate = Color( 0.407843, 0.407843, 0.407843, 1 )
+modulate = Color( 0.588235, 0.588235, 0.588235, 1 )
 alpha_cut = 2
 texture = ExtResource( 1 )
 
@@ -104,7 +105,7 @@ transform = Transform( 0.819152, 0, 0.573577, 0, 1, 0, -0.573577, 0, 0.819152, 0
 
 [node name="Sprite3D" type="Sprite3D" parent="pivot/bow_2"]
 transform = Transform( 7.54979e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, 7.54979e-08, -3.30012e-15, -0.108012, -0.0306246, -0.740211 )
-modulate = Color( 0.407843, 0.407843, 0.407843, 1 )
+modulate = Color( 0.588235, 0.588235, 0.588235, 1 )
 alpha_cut = 2
 texture = ExtResource( 1 )
 
@@ -160,6 +161,12 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.230134 )
 modulate = Color( 0.588235, 0.588235, 0.588235, 1 )
 alpha_cut = 2
 texture = ExtResource( 4 )
+
+[node name="body_8" type="Sprite3D" parent="pivot"]
+transform = Transform( 1.2, 0, 0, 0, -5.24537e-08, -1, 0, 1.2, -4.37114e-08, 0, -0.159, 0 )
+modulate = Color( 0.466667, 0.298039, 0.172549, 1 )
+alpha_cut = 2
+texture = ExtResource( 5 )
 
 [node name="shot_pos" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.697994, -0.461351 )

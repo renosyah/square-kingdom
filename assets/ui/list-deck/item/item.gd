@@ -3,6 +3,13 @@ extends HBoxContainer
 signal pressed(data)
 signal gone(node)
 
+const BUFF_ICON = {
+	"attack_damage": preload("res://assets/ui/list-deck/icon_buff/target_sword.png"),
+	"max_hp": preload("res://assets/ui/list-deck/icon_buff/hp.png"),
+	"speed": preload("res://assets/ui/list-deck/icon_buff/speed.png"),
+	"capture_damage": preload("res://assets/ui/list-deck/icon_buff/flag.png")
+}
+
 onready var _icon = $button/TextureRect
 onready var _name = $button/PanelContainer/VBoxContainer/HBoxContainer/name
 onready var _cost = $button/PanelContainer/VBoxContainer/cost
@@ -17,6 +24,8 @@ onready var _tween = $Tween
 onready var _tween2 = $Tween2
 onready var _audio = $AudioStreamPlayer
 
+onready var _buff_icon_template = $button/buff_icon_template
+onready var _buff_holder = $button/buff_holder
 
 var data = {}
 var is_clickable = false
@@ -39,6 +48,18 @@ func _ready():
 	_tween.start()
 	
 	cooldown()
+	
+func display_buff(buffs : Array):
+	for i in _buff_holder.get_children():
+		_buff_holder.remove_child(i)
+		
+	for i in buffs:
+		if BUFF_ICON.has(i):
+			var icn = _buff_icon_template.duplicate()
+			icn.texture = BUFF_ICON[i]
+			icn.modulate = data.color
+			icn.visible = true
+			_buff_holder.add_child(icn)
 	
 func cooldown():
 	_cooldown.wait_time = data.cooldown

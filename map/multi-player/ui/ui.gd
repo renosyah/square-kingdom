@@ -103,9 +103,12 @@ func display_clickable_deck(pop : int, max_pop : int, coin_amount : int):
 	_deck_list.update_list_enable(pop < max_pop)
 	_deck_list.update_list_clickable_by_cost(true, coin_amount)
 	
+func display_buff_in_deck(buff : Array):
+	_deck_list.display_buff(buff)
+	
 func add_to_deck(cards : Array):
 	_deck_list.update_list(cards)
-
+	
 func display_loading(show : bool, message : String):
 	_control_ui.visible = not show
 	_loading.visible = show
@@ -161,8 +164,6 @@ func display_option_on_exit():
 	_dialog_exit_option.display_message("Attention!","Are you sure want exit?")
 	_dialog_exit_option.visible = true
 	
-	
-	
 func exit_game_session():
 	Network.disconnect_from_server()
 	get_tree().change_scene("res://menu/main-menu/main_menu.tscn")
@@ -172,7 +173,7 @@ func _on_deck_list_on_item_press(data):
 	emit_signal("on_deploy_card", data)
 	
 func _on_exit_game_pressed():
-	exit_game_session()
+	display_option_on_exit()
 	
 func _on_re_match_pressed():
 	if not get_tree().is_network_server():

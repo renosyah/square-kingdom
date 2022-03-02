@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/ui/fonts/montserrat_eb_14.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/ui/list-deck/cooldown_bar.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/ui/list-deck/item/item.gd" type="Script" id=4]
 [ext_resource path="res://assets/ui/img/border_no_transparent.png" type="Texture" id=5]
 [ext_resource path="res://assets/ui/fonts/montserrat_eb_16.tres" type="DynamicFont" id=6]
+[ext_resource path="res://assets/ui/list-deck/icon_buff/speed.png" type="Texture" id=7]
 
 [node name="item" type="HBoxContainer"]
 margin_right = 185.0
@@ -119,6 +120,27 @@ margin_top = 61.0
 margin_right = 176.0
 margin_bottom = 66.0
 rect_min_size = Vector2( 0, 5 )
+
+[node name="buff_icon_template" type="TextureRect" parent="button"]
+visible = false
+modulate = Color( 1, 0, 0, 1 )
+margin_right = 20.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 20, 30 )
+texture = ExtResource( 7 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="buff_holder" type="VBoxContainer" parent="button"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -32.0
+margin_top = 8.0
+margin_right = -7.0
+margin_bottom = 126.0
+rect_min_size = Vector2( 25, 80 )
 
 [node name="TextureProgress" type="TextureProgress" parent="button"]
 modulate = Color( 0, 0, 0, 1 )

@@ -7,7 +7,7 @@ func _fire_at(direction : Vector3):
 	._fire_at(direction)
 	
 	var arrow = preload("res://scene/projectile/boulder/boulder.tscn").instance()
-	arrow.sprite = ""
+	arrow.sprite = "res://scene/projectile/boulder/boulder.png"
 	arrow.player = player
 	arrow.attack_damage = attack_damage
 	arrow.team = team

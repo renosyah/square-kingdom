@@ -181,7 +181,7 @@ remote func _deploy_card(_player: Dictionary, _unit : Dictionary):
 			_building.apply_upgrade(_unit)
 			
 			
-	rpc("_on_coin_updated", _get_coin_each_team())
+	rpc_unreliable("_on_coin_updated", _get_coin_each_team())
 	rpc("_spawn_unit", $unit_holder.get_path(), _player, _unit)
 	
 ################################################################

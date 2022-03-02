@@ -163,6 +163,8 @@ func on_building_captured(_building,_last_owner_team,_capture_by):
 	var message = _building_captured_message(_building,Global.player_data.team,_capture_by,_last_owner_team)
 	if message == "" or title == "":
 		return
+		
+	_ui.display_buff_in_deck(get_owned_buff_building())
 	_ui.display_info(title, message)
 	
 	
@@ -187,6 +189,23 @@ func check_deck():
 	var pop = _number_of_unit_spawn(_unit_holder,team)
 	_ui.display_clickable_deck(pop, MAX_UNIT_SPAWN, coin)
 	_ui.display_population(team, pop, MAX_UNIT_SPAWN)
+	
+func get_owned_buff_building() -> Array:
+	var buff_owned = []
+	for i in _farm_holder.get_children():
+		if i.team != Global.player_data.team:
+			continue
+		if i.type_building != Buildings.TYPE_UNIT_BUFF:
+			continue
+			
+		buff_owned += i.upgrades.keys()
+		
+	var clean_buff_owned = []
+	for i in buff_owned:
+		if not clean_buff_owned.has(i):
+			clean_buff_owned.append(i)
+			
+	return clean_buff_owned
 	
 func on_player_disynchronize(_player_name : String):
 	.on_player_disynchronize(_player_name)
@@ -215,7 +234,15 @@ func _on_bot_timer_timeout():
 			"color" : game_data[team].color,
 			"is_bot" : ""
 		}
-		var unit = cards[randi() % cards.size()]
+		
+		var unit = null
+		for card in cards:
+			if game_data[team].coin >= card.cost:
+				unit = card
+			
+		if not unit:
+			continue
+		
 		unit.team = team
 		unit.color = game_data[team].color
 		
@@ -249,7 +276,7 @@ func _on_countdown_end_timeout():
 	rpc("_game_info", game_flag , { winner = winner_team, message = "" })
 	
 func _on_coin_update_timeout():
-	rpc("_on_coin_updated", _get_coin_each_team())
+	rpc_unreliable("_on_coin_updated", _get_coin_each_team())
 
 
 

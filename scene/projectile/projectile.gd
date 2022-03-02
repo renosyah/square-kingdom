@@ -2,7 +2,7 @@ extends Area
 
 onready var _sprites = [$Sprite3D, $Sprite3D2]
 
-var sprite = "res://scene/projectile/arrow/arrow.png"
+var sprite = ""
 
 # attack
 var attack_damage = 4.0

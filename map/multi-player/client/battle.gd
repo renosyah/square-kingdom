@@ -115,6 +115,7 @@ func on_building_captured(_building,_last_owner_team,_capture_by):
 	if message == "" or title == "":
 		return
 		
+	_ui.display_buff_in_deck(get_owned_buff_building())
 	_ui.display_info(title, message)
 	
 	
@@ -142,6 +143,22 @@ func check_deck():
 	_ui.display_clickable_deck(pop, MAX_UNIT_SPAWN, coin)
 	_ui.display_population(team, pop, MAX_UNIT_SPAWN)
 	
+func get_owned_buff_building() -> Array:
+	var buff_owned = []
+	for i in _farm_holder.get_children():
+		if i.team != Global.player_data.team:
+			continue
+		if i.type_building != Buildings.TYPE_UNIT_BUFF:
+			continue
+			
+		buff_owned += i.upgrades.keys()
+		
+	var clean_buff_owned = []
+	for i in buff_owned:
+		if not clean_buff_owned.has(i):
+			clean_buff_owned.append(i)
+			
+	return clean_buff_owned
 	
 func on_player_disynchronize(_player_name : String):
 	.on_player_disynchronize(_player_name)

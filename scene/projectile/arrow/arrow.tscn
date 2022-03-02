@@ -8,6 +8,7 @@ radius = 0.173905
 
 [node name="arrow" type="Area"]
 collision_layer = 0
+input_ray_pickable = false
 monitorable = false
 script = ExtResource( 2 )
 

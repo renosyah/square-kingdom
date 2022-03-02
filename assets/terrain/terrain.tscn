@@ -69,6 +69,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.0521, 0 )
 generate_lightmap = false
 mesh = SubResource( 2 )
 skeleton = NodePath("../..")
+software_skinning_transform_normals = false
 material/0 = null
 
 [node name="ground" type="MeshInstance" parent="pivot"]
@@ -76,26 +77,33 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.02603, 0 )
 generate_lightmap = false
 mesh = SubResource( 4 )
 skeleton = NodePath("../..")
+software_skinning_transform_normals = false
 material/0 = null
 
 [node name="cliff" type="Spatial" parent="pivot"]
 
 [node name="cliff1" type="MeshInstance" parent="pivot/cliff"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.127, -1.052, -40.4619 )
+generate_lightmap = false
 mesh = SubResource( 11 )
 skeleton = NodePath("../..")
+software_skinning_transform_normals = false
 material/0 = SubResource( 10 )
 
 [node name="cliff2" type="MeshInstance" parent="pivot/cliff"]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 60.018, -1.052, -0.113 )
+generate_lightmap = false
 mesh = SubResource( 9 )
 skeleton = NodePath("../..")
+software_skinning_transform_normals = false
 material/0 = SubResource( 10 )
 
 [node name="cliff3" type="MeshInstance" parent="pivot/cliff"]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -59.983, -1.052, -0.005 )
+generate_lightmap = false
 mesh = SubResource( 9 )
 skeleton = NodePath("../..")
+software_skinning_transform_normals = false
 material/0 = SubResource( 10 )
 
 [node name="cliff_top" type="StaticBody" parent="pivot"]
@@ -104,20 +112,26 @@ collision_layer = 0
 
 [node name="cliff1" type="MeshInstance" parent="pivot/cliff_top"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.127, -14.692, -69 )
+generate_lightmap = false
 mesh = SubResource( 12 )
 skeleton = NodePath("../..")
+software_skinning_transform_normals = false
 material/0 = SubResource( 13 )
 
 [node name="cliff2" type="MeshInstance" parent="pivot/cliff_top"]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 59.3944, -14.6347, 0.998233 )
+generate_lightmap = false
 mesh = SubResource( 14 )
 skeleton = NodePath("../..")
+software_skinning_transform_normals = false
 material/0 = SubResource( 13 )
 
 [node name="cliff3" type="MeshInstance" parent="pivot/cliff_top"]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -59.731, -14.6347, 0.213168 )
+generate_lightmap = false
 mesh = SubResource( 14 )
 skeleton = NodePath("../..")
+software_skinning_transform_normals = false
 material/0 = SubResource( 13 )
 
 [node name="wall" type="CollisionShape" parent="pivot/cliff_top"]

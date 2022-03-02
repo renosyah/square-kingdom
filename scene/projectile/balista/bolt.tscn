@@ -15,6 +15,7 @@ albedo_color = Color( 0.956863, 0.992157, 1, 1 )
 
 [node name="bolt" type="Area"]
 collision_layer = 0
+input_ray_pickable = false
 monitorable = false
 script = ExtResource( 2 )
 
@@ -38,4 +39,5 @@ shape = SubResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.28905 )
 width = 0.3
 width_curve = SubResource( 2 )
+max_points = 15
 material = SubResource( 3 )
