@@ -8,6 +8,10 @@ onready var _cap_small = $VBoxContainer/pop_cap/small_size
 onready var _cap_medium = $VBoxContainer/pop_cap/medium_size
 onready var _cap_huge = $VBoxContainer/pop_cap/huge_size
 
+onready var _no_limit = $VBoxContainer/time_limit/no_limit
+onready var _five_minute = $VBoxContainer/time_limit/five_minute
+onready var _ten_minute = $VBoxContainer/time_limit/ten_minute
+
 onready var _autoplay_btn = $VBoxContainer/autoplay/autoplay_btn
 
 # Called when the node enters the scene tree for the first time.
@@ -33,6 +37,10 @@ func apply_btn_condition():
 	_cap_small.disabled = (Global.player_game_data.max_unit_spawn == 10)
 	_cap_medium.disabled = (Global.player_game_data.max_unit_spawn == 15)
 	_cap_huge.disabled = (Global.player_game_data.max_unit_spawn == 20)
+	
+	_no_limit.disabled = (Global.player_game_data.time_limit == -1)
+	_five_minute.disabled = (Global.player_game_data.time_limit == 300)
+	_ten_minute.disabled = (Global.player_game_data.time_limit == 600)
 	
 	_autoplay_btn.text = "Autoplay : " + ("On" if Global.enable_autoplay else "Off") 
 	
@@ -78,6 +86,23 @@ func _on_huge_size_pressed():
 func _on_autoplay_btn_pressed():
 	Global.enable_autoplay = not Global.enable_autoplay
 	apply_btn_condition()
+	
+func _on_five_minute_pressed():
+	Global.player_game_data.time_limit = 300
+	apply_btn_condition()
+	Global.save_player_game_data()
+	
+func _on_ten_minute_pressed():
+	Global.player_game_data.time_limit = 600
+	apply_btn_condition()
+	Global.save_player_game_data()
+	
+func _on_no_limit_pressed():
+	Global.player_game_data.time_limit = -1
+	apply_btn_condition()
+	Global.save_player_game_data()
+
+
 
 
 

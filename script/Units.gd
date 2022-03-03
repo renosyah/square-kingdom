@@ -38,7 +38,7 @@ static func generate_random_locked_unit() -> Dictionary:
 	
 	unit["id"] = "UNIT-" + str(GDUUID.v4()) + "-" + level_title
 	unit["name"] = title + " " + unit["name"]
-	unit["cooldown"] += int(unit["cooldown"] + (rand_range(-0.5, 2) + MODFIER[level_title]))
+	unit["cooldown"] += int(unit["cooldown"] * (rand_range(0.2, 0.6) + MODFIER[level_title]))
 	unit["cost"] += int(unit["cost"] * (rand_range(0.2, 1) + MODFIER[level_title]))
 	unit["max_hp"] += unit["max_hp"] * (rand_range(0.5, 2.5) + MODFIER[level_title])
 	unit["speed"] += unit["speed"] * (rand_range(0.1, 0.3) + MODFIER[level_title])

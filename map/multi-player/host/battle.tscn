@@ -48,6 +48,9 @@ one_shot = true
 wait_time = 2.0
 autostart = true
 
+[node name="battle_timer" type="Timer" parent="."]
+autostart = true
+
 [node name="tween_cinematic" type="Tween" parent="."]
 
 [node name="tween_cinematic_end" type="Tween" parent="."]
@@ -57,4 +60,5 @@ autostart = true
 [connection signal="timeout" from="countdown_start" to="." method="_on_countdown_start_timeout"]
 [connection signal="timeout" from="countdown_end" to="." method="_on_countdown_end_timeout"]
 [connection signal="timeout" from="coin_update" to="." method="_on_coin_update_timeout"]
+[connection signal="timeout" from="battle_timer" to="." method="_on_battle_timer_timeout"]
 [connection signal="tween_all_completed" from="tween_cinematic_end" to="." method="_on_tween_cinematic_end_tween_all_completed"]

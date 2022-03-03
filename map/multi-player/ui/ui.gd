@@ -12,6 +12,8 @@ onready var _deck_list = $CanvasLayer/Control/deck_list
 onready var _info_title = $CanvasLayer/Control/info/VBoxContainer/info_title
 onready var _info_message = $CanvasLayer/Control/info/VBoxContainer/info_message
 onready var _victory_bar = $CanvasLayer/Control/HBoxContainer/CenterContainer2/vic_bar
+onready var _battle_time = $CanvasLayer/Control/HBoxContainer/CenterContainer2/time
+onready var _battle_time_text = $CanvasLayer/Control/HBoxContainer/CenterContainer2/time/text
 onready var _tween = $Tween
 
 onready var _loading = $CanvasLayer/loading
@@ -40,6 +42,7 @@ func _ready():
 	hide_all()
 	_loading.visible = true
 	_exception_message.visible = false
+	_battle_time.visible = false
 	
 	_deck_list.enable_autoplay(Global.enable_autoplay)
 	_music.text = "Music : On" if Global.audio_setting.music else "Music : Off"
@@ -156,12 +159,21 @@ func display_reward_dialog(total_score : int):
 	for i in unlocked_unit:
 		var item = preload("res://menu/deck-menu/item-inventory/item.tscn").instance()
 		item.data = i
+		item.data["color"] = Global.player_data.color
 		_reward_holder.add_child(item)
 	
 	
 func display_hurt(_team : String):
 	if _team == Global.player_data.team:
 		_tween.interpolate_property(_hurt, "modulate:a", 1 , 0.0, 1.0)
+		_tween.start()
+		
+		
+func display_time_limit(_time_left_in_second : int):
+	_battle_time.visible = true
+	_battle_time_text.text = str(Utils.format_time(_time_left_in_second, Utils.FORMAT_MINUTES | Utils.FORMAT_SECONDS))
+	if _time_left_in_second < 11:
+		_tween.interpolate_property(_battle_time_text, "modulate", Color.red , Color.white, 0.4)
 		_tween.start()
 	
 func display_player_disynchronize(_player_name : String):

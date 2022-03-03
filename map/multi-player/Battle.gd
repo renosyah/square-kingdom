@@ -419,6 +419,14 @@ func _assign_unit_target(_unit):
 	_unit.set_target(target.get_path())
 	
 ################################################################
+# battle time limit
+remotesync func _update_battle_time(_time_left_in_second : int):
+	update_battle_time(_time_left_in_second)
+	
+func update_battle_time(_time_left_in_second : int):
+	pass
+	
+################################################################
 # utils function
 func update_scores(player : Dictionary, unit_deploy, unit_kill, unit_lost, building_captured : int = 0):
 	if not get_tree().is_network_server():

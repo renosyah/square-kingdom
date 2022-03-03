@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://menu/setting-menu/game-setting/game_setting.gd" type="Script" id=1]
 [ext_resource path="res://assets/ui/fonts/montserrat_eb_32.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/ui/fonts/montserrat_eb_16.tres" type="DynamicFont" id=3]
 
 [node name="game_setting" type="Control"]
 anchor_right = 1.0
@@ -167,16 +168,91 @@ margin_right = 600.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 10, 0 )
 
-[node name="MarginContainer8" type="MarginContainer" parent="VBoxContainer"]
+[node name="MarginContainer9" type="MarginContainer" parent="VBoxContainer"]
 margin_top = 364.0
 margin_right = 600.0
 margin_bottom = 404.0
 rect_min_size = Vector2( 0, 40 )
 
-[node name="Label7" type="Label" parent="VBoxContainer"]
+[node name="Label8" type="Label" parent="VBoxContainer"]
 margin_top = 408.0
 margin_right = 600.0
 margin_bottom = 448.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+text = "Time Limit"
+align = 1
+valign = 1
+
+[node name="time_limit" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 452.0
+margin_right = 600.0
+margin_bottom = 542.0
+alignment = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer/time_limit"]
+margin_right = 10.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="five_minute" type="Button" parent="VBoxContainer/time_limit"]
+margin_left = 14.0
+margin_right = 192.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 150, 90 )
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "5 Minute"
+
+[node name="MarginContainer5" type="MarginContainer" parent="VBoxContainer/time_limit"]
+margin_left = 196.0
+margin_right = 206.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="ten_minute" type="Button" parent="VBoxContainer/time_limit"]
+margin_left = 210.0
+margin_right = 389.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 150, 90 )
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "10 Minute"
+
+[node name="MarginContainer6" type="MarginContainer" parent="VBoxContainer/time_limit"]
+margin_left = 393.0
+margin_right = 403.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="no_limit" type="Button" parent="VBoxContainer/time_limit"]
+margin_left = 407.0
+margin_right = 586.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 150, 90 )
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "No Limit"
+
+[node name="MarginContainer4" type="MarginContainer" parent="VBoxContainer/time_limit"]
+margin_left = 590.0
+margin_right = 600.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="MarginContainer8" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 546.0
+margin_right = 600.0
+margin_bottom = 586.0
+rect_min_size = Vector2( 0, 40 )
+
+[node name="Label7" type="Label" parent="VBoxContainer"]
+margin_top = 590.0
+margin_right = 600.0
+margin_bottom = 630.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 2 )
 text = "Autoplay"
@@ -184,21 +260,21 @@ align = 1
 valign = 1
 
 [node name="autoplay" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 452.0
+margin_top = 634.0
 margin_right = 600.0
-margin_bottom = 542.0
+margin_bottom = 754.0
 alignment = 1
 
 [node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer/autoplay"]
 margin_right = 10.0
-margin_bottom = 90.0
+margin_bottom = 120.0
 rect_min_size = Vector2( 10, 0 )
 
 [node name="autoplay_btn" type="Button" parent="VBoxContainer/autoplay"]
 margin_left = 14.0
 margin_right = 586.0
-margin_bottom = 90.0
-rect_min_size = Vector2( 150, 90 )
+margin_bottom = 120.0
+rect_min_size = Vector2( 150, 120 )
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = ExtResource( 2 )
@@ -207,14 +283,15 @@ text = "Autoplay : Off"
 [node name="MarginContainer4" type="MarginContainer" parent="VBoxContainer/autoplay"]
 margin_left = 590.0
 margin_right = 600.0
-margin_bottom = 90.0
+margin_bottom = 120.0
 rect_min_size = Vector2( 10, 0 )
 
 [node name="MarginContainer7" type="MarginContainer" parent="VBoxContainer"]
-margin_top = 546.0
+margin_top = 758.0
 margin_right = 600.0
-margin_bottom = 671.0
+margin_bottom = 1024.0
 rect_min_size = Vector2( 0, 125 )
+size_flags_vertical = 3
 
 [connection signal="pressed" from="VBoxContainer/ai_setting/easy_btn" to="." method="_on_easy_btn_pressed"]
 [connection signal="pressed" from="VBoxContainer/ai_setting/medium" to="." method="_on_medium_pressed"]
@@ -222,4 +299,7 @@ rect_min_size = Vector2( 0, 125 )
 [connection signal="pressed" from="VBoxContainer/pop_cap/small_size" to="." method="_on_small_size_pressed"]
 [connection signal="pressed" from="VBoxContainer/pop_cap/medium_size" to="." method="_on_medium_size_pressed"]
 [connection signal="pressed" from="VBoxContainer/pop_cap/huge_size" to="." method="_on_huge_size_pressed"]
+[connection signal="pressed" from="VBoxContainer/time_limit/five_minute" to="." method="_on_five_minute_pressed"]
+[connection signal="pressed" from="VBoxContainer/time_limit/ten_minute" to="." method="_on_ten_minute_pressed"]
+[connection signal="pressed" from="VBoxContainer/time_limit/no_limit" to="." method="_on_no_limit_pressed"]
 [connection signal="pressed" from="VBoxContainer/autoplay/autoplay_btn" to="." method="_on_autoplay_btn_pressed"]

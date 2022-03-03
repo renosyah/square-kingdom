@@ -132,6 +132,8 @@ remotesync func _game_info(_flag : int, _data : Dictionary):
 		var is_win = winner_team == Global.player_data.team
 		var condition = "Victory!" if is_win else "Defeat!"
 		var message = "Our team win!" if is_win else "Our team lose!"
+		message = "Both team lose!" if winner_team == "" else message
+		condition = "Draw!" if winner_team == "" else condition
 		_ui.display_game_over(is_win, condition, message, scores)
 		
 		_tween_cinematic_end.interpolate_property(_camera_cam, "rotation_degrees:x", -15.0 , 90, 1.3)
@@ -216,6 +218,10 @@ func get_owned_buff_building() -> Array:
 			
 	return clean_buff_owned
 	
+func update_battle_time(_time_left_in_second : int):
+	.update_battle_time(_time_left_in_second)
+	_ui.display_time_limit(_time_left_in_second)
+	
 func on_player_disynchronize(_player_name : String):
 	.on_player_disynchronize(_player_name)
 	_ui.display_player_disynchronize(_player_name)
@@ -285,6 +291,22 @@ func _on_countdown_end_timeout():
 	
 func _on_coin_update_timeout():
 	rpc_unreliable("_on_coin_updated", _get_coin_each_team())
+	
+func _on_battle_timer_timeout():
+	if game_flag != GAME_START:
+		return
+		
+	if game_data.time_limit == -1:
+		return
+		
+	game_data.time_limit -= 1
+	rpc_unreliable("_update_battle_time", game_data.time_limit)
+		
+	if game_data.time_limit == 0:
+		# draw winner is empty
+		winner_team = ""
+		game_flag = GAME_OVER
+		rpc("_game_info",  game_flag , { message =  "", "scores" : scores })
 
 
 

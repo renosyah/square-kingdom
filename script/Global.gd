@@ -1,6 +1,6 @@
 extends Node
 
-const VERSION_SAVE = "1.3"
+const VERSION_SAVE = "1.4"
 var PERSISTEN_SAVE = true
 
 const DEKSTOP =  ["Server", "Windows", "WinRT", "X11"]
@@ -66,7 +66,7 @@ func set_window_size():
 ################################################################
 # autoplay feature
 var enable_autoplay = false 
-
+	
 ################################################################
 # play music!
 const AUDIO_SAVE_FILE = "audio_setting" + "_" + VERSION_SAVE + ".dat"
@@ -256,6 +256,7 @@ static func generate_game_data() -> Dictionary:
 		map_size = SMALL_SIZE,
 		map_season = GREEN_GRASS,
 		max_unit_spawn = 10,
+		time_limit = 300
 	}
 	
 	for i in TEAMS:
