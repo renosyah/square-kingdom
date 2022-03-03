@@ -268,16 +268,34 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="autoplay_status" type="Label" parent="CanvasLayer/Control"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = 88.0
+margin_bottom = 116.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/line_spacing = 2
+custom_constants/shadow_as_outline = 2
+custom_fonts/font = ExtResource( 12 )
+text = "Autoplay : On"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="deck_list" parent="CanvasLayer/Control" instance=ExtResource( 9 )]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -300.0
-margin_top = -381.0
+margin_top = -380.0
 margin_right = 300.0
 margin_bottom = 0.0
-rect_min_size = Vector2( 600, 325 )
+rect_min_size = Vector2( 600, 380 )
 size_flags_horizontal = 1
 alignment = 1
 
@@ -720,8 +738,8 @@ expand = true
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_top = -199.5
-margin_bottom = 199.5
+margin_top = -266.0
+margin_bottom = 266.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -730,7 +748,7 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/menu/HBoxContainer"]
 margin_left = 88.0
 margin_right = 511.0
-margin_bottom = 399.0
+margin_bottom = 532.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -747,10 +765,33 @@ text = "Menu
 align = 1
 valign = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/menu/HBoxContainer/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/menu/HBoxContainer/VBoxContainer"]
 margin_top = 127.0
 margin_right = 423.0
 margin_bottom = 227.0
+alignment = 1
+
+[node name="autoplay" type="Button" parent="CanvasLayer/menu/HBoxContainer/VBoxContainer/HBoxContainer3"]
+margin_right = 423.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 415, 100 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 12 )
+text = "Autoplay : Off"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer3" type="MarginContainer" parent="CanvasLayer/menu/HBoxContainer/VBoxContainer"]
+margin_top = 231.0
+margin_right = 423.0
+margin_bottom = 246.0
+rect_min_size = Vector2( 0, 15 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/menu/HBoxContainer/VBoxContainer"]
+margin_top = 250.0
+margin_right = 423.0
+margin_bottom = 350.0
 alignment = 1
 
 [node name="music" type="Button" parent="CanvasLayer/menu/HBoxContainer/VBoxContainer/HBoxContainer"]
@@ -785,15 +826,15 @@ __meta__ = {
 }
 
 [node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/menu/HBoxContainer/VBoxContainer"]
-margin_top = 231.0
+margin_top = 354.0
 margin_right = 423.0
-margin_bottom = 261.0
-rect_min_size = Vector2( 0, 30 )
+margin_bottom = 394.0
+rect_min_size = Vector2( 0, 40 )
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/menu/HBoxContainer/VBoxContainer"]
-margin_top = 265.0
+margin_top = 398.0
 margin_right = 423.0
-margin_bottom = 365.0
+margin_bottom = 498.0
 alignment = 1
 
 [node name="main_menu" type="Button" parent="CanvasLayer/menu/HBoxContainer/VBoxContainer/HBoxContainer2"]
@@ -808,9 +849,9 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/menu/HBoxContainer/VBoxContainer"]
-margin_top = 369.0
+margin_top = 502.0
 margin_right = 423.0
-margin_bottom = 399.0
+margin_bottom = 532.0
 rect_min_size = Vector2( 0, 30 )
 
 [node name="simple_dialog_option" parent="CanvasLayer" instance=ExtResource( 16 )]
@@ -828,6 +869,7 @@ visible = false
 [connection signal="pressed" from="CanvasLayer/reward_dialog/VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/close_exeption_message" to="." method="_on_close_exeption_message_pressed"]
 [connection signal="timeout" from="CanvasLayer/menu/VBoxContainer2/fps_timer" to="." method="_on_fps_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/menu/CenterContainer2/close_menu" to="." method="_on_close_menu_pressed"]
+[connection signal="pressed" from="CanvasLayer/menu/HBoxContainer/VBoxContainer/HBoxContainer3/autoplay" to="." method="_on_autoplay_pressed"]
 [connection signal="pressed" from="CanvasLayer/menu/HBoxContainer/VBoxContainer/HBoxContainer/music" to="." method="_on_music_pressed"]
 [connection signal="pressed" from="CanvasLayer/menu/HBoxContainer/VBoxContainer/HBoxContainer/sfx" to="." method="_on_sfx_pressed"]
 [connection signal="pressed" from="CanvasLayer/menu/HBoxContainer/VBoxContainer/HBoxContainer2/main_menu" to="." method="_on_main_menu_pressed"]

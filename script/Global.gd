@@ -63,7 +63,10 @@ func set_window_size():
 	var _size_potrait = Vector2(600,1024)
 	if OS.get_name() in DEKSTOP:
 		OS.set_window_size(_size_landscape)
-	
+################################################################
+# autoplay feature
+var enable_autoplay = false 
+
 ################################################################
 # play music!
 const AUDIO_SAVE_FILE = "audio_setting" + "_" + VERSION_SAVE + ".dat"

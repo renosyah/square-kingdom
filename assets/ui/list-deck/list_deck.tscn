@@ -32,3 +32,7 @@ rect_min_size = Vector2( 0, 80 )
 mouse_filter = 2
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="autoplay_timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="autoplay_timer" to="." method="_on_autoplay_timer_timeout"]

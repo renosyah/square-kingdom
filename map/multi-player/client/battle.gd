@@ -62,6 +62,7 @@ remotesync func _game_info(_flag : int, _data : Dictionary):
 		
 	elif _flag == GAME_OVER:
 		scores = _data.scores
+		_ui.clear_deck()
 		_ui.display_loading(true, "Battle is Over!")
 		
 	elif _flag == GAME_FINISH:

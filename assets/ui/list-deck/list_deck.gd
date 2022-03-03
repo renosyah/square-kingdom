@@ -4,6 +4,7 @@ signal on_item_press(data)
 
 onready var _container = $HBoxContainer
 onready var _tween = $Tween
+onready var _autoplay_timer = $autoplay_timer
 
 var buffs = []
 
@@ -32,7 +33,28 @@ func display_buff(_buffs : Array):
 	for i in _container.get_children():
 		i.display_buff(buffs)
 		
+func enable_autoplay(_enable : bool):
+	if _enable:
+		_autoplay_timer.wait_time = 1.0
+		_autoplay_timer.start()
+	else:
+		_autoplay_timer.stop()
+	
+func _on_autoplay_timer_timeout():
+	if not Global.enable_autoplay:
+		return
 		
+	if _container.get_children().empty():
+		return
+		
+	for i in _container.get_children():
+		if not is_instance_valid(i):
+			continue
+			
+		if i.is_clickable and i.is_enable:
+			i.deploy()
+			return
+	
 func clear_list():
 	for i in _container.get_children():
 		i.queue_free() 
@@ -51,6 +73,7 @@ func update_list(_datas : Array):
 		
 func _pressed(data):
 	emit_signal("on_item_press", data)
+
 
 
 

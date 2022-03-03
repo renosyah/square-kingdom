@@ -167,6 +167,9 @@ remote func _deploy_card(_player: Dictionary, _unit : Dictionary):
 	if not get_tree().is_network_server():
 		return
 		
+	if game_flag == GAME_FINISH:
+		return
+		
 	var team = _unit.team
 	if game_data[team].coin - _unit.cost < 0:
 		return

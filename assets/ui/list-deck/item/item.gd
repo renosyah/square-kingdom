@@ -98,6 +98,12 @@ func _on_button_pressed():
 		
 	_is_clicked = true
 	
+	deploy()
+	
+func deploy():
+	if not _cooldown.is_stopped():
+		return
+		
 	_audio.stream = preload("res://assets/sound/click.wav")
 	_audio.play()
 

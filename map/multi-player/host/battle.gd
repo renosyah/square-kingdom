@@ -122,6 +122,7 @@ remotesync func _game_info(_flag : int, _data : Dictionary):
 		pass
 		
 	elif _flag == GAME_OVER:
+		_ui.clear_deck()
 		_ui.display_loading(true, "Battle is Over!")
 		_countdown_end.wait_time = 3
 		_countdown_end.start()
@@ -250,10 +251,7 @@ func _on_bot_timer_timeout():
 			
 		if not unit:
 			continue
-		
-		unit.team = team
-		unit.color = game_data[team].color
-		
+			
 		if game_data[team].coin - unit.cost < 0:
 			continue
 			
@@ -261,6 +259,8 @@ func _on_bot_timer_timeout():
 		
 		unit.node_name = "UNIT-" + GDUUID.v4()
 		unit.translation = castles[team].translation
+		unit.team = team
+		unit.color = game_data[team].color
 		rpc("_spawn_unit", _unit_holder.get_path(), bot, unit)
 	
 func _on_countdown_start_timeout():

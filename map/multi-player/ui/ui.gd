@@ -7,6 +7,7 @@ onready var _control_ui = $CanvasLayer/Control
 onready var _pop_cap = $CanvasLayer/Control/HBoxContainer/HBoxContainer3/HBoxContainer2/label
 onready var _coin = $CanvasLayer/Control/HBoxContainer/HBoxContainer3/HBoxContainer/label
 onready var _hurt = $CanvasLayer/Control/hurt_effect
+onready var _autoplay_status = $CanvasLayer/Control/autoplay_status
 onready var _deck_list = $CanvasLayer/Control/deck_list
 onready var _info_title = $CanvasLayer/Control/info/VBoxContainer/info_title
 onready var _info_message = $CanvasLayer/Control/info/VBoxContainer/info_message
@@ -30,6 +31,7 @@ onready var _ping_counter = $CanvasLayer/menu/VBoxContainer2/ping_counter
 onready var _menu = $CanvasLayer/menu
 onready var _music = $CanvasLayer/menu/HBoxContainer/VBoxContainer/HBoxContainer/music
 onready var _sfx = $CanvasLayer/menu/HBoxContainer/VBoxContainer/HBoxContainer/sfx
+onready var _autoplay = $CanvasLayer/menu/HBoxContainer/VBoxContainer/HBoxContainer3/autoplay
 
 onready var _dialog_exit_option = $CanvasLayer/simple_dialog_option
 onready var _exception_message = $CanvasLayer/exception_message
@@ -39,8 +41,11 @@ func _ready():
 	_loading.visible = true
 	_exception_message.visible = false
 	
+	_deck_list.enable_autoplay(Global.enable_autoplay)
 	_music.text = "Music : On" if Global.audio_setting.music else "Music : Off"
 	_sfx.text = "Sfx : Enable" if Global.audio_setting.sfx else "Sfx : Disable"
+	_autoplay.text = "Autoplay : " + ("On" if Global.enable_autoplay else "Off") 
+	_autoplay_status.visible = Global.enable_autoplay
 	
 	if not get_tree().is_network_server():
 		_ping_counter.visible = true
@@ -108,6 +113,9 @@ func display_buff_in_deck(buff : Array):
 	
 func add_to_deck(cards : Array):
 	_deck_list.update_list(cards)
+	
+func clear_deck():
+	_deck_list.clear_list()
 	
 func display_loading(show : bool, message : String):
 	_control_ui.visible = not show
@@ -204,6 +212,12 @@ func _on_exception_message_on_close():
 	
 func _on_simple_dialog_option_on_yes():
 	exit_game_session()
+
+func _on_autoplay_pressed():
+	Global.enable_autoplay = not Global.enable_autoplay
+	_deck_list.enable_autoplay(Global.enable_autoplay)
+	_autoplay.text = "Autoplay : " + ("On" if Global.enable_autoplay else "Off") 
+	_autoplay_status.visible = Global.enable_autoplay
 
 
 

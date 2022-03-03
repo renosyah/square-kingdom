@@ -8,6 +8,7 @@ onready var _cap_small = $VBoxContainer/pop_cap/small_size
 onready var _cap_medium = $VBoxContainer/pop_cap/medium_size
 onready var _cap_huge = $VBoxContainer/pop_cap/huge_size
 
+onready var _autoplay_btn = $VBoxContainer/autoplay/autoplay_btn
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -32,6 +33,8 @@ func apply_btn_condition():
 	_cap_small.disabled = (Global.player_game_data.max_unit_spawn == 10)
 	_cap_medium.disabled = (Global.player_game_data.max_unit_spawn == 15)
 	_cap_huge.disabled = (Global.player_game_data.max_unit_spawn == 20)
+	
+	_autoplay_btn.text = "Autoplay : " + ("On" if Global.enable_autoplay else "Off") 
 	
 func _on_easy_btn_pressed():
 	set_all_disabled()
@@ -71,6 +74,11 @@ func _on_huge_size_pressed():
 	Global.player_game_data.max_unit_spawn = 20
 	apply_btn_condition()
 	Global.save_player_game_data()
+	
+func _on_autoplay_btn_pressed():
+	Global.enable_autoplay = not Global.enable_autoplay
+	apply_btn_condition()
+
 
 
 

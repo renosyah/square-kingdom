@@ -167,10 +167,53 @@ margin_right = 600.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 10, 0 )
 
-[node name="MarginContainer7" type="MarginContainer" parent="VBoxContainer"]
+[node name="MarginContainer8" type="MarginContainer" parent="VBoxContainer"]
 margin_top = 364.0
 margin_right = 600.0
-margin_bottom = 489.0
+margin_bottom = 404.0
+rect_min_size = Vector2( 0, 40 )
+
+[node name="Label7" type="Label" parent="VBoxContainer"]
+margin_top = 408.0
+margin_right = 600.0
+margin_bottom = 448.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+text = "Autoplay"
+align = 1
+valign = 1
+
+[node name="autoplay" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 452.0
+margin_right = 600.0
+margin_bottom = 542.0
+alignment = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer/autoplay"]
+margin_right = 10.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="autoplay_btn" type="Button" parent="VBoxContainer/autoplay"]
+margin_left = 14.0
+margin_right = 586.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 150, 90 )
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Autoplay : Off"
+
+[node name="MarginContainer4" type="MarginContainer" parent="VBoxContainer/autoplay"]
+margin_left = 590.0
+margin_right = 600.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="MarginContainer7" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 546.0
+margin_right = 600.0
+margin_bottom = 671.0
 rect_min_size = Vector2( 0, 125 )
 
 [connection signal="pressed" from="VBoxContainer/ai_setting/easy_btn" to="." method="_on_easy_btn_pressed"]
@@ -179,3 +222,4 @@ rect_min_size = Vector2( 0, 125 )
 [connection signal="pressed" from="VBoxContainer/pop_cap/small_size" to="." method="_on_small_size_pressed"]
 [connection signal="pressed" from="VBoxContainer/pop_cap/medium_size" to="." method="_on_medium_size_pressed"]
 [connection signal="pressed" from="VBoxContainer/pop_cap/huge_size" to="." method="_on_huge_size_pressed"]
+[connection signal="pressed" from="VBoxContainer/autoplay/autoplay_btn" to="." method="_on_autoplay_btn_pressed"]
