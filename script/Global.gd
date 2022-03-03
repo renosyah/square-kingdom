@@ -14,9 +14,9 @@ const MEDIUM_AI = "MEDIUM"
 const HARD_AI = "HARD"
 
 const AI_LEVEL = {
-	 EASY_AI : {name = EASY_AI, timeout = 2, deploy_chance = 0.75},
-	 MEDIUM_AI : {name = MEDIUM_AI, timeout = 2, deploy_chance = 0.80},
-	 HARD_AI : {name = HARD_AI ,timeout = 1.5, deploy_chance = 0.85}
+	 EASY_AI : {name = EASY_AI, timeout = 6, deploy_chance = 0.60},
+	 MEDIUM_AI : {name = MEDIUM_AI, timeout = 5, deploy_chance = 0.70},
+	 HARD_AI : {name = HARD_AI ,timeout = 4, deploy_chance = 0.80}
 }
 
 const SMALL_SIZE = { 

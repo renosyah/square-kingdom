@@ -51,7 +51,7 @@ transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -1.00062, -0.986078, -0.902393
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -1.00062, -0.986078, 0.812747 )
 
 [node name="turret_pos" type="Position3D" parent="pivot"]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.275, -0.403, 0 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.275, -0.449989, 0 )
 
 [node name="flag" parent="pivot" instance=ExtResource( 4 )]
 transform = Transform( -0.8, 0, 0, 0, 0.8, -8.74228e-08, 0, 6.99382e-08, 1, -1.56154, -0.745768, -0.524553 )

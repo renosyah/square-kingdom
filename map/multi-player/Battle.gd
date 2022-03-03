@@ -154,12 +154,18 @@ func _player_deploy_card(_unit : Dictionary, _cards : Array):
 				break
 	
 	
-func _ai_draw_card(quantity : int) -> Array:
+func ai_draw_card(quantity, amount_team_coin : int) -> Array:
 	var cards = []
-	for i in quantity:
-		var unit = game_data.ai_units[randi() % game_data.ai_units.size()]
-		cards.append(unit.duplicate())
-		
+	
+	game_data.ai_units.shuffle()
+	
+	for unit in game_data.ai_units:
+		if unit.cost <= amount_team_coin:
+			cards.append(unit.duplicate())
+			
+		if cards.size() > quantity:
+			return cards
+			
 	return cards
 	
 # deploy card

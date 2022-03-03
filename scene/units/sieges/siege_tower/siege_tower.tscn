@@ -21,7 +21,7 @@ shape = SubResource( 38 )
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
 
 [node name="roof_1" type="Sprite3D" parent="pivot"]
-transform = Transform( 2.14638, -7.94407e-09, 0.442116, 1.05797, -7.13477e-08, -0.896958, -5.15424e-08, 4.98715, -4.1421e-08, -0.22018, 0.365179, 0.0336222 )
+transform = Transform( 2.14638, -7.94407e-09, 0.442116, 1.05797, -7.13477e-08, -0.896958, -5.15424e-08, 4.98715, -4.1421e-08, -0.251925, 0.365179, 0.0336222 )
 modulate = Color( 0.356863, 0.223529, 0, 1 )
 alpha_cut = 2
 texture = ExtResource( 10 )
@@ -45,25 +45,25 @@ alpha_cut = 2
 texture = ExtResource( 10 )
 
 [node name="side_1" type="Sprite3D" parent="pivot"]
-transform = Transform( 2.393, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.66249, 1.08471 )
+transform = Transform( 2.09586, 0, -5.42772e-09, 0, 1, 0, -1.29885e-08, 0, 1, -0.0480354, -0.66249, 1.1123 )
 modulate = Color( 0.337255, 0.317647, 0.286275, 1 )
 alpha_cut = 2
 texture = ExtResource( 10 )
 
 [node name="side_2" type="Sprite3D" parent="pivot"]
-transform = Transform( 2.393, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.66249, -0.970318 )
+transform = Transform( 2.09586, 0, -5.42772e-09, 0, 1, 0, -1.29885e-08, 0, 1, -0.0480354, -0.66249, -1.05847 )
 modulate = Color( 0.337255, 0.317647, 0.286275, 1 )
 alpha_cut = 2
 texture = ExtResource( 10 )
 
 [node name="side_3" type="Sprite3D" parent="pivot"]
-transform = Transform( -6.55671e-08, 0, 1, 0, 1, 0, -1.5, 0, -4.37114e-08, 1.77195, -0.616117, 0.0394468 )
+transform = Transform( -6.55671e-08, 0, 1, 0, 1, 0, -1.5, 0, -4.37114e-08, 1.50419, -0.616117, 0.0394468 )
 modulate = Color( 0.337255, 0.317647, 0.286275, 1 )
 alpha_cut = 2
 texture = ExtResource( 10 )
 
 [node name="side_4" type="Sprite3D" parent="pivot"]
-transform = Transform( -6.55671e-08, 0, 1, 0, 1, 0, -1.5, 0, -4.37114e-08, -1.79524, -0.662228, 0.0394468 )
+transform = Transform( -6.55671e-08, 0, 1, 0, 1, 0, -1.5, 0, -4.37114e-08, -1.61991, -0.640789, 0.0394468 )
 modulate = Color( 0.337255, 0.317647, 0.286275, 1 )
 alpha_cut = 2
 texture = ExtResource( 10 )
@@ -90,7 +90,7 @@ transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -0.0294173, -0.986078, -1.3107
 transform = Transform( -0.8, 0, -1.50996e-07, 0, 0.8, 0, 1.20797e-07, 0, -1, -1.04264, 1.36403, -1.2826 )
 
 [node name="turret_pos" type="Position3D" parent="pivot"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7515, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0 )
 
 [node name="hpBar" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.352857, 0, 0, 0, 0.623045, 0, 0, 0, 1, 0, 5.02291, 0 )

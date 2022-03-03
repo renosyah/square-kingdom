@@ -71,31 +71,31 @@ alpha_cut = 2
 texture = ExtResource( 2 )
 
 [node name="body_1" type="Sprite3D" parent="pivot"]
-transform = Transform( 0.619131, 0, -1.66483e-08, 0, 1.2712, 0, -1.66483e-08, 0, 1, -0.0153996, 0.265203, 0.229067 )
+transform = Transform( 0.619131, 0, -1.66483e-08, 0, 1.2712, 0, -1.66483e-08, 0, 1, -0.0153996, 0.4531, 0.229067 )
 modulate = Color( 0.482353, 0.329412, 0.219608, 1 )
 alpha_cut = 2
 texture = ExtResource( 4 )
 
 [node name="body_2" type="Sprite3D" parent="pivot"]
-transform = Transform( 0.619131, 0, -1.66483e-08, 0, 1.2712, 0, -1.66483e-08, 0, 1, -0.0153996, 0.265203, -0.183347 )
+transform = Transform( 0.619131, 0, -1.66483e-08, 0, 1.2712, 0, -1.66483e-08, 0, 1, -0.0153996, 0.4531, -0.183347 )
 modulate = Color( 0.482353, 0.329412, 0.219608, 1 )
 alpha_cut = 2
 texture = ExtResource( 4 )
 
 [node name="body_3" type="Sprite3D" parent="pivot"]
-transform = Transform( -2.22856e-08, 0.413944, 0.204206, -7.54889e-09, 0.0863491, -0.978928, -0.318052, -9.71097e-09, 8.92611e-09, 0.500012, 0.704224, 0.0253919 )
+transform = Transform( -2.22856e-08, 0.413944, 0.204206, -7.54889e-09, 0.0863491, -0.978928, -0.318052, -9.71097e-09, 8.92611e-09, 0.500012, 0.892121, 0.0253919 )
 modulate = Color( 0.466667, 0.298039, 0.172549, 1 )
 alpha_cut = 2
 texture = ExtResource( 5 )
 
 [node name="body_4" type="Sprite3D" parent="pivot"]
-transform = Transform( 1.2, 0, 0, 0, -5.24537e-08, -1, 0, 1.2, -4.37114e-08, 0, -0.159, 0 )
+transform = Transform( 1.2, 0, 0, 0, -5.24537e-08, -1, 0, 1.2, -4.37114e-08, 0, 0, 0 )
 modulate = Color( 0.466667, 0.298039, 0.172549, 1 )
 alpha_cut = 2
 texture = ExtResource( 3 )
 
 [node name="rear" type="Spatial" parent="pivot"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.518954, 0, -2.26842e-08 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.518954, 0.187897, -2.26842e-08 )
 
 [node name="floor" type="Sprite3D" parent="pivot/rear"]
 transform = Transform( -2.02548e-07, 1.51153, -3.30356e-08, 0, -8.74228e-08, -1, -1, -5.85612e-07, 1.27989e-14, 0, 0, 0 )

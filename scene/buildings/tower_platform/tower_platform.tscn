@@ -22,25 +22,25 @@ __meta__ = {
 transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0 )
 
 [node name="tower_1" type="Sprite3D" parent="pivot"]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.271888, 0.664338, -0.00784492 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.271888, 0.611875, -0.00784492 )
 modulate = Color( 0.509804, 0.321569, 0.0784314, 1 )
 alpha_cut = 2
 texture = ExtResource( 8 )
 
 [node name="tower_2" type="Sprite3D" parent="pivot"]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.302196, 0.664338, -0.00784492 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.302196, 0.611875, -0.00784492 )
 modulate = Color( 0.509804, 0.321569, 0.0784314, 1 )
 alpha_cut = 2
 texture = ExtResource( 8 )
 
 [node name="tower_3" type="Sprite3D" parent="pivot"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0187773, 0.664338, 0.292994 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0187773, 0.611875, 0.292994 )
 modulate = Color( 0.509804, 0.321569, 0.0784314, 1 )
 alpha_cut = 2
 texture = ExtResource( 8 )
 
 [node name="tower_4" type="Sprite3D" parent="pivot"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0187773, 0.664338, -0.295989 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0187773, 0.611875, -0.295989 )
 modulate = Color( 0.509804, 0.321569, 0.0784314, 1 )
 alpha_cut = 2
 texture = ExtResource( 8 )
@@ -126,10 +126,10 @@ alpha_cut = 2
 texture = ExtResource( 4 )
 
 [node name="turret_pos" type="Position3D" parent="."]
-transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 3.37188, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9, 0 )
 
 [node name="flag" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.021, 2.70385, -1.17307 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.021, 1.95727, -1.17307 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.034, 0, 0.003 )

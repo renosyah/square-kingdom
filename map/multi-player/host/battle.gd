@@ -242,7 +242,10 @@ func _on_bot_timer_timeout():
 		if pop >= MAX_UNIT_SPAWN:
 			continue
 			
-		var cards = ._ai_draw_card(MAX_DRAW_CARD)
+		var cards = .ai_draw_card(MAX_DRAW_CARD, game_data[team].coin)
+		if cards.empty():
+			continue
+			
 		var bot = { 
 			"id" : "BOT-" + game_data.ai_level.name,
 			"name" : "BOT-" + game_data.ai_level.name,
@@ -250,17 +253,7 @@ func _on_bot_timer_timeout():
 			"is_bot" : ""
 		}
 		
-		var unit = null
-		for card in cards:
-			if game_data[team].coin >= card.cost:
-				unit = card
-			
-		if not unit:
-			continue
-			
-		if game_data[team].coin - unit.cost < 0:
-			continue
-			
+		var unit = cards[randi() % cards.size()]
 		game_data[team].coin -= unit.cost
 		
 		unit.node_name = "UNIT-" + GDUUID.v4()
