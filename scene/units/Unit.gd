@@ -32,9 +32,10 @@ var attack_cooldown = 1.2
 var range_attack = 1.4
 
 # mobility
-var is_walking = false
+var velocity = Vector3.ZERO
+var moving_state = {is_walking = false, facing_direction = 1}
+var gravity = 75.0
 var speed = 4.0
-var facing_direction = 1
 
 # vitality
 var is_dead = false
@@ -68,6 +69,7 @@ func _network_timmer_timeout():
 	if is_master():
 		rset_unreliable("_puppet_translation", translation)
 		rset_unreliable("_puppet_hp", hp)
+		rset_unreliable("_puppet_moving_state", moving_state)
 	
 puppet var _puppet_translation :Vector3 setget _set_puppet_translation
 func _set_puppet_translation(_val :Vector3):
@@ -78,11 +80,11 @@ func _set_puppet_hp(_val :float):
 	_puppet_hp = _val
 	hp = _puppet_hp
 	
-remotesync func _set_facing_direction(_val : int):
-	facing_direction = _val
-	
-remotesync func _set_walking_state(_val : bool):
-	is_walking = _val
+puppetsync var _puppet_moving_state : Dictionary setget _set_puppet_moving_state
+func _set_puppet_moving_state(_val : Dictionary):
+	_puppet_moving_state = _val
+	if not is_master():
+		moving_state = _puppet_moving_state
 	
 remotesync func _take_damage(_damage : float, _hit_by: Dictionary):
 	if is_dead:
@@ -183,35 +185,36 @@ func moving(delta):
 		return
 		
 	if not target:
-		_check_is_walking(false)
+		moving_state.is_walking = false
 		set_process(false)
 		return
 		
 	if is_instance_valid(target):
-		var velocity = Vector3.ZERO
 		var direction = translation.direction_to(target.translation)
 		var distance_to_target = translation.distance_to(target.translation)
-		_check_facing_direction(direction.x)
+		moving_state.facing_direction = 1 if direction.x > 0 else -1
 		
 		if not target.is_targetable(team):
 			target = null
-			_check_is_walking(false)
+			moving_state.is_walking = false
 			set_process(false)
 			return
 			
 		elif distance_to_target > range_attack:
-			_check_is_walking(true)
+			moving_state.is_walking = true
 			velocity = Vector3(direction.x, 0.0 , direction.z) * speed
 			
 		elif distance_to_target <= range_attack:
+			moving_state.is_walking = false
 			if _cooldown_timmer.is_stopped():
 				perform_attack()
 				_cooldown_timmer.start()
-			
-		move_and_slide(velocity, Vector3.UP)
+				
+		velocity.y -= gravity * delta
+		velocity = move_and_slide(velocity, Vector3.UP)
 			
 	else:
-		_check_is_walking(false)
+		moving_state.is_walking = false
 		set_process(false)
 		return
 	
@@ -252,16 +255,6 @@ func perform_attack():
 		
 	rpc_unreliable("_perform_attack")
 	
-func _check_facing_direction(_direction : float):
-	var dir = 1 if _direction > 0.0 else -1
-	if facing_direction != dir:
-		rpc_unreliable("_set_facing_direction" , dir)
-		
-func _check_is_walking(_is_walking):
-	if is_walking != _is_walking:
-		is_walking = _is_walking
-		rpc_unreliable("_set_walking_state", _is_walking)
-		
 func display_player_name(_show : bool):
 	pass
 	

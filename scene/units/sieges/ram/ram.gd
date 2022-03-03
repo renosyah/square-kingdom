@@ -32,7 +32,6 @@ func _set_puppet_rotation(_val:Vector3):
 	
 func _set_puppet_translation(_val :Vector3):
 	._set_puppet_translation(_val)
-	
 	if is_dead:
 		translation = _puppet_translation
 		return
@@ -40,14 +39,14 @@ func _set_puppet_translation(_val :Vector3):
 	_tween.interpolate_property(self,"translation", translation, _puppet_translation, 0.5)
 	_tween.start()
 	
-remotesync func _set_facing_direction(_val : int):
-	._set_facing_direction(_val)
-	
-remotesync func _set_walking_state(_val : bool):
-	._set_walking_state(_val)
-	
+
+func _set_puppet_moving_state(_val : Dictionary):
+	._set_puppet_moving_state(_val)
+	if is_dead:
+		return
+		
 	for i in _wheels:
-		if is_walking:
+		if moving_state.is_walking:
 			i.rotate_wheel()
 		else:
 			i.stop_wheel()
@@ -129,38 +128,39 @@ func moving(delta):
 		return
 		
 	if not target:
-		_check_is_walking(false)
+		moving_state.is_walking = false
 		set_process(false)
 		return
 		
 	if is_instance_valid(target):
-		var velocity = Vector3.ZERO
 		var direction = translation.direction_to(target.translation)
 		var distance_to_target = translation.distance_to(target.translation)
 		
 #		transform_turning(Vector3(target.translation.x , translation.y ,target.translation.z), delta)
 		if not target.is_targetable(team):
 			target = null
-			_check_is_walking(false)
+			moving_state.is_walking = false
 			set_process(false)
 			return
 			
 		elif distance_to_target > range_attack:
-			_check_is_walking(true)
+			moving_state.is_walking = true
 			translation.y -= (1.0 * delta) if translation.y > 0.0 else 0.0
 			velocity = Vector3(direction.x, 0.0 , direction.z) * speed
 			transform_turning(Vector3(target.translation.x , translation.y ,target.translation.z), delta)
 			
 		elif distance_to_target <= range_attack:
+			velocity = Vector3.ZERO
+			moving_state.is_walking = false
 			if _cooldown_timmer.is_stopped():
-				_check_is_walking(false)
 				perform_attack()
 				_cooldown_timmer.start()
 				
-		move_and_slide(velocity, Vector3.UP)
+		velocity.y -= gravity * delta
+		velocity = move_and_slide(velocity, Vector3.UP)
 			
 	else:
-		_check_is_walking(false)
+		moving_state.is_walking = false
 		set_process(false)
 		return
 		

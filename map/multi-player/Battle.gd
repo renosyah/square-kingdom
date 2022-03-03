@@ -183,6 +183,7 @@ remote func _deploy_card(_player: Dictionary, _unit : Dictionary):
 	game_data[team].coin -= _unit.cost
 	_unit.node_name = "UNIT-" + GDUUID.v4()
 	_unit.translation = castles[team].translation
+	_unit.translation.y = 0.0
 	
 	# apply buff
 	for _building in farms:

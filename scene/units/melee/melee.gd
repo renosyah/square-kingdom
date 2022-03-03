@@ -15,33 +15,28 @@ var _secondary_weapon
 # multiplayer func
 func _set_puppet_translation(_val :Vector3):
 	._set_puppet_translation(_val)
-	
 	if is_dead:
-		translation = _puppet_translation
 		return
 		
 	_tween.interpolate_property(self,"translation", translation, _puppet_translation, 0.5)
 	_tween.start()
 	
 	
-remotesync func _set_facing_direction(_val : int):
-	._set_facing_direction(_val)
-	
+func _set_puppet_moving_state(_val : Dictionary):
+	._set_puppet_moving_state(_val)
 	if is_dead:
-		_pivot.scale.x = facing_direction
 		return
 		
-	_tween.interpolate_property(_pivot,"scale:x", _pivot.scale.x, facing_direction, 0.1)
-	_tween.start()
-	
-remotesync func _set_walking_state(_val : bool):
-	._set_walking_state(_val)
-	
-	if is_walking:
+	if moving_state.is_walking:
 		_state.travel("walking")
+		
 	else:
 		_state.travel("idle")
-	
+		
+	if _pivot.scale.x != moving_state.facing_direction:
+		_tween.interpolate_property(_pivot,"scale:x", _pivot.scale.x, moving_state.facing_direction, 0.1)
+		_tween.start()
+
 remotesync func _take_damage(_damage : float, _hit_by: Dictionary):
 	._take_damage(_damage, _hit_by)
 	

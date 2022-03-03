@@ -3,14 +3,15 @@ extends "res://scene/units/melee/melee.gd"
 var mount
 var mount_scene = ""
 
-remotesync func _set_walking_state(_val : bool):
-	._set_walking_state(_val)
-	
-	if is_walking:
+func _set_puppet_moving_state(_val : Dictionary):
+	._set_puppet_moving_state(_val)
+	if is_dead:
+		return
+		
+	if moving_state.is_walking:
 		mount.walk()
 	else:
 		mount.stop()
-	
 	
 func set_data(_data):
 	.set_data(_data)

@@ -853,7 +853,7 @@ shape = SubResource( 38 )
 transform = Transform( 1, 0, 0, 0, 0.819152, 0.573577, 0, -0.573577, 0.819152, 0, 0.6, 0 )
 
 [node name="upper_body" type="Spatial" parent="pivot"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0515841, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00775496, 0 )
 
 [node name="body" type="Sprite3D" parent="pivot/upper_body"]
 alpha_cut = 2
