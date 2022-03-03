@@ -151,28 +151,28 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 38.8484, -29.3536, 0.334282 )
 shape = SubResource( 15 )
 
 [node name="Position_1" type="Position3D" parent="pivot"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 31.1193, 0, -32.2562 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 31.1193, 0.5, -32.2562 )
 
 [node name="Position_2" type="Position3D" parent="pivot"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 31.1193, 0, -0.280539 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 31.1193, 0.5, -0.280539 )
 
 [node name="Position_3" type="Position3D" parent="pivot"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 31.1193, 0, 30.9401 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 31.1193, 0.5, 30.9401 )
 
 [node name="Position_4" type="Position3D" parent="pivot"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -31.9655, 0, -32.4883 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -31.9655, 0.5, -32.4883 )
 
 [node name="Position_5" type="Position3D" parent="pivot"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -31.9655, 0, -0.960589 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -31.9655, 0.5, -0.960589 )
 
 [node name="Position_6" type="Position3D" parent="pivot"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -31.9655, 0, 32.1616 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -31.9655, 0.5, 32.1616 )
 
 [node name="Position_7" type="Position3D" parent="pivot"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.176407, 0, -32.0385 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.176407, 0.5, -32.0385 )
 
 [node name="Position_8" type="Position3D" parent="pivot"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.548565, 0, 31.5117 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.548565, 0.5, 31.5117 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3, 0 )

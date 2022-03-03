@@ -82,7 +82,7 @@ func _create_box_shape_translations() -> Array:
 	var square_side_size = round(sqrt(number_of_unit))
 	var unit_pos = Vector3(waypoint_position.x, 0 ,waypoint_position.z) - space_between_units * Vector3(square_side_size/2,0,square_side_size/2)
 	for i in number_of_unit:
-		pos.append(unit_pos  + Vector3(0,0, 12))
+		pos.append(unit_pos  + Vector3(0,0.5,12))
 		unit_pos.x += space_between_units
 		if unit_pos.x > (waypoint_position.x + square_side_size * space_between_units / 2):
 			unit_pos.z += space_between_units
