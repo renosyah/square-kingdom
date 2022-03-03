@@ -269,11 +269,14 @@ __meta__ = {
 }
 
 [node name="autoplay_status" type="Label" parent="CanvasLayer/Control"]
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_top = 88.0
-margin_bottom = 116.0
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -300.0
+margin_top = -409.0
+margin_right = 300.0
+margin_bottom = -381.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/line_spacing = 2

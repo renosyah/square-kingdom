@@ -30,6 +30,7 @@ onready var _buff_holder = $button/buff_holder
 var data = {}
 var is_clickable = false
 var is_enable = true
+var is_ready = true
 
 var _is_clicked = false
 
@@ -82,28 +83,29 @@ func _process(delta):
 	modulate.a = 0.4 if not is_enable else 1.0
 	_progress.max_value = data.cooldown
 	_progress.value = _cooldown.time_left
+	is_ready = _cooldown.is_stopped()
 	
 func _on_button_pressed():
-	if not _cooldown.is_stopped():
-		_cant_click()
+	deploy(true)
+	
+func deploy(_enable_sound : float = false):
+	if not is_ready:
+		if _enable_sound:
+			_cant_click()
 		return
 		
 	if not is_clickable or not is_enable:
-		_cant_click()
+		if _enable_sound:
+			_cant_click()
 		return
 	
 	if _is_clicked:
-		_cant_click()
+		if _enable_sound:
+			_cant_click()
 		return
 		
 	_is_clicked = true
 	
-	deploy()
-	
-func deploy():
-	if not _cooldown.is_stopped():
-		return
-		
 	_audio.stream = preload("res://assets/sound/click.wav")
 	_audio.play()
 

@@ -51,7 +51,7 @@ func _on_autoplay_timer_timeout():
 		if not is_instance_valid(i):
 			continue
 			
-		if i.is_clickable and i.is_enable:
+		if i.is_clickable and i.is_enable and i.is_ready:
 			i.deploy()
 			return
 	

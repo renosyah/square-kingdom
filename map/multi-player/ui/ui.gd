@@ -169,7 +169,7 @@ func display_player_disynchronize(_player_name : String):
 	_exception_message.visible = true
 	
 func display_option_on_exit():
-	_dialog_exit_option.display_message("Attention!","Are you sure want exit?")
+	_dialog_exit_option.display_message("Attention!","Exit to main menu?")
 	_dialog_exit_option.visible = true
 	
 func exit_game_session():
