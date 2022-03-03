@@ -133,12 +133,14 @@ func _idle_timmer_timeout():
 		return
 		
 	if not is_instance_valid(target):
+		_spotting.team = team
 		_spotting.enable = true
 		return
 		
 	if not target.is_targetable(team):
 		return
-		
+	
+	_spotting.team = team
 	_spotting.enable = true
 	
 	

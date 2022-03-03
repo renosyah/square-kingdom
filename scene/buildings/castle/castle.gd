@@ -214,6 +214,7 @@ func _idle_timmer_timeout():
 		return
 		
 	if not target:
+		_spotting.team = team
 		_spotting.enable = true
 		return
 		
