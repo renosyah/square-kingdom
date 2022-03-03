@@ -314,26 +314,26 @@ static func create_tower_platform_turret_data() -> Dictionary:
 	var turret_scenes = {
 		"res://scene/units/sieges/balista/balista_bow/balista_bow.tscn" : {
 			"attack_damage" : 16.0,
-			"delay" : 2.7,
+			"delay" : 2.5,
 			"range_attack" : 20.0,
 			"platform_name" : "Balista Tower"
 		},
 		"res://scene/units/sieges/howitzer/howitzer_turret/howitzer_turret.tscn" : {
 			"attack_damage" : 24.0,
-			"delay" : 8.2,
-			"range_attack" : 14.0,
+			"delay" : 8.5,
+			"range_attack" : 25.0,
 			"platform_name" : "Howitzer Tower"
 		},
 		"res://scene/units/sieges/onager/onager_turret/onager_turret.tscn" : {
 			"attack_damage" : 14.0,
-			"delay" : 6.2,
-			"range_attack" : 16.0,
+			"delay" : 6.5,
+			"range_attack" : 20.0,
 			"platform_name" : "Onager Tower"
 		},
 		"res://scene/units/sieges/repeater/repeater_turret/repeater_turret.tscn" : {
 			"attack_damage" : 3.0,
 			"delay" : 0.2,
-			"range_attack" : 18.0,
+			"range_attack" : 20.0,
 			"platform_name" : "Repeater Tower"
 		},
 #		"res://scene/units/sieges/siege_tower/siege_tower_turret/siege_tower_turret.tscn" : {

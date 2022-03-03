@@ -58,6 +58,9 @@ remotesync func _finish_captured(_capture_by: Dictionary):
 	_tween.interpolate_property(_cp_bar, "modulate:a", 1 , 0, 2.0, Tween.TRANS_SINE, Tween.EASE_IN)
 	_tween.start()
 	
+	if is_instance_valid(_spotting):
+		_spotting.team = team
+		
 	if is_instance_valid(_turret):
 		_turret.player = player
 		_turret.team = team
@@ -110,7 +113,7 @@ func _ready():
 		_spotting = preload("res://assets/other/spotting-system/spotting_system.tscn").instance()
 		add_child(_spotting)
 		_spotting.enable = true
-		_spotting.spotting_range = turret_data["range_attack"]
+		_spotting.spotting_range = turret_data["range_attack"] - 5.0
 		_spotting.add_exception(self)
 		_spotting.team = team
 		_spotting.connect("on_spotted", self,"_on_spotted")

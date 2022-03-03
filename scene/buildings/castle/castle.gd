@@ -76,6 +76,9 @@ remotesync func _finish_captured(_capture_by: Dictionary):
 	_tween.interpolate_property(_cp_bar, "modulate:a", 1 , 0, 2.0, Tween.TRANS_SINE, Tween.EASE_IN)
 	_tween.start()
 	
+	if is_instance_valid(_spotting):
+		_spotting.team = team
+	
 ############################################################
 func set_data(_data):
 	.set_data(_data)
