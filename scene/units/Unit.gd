@@ -16,14 +16,6 @@ signal on_take_damage(_unit, _hit_by, _damage, _hp, _max_hp)
 var player = {}
 var type_unit = ""
 
-# weapons
-var primary_weapon_scene = "res://scene/weapon/melee/sword/sword.tscn"
-var secondary_weapon_scene = "res://scene/weapon/shield/shield.tscn"
-
-# armor
-var helm = ""
-var armor = ""
-
 # attack
 var target = null # other unit node
 var attack_damage = 4.0
@@ -34,6 +26,8 @@ var range_attack = 1.4
 # mobility
 var velocity = Vector3.ZERO
 var moving_state = {is_walking = false, facing_direction = 1}
+var direction = Vector3.ZERO
+var distance_to_target = 0.0
 var gravity = 75.0
 var speed = 4.0
 
@@ -104,10 +98,6 @@ remotesync func _dead():
 ############################################################
 func set_data(_data):
 	type_unit = _data.type_unit
-	primary_weapon_scene = _data.primary_weapon_scene
-	secondary_weapon_scene = _data.secondary_weapon_scene
-	helm = _data.helm
-	armor = _data.armor
 	attack_damage = _data.attack_damage
 	capture_damage = _data.capture_damage
 	attack_cooldown = _data.attack_cooldown
@@ -190,8 +180,8 @@ func moving(delta):
 		return
 		
 	if is_instance_valid(target):
-		var direction = translation.direction_to(target.translation)
-		var distance_to_target = translation.distance_to(target.translation)
+		direction = translation.direction_to(target.translation)
+		distance_to_target = translation.distance_to(target.translation)
 		moving_state.facing_direction = 1 if direction.x > 0 else -1
 		
 		if not target.is_targetable(team):
@@ -210,7 +200,9 @@ func moving(delta):
 				perform_attack()
 				_cooldown_timmer.start()
 				
-		velocity.y -= gravity * delta
+		if not is_on_floor():
+			velocity.y -= gravity * delta
+			
 		velocity = move_and_slide(velocity, Vector3.UP)
 			
 	else:

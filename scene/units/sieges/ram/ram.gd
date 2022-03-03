@@ -82,20 +82,6 @@ remotesync func _dead():
 	_tween_dead.start()
 	
 ############################################################
-func set_data(_data):
-	# we override this shit!
-	#.set_data(_data)
-	type_unit = _data.type_unit
-	attack_damage = _data.attack_damage
-	capture_damage = _data.capture_damage
-	attack_cooldown = _data.attack_cooldown
-	range_attack = _data.range_attack
-	speed = _data.speed
-	hp = _data.hp
-	max_hp = _data.max_hp
-	team = _data.team 
-	color = _data.color
-	
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if not player.empty():
@@ -133,8 +119,8 @@ func moving(delta):
 		return
 		
 	if is_instance_valid(target):
-		var direction = translation.direction_to(target.translation)
-		var distance_to_target = translation.distance_to(target.translation)
+		direction = translation.direction_to(target.translation)
+		distance_to_target = translation.distance_to(target.translation)
 		
 #		transform_turning(Vector3(target.translation.x , translation.y ,target.translation.z), delta)
 		if not target.is_targetable(team):
@@ -156,7 +142,9 @@ func moving(delta):
 				perform_attack()
 				_cooldown_timmer.start()
 				
-		velocity.y -= gravity * delta
+		if not is_on_floor():
+			velocity.y -= gravity * delta
+			
 		velocity = move_and_slide(velocity, Vector3.UP)
 			
 	else:

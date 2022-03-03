@@ -11,6 +11,14 @@ onready var _audio = $AudioStreamPlayer3D
 var _primary_weapon
 var _secondary_weapon
 
+# weapons
+var primary_weapon_scene = "res://scene/weapon/melee/sword/sword.tscn"
+var secondary_weapon_scene = "res://scene/weapon/shield/shield.tscn"
+
+# armor
+var helm = ""
+var armor = ""
+
 ############################################################
 # multiplayer func
 func _set_puppet_translation(_val :Vector3):
@@ -72,6 +80,13 @@ remotesync func _dead():
 	_audio.play()
 	
 ############################################################
+func set_data(_data):
+	.set_data(_data)
+	primary_weapon_scene = _data.primary_weapon_scene
+	secondary_weapon_scene = _data.secondary_weapon_scene
+	helm = _data.helm
+	armor = _data.armor
+	
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	for i in _bodies:
