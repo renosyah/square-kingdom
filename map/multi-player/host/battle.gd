@@ -235,7 +235,7 @@ func _on_bot_timer_timeout():
 		if not game_data[team].enable_ai:
 			continue
 			
-		if randf() < game_data.ai_level.deploy_chance:
+		if randf() > game_data.ai_level.deploy_chance:
 			continue
 			
 		var pop = _number_of_unit_spawn(_unit_holder, team)

@@ -81,7 +81,7 @@ texture = ExtResource( 10 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.77542, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.034, 0, 0.003 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 shape = SubResource( 1 )
 disabled = true
 

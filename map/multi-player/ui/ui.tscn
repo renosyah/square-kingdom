@@ -166,7 +166,7 @@ margin_bottom = 63.0
 rect_min_size = Vector2( 0, 15 )
 
 [node name="time" type="TextureRect" parent="CanvasLayer/Control/HBoxContainer/CenterContainer2"]
-self_modulate = Color( 0.780392, 0.780392, 0.780392, 0.6 )
+self_modulate = Color( 0.960784, 0.960784, 0.960784, 0.6 )
 margin_left = 95.0
 margin_top = 67.0
 margin_right = 155.0

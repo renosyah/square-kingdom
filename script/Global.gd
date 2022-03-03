@@ -14,9 +14,9 @@ const MEDIUM_AI = "MEDIUM"
 const HARD_AI = "HARD"
 
 const AI_LEVEL = {
-	 EASY_AI : {name = EASY_AI, timeout = 6, deploy_chance = 0.60},
-	 MEDIUM_AI : {name = MEDIUM_AI, timeout = 5, deploy_chance = 0.70},
-	 HARD_AI : {name = HARD_AI ,timeout = 4, deploy_chance = 0.80}
+	 EASY_AI : {name = EASY_AI, timeout = 5, deploy_chance = 0.65},
+	 MEDIUM_AI : {name = MEDIUM_AI, timeout = 4, deploy_chance = 0.70},
+	 HARD_AI : {name = HARD_AI ,timeout = 3, deploy_chance = 0.80}
 }
 
 const SMALL_SIZE = { 
@@ -398,9 +398,6 @@ static func generate_ai_units(_ai_name : String) -> Array:
 		for i in 4:
 			var unit = Units.generate_random_locked_unit()
 			ai_unit.append(unit)
-		
-	for i in ai_unit:
-		i.cost = i.cost * 0.5
 		
 	return ai_unit
 	

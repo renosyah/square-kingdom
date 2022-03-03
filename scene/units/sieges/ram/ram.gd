@@ -152,14 +152,15 @@ func moving(delta):
 			transform_turning(Vector3(target.translation.x , translation.y ,target.translation.z), delta)
 			
 		elif distance_to_target <= range_attack:
-			_check_is_walking(false)
 			if _cooldown_timmer.is_stopped():
+				_check_is_walking(false)
 				perform_attack()
 				_cooldown_timmer.start()
 				
 		move_and_slide(velocity, Vector3.UP)
 			
 	else:
+		_check_is_walking(false)
 		set_process(false)
 		return
 		
