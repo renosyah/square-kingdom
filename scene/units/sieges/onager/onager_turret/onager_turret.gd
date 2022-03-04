@@ -1,11 +1,9 @@
-extends SiegeTurret
+extends "res://scene/units/sieges/balista/balista_bow/balista_bow.gd"
 
-onready var _audio = $AudioStreamPlayer3D
-onready var _animation = $AnimationPlayer
-
-func _fire_at(direction : Vector3):
-	._fire_at(direction)
-	
+############################################################
+# multiplayer func
+remotesync func _sync_fire_at(direction : Vector3):
+	#._sync_fire_at(direction : Vector3)
 	var boulders_count = int(rand_range(3,6))
 	for i in boulders_count:
 		var arrow = preload("res://scene/projectile/boulder/boulder.tscn").instance()
@@ -25,3 +23,5 @@ func _fire_at(direction : Vector3):
 	
 	_audio.stream = preload("res://assets/sound/arrow_fly.wav")
 	_audio.play()
+	
+############################################################

@@ -3,9 +3,9 @@ extends SiegeTurret
 onready var _audio = $AudioStreamPlayer3D
 onready var _animation = $AnimationPlayer
 
-func _fire_at(direction : Vector3):
-	._fire_at(direction)
-	
+############################################################
+# multiplayer func
+remotesync func _sync_fire_at(direction : Vector3):
 	var arrow = preload("res://scene/projectile/balista/bolt.tscn").instance()
 	arrow.sprite = "res://scene/projectile/balista/ram_weapon.png"
 	arrow.player = player
@@ -23,9 +23,13 @@ func _fire_at(direction : Vector3):
 	
 	_audio.stream = preload("res://assets/sound/arrow_fly.wav")
 	_audio.play()
-
-
-
+	
+############################################################
+func _fire_at(direction : Vector3):
+	._fire_at(direction)
+	
+	if is_master:
+		rpc_unreliable("_sync_fire_at", direction)
 
 
 

@@ -63,8 +63,8 @@ func _on_spotted(body):
 		
 	rpc("_set_target", body.get_path())
 	
-func moving(delta):
-	.moving(delta)
+func moving(_delta):
+	.moving(_delta)
 	
 	if is_dead:
 		return

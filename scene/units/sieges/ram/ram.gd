@@ -14,22 +14,6 @@ var _wheels
 
 ############################################################
 # multiplayer func
-# multiplayer func
-func _network_timmer_timeout():
-	._network_timmer_timeout()
-	if not target:
-		return
-		
-	if is_dead:
-		return
-		
-	if is_master():
-		rset_unreliable("_puppet_rotation", rotation)
-	
-puppet var _puppet_rotation: Vector3 setget _set_puppet_rotation
-func _set_puppet_rotation(_val:Vector3):
-	_puppet_rotation = _val
-	
 func _set_puppet_translation(_val :Vector3):
 	._set_puppet_translation(_val)
 	if is_dead:
@@ -100,21 +84,22 @@ func init_siege():
 	_wheels = [$pivot/wheel_1, $pivot/wheel_2, $pivot/wheel_3, $pivot/wheel_4,$pivot/wheel_5, $pivot/wheel_6]
 	$pivot/flag.set_flag_color(color)
 	
-func moving(delta):
+func puppet_moving(delta):
+	.puppet_moving(delta)
+	if is_dead:
+		return
+	
+	rotation.y = lerp_angle(rotation.y, _puppet_rotation.y, delta * 5)
+	
+func master_moving(delta):
 	# we override this shit!
-	#.moving(delta)
+	#.master_moving(delta)
 	if is_dead:
 		return
 		
-	# is a puppet
-	if not is_master():
-		#rotation.x = lerp_angle(rotation.x, _puppet_rotation.x, delta * 5)
-		rotation.y = lerp_angle(rotation.y, _puppet_rotation.y, delta * 5)
-		#rotation.z = lerp_angle(rotation.z, _puppet_rotation.z, delta * 5)
-		return
+	moving_state.is_walking = false
 		
 	if not target:
-		moving_state.is_walking = false
 		set_process(false)
 		return
 		
@@ -122,10 +107,9 @@ func moving(delta):
 		direction = translation.direction_to(target.translation)
 		distance_to_target = translation.distance_to(target.translation)
 		
-#		transform_turning(Vector3(target.translation.x , translation.y ,target.translation.z), delta)
+		# transform_turning(Vector3(target.translation.x , translation.y ,target.translation.z), delta)
 		if not target.is_targetable(team):
 			target = null
-			moving_state.is_walking = false
 			set_process(false)
 			return
 			
@@ -137,7 +121,6 @@ func moving(delta):
 			
 		elif distance_to_target <= range_attack:
 			velocity = Vector3.ZERO
-			moving_state.is_walking = false
 			if _cooldown_timmer.is_stopped():
 				perform_attack()
 				_cooldown_timmer.start()
@@ -148,7 +131,6 @@ func moving(delta):
 		velocity = move_and_slide(velocity, Vector3.UP)
 			
 	else:
-		moving_state.is_walking = false
 		set_process(false)
 		return
 		
@@ -193,7 +175,7 @@ func _on_VisibilityNotifier_screen_exited():
 func break_random_part():
 	var _body = _pivot.get_children()
 	var _max_break = _body.size()
-	var _break = int(rand_range(1,_max_break))
+	var _break = int(rand_range(4,_max_break))
 	for i in _break:
 		_body[randi() % _body.size()].visible = false
 	

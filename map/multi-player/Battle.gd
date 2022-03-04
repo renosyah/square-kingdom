@@ -268,11 +268,14 @@ func _on_building_captured(_building):
 		castles[_building.team].update_amount(_current_amount + _building.amount)
 		
 	elif _building.type_building == Buildings.TYPE_CASTLE:
-		
+			
 		if _building.team == "":
 			return
 			
 		if _building.last_owner_team == "":
+			return
+			
+		if game_flag == GAME_OVER:
 			return
 			
 		# winner is set

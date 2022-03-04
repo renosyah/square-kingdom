@@ -295,6 +295,9 @@ func _on_battle_timer_timeout():
 	game_data.time_limit -= 1
 	rpc_unreliable("_update_battle_time", game_data.time_limit)
 		
+	if game_flag == GAME_OVER:
+		return
+		
 	if game_data.time_limit == 0:
 		# draw winner is empty
 		winner_team = ""

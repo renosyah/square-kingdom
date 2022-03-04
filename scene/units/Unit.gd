@@ -25,7 +25,11 @@ var range_attack = 1.4
 
 # mobility
 var velocity = Vector3.ZERO
-var moving_state = {is_attacking = false, is_walking = false, facing_direction = 1}
+var moving_state : Dictionary = {
+	is_attacking = false,
+	is_walking = false,
+	facing_direction = 1
+}
 var direction = Vector3.ZERO
 var distance_to_target = 0.0
 var gravity = 75.0
@@ -62,12 +66,17 @@ func _network_timmer_timeout():
 		
 	if is_master():
 		rset_unreliable("_puppet_translation", translation)
-		rset_unreliable("_puppet_hp", hp)
 		rset_unreliable("_puppet_moving_state", moving_state)
+		rset_unreliable("_puppet_rotation", rotation)
+		rset_unreliable("_puppet_hp", hp)
 	
 puppet var _puppet_translation :Vector3 setget _set_puppet_translation
 func _set_puppet_translation(_val :Vector3):
 	_puppet_translation = _val
+	
+puppet var _puppet_rotation: Vector3 setget _set_puppet_rotation
+func _set_puppet_rotation(_val:Vector3):
+	_puppet_rotation = _val
 	
 puppet var _puppet_hp :float setget _set_puppet_hp
 func _set_puppet_hp(_val :float):
@@ -166,16 +175,24 @@ func _ready():
 func _process(delta):
 	moving(delta)
 	
-func moving(delta):
+	if is_master():
+		master_moving(delta)
+	else:
+		puppet_moving(delta)
+		
+	
+func moving(_delta):
+	if is_dead:
+		return
+	
+func master_moving(delta):
 	if is_dead:
 		return
 		
-	# is a puppet
-	if not is_master():
-		return
+	moving_state.is_walking = false
+	moving_state.is_attacking = false
 		
 	if not target:
-		moving_state.is_walking = false
 		set_process(false)
 		return
 		
@@ -183,11 +200,9 @@ func moving(delta):
 		direction = translation.direction_to(target.translation)
 		distance_to_target = translation.distance_to(target.translation)
 		moving_state.facing_direction = 1 if direction.x > 0 else -1
-		moving_state.is_attacking = false
 		
 		if not target.is_targetable(team):
 			target = null
-			moving_state.is_walking = false
 			set_process(false)
 			return
 			
@@ -196,7 +211,6 @@ func moving(delta):
 			velocity = Vector3(direction.x, 0.0 , direction.z) * speed
 			
 		elif distance_to_target <= range_attack:
-			moving_state.is_walking = false
 			moving_state.is_attacking = true
 			if _cooldown_timmer.is_stopped():
 				perform_attack()
@@ -208,10 +222,12 @@ func moving(delta):
 		velocity = move_and_slide(velocity, Vector3.UP)
 			
 	else:
-		moving_state.is_walking = false
 		set_process(false)
 		return
 	
+func puppet_moving(_delta):
+	if is_dead:
+		return
 	
 func take_damage(_damage : float, _hit_by: Dictionary):
 	if not is_master():
