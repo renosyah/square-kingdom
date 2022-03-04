@@ -1,6 +1,7 @@
 extends "res://scene/units/sieges/ram/ram.gd"
 
 var _turret
+var _turret_pos
 
 ############################################################
 # multiplayer func
@@ -28,6 +29,10 @@ remotesync func _dead():
 func init_siege():
 	# we override this shit!
 	#.init_siege()
+	_turret_pos = $pivot/turret_pos
+	_wheels = [$pivot/wheel_1, $pivot/wheel_2, $pivot/wheel_3, $pivot/wheel_4]
+	_flag = $pivot/flag
+	
 	if not _turret:
 		_turret = preload("res://scene/units/sieges/balista/balista_bow/balista_bow.tscn").instance()
 		_turret.player = player
@@ -37,16 +42,15 @@ func init_siege():
 		_turret.team = team
 		_turret.color = color
 		_turret.is_master = is_master()
-		_turret.translation = $pivot/turret_pos.translation
-		_turret.rotate_y($pivot/turret_pos.rotation_degrees.y)
-		$pivot.add_child(_turret)
+		_turret.translation = _turret_pos.translation
+		_turret.rotate_y(_turret_pos.rotation_degrees.y)
+		_pivot.add_child(_turret)
 		_turret.parent = self
 		
 		if is_instance_valid(target):
 			_turret.set_target(target)
-
-	_wheels = [$pivot/wheel_1, $pivot/wheel_2, $pivot/wheel_3, $pivot/wheel_4]
-	$pivot/flag.set_flag_color(color)
+		
+	_flag.set_flag_color(color)
 	
 func set_target(_target : NodePath):
 	.set_target(_target)

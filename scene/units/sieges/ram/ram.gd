@@ -1,4 +1,4 @@
-extends Unit
+extends SiegeHull
 
 onready var _owner = $owner
 onready var _hp_bar = $hpBar
@@ -7,10 +7,9 @@ onready var _tween = $Tween
 onready var _tween_dead = $Tween_dead
 onready var _audio = $AudioStreamPlayer3D
 
-onready var turn_speed = speed
-
 var _ram_weapon
 var _wheels
+var _flag
 
 ############################################################
 # multiplayer func
@@ -57,7 +56,7 @@ remotesync func _dead():
 	._dead()
 	
 	spawn_explosive()
-	break_random_part()
+	break_random_part(_pivot)
 	
 	_audio.stream = load("res://assets/sound/explode3.wav")
 	_audio.play()
@@ -82,59 +81,10 @@ func _ready():
 func init_siege():
 	_ram_weapon = $pivot/ram
 	_wheels = [$pivot/wheel_1, $pivot/wheel_2, $pivot/wheel_3, $pivot/wheel_4,$pivot/wheel_5, $pivot/wheel_6]
-	$pivot/flag.set_flag_color(color)
+	_flag = $pivot/flag
+	_flag.set_flag_color(color)
 	
-func puppet_moving(delta):
-	.puppet_moving(delta)
-	if is_dead:
-		return
 	
-	rotation.y = lerp_angle(rotation.y, _puppet_rotation.y, delta * 5)
-	
-func master_moving(delta):
-	# we override this shit!
-	#.master_moving(delta)
-	if is_dead:
-		return
-		
-	moving_state.is_walking = false
-		
-	if not target:
-		set_process(false)
-		return
-		
-	if is_instance_valid(target):
-		direction = translation.direction_to(target.translation)
-		distance_to_target = translation.distance_to(target.translation)
-		
-		# transform_turning(Vector3(target.translation.x , translation.y ,target.translation.z), delta)
-		if not target.is_targetable(team):
-			target = null
-			set_process(false)
-			return
-			
-		elif distance_to_target > range_attack:
-			moving_state.is_walking = true
-			translation.y -= (1.0 * delta) if translation.y > 0.0 else 0.0
-			velocity = Vector3(direction.x, 0.0 , direction.z) * speed
-			transform_turning(Vector3(target.translation.x , translation.y ,target.translation.z), delta)
-			
-		elif distance_to_target <= range_attack:
-			velocity = Vector3.ZERO
-			if _cooldown_timmer.is_stopped():
-				perform_attack()
-				_cooldown_timmer.start()
-				
-		if not is_on_floor():
-			velocity.y -= gravity * delta
-			
-		velocity = move_and_slide(velocity, Vector3.UP)
-			
-	else:
-		set_process(false)
-		return
-		
-		
 func transform_turning(direction, delta):
 	var new_transform = transform.looking_at(direction, Vector3.UP)
 	transform = transform.interpolate_with(new_transform, turn_speed * delta)
@@ -170,24 +120,6 @@ func _on_VisibilityNotifier_screen_entered():
 	
 func _on_VisibilityNotifier_screen_exited():
 	_pivot.visible = false
-	
-	
-func break_random_part():
-	var _body = _pivot.get_children()
-	var _max_break = _body.size()
-	var _break = int(rand_range(4,_max_break))
-	for i in _break:
-		_body[randi() % _body.size()].visible = false
-	
-	
-func spawn_explosive():
-	var explosive = preload("res://assets/explosive/explosive.tscn").instance()
-	explosive.scale = Vector3.ONE * 12
-	add_child(explosive)
-	explosive.translation = translation
-
-
-
 
 
 
