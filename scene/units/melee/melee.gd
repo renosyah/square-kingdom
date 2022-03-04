@@ -35,11 +35,12 @@ func _set_puppet_moving_state(_val : Dictionary):
 	if is_dead:
 		return
 		
-	if moving_state.is_walking:
-		_state.travel("walking")
-		
-	else:
-		_state.travel("idle")
+	if not moving_state.is_attacking:
+		if moving_state.is_walking:
+			_state.travel("walking")
+			
+		else:
+			_state.travel("idle")
 		
 	if _pivot.scale.x != moving_state.facing_direction:
 		_tween.interpolate_property(_pivot,"scale:x", _pivot.scale.x, moving_state.facing_direction, 0.1)

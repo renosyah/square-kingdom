@@ -8,10 +8,11 @@ func _set_puppet_moving_state(_val : Dictionary):
 	if is_dead:
 		return
 		
-	if moving_state.is_walking:
-		mount.walk()
-	else:
-		mount.stop()
+	if not moving_state.is_attacking:
+		if moving_state.is_walking:
+			mount.walk()
+		else:
+			mount.stop()
 	
 func set_data(_data):
 	.set_data(_data)

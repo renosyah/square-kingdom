@@ -25,7 +25,7 @@ var range_attack = 1.4
 
 # mobility
 var velocity = Vector3.ZERO
-var moving_state = {is_walking = false, facing_direction = 1}
+var moving_state = {is_attacking = false, is_walking = false, facing_direction = 1}
 var direction = Vector3.ZERO
 var distance_to_target = 0.0
 var gravity = 75.0
@@ -183,6 +183,7 @@ func moving(delta):
 		direction = translation.direction_to(target.translation)
 		distance_to_target = translation.distance_to(target.translation)
 		moving_state.facing_direction = 1 if direction.x > 0 else -1
+		moving_state.is_attacking = false
 		
 		if not target.is_targetable(team):
 			target = null
@@ -196,6 +197,7 @@ func moving(delta):
 			
 		elif distance_to_target <= range_attack:
 			moving_state.is_walking = false
+			moving_state.is_attacking = true
 			if _cooldown_timmer.is_stopped():
 				perform_attack()
 				_cooldown_timmer.start()

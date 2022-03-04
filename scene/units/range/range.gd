@@ -46,6 +46,8 @@ func perform_attack():
 			capture_damage,
 			Utils.create_hit_by(player, self.get_path(), team, color)
 		)
+		
+	velocity = Vector3.ZERO
 	
 func set_target(_target : NodePath):
 	.set_target(_target)
