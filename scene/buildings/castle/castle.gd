@@ -153,8 +153,9 @@ func _process(delta):
 			for i in garrison:
 				if i.cooldown_timmer.is_stopped():
 					shot_at(target.global_transform.origin)
-					i.sound.stream = ARROW_SOUND[randi() % ARROW_SOUND.size()]
-					i.sound.play()
+					if not i.sound.playing:
+						i.sound.stream = ARROW_SOUND[randi() % ARROW_SOUND.size()]
+						i.sound.play()
 					i.cooldown_timmer.start()
 					
 		elif distance_to_target > range_attack:

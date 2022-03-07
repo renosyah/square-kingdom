@@ -2,7 +2,14 @@ extends "res://scene/projectile/projectile.gd"
 
 var _sound
 
-func _ready():
+func init_projectile():
+	_sprites = [$Sprite3D, $Sprite3D2]
+	_raycast = $raycast
+	
+	if sprite != "":
+		for i in _sprites:
+			i.texture = load(sprite)
+			
 	_sound = AudioStreamPlayer3D.new()
 	_sound.stream = preload("res://assets/sound/explode2.wav")
 	_sound.unit_db = 8

@@ -1,19 +1,18 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scene/projectile/bullet/bullet.gd" type="Script" id=1]
 [ext_resource path="res://scene/projectile/bullet/bullet.png" type="Texture" id=2]
 
-[sub_resource type="SphereShape" id=1]
-radius = 0.216147
-
-[node name="bullet" type="Area"]
-collision_layer = 0
-input_ray_pickable = false
-monitorable = false
+[node name="bullet" type="Spatial"]
 script = ExtResource( 1 )
 __meta__ = {
 "_editor_description_": ""
 }
+
+[node name="raycast" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0839952 )
+enabled = true
+cast_to = Vector3( 0, 0, -0.2 )
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
@@ -22,7 +21,3 @@ texture = ExtResource( 2 )
 [node name="Sprite3D2" type="Sprite3D" parent="."]
 transform = Transform( -4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0, 0, 0 )
 texture = ExtResource( 2 )
-
-[node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
-shape = SubResource( 1 )

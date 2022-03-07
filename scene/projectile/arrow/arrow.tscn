@@ -1,20 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scene/projectile/arrow/arrow.png" type="Texture" id=1]
 [ext_resource path="res://scene/projectile/projectile.gd" type="Script" id=2]
 
-[sub_resource type="SphereShape" id=1]
-radius = 0.173905
-
-[node name="arrow" type="Area"]
-collision_layer = 0
-input_ray_pickable = false
-monitorable = false
+[node name="arrow" type="Spatial"]
 script = ExtResource( 2 )
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
-shape = SubResource( 1 )
+[node name="raycast" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5 )
+enabled = true
+cast_to = Vector3( 0, 0, -1 )
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )

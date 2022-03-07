@@ -101,17 +101,17 @@ alpha_cut = 2
 texture = ExtResource( 3 )
 
 [node name="floor" type="Sprite3D" parent="pivot"]
-transform = Transform( 0.936435, 0, 0, 0, -4.02315e-08, -0.999483, 0, 0.920389, -4.36888e-08, 0.0187773, 0.54998, 0.0133343 )
+transform = Transform( 0.936435, 0, 0, 0, -4.02315e-08, -0.999483, 0, 0.920389, -4.36888e-08, 0.0187773, 0.56518, 0.0133343 )
 alpha_cut = 2
 texture = ExtResource( 5 )
 
 [node name="floor2" type="Sprite3D" parent="pivot"]
-transform = Transform( 0.936435, 0, 0, 0, -4.02315e-08, -0.999483, 0, 0.920389, -4.36888e-08, 0.0187773, 0.231452, 0.0133343 )
+transform = Transform( 0.936435, 0, 0, 0, -4.02315e-08, -0.999483, 0, 0.920389, -4.36888e-08, 0.0187773, 0.220835, 0.0133343 )
 alpha_cut = 2
 texture = ExtResource( 5 )
 
 [node name="flag" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.71476, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.04829, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )

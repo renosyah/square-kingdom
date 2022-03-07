@@ -45,8 +45,10 @@ func moving_turret(delta):
 			for i in _garrison:
 				if i.cooldown_timmer.is_stopped():
 					_fire_at(target.global_transform.origin)
-					i.sound.stream = ARROW_SOUND[randi() % ARROW_SOUND.size()]
-					i.sound.play()
+					if not i.sound.playing:
+						i.sound.stream = ARROW_SOUND[randi() % ARROW_SOUND.size()]
+						i.sound.play()
+						
 					i.cooldown_timmer.start()
 	
 func _fire_at(direction : Vector3):

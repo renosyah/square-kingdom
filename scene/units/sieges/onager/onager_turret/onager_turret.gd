@@ -21,7 +21,8 @@ remotesync func _sync_fire_at(direction : Vector3):
 	
 	_animation.play("firing")
 	
-	_audio.stream = preload("res://assets/sound/arrow_fly.wav")
-	_audio.play()
+	if not _audio.playing:
+		_audio.stream = preload("res://assets/sound/arrow_fly.wav")
+		_audio.play()
 	
 ############################################################

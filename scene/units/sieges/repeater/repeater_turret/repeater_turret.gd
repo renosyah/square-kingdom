@@ -26,5 +26,6 @@ func _fire_at(direction : Vector3):
 	
 	_animation.play("firing")
 	
-	_audio.stream = ARROW_SOUND[randi() % ARROW_SOUND.size()]
-	_audio.play()
+	if not _audio.playing:
+		_audio.stream = ARROW_SOUND[randi() % ARROW_SOUND.size()]
+		_audio.play()

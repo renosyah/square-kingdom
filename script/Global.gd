@@ -30,16 +30,16 @@ const SMALL_SIZE = {
 const NORMAL_SIZE = { 
 	name = "Normal",
 	size = 1.5,
-	number_of_unit = 49,
-	space = 10, 
+	number_of_unit = 36,
+	space = 9, 
 	offset = 14
 } #OK
 
 const LARGE_SIZE = { 
 	name = "Large",
 	size = 2,
-	number_of_unit = 79,
-	space = 12,
+	number_of_unit = 54,
+	space = 9,
 	offset = 18
 } #OK
 

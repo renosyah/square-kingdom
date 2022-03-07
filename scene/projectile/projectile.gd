@@ -1,6 +1,7 @@
-extends Area
+extends Spatial
 
-onready var _sprites = [$Sprite3D, $Sprite3D2]
+var _sprites : Array
+var _raycast : RayCast
 
 var sprite = ""
 
@@ -25,11 +26,6 @@ var parent
 
 func _ready():
 	set_as_toplevel(true)
-	
-	if sprite != "":
-		for i in _sprites:
-			i.texture = load(sprite)
-		
 	_timeout_timer = Timer.new()
 	_timeout_timer.wait_time = 5
 	_timeout_timer.one_shot = true
@@ -37,8 +33,16 @@ func _ready():
 	_timeout_timer.connect("timeout", self, "_timeout_timer_timeout")
 	add_child(_timeout_timer)
 	parent = get_parent()
-
-	connect("body_entered", self,"_on_projectile_body_entered")
+	
+	init_projectile()
+	
+func init_projectile():
+	_sprites = [$Sprite3D, $Sprite3D2]
+	_raycast = $raycast
+	
+	if sprite != "":
+		for i in _sprites:
+			i.texture = load(sprite)
 	
 func launch(to : Vector3):
 	to.z += rand_range(-spread, spread)
@@ -50,9 +54,11 @@ func launch(to : Vector3):
 func _process(delta):
 	var _distance = speed * delta
 	translation += velocity * _distance
-
+	
+	if _raycast.is_colliding():
+		_on_projectile_body_entered(_raycast.get_collider())
+	
 func _timeout_timer_timeout():
-	set_process(false)
 	queue_free()
 	
 func _on_projectile_body_entered(body):
@@ -82,7 +88,6 @@ func _on_projectile_body_entered(body):
 	
 	
 func stop_projectile():
-	set_deferred("monitoring", false)
 	set_process(false)
 
 
