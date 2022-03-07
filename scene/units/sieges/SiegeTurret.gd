@@ -21,15 +21,23 @@ var parent
 var is_master = true
 
 # timer
-var _firing_delay
+onready var _tween = Tween.new()
+onready var _firing_delay = Timer.new()
+onready var _iddle_timer = Timer.new()
+
 
 func _ready():
-	if not  _firing_delay:
-		_firing_delay = Timer.new()
-		_firing_delay.wait_time = delay
-		_firing_delay.autostart = false
-		_firing_delay.one_shot = true
-		add_child(_firing_delay)
+	_firing_delay.wait_time = delay
+	_firing_delay.autostart = false
+	_firing_delay.one_shot = true
+	add_child(_firing_delay)
+		
+	_iddle_timer.wait_time = 2.0
+	_iddle_timer.autostart = true
+	_iddle_timer.connect("timeout", self, "_on_iddle_timer_timeout")
+	add_child(_iddle_timer)
+		
+	add_child(_tween)
 		
 	parent = self
 	set_process(false)
@@ -67,6 +75,13 @@ func moving_turret(delta):
 	
 func _fire_at(direction : Vector3):
 	pass
+	
+func _on_iddle_timer_timeout():
+	if is_instance_valid(target):
+		return
+		
+	_tween.interpolate_property(self,"rotation_degrees:y", rotation_degrees.y, rand_range(-90,90), 1.5)
+	_tween.start()
 	
 func _turn_facing_to(_target : Vector3, delta):
 	var alignment = _get_target_alignment(_target, global_transform.origin.y)
