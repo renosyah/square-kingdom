@@ -26,3 +26,4 @@ func init_siege():
 			_turret.set_target(target)
 		
 	_flag.set_flag_color(color)
+	

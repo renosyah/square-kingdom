@@ -51,6 +51,11 @@ func moving_turret(delta):
 						
 					i.cooldown_timmer.start()
 	
+func _on_iddle_timer_timeout():
+	# we override this shit!
+	#._on_iddle_timer_timeout()
+	pass
+
 func _fire_at(direction : Vector3):
 	._fire_at(direction)
 	
