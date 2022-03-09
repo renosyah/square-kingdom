@@ -234,8 +234,11 @@ func unlock_random_card_in_inventory(max_unlock : int = 1) -> Array:
 	
 func unlock_all_unit():
 	for unit in player_inventories:
-		unit["FLAG"] = FLAG_UNIT_UNLOCKED
-		
+		if unit.has("FLAG") and unit["FLAG"] == FLAG_UNIT_LOCKED:
+			unit["FLAG"] = FLAG_UNIT_UNLOCKED
+			
+	save_player_inventories()
+	
 ################################################################
 # game data
 const PLAYER_GAME_DATA_SAVE_FILE = "player_game_data" + "_" + VERSION_SAVE + ".dat"

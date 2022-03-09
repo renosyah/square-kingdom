@@ -96,7 +96,7 @@ func _get_target_alignment(_target : Vector3, elevation : float) -> Transform:
 
 func _is_aiming_align(_target : Vector3) -> bool:
 	_blank_spatial.look_at(Vector3(_target.x, global_transform.origin.y, _target.z), Vector3(0,1,0))
-	return Utils.compare_floats(rotation_degrees.y, _blank_spatial.rotation_degrees.y, 0.1)
+	return Utils.compare_floats(rotation_degrees.y, _blank_spatial.rotation_degrees.y, 5.0)
 	
 	
 	
