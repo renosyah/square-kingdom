@@ -41,7 +41,6 @@ func _ready():
 		
 	add_child(_tween)
 	get_parent().add_child(_blank_spatial)
-	_blank_spatial.set_as_toplevel(true)
 	_blank_spatial.global_transform.origin = global_transform.origin
 	
 	parent = self
@@ -96,7 +95,7 @@ func _get_target_alignment(_target : Vector3, elevation : float) -> Transform:
 	return global_transform.looking_at(Vector3(_target.x, elevation, _target.z), Vector3(0,1,0))
 
 func _is_aiming_align(_target : Vector3) -> bool:
-	_blank_spatial.transform = _blank_spatial.global_transform.looking_at(Vector3(_target.x, _blank_spatial.global_transform.origin.y, _target.z), Vector3(0,1,0))
+	_blank_spatial.look_at(Vector3(_target.x, global_transform.origin.y, _target.z), Vector3(0,1,0))
 	return Utils.compare_floats(rotation_degrees.y, _blank_spatial.rotation_degrees.y, 0.1)
 	
 	
