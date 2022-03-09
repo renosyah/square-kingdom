@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/ui/fonts/montserrat_eb_48.tres" type="DynamicFont" id=1]
 [ext_resource path="res://menu/main-menu/ui/ui.gd" type="Script" id=2]
@@ -12,12 +12,10 @@
 [ext_resource path="res://assets/ui/icon/cards.png" type="Texture" id=10]
 [ext_resource path="res://assets/ui/simple_dialog_message/exception_message.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/ui/fonts/montserrat_eb_16.tres" type="DynamicFont" id=12]
-[ext_resource path="res://assets/ui/icon/host.png" type="Texture" id=13]
-[ext_resource path="res://assets/ui/icon/play.png" type="Texture" id=14]
-[ext_resource path="res://assets/ui/icon/find.png" type="Texture" id=15]
+[ext_resource path="res://menu/main-menu/ui/plain.png" type="Texture" id=13]
+[ext_resource path="res://menu/main-menu/ui/plain_press.png" type="Texture" id=14]
 [ext_resource path="res://assets/ui/input-name/input_name.tscn" type="PackedScene" id=16]
 [ext_resource path="res://assets/ui/simple_dialog_option/simple_dialog_option.tscn" type="PackedScene" id=17]
-[ext_resource path="res://assets/ui/simple_dialog_option/simple_dialog_option.gd" type="Script" id=18]
 
 [node name="ui" type="Control"]
 anchor_right = 1.0
@@ -173,6 +171,69 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="CenterContainer2" type="CenterContainer" parent="CanvasLayer/Control"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -130.0
+margin_bottom = 202.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/CenterContainer2"]
+margin_left = 25.0
+margin_right = 105.0
+margin_bottom = 202.0
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Control/CenterContainer2/VBoxContainer"]
+margin_right = 80.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 0, 15 )
+
+[node name="setting" type="TextureButton" parent="CanvasLayer/Control/CenterContainer2/VBoxContainer"]
+self_modulate = Color( 0.172549, 0.172549, 0.172549, 1 )
+margin_top = 19.0
+margin_right = 80.0
+margin_bottom = 99.0
+rect_min_size = Vector2( 80, 80 )
+texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 14 )
+expand = true
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/CenterContainer2/VBoxContainer/setting"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 7 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/CenterContainer2/VBoxContainer"]
+margin_top = 103.0
+margin_right = 80.0
+margin_bottom = 118.0
+rect_min_size = Vector2( 0, 15 )
+
+[node name="deck" type="TextureButton" parent="CanvasLayer/Control/CenterContainer2/VBoxContainer"]
+self_modulate = Color( 0.172549, 0.172549, 0.172549, 1 )
+margin_top = 122.0
+margin_right = 80.0
+margin_bottom = 202.0
+rect_min_size = Vector2( 80, 80 )
+texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 14 )
+expand = true
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/CenterContainer2/VBoxContainer/deck"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 10 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Control" type="Control" parent="CanvasLayer/Control"]
 anchor_top = 1.0
 anchor_right = 1.0
@@ -197,37 +258,60 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="play" type="Button" parent="CanvasLayer/Control/Control/VBoxContainer"]
+[node name="play" type="TextureButton" parent="CanvasLayer/Control/Control/VBoxContainer"]
+self_modulate = Color( 0.619608, 0.176471, 0.0392157, 1 )
 margin_right = 404.0
-margin_bottom = 106.0
-rect_min_size = Vector2( 0, 100 )
+margin_bottom = 120.0
+rect_min_size = Vector2( 0, 120 )
+texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 14 )
+expand = true
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Control/VBoxContainer/play"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_as_outline = 2
 custom_fonts/font = ExtResource( 1 )
-text = "Battle!    "
-icon = ExtResource( 14 )
+text = "Battle"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/Control/VBoxContainer"]
-margin_top = 110.0
+margin_top = 124.0
 margin_right = 404.0
-margin_bottom = 140.0
+margin_bottom = 154.0
 rect_min_size = Vector2( 0, 30 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/Control/VBoxContainer"]
-margin_top = 144.0
+margin_top = 158.0
 margin_right = 404.0
-margin_bottom = 244.0
+margin_bottom = 258.0
 
-[node name="host" type="Button" parent="CanvasLayer/Control/Control/VBoxContainer/HBoxContainer"]
+[node name="host" type="TextureButton" parent="CanvasLayer/Control/Control/VBoxContainer/HBoxContainer"]
+self_modulate = Color( 0, 0.588235, 0.0392157, 1 )
 margin_right = 190.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 0, 100 )
 size_flags_horizontal = 3
+texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 14 )
+expand = true
+
+[node name="Label2" type="Label" parent="CanvasLayer/Control/Control/VBoxContainer/HBoxContainer/host"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_as_outline = 2
 custom_fonts/font = ExtResource( 9 )
-text = "  Host  "
-icon = ExtResource( 13 )
-expand_icon = true
+text = "Host"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -238,87 +322,27 @@ margin_right = 209.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 15, 0 )
 
-[node name="join" type="Button" parent="CanvasLayer/Control/Control/VBoxContainer/HBoxContainer"]
+[node name="join" type="TextureButton" parent="CanvasLayer/Control/Control/VBoxContainer/HBoxContainer"]
+self_modulate = Color( 0, 0.117647, 0.898039, 1 )
 margin_left = 213.0
 margin_right = 404.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 0, 100 )
 size_flags_horizontal = 3
+texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 14 )
+expand = true
+
+[node name="Label3" type="Label" parent="CanvasLayer/Control/Control/VBoxContainer/HBoxContainer/join"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_as_outline = 2
 custom_fonts/font = ExtResource( 9 )
-text = "Join   "
-icon = ExtResource( 15 )
-expand_icon = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CenterContainer2" type="CenterContainer" parent="CanvasLayer/Control"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -130.0
-margin_bottom = 164.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/CenterContainer2"]
-margin_left = 25.0
-margin_right = 105.0
-margin_bottom = 202.0
-
-[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Control/CenterContainer2/VBoxContainer"]
-margin_right = 80.0
-margin_bottom = 15.0
-rect_min_size = Vector2( 0, 15 )
-
-[node name="setting" type="Button" parent="CanvasLayer/Control/CenterContainer2/VBoxContainer"]
-margin_top = 19.0
-margin_right = 80.0
-margin_bottom = 99.0
-rect_min_size = Vector2( 80, 80 )
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control/CenterContainer2/VBoxContainer/setting"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0.278431, 0.278431, 0.278431, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/CenterContainer2/VBoxContainer/setting"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture = ExtResource( 7 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/CenterContainer2/VBoxContainer"]
-margin_top = 103.0
-margin_right = 80.0
-margin_bottom = 118.0
-rect_min_size = Vector2( 0, 15 )
-
-[node name="deck" type="Button" parent="CanvasLayer/Control/CenterContainer2/VBoxContainer"]
-margin_top = 122.0
-margin_right = 80.0
-margin_bottom = 202.0
-rect_min_size = Vector2( 80, 80 )
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control/CenterContainer2/VBoxContainer/deck"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0.278431, 0.278431, 0.278431, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/CenterContainer2/VBoxContainer/deck"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture = ExtResource( 10 )
-expand = true
+text = "Join"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -329,23 +353,17 @@ visible = false
 [node name="server_browser" parent="CanvasLayer" instance=ExtResource( 8 )]
 visible = false
 
-[node name="simple_dialog_option" type="Control" parent="CanvasLayer" instance=ExtResource( 17 )]
+[node name="simple_dialog_option" parent="CanvasLayer" instance=ExtResource( 17 )]
 visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-script = ExtResource( 18 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="exception_message" parent="CanvasLayer" instance=ExtResource( 11 )]
 visible = false
 
+[connection signal="pressed" from="CanvasLayer/Control/CenterContainer2/VBoxContainer/setting" to="." method="_on_setting_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/CenterContainer2/VBoxContainer/deck" to="." method="_on_deck_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Control/VBoxContainer/play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Control/VBoxContainer/HBoxContainer/host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Control/VBoxContainer/HBoxContainer/join" to="." method="_on_join_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/CenterContainer2/VBoxContainer/setting" to="." method="_on_setting_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/CenterContainer2/VBoxContainer/deck" to="." method="_on_deck_pressed"]
 [connection signal="on_continue" from="CanvasLayer/input_name" to="." method="_on_input_name_on_continue"]
 [connection signal="close" from="CanvasLayer/server_browser" to="." method="_on_server_browser_close"]
 [connection signal="on_error" from="CanvasLayer/server_browser" to="." method="_on_server_browser_on_error"]

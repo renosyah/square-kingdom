@@ -11,6 +11,7 @@ var delay = 2.0
 # attr
 var attack_damage = 1.0
 var range_attack = 15.0
+var rotation_speed = 2.5
 
 # tag
 var team = ""
@@ -24,6 +25,7 @@ var is_master = true
 onready var _tween = Tween.new()
 onready var _firing_delay = Timer.new()
 onready var _iddle_timer = Timer.new()
+onready var _blank_spatial = Spatial.new()
 
 
 func _ready():
@@ -38,7 +40,10 @@ func _ready():
 	add_child(_iddle_timer)
 		
 	add_child(_tween)
-		
+	get_parent().add_child(_blank_spatial)
+	_blank_spatial.set_as_toplevel(true)
+	_blank_spatial.global_transform.origin = global_transform.origin
+	
 	parent = self
 	set_process(false)
 	
@@ -85,14 +90,29 @@ func _on_iddle_timer_timeout():
 	
 func _turn_facing_to(_target : Vector3, delta):
 	var alignment = _get_target_alignment(_target, global_transform.origin.y)
-	global_transform = global_transform.interpolate_with(alignment, 2.5 * delta)
-
+	global_transform = global_transform.interpolate_with(alignment, rotation_speed * delta)
+	
 func _get_target_alignment(_target : Vector3, elevation : float) -> Transform:
 	return global_transform.looking_at(Vector3(_target.x, elevation, _target.z), Vector3(0,1,0))
 
 func _is_aiming_align(_target : Vector3) -> bool:
-	var alignment_basis_z = _get_target_alignment(_target, global_transform.origin.y).basis.z.z
-	if Utils.compare_floats(alignment_basis_z, global_transform.basis.z.z, 0.01):
-		return true
-		
-	return false
+	_blank_spatial.transform = _blank_spatial.global_transform.looking_at(Vector3(_target.x, _blank_spatial.global_transform.origin.y, _target.z), Vector3(0,1,0))
+	return Utils.compare_floats(rotation_degrees.y, _blank_spatial.rotation_degrees.y, 0.1)
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+

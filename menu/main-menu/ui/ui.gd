@@ -87,6 +87,10 @@ func _on_input_name_on_continue(_player_name, html_color):
 	_input_name.visible = false
 	_control_ui.visible = true
 	
+	if Global.check_player_name():
+		_exception_message.display_message("Redeem", "Your redeem code is success, you have unlock all cards!")
+		_exception_message.visible = true
+	
 func _on_back_pressed():
 	_dialog_exit_option.display_message("Attention!","Are you sure want exit?")
 	_dialog_exit_option.visible = true

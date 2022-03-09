@@ -14,8 +14,8 @@ onready var _control_ui = $CanvasLayer/Control
 onready var _player_holder = $CanvasLayer/Control/VBoxContainer2/players/VBoxContainer
 onready var _battle_layout = $CanvasLayer/Control/VBoxContainer2/VBoxContainer/battle
 
-onready var _team_1_color = $CanvasLayer/Control/VBoxContainer2/VBoxContainer/choose_side/join_team_1/ColorRect2
-onready var _team_2_color = $CanvasLayer/Control/VBoxContainer2/VBoxContainer/choose_side/join_team_2/ColorRect
+onready var _team_1_color = $CanvasLayer/Control/VBoxContainer2/VBoxContainer/choose_side/join_team_1
+onready var _team_2_color = $CanvasLayer/Control/VBoxContainer2/VBoxContainer/choose_side/join_team_2
 
 onready var _battle_button = $CanvasLayer/Control/VBoxContainer2/VBoxContainer/battle/battle/battle_btn
 onready var _exit_timer = $exit_timer
@@ -86,8 +86,8 @@ remote func _receive_host_game_data(_team_colors : Dictionary):
 	team_colors = _team_colors
 	_loading.visible = false
 	_control_ui.visible = true
-	_team_1_color.color = team_colors[Global.TEAM_1]
-	_team_2_color.color = team_colors[Global.TEAM_2]
+	_team_1_color.self_modulate = team_colors[Global.TEAM_1]
+	_team_2_color.self_modulate = team_colors[Global.TEAM_2]
 	
 	var data = {
 		id = Global.player_data.id,
@@ -112,7 +112,7 @@ remotesync func _battle():
 func _ready():
 	_loading.visible = true
 	_control_ui.visible = false
-	_battle_button.modulate = BUTTON_BATTLE_ENABLE_COLOR
+	_battle_button.self_modulate = BUTTON_BATTLE_ENABLE_COLOR
 	
 	if Global.mode == Global.MODE_HOST:
 		_init_host()
@@ -141,8 +141,8 @@ func _init_host():
 	for i in Global.TEAMS:
 		team_colors[i] = Global.player_game_data[i].color
 		
-	_team_1_color.color = team_colors[Global.TEAM_1]
-	_team_2_color.color = team_colors[Global.TEAM_2]
+	_team_1_color.self_modulate = team_colors[Global.TEAM_1]
+	_team_2_color.self_modulate = team_colors[Global.TEAM_2]
 	
 	Network.connect("server_player_connected", self ,"_server_player_connected")
 	var err = Network.create_server(Global.server.max_player, Global.server.port , {"name" : Global.player_data.name})
@@ -211,7 +211,7 @@ func fill_player_slot():
 			is_all_ready = false
 			break
 			
-	_battle_button.modulate = BUTTON_BATTLE_DISABLE_COLOR if (not is_all_ready) else BUTTON_BATTLE_ENABLE_COLOR
+	_battle_button.self_modulate = BUTTON_BATTLE_DISABLE_COLOR if (not is_all_ready) else BUTTON_BATTLE_ENABLE_COLOR
 	
 	for i in player_joined:
 		var item = preload("res://menu/lobby-menu/ui/item/item.tscn").instance()

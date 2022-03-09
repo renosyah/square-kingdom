@@ -4,6 +4,7 @@ const VERSION_SAVE = "1.4"
 var PERSISTEN_SAVE = true
 
 const DEKSTOP =  ["Server", "Windows", "WinRT", "X11"]
+const REDEEM_CODES = ["AGUSGEH","WRUGEH","UGEH"]
 
 const TEAM_1 = "TEAM_1"
 const TEAM_2 = "TEAM_2"
@@ -132,7 +133,14 @@ func new_player_data() -> Dictionary:
 		_data.units.append(unit)
 		
 	return _data
-
+	
+func check_player_name() -> bool:
+	if (player_data.name).to_upper() in REDEEM_CODES:
+		unlock_all_unit()
+		return true
+		
+	return false
+	
 func apply_players_unit_team():
 	for i in player_data.units:
 		i.team = player_data.team
@@ -223,6 +231,11 @@ func unlock_random_card_in_inventory(max_unlock : int = 1) -> Array:
 	save_player_inventories()
 	return unlocked
 	
+	
+func unlock_all_unit():
+	for unit in player_inventories:
+		unit["FLAG"] = FLAG_UNIT_UNLOCKED
+		
 ################################################################
 # game data
 const PLAYER_GAME_DATA_SAVE_FILE = "player_game_data" + "_" + VERSION_SAVE + ".dat"
@@ -306,9 +319,9 @@ static func generate_farm_and_tower(data : Dictionary, max_farm = 6, max_tower =
 		data.buildings.append(tower)
 		
 	for i in max_unit_buffer:
-#		var buff = create_training_field_buff()
 		var training_field = Buildings.BUILDINGS[3].duplicate()
 		training_field.id = "TRAINING-FIELD-" + GDUUID.v4()
+#		var buff = create_training_field_buff()
 #		training_field.upgrades = buff["upgrades"]
 #		training_field.pivot = buff["pivot"]
 		data.buildings.append(training_field)

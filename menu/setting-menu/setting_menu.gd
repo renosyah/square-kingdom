@@ -7,6 +7,8 @@ onready var _audio_setting = $CanvasLayer/Control/VBoxContainer2/audio_setting
 
 onready var _color_picker = $CanvasLayer/input_color
 
+onready var _exception_message = $CanvasLayer/exception_message
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_tree().set_quit_on_go_back(false)
@@ -59,8 +61,13 @@ func clear_color_picker_signal():
 	for i in _color_picker.get_signal_connection_list("on_pick"):
 		_color_picker.disconnect("on_pick", _tag_setting, i.method)
 	
+func _on_tag_setting_code_redeem():
+	_exception_message.display_message("Redeem", "Your redeem code is success, you have unlock all cards!")
+	_exception_message.visible = true
 	
 	
 	
 	
-	
+
+
+

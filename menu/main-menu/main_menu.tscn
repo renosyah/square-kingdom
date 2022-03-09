@@ -512,7 +512,12 @@ alpha_cut = 2
 texture = ExtResource( 10 )
 
 [node name="floor" type="Sprite3D" parent="castle_1"]
-transform = Transform( 0.936435, 0, 0, 0, -4.02315e-08, -0.999483, 0, 0.920389, -4.36888e-08, 0.0187773, 0.476415, 0.0133343 )
+transform = Transform( 0.936435, 0, 0, 0, -4.02315e-08, -0.999483, 0, 0.920389, -4.36888e-08, 0.0187775, 0.538852, 0.0133343 )
+alpha_cut = 2
+texture = ExtResource( 9 )
+
+[node name="floor2" type="Sprite3D" parent="castle_1"]
+transform = Transform( 0.936435, 0, 0, 0, -4.02315e-08, -0.999483, 0, 0.920389, -4.36888e-08, 0.0187775, 0.214104, 0.0133343 )
 alpha_cut = 2
 texture = ExtResource( 9 )
 

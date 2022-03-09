@@ -1,6 +1,7 @@
 extends Control
 
 signal on_pick_color_press(_method_target)
+signal code_redeem
 
 onready var _input_name = $VBoxContainer/player_name_setting/input_name
 
@@ -22,7 +23,9 @@ func _on_save_name_pressed():
 		
 	Global.player_data.name = _input_name.text
 	Global.save_player_data()
-
+	
+	if Global.check_player_name():
+		emit_signal("code_redeem")
 
 func _on_team_1_randomize_color_pressed():
 	emit_signal("on_pick_color_press","_pick_for_team_1")

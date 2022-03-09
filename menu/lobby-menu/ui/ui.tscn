@@ -6,9 +6,9 @@
 [ext_resource path="res://assets/ui/fonts/montserrat_eb_48.tres" type="DynamicFont" id=4]
 [ext_resource path="res://assets/ui/simple_dialog_option/simple_dialog_option.tscn" type="PackedScene" id=5]
 [ext_resource path="res://addons/LANServerBroadcast/server_advertiser/ServerAdvertiser.gd" type="Script" id=6]
-[ext_resource path="res://assets/ui/button/bg.png" type="Texture" id=7]
+[ext_resource path="res://menu/lobby-menu/ui/plain.png" type="Texture" id=7]
 [ext_resource path="res://assets/ui/fonts/montserrat_eb_16.tres" type="DynamicFont" id=8]
-[ext_resource path="res://assets/ui/button/bg_press.png" type="Texture" id=9]
+[ext_resource path="res://menu/lobby-menu/ui/plain_press.png" type="Texture" id=9]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -187,26 +187,15 @@ margin_right = 15.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 15, 0 )
 
-[node name="join_team_1" type="Button" parent="CanvasLayer/Control/VBoxContainer2/VBoxContainer/choose_side"]
+[node name="join_team_1" type="TextureButton" parent="CanvasLayer/Control/VBoxContainer2/VBoxContainer/choose_side"]
 margin_left = 19.0
 margin_right = 273.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 200, 80 )
 size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 1 )
-flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/Control/VBoxContainer2/VBoxContainer/choose_side/join_team_1"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 9 )
+expand = true
 
 [node name="Label2" type="Label" parent="CanvasLayer/Control/VBoxContainer2/VBoxContainer/choose_side/join_team_1"]
 anchor_right = 1.0
@@ -228,26 +217,15 @@ margin_right = 322.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 45, 0 )
 
-[node name="join_team_2" type="Button" parent="CanvasLayer/Control/VBoxContainer2/VBoxContainer/choose_side"]
+[node name="join_team_2" type="TextureButton" parent="CanvasLayer/Control/VBoxContainer2/VBoxContainer/choose_side"]
 margin_left = 326.0
 margin_right = 581.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 200, 80 )
 size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 1 )
-flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control/VBoxContainer2/VBoxContainer/choose_side/join_team_2"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 9 )
+expand = true
 
 [node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer2/VBoxContainer/choose_side/join_team_2"]
 anchor_right = 1.0
@@ -299,7 +277,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 10
 
 [node name="battle_btn" type="TextureButton" parent="CanvasLayer/Control/VBoxContainer2/VBoxContainer/battle/battle"]
-modulate = Color( 0.27451, 0.27451, 0.27451, 1 )
+self_modulate = Color( 0, 0.588235, 0.0392157, 1 )
 margin_right = 562.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 100, 50 )
@@ -307,10 +285,12 @@ texture_normal = ExtResource( 7 )
 texture_pressed = ExtResource( 9 )
 expand = true
 
-[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer2/VBoxContainer/battle/battle"]
-margin_top = 25.0
-margin_right = 562.0
-margin_bottom = 65.0
+[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer2/VBoxContainer/battle/battle/battle_btn"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_as_outline = 2
 custom_fonts/font = ExtResource( 1 )
 text = "Battle"
 align = 1
