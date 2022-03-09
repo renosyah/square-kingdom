@@ -47,21 +47,18 @@ func apply_btn_condition():
 func _on_easy_btn_pressed():
 	set_all_disabled()
 	Global.player_game_data.ai_level = Global.AI_LEVEL[Global.EASY_AI]
-	Global.player_game_data.ai_units = Global.generate_ai_units(Global.EASY_AI)
 	apply_btn_condition()
 	Global.save_player_game_data()
 	
 func _on_medium_pressed():
 	set_all_disabled()
 	Global.player_game_data.ai_level = Global.AI_LEVEL[Global.MEDIUM_AI]
-	Global.player_game_data.ai_units = Global.generate_ai_units(Global.MEDIUM_AI)
 	apply_btn_condition()
 	Global.save_player_game_data()
 	
 func _on_hard_pressed():
 	set_all_disabled()
 	Global.player_game_data.ai_level = Global.AI_LEVEL[Global.HARD_AI]
-	Global.player_game_data.ai_units = Global.generate_ai_units(Global.HARD_AI)
 	apply_btn_condition()
 	Global.save_player_game_data()
 	

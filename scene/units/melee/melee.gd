@@ -21,15 +21,6 @@ var armor = ""
 
 ############################################################
 # multiplayer func
-func _set_puppet_translation(_val :Vector3):
-	._set_puppet_translation(_val)
-	if is_dead:
-		return
-		
-	_tween.interpolate_property(self,"translation", translation, _puppet_translation, 0.5)
-	_tween.start()
-	
-	
 func _set_puppet_moving_state(_val : Dictionary):
 	._set_puppet_moving_state(_val)
 	if is_dead:

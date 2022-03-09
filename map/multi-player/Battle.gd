@@ -87,6 +87,8 @@ var closes_farm = {
 	Global.TEAM_2 : []
 }
 
+var ai_units = []
+
 # {player : {}, unit_deploy : 0, unit_kill : 0, unit_lost: 0, building_own: 0 }
 var scores = {}
 
@@ -157,9 +159,9 @@ func _player_deploy_card(_unit : Dictionary, _cards : Array):
 func ai_draw_card(quantity, amount_team_coin : int) -> Array:
 	var cards = []
 	
-	game_data.ai_units.shuffle()
+	ai_units.shuffle()
 	
-	for unit in game_data.ai_units:
+	for unit in ai_units:
 		if unit.cost <= amount_team_coin:
 			cards.append(unit.duplicate())
 			

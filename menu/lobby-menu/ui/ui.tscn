@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/ui/fonts/montserrat_eb_32.tres" type="DynamicFont" id=1]
 [ext_resource path="res://menu/lobby-menu/ui/ui.gd" type="Script" id=2]
@@ -6,7 +6,9 @@
 [ext_resource path="res://assets/ui/fonts/montserrat_eb_48.tres" type="DynamicFont" id=4]
 [ext_resource path="res://assets/ui/simple_dialog_option/simple_dialog_option.tscn" type="PackedScene" id=5]
 [ext_resource path="res://addons/LANServerBroadcast/server_advertiser/ServerAdvertiser.gd" type="Script" id=6]
+[ext_resource path="res://assets/ui/button/bg.png" type="Texture" id=7]
 [ext_resource path="res://assets/ui/fonts/montserrat_eb_16.tres" type="DynamicFont" id=8]
+[ext_resource path="res://assets/ui/button/bg_press.png" type="Texture" id=9]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -276,7 +278,7 @@ rect_min_size = Vector2( 0, 25 )
 [node name="battle" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer2/VBoxContainer"]
 margin_top = 197.0
 margin_right = 600.0
-margin_bottom = 297.0
+margin_bottom = 287.0
 mouse_filter = 2
 alignment = 1
 __meta__ = {
@@ -285,17 +287,34 @@ __meta__ = {
 
 [node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Control/VBoxContainer2/VBoxContainer/battle"]
 margin_right = 15.0
-margin_bottom = 100.0
+margin_bottom = 90.0
 rect_min_size = Vector2( 15, 0 )
 
-[node name="battle" type="Button" parent="CanvasLayer/Control/VBoxContainer2/VBoxContainer/battle"]
+[node name="battle" type="MarginContainer" parent="CanvasLayer/Control/VBoxContainer2/VBoxContainer/battle"]
 margin_left = 19.0
 margin_right = 581.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 200, 100 )
+margin_bottom = 90.0
+rect_min_size = Vector2( 200, 90 )
 size_flags_horizontal = 3
+size_flags_vertical = 10
+
+[node name="battle_btn" type="TextureButton" parent="CanvasLayer/Control/VBoxContainer2/VBoxContainer/battle/battle"]
+modulate = Color( 0.27451, 0.27451, 0.27451, 1 )
+margin_right = 562.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 100, 50 )
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 9 )
+expand = true
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer2/VBoxContainer/battle/battle"]
+margin_top = 25.0
+margin_right = 562.0
+margin_bottom = 65.0
 custom_fonts/font = ExtResource( 1 )
 text = "Battle"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -303,13 +322,13 @@ __meta__ = {
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/VBoxContainer2/VBoxContainer/battle"]
 margin_left = 585.0
 margin_right = 600.0
-margin_bottom = 100.0
+margin_bottom = 90.0
 rect_min_size = Vector2( 15, 0 )
 
 [node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Control/VBoxContainer2/VBoxContainer"]
-margin_top = 301.0
+margin_top = 291.0
 margin_right = 600.0
-margin_bottom = 326.0
+margin_bottom = 316.0
 rect_min_size = Vector2( 0, 25 )
 
 [node name="loading" type="ColorRect" parent="CanvasLayer"]
@@ -358,7 +377,7 @@ one_shot = true
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer2/PanelContainer/HBoxContainer/back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer2/VBoxContainer/choose_side/join_team_1" to="." method="_on_join_team_1_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer2/VBoxContainer/choose_side/join_team_2" to="." method="_on_join_team_2_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer2/VBoxContainer/battle/battle" to="." method="_on_battle_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer2/VBoxContainer/battle/battle/battle_btn" to="." method="_on_battle_pressed"]
 [connection signal="on_yes" from="CanvasLayer/simple_dialog_option" to="." method="_on_simple_dialog_option_on_yes"]
 [connection signal="timeout" from="exit_timer" to="." method="_on_exit_timer_timeout"]
 [connection signal="timeout" from="enter_game_timer" to="." method="_on_enter_game_timer_timeout"]

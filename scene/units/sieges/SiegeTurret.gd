@@ -80,7 +80,7 @@ func _on_iddle_timer_timeout():
 	if is_instance_valid(target):
 		return
 		
-	_tween.interpolate_property(self,"rotation_degrees:y", rotation_degrees.y, rand_range(-90,90), 1.5)
+	_tween.interpolate_property(self,"rotation_degrees:y", rotation_degrees.y, rand_range(-180,180), 1.5)
 	_tween.start()
 	
 func _turn_facing_to(_target : Vector3, delta):
@@ -92,7 +92,7 @@ func _get_target_alignment(_target : Vector3, elevation : float) -> Transform:
 
 func _is_aiming_align(_target : Vector3) -> bool:
 	var alignment_basis_z = _get_target_alignment(_target, global_transform.origin.y).basis.z.z
-	if Utils.compare_floats(alignment_basis_z, global_transform.basis.z.z):
+	if Utils.compare_floats(alignment_basis_z, global_transform.basis.z.z, 0.01):
 		return true
 		
 	return false

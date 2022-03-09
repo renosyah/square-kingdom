@@ -48,6 +48,7 @@ var color : Color = Color.white
 var hit_by : Dictionary = {player = {}, node_path = "", team = "", color = Color.white}
 
 # misc
+var _tween_movement : Tween = null
 var _network_timmer : Timer = null
 var _cooldown_timmer : Timer = null
 var _idle_timmer : Timer = null
@@ -74,6 +75,15 @@ puppet var _puppet_translation :Vector3 setget _set_puppet_translation
 func _set_puppet_translation(_val :Vector3):
 	_puppet_translation = _val
 	
+	if is_dead:
+		return
+	
+	if is_master():
+		return
+		
+	_tween_movement.interpolate_property(self,"translation", translation, _puppet_translation, 0.5)
+	_tween_movement.start()
+	
 puppet var _puppet_rotation: Vector3 setget _set_puppet_rotation
 func _set_puppet_rotation(_val:Vector3):
 	_puppet_rotation = _val
@@ -81,13 +91,20 @@ func _set_puppet_rotation(_val:Vector3):
 puppet var _puppet_hp :float setget _set_puppet_hp
 func _set_puppet_hp(_val :float):
 	_puppet_hp = _val
+	
+	if not is_master():
+		return
+	
 	hp = _puppet_hp
 	
 puppetsync var _puppet_moving_state : Dictionary setget _set_puppet_moving_state
 func _set_puppet_moving_state(_val : Dictionary):
 	_puppet_moving_state = _val
-	if not is_master():
-		moving_state = _puppet_moving_state
+	
+	if is_master():
+		return
+	
+	moving_state = _puppet_moving_state
 	
 remotesync func _take_damage(_damage : float, _hit_by: Dictionary):
 	if is_dead:
@@ -133,6 +150,10 @@ func set_target(_target : NodePath):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_process(false)
+	
+	if not _tween_movement:
+		_tween_movement = Tween.new()
+		add_child(_tween_movement)
 	
 	if not is_master():
 		return

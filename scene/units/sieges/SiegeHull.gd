@@ -4,9 +4,6 @@ class_name SiegeHull
 onready var turn_speed = speed
 ############################################################
 # multiplayer func
-func _set_puppet_translation(_val :Vector3):
-	._set_puppet_translation(_val)
-	
 func _set_puppet_moving_state(_val : Dictionary):
 	._set_puppet_moving_state(_val)
 	

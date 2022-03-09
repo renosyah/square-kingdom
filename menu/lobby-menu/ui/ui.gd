@@ -1,5 +1,8 @@
 extends Control
 
+const BUTTON_BATTLE_ENABLE_COLOR = Color(0, 0.592157, 0.035294)
+const BUTTON_BATTLE_DISABLE_COLOR = Color(0.27451, 0.27451, 0.27451)
+
 const PLAYER_STATUS_NOT_READY = "NOT_READY"
 const PLAYER_STATUS_READY = "READY"
 
@@ -14,7 +17,7 @@ onready var _battle_layout = $CanvasLayer/Control/VBoxContainer2/VBoxContainer/b
 onready var _team_1_color = $CanvasLayer/Control/VBoxContainer2/VBoxContainer/choose_side/join_team_1/ColorRect2
 onready var _team_2_color = $CanvasLayer/Control/VBoxContainer2/VBoxContainer/choose_side/join_team_2/ColorRect
 
-onready var _battle_button = $CanvasLayer/Control/VBoxContainer2/VBoxContainer/battle/battle
+onready var _battle_button = $CanvasLayer/Control/VBoxContainer2/VBoxContainer/battle/battle/battle_btn
 onready var _exit_timer = $exit_timer
 onready var _enter_game_timer = $enter_game_timer
 
@@ -109,7 +112,7 @@ remotesync func _battle():
 func _ready():
 	_loading.visible = true
 	_control_ui.visible = false
-	_battle_button.disabled = true
+	_battle_button.modulate = BUTTON_BATTLE_ENABLE_COLOR
 	
 	if Global.mode == Global.MODE_HOST:
 		_init_host()
@@ -208,7 +211,7 @@ func fill_player_slot():
 			is_all_ready = false
 			break
 			
-	_battle_button.disabled = (not is_all_ready)
+	_battle_button.modulate = BUTTON_BATTLE_DISABLE_COLOR if (not is_all_ready) else BUTTON_BATTLE_ENABLE_COLOR
 	
 	for i in player_joined:
 		var item = preload("res://menu/lobby-menu/ui/item/item.tscn").instance()

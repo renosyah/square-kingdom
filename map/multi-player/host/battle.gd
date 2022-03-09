@@ -42,6 +42,8 @@ func generate_spawn():
 	MAX_UNIT_SPAWN = game_data.max_unit_spawn
 	check_deck()
 	
+	ai_units = Global.generate_ai_units(game_data.ai_level["name"])
+	
 	_terrain.season = game_data.map_season
 	_terrain.map_size = game_data.map_size
 	_terrain.generate()

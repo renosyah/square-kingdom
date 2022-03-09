@@ -14,33 +14,45 @@ const MEDIUM_AI = "MEDIUM"
 const HARD_AI = "HARD"
 
 const AI_LEVEL = {
-	 EASY_AI : {name = EASY_AI, timeout = 5, deploy_chance = 0.65},
-	 MEDIUM_AI : {name = MEDIUM_AI, timeout = 4, deploy_chance = 0.70},
-	 HARD_AI : {name = HARD_AI ,timeout = 3, deploy_chance = 0.80}
+	 EASY_AI : {
+		"name": EASY_AI,
+		"timeout" : 5,
+		"deploy_chance" : 0.65
+	},
+	 MEDIUM_AI : {
+		"name": MEDIUM_AI,
+		"timeout" : 4,
+		"deploy_chance" : 0.70
+	},
+	 HARD_AI : {
+		"name": HARD_AI,
+		"timeout" : 3,
+		"deploy_chance" : 0.80
+	}
 }
 
 const SMALL_SIZE = { 
-	name = "Small",
-	size = 1,
-	number_of_unit = 24,
-	space = 9, 
-	offset = 2 
+	"name" : "Small",
+	"size" : 1,
+	"number_of_unit" : 24,
+	"space" : 9, 
+	"offset" : 2 
 } #OK
 
 const NORMAL_SIZE = { 
-	name = "Normal",
-	size = 1.5,
-	number_of_unit = 36,
-	space = 9, 
-	offset = 14
+	"name" : "Normal",
+	"size" : 1.5,
+	"number_of_unit" : 36,
+	"space" : 9, 
+	"offset" : 14
 } #OK
 
 const LARGE_SIZE = { 
-	name = "Large",
-	size = 2,
-	number_of_unit = 54,
-	space = 9,
-	offset = 18
+	"name" : "Large",
+	"size" : 2,
+	"number_of_unit" : 54,
+	"space" : 9,
+	"offset" : 18
 } #OK
 
 const GREEN_GRASS = Color(0, 0.686275, 0.117647)
@@ -58,13 +70,9 @@ func _ready():
 	load_audio_setting()
 	play_music()
 	
-func set_window_size():
-	var _size_landscape = Vector2.ONE * 800
-	var _size_potrait = Vector2(600,1024)
-	if OS.get_name() in DEKSTOP:
-		OS.set_window_size(_size_landscape)
 ################################################################
 # autoplay feature
+# auto deploy unit
 var enable_autoplay = false 
 	
 ################################################################
@@ -251,7 +259,6 @@ static func generate_game_data() -> Dictionary:
 			coin = 25,
 		},
 		ai_level = AI_LEVEL[EASY_AI],
-		ai_units = generate_ai_units(EASY_AI),
 		buildings = [],
 		map_size = SMALL_SIZE,
 		map_season = GREEN_GRASS,
@@ -368,7 +375,7 @@ static func create_training_field_buff() -> Dictionary:
 	var key = type_upgrades[randi() % type_upgrades.size()]
 	return {
 		"upgrades" : { 
-			key[0] : { "name" : key[1], "value" : rand_range(0.10, 1.0) }
+			key[0] : { "name" : key[1], "value" : stepify(rand_range(0.10, 0.50), 0.01) }
 		},
 		"pivot" : pivots[randi() % pivots.size()]
 	}

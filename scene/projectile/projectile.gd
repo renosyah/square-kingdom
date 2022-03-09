@@ -1,5 +1,7 @@
 extends Spatial
 
+const MAX_DISTANCE = 80.0
+
 var _sprites : Array
 var _raycast : RayCast
 
@@ -11,6 +13,7 @@ var attack_damage = 4.0
 # speed
 var speed = 25.0
 var spread = 1.5
+var travel_distance = 0.0
 
 # tag
 var player = {}
@@ -54,7 +57,13 @@ func launch(to : Vector3):
 func _process(delta):
 	var _distance = speed * delta
 	translation += velocity * _distance
+	travel_distance += _distance
 	
+	if travel_distance > MAX_DISTANCE:
+		_timeout_timer.stop()
+		stop_projectile()
+		queue_free()
+		
 	if _raycast.is_colliding():
 		_on_projectile_body_entered(_raycast.get_collider())
 	
