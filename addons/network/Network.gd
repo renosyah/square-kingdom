@@ -115,7 +115,7 @@ func _on_server_disconnected():
 		
 	ping_interval_timer.stop()
 	ping_increment_timer.stop()
-	
+
 	emit_signal("server_disconnected")
 	
 # if player want to disconnect

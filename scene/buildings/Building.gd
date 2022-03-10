@@ -143,7 +143,10 @@ func finish_recaptured():
 func is_master() -> bool:
 	if not get_tree().network_peer:
 		return false
-	
+		
+	if get_tree().network_peer.get_connection_status() == NetworkedMultiplayerPeer.CONNECTION_DISCONNECTED:
+		return false
+		
 	if not is_network_master():
 		return false
 		

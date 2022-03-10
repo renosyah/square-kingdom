@@ -51,23 +51,9 @@ const GAME_OVER = 3
 const GAME_FINISH = 4
 
 var MAX_UNIT_SPAWN = 10
+
 # data match each team
-var game_data = {
-	Global.TEAM_1 : {
-		team_name = "",
-		color = Color.blue,
-		coin = 100,
-		units = [],
-	},
-	Global.TEAM_2 : {
-		team_name = "",
-		color = Color.red,
-		coin = 100,
-		units = [],
-	},
-	buildings = [],
-	map_size = {}
-}
+var game_data = {}
 
 # spawned object
 var castles = {
@@ -78,7 +64,9 @@ var castles = {
 ################################################################
 # server variables
 var game_flag = GAME_LOADING
+
 var winner_team = ""
+
 var units = []
 var farms = []
 
@@ -116,15 +104,17 @@ func _on_player_disconnected(_player_network_unique_id : int):
 func _on_receive_player_info(_player_network_unique_id : int, data : Dictionary):
 	on_player_disynchronize(data["name"])
 	
-func on_player_disynchronize(_player_name : String):
-	pass
-	
 func _server_disconnected():
-	Global.mp_exception_message = "Unexpected exit by Server!"
-	get_tree().change_scene("res://menu/main-menu/main_menu.tscn")
+	on_host_disconnected()
 	
 func _connection_closed():
 	print("exit by Client!")
+	
+func on_player_disynchronize(_player_name : String):
+	pass
+	
+func on_host_disconnected():
+	pass
 	
 ################################################################
 func _player_draw_card(_cards : Array, quantity : int) -> Array:
@@ -172,7 +162,7 @@ func ai_draw_card(quantity, amount_team_coin : int) -> Array:
 	
 # deploy card
 remote func _deploy_card(_player: Dictionary, _unit : Dictionary):
-	if not get_tree().is_network_server():
+	if not is_server():
 		return
 		
 	if game_flag == GAME_FINISH:
@@ -256,7 +246,7 @@ func _on_building_ready(_building):
 func _on_building_captured(_building):
 	on_building_captured(_building, _building.last_owner_team, _building.team)
 	
-	if not get_tree().is_network_server():
+	if not is_server():
 		return
 		
 	# player,unit_deploy, unit_kill, unit_lost, building_own
@@ -296,7 +286,7 @@ func on_building_captured(_building,_last_owner_team,capture_by):
 ################################################################
 # coin obtain
 func _on_coin_produce(_team : String, _amount : int):
-	if not get_tree().is_network_server():
+	if not is_server():
 		return
 		
 	if _team == "":
@@ -345,7 +335,7 @@ remotesync func _spawn_unit(unit_holder : NodePath, _player: Dictionary, _unit :
 	_unit_spawned(unit)
 	
 func _on_unit_ready(_unit):
-	if not get_tree().is_network_server():
+	if not is_server():
 		return
 		
 	_assign_unit_target(_unit)
@@ -441,7 +431,7 @@ func update_battle_time(_time_left_in_second : int):
 ################################################################
 # utils function
 func update_scores(player : Dictionary, unit_deploy, unit_kill, unit_lost, building_captured : int = 0):
-	if not get_tree().is_network_server():
+	if not is_server():
 		return
 		
 	if game_flag == GAME_OVER:
@@ -473,7 +463,7 @@ func update_scores(player : Dictionary, unit_deploy, unit_kill, unit_lost, build
 	
 func _number_of_farm_owned(team) -> int:
 	var farm_own = 0
-	if not get_tree().is_network_server():
+	if not is_server():
 		return farm_own
 		
 	for i in farms:
@@ -588,8 +578,24 @@ func _get_building_own_each_team(_castle_holder, _farm_holder : NodePath) -> Dic
 				data[team].building += 1
 				
 	return data
-
-
+	
+func is_server():
+	if not is_network_on():
+		return false
+		
+	if not get_tree().is_network_server():
+		return false
+		
+	return true
+	
+func is_network_on() -> bool:
+	if not get_tree().network_peer:
+		return false
+		
+	if get_tree().network_peer.get_connection_status() == NetworkedMultiplayerPeer.CONNECTION_DISCONNECTED:
+		return false
+		
+	return true
 
 
 

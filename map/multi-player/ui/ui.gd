@@ -50,7 +50,7 @@ func _ready():
 	_autoplay.text = "Autoplay : " + ("On" if Global.enable_autoplay else "Off") 
 	_autoplay_status.visible = Global.enable_autoplay
 	
-	if not get_tree().is_network_server():
+	if not is_server():
 		_ping_counter.visible = true
 		Network.connect("on_ping", self ,"_on_ping")
 		
@@ -130,7 +130,7 @@ func display_game_over(is_win : bool , condition, message : String, _scores : Di
 	_game_over.visible = true
 	_game_over_condition.text = condition
 	_game_over_message.text = message
-	_game_over_rematch_btn.visible = get_tree().is_network_server()
+	_game_over_rematch_btn.visible = is_server()
 	_game_over_scoreboard.display_scores(_scores)
 	
 	if is_win and _scores.has(Global.player_data.id):
@@ -180,6 +180,10 @@ func display_player_disynchronize(_player_name : String):
 	_exception_message.display_message("Attention!","Game session has lost connection with " + _player_name + "!")
 	_exception_message.visible = true
 	
+func display_host_disconnected():
+	_exception_message.display_message("Attention!","Unexpected exit by Host!")
+	_exception_message.visible = true
+	
 func display_option_on_exit():
 	_dialog_exit_option.display_message("Attention!","Exit to main menu?")
 	_dialog_exit_option.visible = true
@@ -196,7 +200,7 @@ func _on_exit_game_pressed():
 	display_option_on_exit()
 	
 func _on_re_match_pressed():
-	if not get_tree().is_network_server():
+	if not is_server():
 		return
 		
 	get_tree().change_scene("res://map/multi-player/host/battle.tscn")
@@ -230,6 +234,25 @@ func _on_autoplay_pressed():
 	_deck_list.enable_autoplay(Global.enable_autoplay)
 	_autoplay.text = "Autoplay : " + ("On" if Global.enable_autoplay else "Off") 
 	_autoplay_status.visible = Global.enable_autoplay
+	
+func is_server():
+	if not is_network_on():
+		return false
+		
+	if not get_tree().is_network_server():
+		return false
+		
+	return true
+	
+func is_network_on() -> bool:
+	if not get_tree().network_peer:
+		return false
+		
+	if get_tree().network_peer.get_connection_status() == NetworkedMultiplayerPeer.CONNECTION_DISCONNECTED:
+		return false
+		
+	return true
+
 
 
 

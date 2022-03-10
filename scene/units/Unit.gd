@@ -92,7 +92,7 @@ puppet var _puppet_hp :float setget _set_puppet_hp
 func _set_puppet_hp(_val :float):
 	_puppet_hp = _val
 	
-	if not is_master():
+	if is_master():
 		return
 	
 	hp = _puppet_hp
@@ -307,7 +307,10 @@ func _idle_timmer_timeout():
 func is_master() -> bool:
 	if not get_tree().network_peer:
 		return false
-	
+		
+	if get_tree().network_peer.get_connection_status() == NetworkedMultiplayerPeer.CONNECTION_DISCONNECTED:
+		return false
+		
 	if not is_network_master():
 		return false
 		

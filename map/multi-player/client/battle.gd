@@ -125,6 +125,9 @@ func on_building_captured(_building,_last_owner_team,_capture_by):
 func _on_ui_on_deploy_card(unit):
 	var _player_clone = Global.player_data.duplicate()
 	_player_clone.units = []
+	if not is_network_on():
+		return
+		
 	rpc_id(Network.PLAYER_HOST_ID, "_deploy_card", _player_clone, unit)
 	_ui.add_to_deck(._player_draw_card(Global.player_data.units, 1))
 	._player_deploy_card(unit, Global.player_data.units)
@@ -170,6 +173,10 @@ func update_battle_time(_time_left_in_second : int):
 func on_player_disynchronize(_player_name : String):
 	.on_player_disynchronize(_player_name)
 	_ui.display_player_disynchronize(_player_name)
+	
+func on_host_disconnected():
+	.on_host_disconnected()
+	_ui.display_host_disconnected()
 	
 ################################################################
 # if host player want to rematch

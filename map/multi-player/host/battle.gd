@@ -228,6 +228,10 @@ func on_player_disynchronize(_player_name : String):
 	.on_player_disynchronize(_player_name)
 	_ui.display_player_disynchronize(_player_name)
 	
+func on_host_disconnected():
+	.on_host_disconnected()
+	_ui.display_host_disconnected()
+	
 ################################################################
 # bot timer
 func _on_bot_timer_timeout():
